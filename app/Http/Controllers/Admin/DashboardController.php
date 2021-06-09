@@ -22,7 +22,11 @@ class DashboardController extends Controller
     {
         $this->middleware('auth:admin');
     }
-
+      public function updateOrderData(){
+        $pending = count(Order::where('status','=','pending')->get());
+        $completed = count(Order::where('status','=','completed')->get());
+        return response()->json([$pending,$completed]);
+      }
     public function index()
     {
         $pending = Order::where('status','=','pending')->get();

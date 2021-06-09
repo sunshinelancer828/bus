@@ -522,5 +522,18 @@
             });
         chart.render();    
 </script>
-
+<script type="text/javascript">
+    setInterval("my_function();",30000); 
+    function my_function(){
+         $.ajax({
+                type:'get',
+                url:'admin/updateOrderData',
+               
+                success: function( response ) {
+                   $(".bg1").find('span').text(response[0]);
+                   $(".bg3").find('span').text(response[1]);
+                }
+            });
+    }
+  </script>
 @endsection

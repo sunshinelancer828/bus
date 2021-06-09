@@ -1111,7 +1111,7 @@ class CartController extends Controller
             imagesetpixel($image,rand()%200,rand()%50,$pixel);
         }
 
-        $font = $actual_path.'assets/front/fonts/NotoSans-Bold.ttf';
+        $font = public_path('assets/front/fonts/NotoSans-Bold.ttf');
         $allowed_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         $length = strlen($allowed_letters);
         $letter = $allowed_letters[rand(0, $length-1)];
@@ -1131,7 +1131,7 @@ class CartController extends Controller
             imagesetpixel($image,rand()%200,rand()%50,$pixels);
         }
         session(['captcha_string' => $word]);
-        imagepng($image, $actual_path."assets/images/capcha_code.png");
+        imagepng($image, public_path("assets/images/capcha_code.png"));
     }
 
 

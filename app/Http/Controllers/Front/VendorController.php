@@ -160,7 +160,7 @@ class VendorController extends Controller
             imagesetpixel($image,rand()%200,rand()%50,$pixels);
         }
         session(['captcha_string' => $word]);
-        imagepng($image, "assets/images/capcha_code.png");
+        imagepng($image, public_path("assets/images/capcha_code.png"));
     }
 
 

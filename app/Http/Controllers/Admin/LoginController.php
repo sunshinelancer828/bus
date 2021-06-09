@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Support\Facades\Input;
 use Validator;
-
+use Session;
 
 class LoginController extends Controller
 {

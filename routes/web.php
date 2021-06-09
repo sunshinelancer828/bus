@@ -47,6 +47,7 @@ Route::prefix('admin')->group(function() {
 
   //------------ ADMIN DASHBOARD & PROFILE SECTION ------------
   Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
+  Route::get('updateOrderData', 'Admin\DashboardController@updateOrderData')->name('admin.updateOrderData');
   Route::get('/profile', 'Admin\DashboardController@profile')->name('admin.profile');
   Route::post('/profile/update', 'Admin\DashboardController@profileupdate')->name('admin.profile.update');
   Route::get('/password', 'Admin\DashboardController@passwordreset')->name('admin.password');

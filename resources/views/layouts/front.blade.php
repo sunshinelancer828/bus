@@ -473,8 +473,8 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
                       @endif
                       @if(App\Models\Socialsetting::find(1)->d_status == 1)
                       <li>
-                        <a href="{{ App\Models\Socialsetting::find(1)->dribble }}" class="dribbble" target="_blank">
-                            <i class="fab fa-dribbble"></i>
+                        <a href="{{ App\Models\Socialsetting::find(1)->youtube }}" class="youtube" target="_blank">
+                           <i class="fab fa-youtube"></i>
                         </a>
                       </li>
                       @endif

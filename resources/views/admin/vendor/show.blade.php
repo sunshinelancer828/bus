@@ -71,8 +71,8 @@ table#example2 {
                                                             <td>{{ $data->email }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>{{ __("Shop Number") }}</th>
-                                                            <td>{{ $data->shop_number }}</td>
+                                                            <th>{{ __("Whatsapp/Phone No") }}</th>
+                                                            <td>{{ $data->phone }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th>{{ __("Registration Number") }}</th>

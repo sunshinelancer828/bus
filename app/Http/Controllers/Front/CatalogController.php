@@ -187,23 +187,18 @@ class CatalogController extends Controller
        
             
             
-            
+           
             $searchValues = preg_split('/\s+/', $search); 
-            $items = Product::where(function ($q) use ($searchValues) {
-                    foreach ($searchValues as $value) {
-                        $q->where('name', 'like', "%{$value}%");
-                    }
-                })->where('status',1)->orderby('id','desc')->take(30)->get();
+            $items = Product::where('name','like', "%".$search."%")->where('status',1)->orderby('id','desc')->take(30)->get();
                 
-               
-            if(count($items)<10){
+            // if(count($items)<10){
               
-
-             foreach(explode(' ',$search) as $key => $value){
-        
-            
-                if($value){
-                    $checks = Product::where('name', 'like', '%' . $value . '%')->where('status','=',1)->get()->take(60);
+              
+             // foreach(explode(' ',$search) as $key => $value){
+                    
+                // if($value){
+                    $checks = Product::where('name','like', "%".$search."%")->where('status','=',1)->get()->take(60);
+                    
                     foreach($checks as $item){
                         $word = explode(' ',strtolower($item->name));
                         
@@ -225,9 +220,9 @@ class CatalogController extends Controller
                         $prodss[] = $item;
                     }
                    
-                }
+                // }
                 
-            }
+            // }
             
             $prodsss = new Collection($prodss);
            $prodsss = collect($prodsss)->sortByDesc('count')->take(30 - count($items));
@@ -236,7 +231,7 @@ class CatalogController extends Controller
             $prodsssss = $items;
             $prods = $prodsssss->merge($prodsss);
             
-            }
+            // }
 
       
    

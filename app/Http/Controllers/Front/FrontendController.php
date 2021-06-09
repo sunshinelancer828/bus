@@ -498,7 +498,7 @@ public function extraIndex()
 
     // Refresh Capcha Code
     public function refresh_code(){
-        // $this->code_image();
+        $this->code_image();
         return "done";
     }
 
@@ -591,7 +591,7 @@ public function extraIndex()
     private function  code_image()
     {
         $actual_path = str_replace('project','',base_path());
-		$actual_path =  '/home/projectshelvecom/public_html/';
+		# $actual_path =  '/home/projectshelvecom/public_html/';
         $image = imagecreatetruecolor(200, 50);
         $background_color = imagecolorallocate($image, 255, 255, 255);
         imagefilledrectangle($image,0,0,200,50,$background_color);
@@ -602,7 +602,8 @@ public function extraIndex()
             imagesetpixel($image,rand()%200,rand()%50,$pixel);
         }
 
-        $font = $actual_path.'assets/front/fonts/NotoSans-Bold.ttf';
+        $font = public_path('\assets\front\fonts\NotoSans-Bold.ttf');
+        // dd($font);
         $allowed_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         $length = strlen($allowed_letters);
         $letter = $allowed_letters[rand(0, $length-1)];
@@ -621,8 +622,9 @@ public function extraIndex()
         {
             imagesetpixel($image,rand()%200,rand()%50,$pixels);
         }
+        
         session(['captcha_string' => $word]);
-        imagepng($image, $actual_path."assets/images/capcha_code.png");
+        imagepng($image, public_path("\assets\images\capcha_code.png"));
     }
 
 // -------------------------------- CONTACT SECTION ENDS----------------------------------------

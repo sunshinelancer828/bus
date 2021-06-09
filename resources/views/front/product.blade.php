@@ -116,7 +116,7 @@
                   @endif
                  
                   @if($productt->type == 'Digital')
-                    <p class="estimate-time"><b>Product Code: </b> {{ sprintf("%'.08d",$productt->id) }}</p>
+                    <p class="estimate-time"><b>Product Code: </b>{{ sprintf("%'.08d",$productt->id) }}</p>
                     <p class="estimate-time"><b>No of Pages: </b> {{ $productt->pages }}</b></p>
                     <p class="estimate-time"><b>No of Chapters: </b> {{ $productt->chapters }}</p>
                     <p class="estimate-time"><b>File Format: </b> {{ $productt->file_format }}</p>
@@ -588,7 +588,7 @@
           <p class="stor-name">
            @if( $productt->user_id  != 0)
               @if(isset($productt->user))
-                {{ $productt->user->name }}
+                {{ $productt->user->shop_name }}test
 
                 @if($productt->user->checkStatus())
                 <br>

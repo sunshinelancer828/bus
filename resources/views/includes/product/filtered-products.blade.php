@@ -17,7 +17,7 @@
 													</div>
 													<div class="info">
 														<h5 class="name">{{ $prod->showName() }}</h5>
-														<h4 class="price">{{ $prod->setCurrency() }} <del><small>{{ $prod->showPreviousPrice() }}</small></del></h4>
+														<h4 class="price">{{ $prod->showPrice() }} <del><small></small></del></h4>
 														<div class="stars">
 															<div class="ratings">
 																<div class="empty-stars"></div>

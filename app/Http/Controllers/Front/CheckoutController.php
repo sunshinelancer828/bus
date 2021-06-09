@@ -92,7 +92,7 @@ class CheckoutController extends Controller
 				$cost =  Product::convertPrice($totalPrice);
 			}
 	
-            $userCart = Session::get('cart');
+              $userCart = Session::get('cart');
  
 			$file_uniqe = uniqid().time();
 			$file_name = $file_uniqe.'.json';
@@ -122,7 +122,7 @@ class CheckoutController extends Controller
                 'X-Mailer: PHP/' . phpversion();
    
             $sent =  mail($to,$subject,$msg1,$headers);
-                 
+                  
 			 if ($sent) {
 				$file = $save_dir . $file_name;
 				$fp = fopen($file, "wb");
@@ -139,11 +139,12 @@ class CheckoutController extends Controller
             $msg2 .= "Website: www.projectshelve.com<br>";
             
             $userReg = User::where('phone', $phone_number)->count();
-            
-            if ($userReg) {
+               // dd($msg2,$phone_number);
+             
+            // if ($userReg) {
     			$mailer = new GeniusMailer();
     			$mailer->sendWhatsAppMsg($msg2, $phone_number);
-            }
+            // }
         }
         
     }
@@ -1159,6 +1160,7 @@ class CheckoutController extends Controller
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
            // mail($to,$subject,$msg,$headers);            
         }
+
         //Sending Email To Admin
         if($gs->is_smtp == 1)
         {
@@ -1528,10 +1530,10 @@ class CheckoutController extends Controller
         $pixel = imagecolorallocate($image, 0,0,255);
         for($i=0;$i<500;$i++)
         {
-            imagesetpixel($image,rand()%200,rand()%50,$pixel);
+            // imagesetpixel($image,rand()%200,rand()%50,$pixel);
         }
 
-        $font = $actual_path.'assets/front/fonts/NotoSans-Bold.ttf';
+        $font = public_path('assets/front/fonts/NotoSans-Bold.ttf');
         $allowed_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         $length = strlen($allowed_letters);
         $letter = $allowed_letters[rand(0, $length-1)];
@@ -1542,7 +1544,7 @@ class CheckoutController extends Controller
         for ($i = 0; $i< $cap_length;$i++)
         {
             $letter = $allowed_letters[rand(0, $length-1)];
-            imagettftext($image, 25, 1, 35+($i*25), 35, $text_color, $font, $letter);
+            // imagettftext($image, 25, 1, 35+($i*25), 35, $text_color, $font, $letter);
             $word.=$letter;
         }
         $pixels = imagecolorallocate($image, 8, 186, 239);
@@ -1551,7 +1553,7 @@ class CheckoutController extends Controller
             imagesetpixel($image,rand()%200,rand()%50,$pixels);
         }
         session(['captcha_string' => $word]);
-        imagepng($image, $actual_path."assets/images/capcha_code.png");
+        // imagepng($image, public_path("assets/images/capcha_code.png"));
     }
 
 }

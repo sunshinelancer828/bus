@@ -602,7 +602,7 @@ public function extraIndex()
             imagesetpixel($image,rand()%200,rand()%50,$pixel);
         }
 
-        $font = public_path('\assets\front\fonts\NotoSans-Bold.ttf');
+        $font = public_path('/assets/front/fonts/NotoSans-Bold.ttf');
         // dd($font);
         $allowed_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         $length = strlen($allowed_letters);
@@ -624,7 +624,7 @@ public function extraIndex()
         }
         
         session(['captcha_string' => $word]);
-        imagepng($image, public_path("\assets\images\capcha_code.png"));
+        imagepng($image, public_path("/assets/images/capcha_code.png"));
     }
 
 // -------------------------------- CONTACT SECTION ENDS----------------------------------------

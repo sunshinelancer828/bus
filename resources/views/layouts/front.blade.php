@@ -72,6 +72,11 @@
 
   @endif
 	@yield('styles')
+	<style type="text/css">
+		.sign-in,.register{
+			color: white;
+		}
+	</style>
 </head>
 <body>
 <?php
@@ -166,12 +171,16 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 							<ul>
 								@if(!Auth::guard('web')->check())
 								<li class="login">
-									<a href="{{ route('user.login') }}" class="sign-log">
 										<div class="links">
-											<span class="sign-in">{{ $langg->lang12 }}</span> <span>|</span>
-											<span class="join">{{ $langg->lang13 }}</span>
-										</div>
+
+											<a href="{{ route('user.login') }}" class="sign-log">
+									<span class="sign-in">{{ $langg->lang12 }}</span> </a><span>|
+									<a href="{{ route('register') }}" class="sign-log">
+									</span>
+											<span class="register">SignUp</span>
 									</a>
+										</div>
+
 								</li>
 								@else
 								<li class="profilearea my-dropdown">
@@ -210,9 +219,9 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
                         				@endif
 									</li>
                     				@else
-									<li>
+									<!-- <li>
 										<a href="javascript:;" data-toggle="modal" data-target="#vendor-login" class="sell-btn">{{ $langg->lang220 }}</a>
-									</li>
+									</li> -->
 									@endif
 								@endif
 							</ul>

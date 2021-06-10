@@ -2,7 +2,6 @@
 use Illuminate\Support\Facades\Route;
 
 // ************************************ ADMIN SECTION **********************************************
-
 Route::prefix('admin')->group(function() {
 
   //------------ ADMIN LOGIN SECTION ------------
@@ -940,12 +939,15 @@ Route::prefix('user')->group(function() {
   Route::get('/dashboard', 'User\UserController@index')->name('user-dashboard');
 
   // User Login
+
   Route::get('/login', 'User\LoginController@showLoginForm')->name('user.login');
   Route::post('/login', 'User\LoginController@login')->name('user.login.submit');
   // User Login End
 
   // User Register
-  Route::get('/register', 'User\RegisterController@showRegisterForm')->name('user-register');
+   Route::view('register','user.register-page')->name("register");
+  
+  // Route::get('/register', 'User\RegisterController@showRegisterForm')->name('user-register');
   Route::post('/register', 'User\RegisterController@register')->name('user-register-submit');
   Route::get('/register/verify/{token}', 'User\RegisterController@token')->name('user-register-token');
   // User Register End

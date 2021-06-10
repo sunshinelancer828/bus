@@ -525,6 +525,7 @@ span.discount {
 }
 
 
+
 @media (max-width:991px) {
     .elegant-pricing-tables {
         margin-bottom: 30px
@@ -880,6 +881,10 @@ margin-bottom: 15px;
       .core-nav .wrap-core-nav-list {
         height: 240px;
       }
-	
+	.MsoNormalTable{
+        width: 100%;
+        overflow-x: scroll;
+        display: -webkit-inline-box;
+    }
 
   }

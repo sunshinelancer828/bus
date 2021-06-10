@@ -173,7 +173,7 @@ class CheckoutController extends Controller
             return redirect()->route('front.cart')->with('success',"You don't have any product to checkout.");
         }
         $gs = Generalsetting::findOrFail(1);
-        $dp = 1;
+        $dp = 0;
         $vendor_shipping_id = 0;
         $vendor_packing_id = 0;
         if (Session::has('currency')) 

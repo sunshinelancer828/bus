@@ -84,7 +84,7 @@
                 <div class="row">
                   <label class="control-label col-sm-3" for="dribble">{{ __('Youtube') }} *</label>
                   <div class="col-sm-6">
-                    <input class="form-control" name="dribble" id="dribble" placeholder="{{ __('https://youtube.com/') }}" required="" type="text" value="{{$data->dribble}}">
+                    <input class="form-control" name="youtube" id="dribble" placeholder="{{ __('https://youtube.com/') }}" required="" type="text" value="{{$data->youtube}}">
                   </div>
                   <div class="col-sm-3">
                     <label class="switch">

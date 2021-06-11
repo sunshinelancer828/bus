@@ -63,7 +63,7 @@ class CatalogController extends Controller
       $search = $request->search;
       $minprice = round(($minprice / $curr->value),2);
       $maxprice = round(($maxprice / $curr->value),2);
- //echo "<pre>";print_r(gettype($search));die;
+       //echo "<pre>";print_r(gettype($search));die;
 
       if (!empty($slug)) {
         $cat = Category::where('slug', $slug)->firstOrFail();
@@ -106,9 +106,9 @@ class CatalogController extends Controller
                                         return $query->orderBy('price', 'ASC');
                                       }
                                   });
-                                //   ->when(empty($sort), function ($query, $sort) {
-                                //       return $query->orderBy('id', 'DESC');
-                                //   });
+                                  // ->when(empty($sort), function ($query, $sort) {
+                                  //     return $query->orderBy('id', 'DESC');
+                                  // });
                                 
                         
                                
@@ -178,26 +178,25 @@ class CatalogController extends Controller
 
     
     
-    
         if($search){
 
 
 
 
-       
             
             
-           
+        
             $searchValues = preg_split('/\s+/', $search); 
             $items = Product::where('name','like', "%".$search."%")->where('status',1)->orderby('id','desc')->take(30)->get();
-                
-            // if(count($items)<10){
+
+            if(count($items)<10 && count($items)>0){
               
+             
               
-             // foreach(explode(' ',$search) as $key => $value){
+             foreach(explode(' ',$search) as $key => $value){
                     
-                // if($value){
-                    $checks = Product::where('name','like', "%".$search."%")->where('status','=',1)->get()->take(60);
+                if($value){
+                    $checks = Product::where('name','like', "%".$value."%")->where('status','=',1)->get()->take(60);
                     
                     foreach($checks as $item){
                         $word = explode(' ',strtolower($item->name));
@@ -220,9 +219,9 @@ class CatalogController extends Controller
                         $prodss[] = $item;
                     }
                    
-                // }
+                }
                 
-            // }
+            }
             
             $prodsss = new Collection($prodss);
            $prodsss = collect($prodsss)->sortByDesc('count')->take(30 - count($items));
@@ -231,10 +230,11 @@ class CatalogController extends Controller
             $prodsssss = $items;
             $prods = $prodsssss->merge($prodsss);
             
-            // }
-
-      
-   
+            }
+            else{
+                $prods=[];
+                $prods=Collect($prods);
+            }
     
 }else{
     $prods = $prods;
@@ -244,7 +244,6 @@ class CatalogController extends Controller
 
 
       $data['prods'] = $prods->paginate(30);
-
 
 
       if($request->ajax()) {

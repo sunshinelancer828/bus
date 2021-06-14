@@ -17,22 +17,23 @@
 		<meta property="og:image" content="{{asset('assets/images/blogs'.$blog->photo)}}" />
         <meta name="keywords" content="{{ $blog->meta_tag }}">
         <meta name="description" content="{{ $blog->meta_description }}">
+         <meta name="description" content="{{ $productt->meta_description != null ? $productt->meta_description : strip_tags($productt->description) }}">  
+
 		<title>{{$gs->title}}</title>
     @elseif(isset($productt))
 		<meta name="keywords" content="{{ !empty($productt->tags) ? implode(',', $productt->tags ): '' }}">
-		<meta name="description" content="{{ $productt->meta_description != null ? $productt->meta_description : strip_tags($productt->description) }}">
+		<meta name="description" content="{{ $productt->name}}">
 	    <meta property="og:title" content="{{$productt->name}}" />
-	    <meta property="og:description" content="{{ $productt->meta_description != null ? $productt->meta_description : strip_tags($productt->description) }}" />
+	    <meta property="og:description" content="{{ $productt->name != null ? $productt->meta_description : strip_tags($productt->description) }}" />
 	    <meta property="og:image" content="{{asset('assets/images/thumbnails/'.$productt->thumbnail)}}" />
-	    <meta name="author" content="GeniusOcean">
-	    <meta name="description" content="{{ $productt->meta_description != null ? $productt->meta_description : strip_tags($productt->description) }}">
+	    <meta name="author" content="ProjectShelve">
     	<title>{{($productt->name)."-"}}{{$gs->title}}</title>
 	@else
 		<meta property="og:title" content="{{$gs->title}}" />
 		<meta property="og:description" content="{{ strip_tags($gs->footer) }}" />
 		<meta property="og:image" content="{{asset('assets/images/'.$gs->logo)}}" />
 	    <meta name="keywords" content="{{ $seo->meta_keys }}">
-	    <meta name="author" content="GeniusOcean">
+	    <meta name="author" content="ProjectShelve">
 	     <meta name="description" content="{{ strip_tags($gs->footer) }}">
 		<title>{{$gs->title}}</title>
     @endif

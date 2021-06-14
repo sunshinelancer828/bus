@@ -588,7 +588,7 @@
           <p class="stor-name">
            @if( $productt->user_id  != 0)
               @if(isset($productt->user))
-                {{ $productt->user->shop_name }}test
+                {{ $productt->user->shop_name }}
 
                 @if($productt->user->checkStatus())
                 <br>

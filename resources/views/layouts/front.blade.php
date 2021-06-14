@@ -26,7 +26,7 @@
 	    <meta property="og:image" content="{{asset('assets/images/thumbnails/'.$productt->thumbnail)}}" />
 	    <meta name="author" content="GeniusOcean">
 	    <meta name="description" content="{{ $productt->meta_description != null ? $productt->meta_description : strip_tags($productt->description) }}">
-    	<title>{{substr($productt->name, 0,11)."-"}}{{$gs->title}}</title>
+    	<title>{{($productt->name)."-"}}{{$gs->title}}</title>
 	@else
 		<meta property="og:title" content="{{$gs->title}}" />
 		<meta property="og:description" content="{{ strip_tags($gs->footer) }}" />
@@ -368,7 +368,8 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 								<ul class="{{ $ck == 1 ? 'categories_mega_menu' : 'categories_mega_menu column_1' }}">
 									@foreach($category->subs as $subcat)
 										<li>
-											<a href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}} </a>
+											<a class="float-left" href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}} </a>
+											<!-- <a  href="javascript:;" class="subCategory-icon float-right"><i class="fas fa-plus"></i></a> -->
 											@if($subcat->childs()->count())
 												<div class="categorie_sub_menu">
 													<ul>

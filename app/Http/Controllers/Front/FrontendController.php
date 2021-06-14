@@ -278,22 +278,8 @@ public function extraIndex()
                 $prods = $items;
             }
 
-          
-           
-           
-            
-      
             
             return view('load.suggest',compact('prods','slug'));
-          
-            
-            
-            
-        
-            
-        
-            // return view('load.suggest',compact('prods','slug'));
-        
  
     }
 

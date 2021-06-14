@@ -179,17 +179,15 @@ class CatalogController extends Controller
     
     
         if($search){
-
-
-
-
-            
-            
-        
             $searchValues = preg_split('/\s+/', $search); 
-            $items = Product::where('name','like', "%".$search."%")->where('status',1)->orderby('id','desc')->take(30)->get();
-
-            if(count($items)<10 && count($items)>0){
+            
+                         $items = Product::where(function ($q) use ($searchValues) {
+                    foreach ($searchValues as $value) {
+                        $q->where('name', 'like', "%{$value}%");
+                    }
+                })->where('status',1)->orderby('id','desc')->take(10)->get();
+// dd($items);
+            if(count($items)<=10 && count($items)>0){
               
              
               

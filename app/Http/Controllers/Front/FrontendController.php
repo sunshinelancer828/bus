@@ -229,9 +229,6 @@ public function extraIndex()
     {
         
             $search = $slug;
-
-            
-            
             
             $searchValues = preg_split('/\s+/', $search); 
             $items = Product::where(function ($q) use ($searchValues) {
@@ -241,7 +238,7 @@ public function extraIndex()
                 })->where('status',1)->orderby('id','desc')->take(10)->get();
                 
                
-            if(count($items)<10){
+            if(count($items)<=10){
               
                 $prodss = [];
              foreach(explode(' ',$search) as $key => $value){
@@ -295,7 +292,7 @@ public function extraIndex()
         
             
         
-            return view('load.suggest',compact('prods','slug'));
+            // return view('load.suggest',compact('prods','slug'));
         
  
     }

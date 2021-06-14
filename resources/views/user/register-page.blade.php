@@ -116,8 +116,8 @@
                             </div>
                            <div class="col-lg-6">
                                  <div class="form-input">
-                                <input type="tel" class="User Name valid_phone" name="phone" placeholder="{{ $langg->lang184 }}" required="">
-                                <i class="icofont-phone"></i>
+                                   <input type="tel" class="User Name" id="phone_valid2" name="phone" placeholder="{{ $langg->lang184 }}" required="">
+                                   <i class="icofont-phone"></i>
                             </div>
 
                             </div>
@@ -240,6 +240,12 @@
 @section('scripts')
 <script>
 var phone_number = window.intlTelInput(document.querySelector("#phone_valid"), {
+  separateDialCode: true,
+  preferredCountries:["ng"],
+  hiddenInput: "full",
+  utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+});
+var phone_number = window.intlTelInput(document.querySelector("#phone_valid2"), {
   separateDialCode: true,
   preferredCountries:["ng"],
   hiddenInput: "full",

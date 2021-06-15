@@ -41,9 +41,10 @@
 												<table id="geniustable" class="table table-hover dt-responsive" cellspacing="0" width="100%">
 													<thead>
 														<tr>
-									                        <th width="30%">{{ __('Faq Title') }}</th>
-									                        <th width="50%">{{ __('Faq Details') }}</th>
-									                        <th>{{ __('Options') }}</th>
+									                        <th>{{ __('Faq Title') }}</th>
+									                        <th>{{ __('Faq Details') }}</th>
+									                        <th style="width:90px">{{ __('Position') }}</th>
+									                        <th style="width: 100px">{{ __('Options') }}</th>
 														</tr>
 													</thead>
 												</table>
@@ -131,6 +132,7 @@
                columns: [
                         { data: 'title', name: 'title' },
                         { data: 'details', name: 'details' },
+                        { data: 'position', name: 'position' },
             			{ data: 'action', searchable: false, orderable: false }
 
                      ],

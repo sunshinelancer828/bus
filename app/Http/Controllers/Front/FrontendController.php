@@ -137,7 +137,7 @@ public function index(Request $request)
     $sliders = DB::table('sliders')->get();
     $services = DB::table('services')->where('user_id','=',0)->get();
     $top_small_banners = DB::table('banners')->where('type','=','TopSmall')->get();
-    $homecategories = Category::select('id', 'name', 'slug', 'image')->where('status', '=', 1)->get();
+    $homecategories = Category::select('id', 'name', 'slug', 'image')->with('products')->where('status', '=', 1)->get();
     $feature_products =  Product::where('featured','=',1)->where('status','=',1)->when($gs->affilate_product == 0, function($q){
                                                                                     return $q->where('product_type','=', 'normal');
                                                                                 })->orderBy('id','desc')->take(8)->get();
@@ -398,7 +398,7 @@ public function extraIndex()
         if(DB::table('generalsettings')->find(1)->is_faq == 0){
             return redirect()->back();
         }
-        $faqs =  DB::table('faqs')->orderBy('id','desc')->get();
+        $faqs =  DB::table('faqs')->orderBy('position','asc')->get();
 		return view('front.faq',compact('faqs'));
 	}
 // -------------------------------- FAQ SECTION ENDS----------------------------------------

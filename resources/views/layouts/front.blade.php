@@ -342,7 +342,7 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 								@endif
 								</div>
 								<div class="link-area">
-									<span><a href="{{ route('front.category',$category->slug) }}">{{ $category->name }} {{count($category->products)}} </a></span>
+									<span><a href="{{ route('front.category',$category->slug) }}">{{ $category->name }}  </a></span>
 									@if($category->subs()->count())
 									<a href="javascript:;">
 										<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -369,15 +369,13 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 								<ul class="{{ $ck == 1 ? 'categories_mega_menu' : 'categories_mega_menu column_1' }}">
 									@foreach($category->subs as $subcat)
 										<li>
-
-											<a class="float-left" href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}}{{count($subcat->products)}}  </a>
-
+											<a class="float-left" href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}} </a>
 											<!-- <a  href="javascript:;" class="subCategory-icon float-right"><i class="fas fa-plus"></i></a> -->
 											@if($subcat->childs()->count())
 												<div class="categorie_sub_menu">
 													<ul>
 														@foreach($subcat->childs as $childcat)
-														<li><a href="{{ route('front.childcat',['slug1' => $childcat->subcategory->category->slug, 'slug2' => $childcat->subcategory->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}} {{count($subcat->products)}}</a></li>
+														<li><a href="{{ route('front.childcat',['slug1' => $childcat->subcategory->category->slug, 'slug2' => $childcat->subcategory->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}}</a></li>
 														@endforeach
 													</ul>
 												</div>

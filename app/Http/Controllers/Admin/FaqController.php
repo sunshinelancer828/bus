@@ -16,7 +16,7 @@ class FaqController extends Controller
     //*** JSON Request
     public function datatables()
     {
-         $datas = Faq::orderBy('id','desc')->get();
+         $datas = Faq::orderBy('position','asc')->get();
          //--- Integrating This Collection Into Datatables
          return Datatables::of($datas)
                             ->editColumn('details', function(Faq $data) {
@@ -52,9 +52,13 @@ class FaqController extends Controller
         //--- Logic Section
         $data = new Faq();
         $input = $request->all();
+        $records = Faq::where('position', '>=', $request->input('position'))->get();
+                $records->each(function($todo) {
+                    $todo->increment('position');
+                }); 
         $data->fill($input)->save();
-        //--- Logic Section Ends
-
+         //--- Logic Section Ends
+                 
         //--- Redirect Section        
         $msg = 'New Data Added Successfully.'.'<a href="'.route("admin-faq-index").'">View Faq Lists</a>';
         return response()->json($msg);      

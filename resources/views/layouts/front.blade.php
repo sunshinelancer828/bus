@@ -342,7 +342,7 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 								@endif
 								</div>
 								<div class="link-area">
-									<span><a href="{{ route('front.category',$category->slug) }}">{{ $category->name }}  </a></span>
+									<span><a href="{{ route('front.category',$category->slug) }}">{{ $category->name }}  &nbsp;&nbsp; {{$category->products()->count()}} </a></span>
 									@if($category->subs()->count())
 									<a href="javascript:;">
 										<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -352,7 +352,7 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 							@else
 								<a href="{{ route('front.category',$category->slug) }}">
 								    <img src="{{ asset('assets/images/categories/'.$category->photo) }}" alt="{{ $category->name }}"> 
-								    {{ $category->name }} {{count($category->products)}}
+								    {{ $category->name }}  &nbsp;&nbsp;    {{$category->products()->count()}}
 								</a>
 							@endif
 							
@@ -369,13 +369,13 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 								<ul class="{{ $ck == 1 ? 'categories_mega_menu' : 'categories_mega_menu column_1' }}">
 									@foreach($category->subs as $subcat)
 										<li>
-											<a class="float-left" href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}} </a>
+											<a class="float-left" href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}} &nbsp;&nbsp;   {{$subcat->products()->count()}} </a>
 											<!-- <a  href="javascript:;" class="subCategory-icon float-right"><i class="fas fa-plus"></i></a> -->
 											@if($subcat->childs()->count())
 												<div class="categorie_sub_menu">
 													<ul>
 														@foreach($subcat->childs as $childcat)
-														<li><a href="{{ route('front.childcat',['slug1' => $childcat->subcategory->category->slug, 'slug2' => $childcat->subcategory->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}}</a></li>
+														<li><a href="{{ route('front.childcat',['slug1' => $childcat->subcategory->category->slug, 'slug2' => $childcat->subcategory->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}}  &nbsp;&nbsp;   {{$childcat->products()->count()}}</a></li>
 														@endforeach
 													</ul>
 												</div>

@@ -73,7 +73,7 @@
 							<a href="{{ route('front.category',$category->slug) }}" class="single-category"> 
 							<div class="left">
 								<h5 class="title">{{ $category->name }}</h5>
-						      {{count($category->products)}} item(s)
+						      <span style="font-size: 11px;">{{$category->products()->count()}} item(s)</span>
 							</div>
 							<div class="right">
 								<img src="{{ $category->image ? asset('assets/images/categories/'.$category->image) : asset('assets/images/noimage.png') }}" alt="{{ $category->name }}">

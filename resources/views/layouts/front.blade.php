@@ -77,6 +77,17 @@
 		.sign-in,.register{
 			color: white;
 		}
+		.fa-plus{
+			display: none;
+		}
+		@media(max-width: 767px){
+		 .categorie_sub_menu{
+			display: none;
+		 }
+		 .fa-plus{
+		 	display: block;
+		 }
+		}
 	</style>
 </head>
 <body>
@@ -366,11 +377,13 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 										}
 									}
 								@endphp
-								<ul class="{{ $ck == 1 ? 'categories_mega_menu' : 'categories_mega_menu column_1' }}">
+								<ul class='categories_mega_menu'>
 									@foreach($category->subs as $subcat)
 										<li>
 											<a class="float-left" href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}} &nbsp;&nbsp;   {{$subcat->products()->count()}} </a>
-											<!-- <a  href="javascript:;" class="subCategory-icon float-right"><i class="fas fa-plus"></i></a> -->
+											@if($subcat->childs()->count()>0)
+											<a  href="javascript:;" class="subCategory-icon float-right"><i class="fas fa-plus"></i></a>
+											@endif
 											@if($subcat->childs()->count())
 												<div class="categorie_sub_menu">
 													<ul>
@@ -1076,7 +1089,35 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 	<script src="{{asset('assets/front/js/main.js')}}"></script>
 	<script src="{{asset('assets/front/js/intlTelInput.js')}}"></script>
 	<script src="{{asset('assets/front/js/custom_validate.js')}}"></script>
-	
+    <script type="text/javascript">
+    	var width = $(window).width();
+    	console.log(width)
+    
+    	 if (width < 740) {
+        	console.log("mobile view");
+    	$(".categories_mega_menu").click(function(e){
+			   e.stopPropagation();
+	     });
+    	$(".subCategory-icon").click(function(e){
+                           console.log(e.target);
+
+                   		$(e.target).parent().siblings('div').toggle(function(){
+		              if($(e.target).parent().siblings('div').css('display')=='none'){
+
+                    	$(e.target).removeClass('fa-minus');
+                   		$(e.target).addClass('fa-plus');
+                    }
+                     if($(e.target).parent().siblings('div').css('display')=='block'){
+                     	console.log("blcokl");
+                    	$(e.target).removeClass('fa-plus');
+                   		$(e.target).addClass('fa-minus');
+                    }
+                   		});
+                   
+
+    	});
+    }
+    </script>	
 	<!-- custom -->
 	<script src="{{asset('assets/front/js/custom.js')}}"></script>
 

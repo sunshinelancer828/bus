@@ -323,19 +323,25 @@ class VendorController extends Controller
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers .= "From: ProjectShelve <info@projectshelve.com>";
 
-        if ($gs->is_smtp == 1) {
+        // if ($gs->is_smtp == 1) {
 
-            $mailer = new GeniusMailer();
-            $mailer->sendCustomMail([
-                'to' => $to,
-                'subject' => $subject,
-                'body' => $msg
-            ]);
+        //     $mailer = new GeniusMailer();
+        //     $mailer->sendCustomMail([
+        //         'to' => $to,
+        //         'subject' => $subject,
+        //         'body' => $msg
+        //     ]);
 
-        } else {
+        // } else {
 
-            mail($to, $subject, $msg, $headers);
-        }
+            // mail($to, $subject, $msg, $headers);
+        Mail::send(array(), array(), function ($message) use ($msg,$headers,$to,$subject) {
+                              $message->to($to)
+                             ->subject($subject)
+                            
+                              ->setBody($msg);
+                            }); 
+        // }
 
         return response()->json('Withdraw Accepted Successfully.');      
          

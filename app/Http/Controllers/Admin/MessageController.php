@@ -14,7 +14,7 @@ use App\Models\User;
 use App\Models\UserNotification;
 use App\Models\Generalsetting;
 use Auth;
-use DB;
+use DB,Mail;
 
 class MessageController extends Controller
 {
@@ -144,24 +144,30 @@ class MessageController extends Controller
         $from = $admin->email;
         $msg = "Email: ".$from."<br>Message: ".$request->message;
         $gs = Generalsetting::findOrFail(1);
-        if($gs->is_smtp == 1)
-        {
+        // if($gs->is_smtp == 1)
+        // {
 
-        $datas = [
-            'to' => $to,
-            'subject' => $subject,
-            'body' => $msg,
-        ];
-        $mailer = new GeniusMailer();
-         $mailer->sendCustomMail($datas);
-        }
-        else
-        {
+        // $datas = [
+        //     'to' => $to,
+        //     'subject' => $subject,
+        //     'body' => $msg,
+        // ];
+        // $mailer = new GeniusMailer();
+        //  $mailer->sendCustomMail($datas);
+        // }
+        // else
+        // {
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-        mail($to,$subject,$msg,$headers);            
-        }
+        // mail($to,$subject,$msg,$headers);    
+        Mail::send(array(), array(), function ($message) use ($msg,$headers,$to,$subject) {
+                              $message->to($to)
+                             ->subject($subject)
+                            
+                              ->setBody($msg);
+                            });         
+        // }
 
         if($request->type == 'Ticket'){
             $conv = AdminUserConversation::where('type','=','Ticket')->where('user_id','=',$user->id)->where('subject','=',$subject)->first(); 

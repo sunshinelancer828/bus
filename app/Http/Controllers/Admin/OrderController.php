@@ -13,7 +13,7 @@ use App\Models\Product;
 use Datatables;
 use App\Models\Currency;
 use Illuminate\Http\Request;
-use Session;
+use Session,Mail;
 use DB;
 
 class OrderController extends Controller
@@ -177,7 +177,14 @@ class OrderController extends Controller
 
                 } else {
 
-                    mail($to, $subject, $msg1, $headers);
+                    // mail($to, $subject, $msg1, $headers);
+                    $sent =   Mail::send(array(), array(), function ($message) use ($msg1,$header) {
+                              $message->to("sufianahmed14239@gmail.com")
+                             ->subject("Your Order is Confirmed")
+                              ->setBody($msg1,'text/html')
+                                ->getHeaders()
+                               ->addTextHeader($header, 'true');
+                            });    
                 }
         
                 if (!empty($vid)) {
@@ -285,25 +292,29 @@ class OrderController extends Controller
 
                 $msg = "Hello ".$data->customer_name.","."\n We are sorry for the inconvenience caused. We are looking forward to your next visit.<br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
 
-                if ($gs->is_smtp == 1) {
+                // if ($gs->is_smtp == 1) {
 
-                    $maildata = [
-                        'to' => $to,
-                        'subject' => $subject,
-                        'body' => $msg
-                    ];
+                //     $maildata = [
+                //         'to' => $to,
+                //         'subject' => $subject,
+                //         'body' => $msg
+                //     ];
 
-                    $mailer = new GeniusMailer();
-                    $mailer->sendCustomMail($maildata);
+                //     $mailer = new GeniusMailer();
+                //     $mailer->sendCustomMail($maildata);
 
-                } else {
+                // } else {
 
                    $headers = "MIME-Version: 1.0" . "\r\n";
                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                    $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-
-                   mail($to, $subject, $msg, $headers);
-                }
+                         Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });      
+                   // Mail::send($to, $subject, $msg, $headers);
+                // }
             }
 
             $data->update($input);
@@ -369,32 +380,42 @@ class OrderController extends Controller
     public function emailsub(Request $request)
     {
         $gs = Generalsetting::findOrFail(1);
-        if($gs->is_smtp == 1)
-        {
-            $data = 0;
-            $datas = [
-                    'to' => $request->to,
-                    'subject' => $request->subject,
-                    'body' => $request->message,
-            ];
-
-            $mailer = new GeniusMailer();
-            $mail = $mailer->sendCustomMail($datas);
-            if($mail) {
-                $data = 1;
-            }
-        }
-        else
-        {
+        //   if($gs->is_smtp == 1)
+        // {
+        //     $data = 0;
+        //     $datas = [
+        //             'to' => $request->to,
+        //             'subject' => $request->subject,
+        //             'body' => $request->message,
+        //     ];
+             
+        //     $mailer = new GeniusMailer();
+        //     $mail = $mailer->sendCustomMail($datas);
+        //     if($mail) {
+        //         $data = 1;
+        //     }
+        // }
+        // else
+        // {
             $data = 0;
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
             $mail = mail($request->to,$request->subject,$request->message,$headers);
-            if($mail) {
+            $msg =$request->message;
+            $to =$request->to;
+            $subject =$request->subject;
+
+            $mail =   Mail::send(array(), array(), function ($message) use ($msg,$headers,$to,$subject) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg);
+                            }); 
+
+            if($mail==null) {
                 $data = 1;
             }
-        }
+        // }
 
         return response()->json($data);
     }

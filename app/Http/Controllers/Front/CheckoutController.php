@@ -21,7 +21,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\UserNotification;
 use App\Models\VendorOrder;
-
+use Mail;
 use Auth;
 use Image;
 use DB;
@@ -114,15 +114,26 @@ class CheckoutController extends Controller
             $subject = 'Your Order is Confirmed';
 			
             $msg1 = $msg;
-                  
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ProjectShelve <info@projectshelve.com>" . "\r\n" .
                 'Reply-To: info@projectshelve.com' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
    
-            $sent =  mail($to,$subject,$msg1,$headers);
-                  
+            // $sent =  mail($to,$subject,$msg1,$headers);
+                
+                         // $sent =   Mail::send(array(), array(), function ($message) use ($msg1) {
+                         //      $message->to("sufianahmed14239@gmail.com")
+                         //     ->subject("Your Order is Confirmed")
+                         //      ->setBody($msg1,'text/html');
+                                
+                         //    });  
+                              $sent =   Mail::send(array(), array(), function ($message) use ($msg1,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg1,'text/html');
+                            });         
+                   
 			 if ($sent) {
 				$file = $save_dir . $file_name;
 				$fp = fopen($file, "wb");
@@ -139,8 +150,7 @@ class CheckoutController extends Controller
             $msg2 .= "Website: www.projectshelve.com<br>";
             
             $userReg = User::where('phone', $phone_number)->count();
-               // dd($msg2,$phone_number);
-             
+              
             // if ($userReg) {
     			$mailer = new GeniusMailer();
     			$mailer->sendWhatsAppMsg($msg2, $phone_number);
@@ -771,54 +781,64 @@ class CheckoutController extends Controller
 
         //Sending Email To Buyer
 
-        if($gs->is_smtp == 1)
-        {
-        $data = [
-            'to' => $request->email,
-            'type' => "new_order",
-            'cname' => $request->name,
-            'oamount' => "",
-            'aname' => "",
-            'aemail' => "",
-            'wtitle' => "",
-            'onumber' => $order->order_number,
-        ];
+        // if($gs->is_smtp == 1)
+        // {
+        // $data = [
+        //     'to' => $request->email,
+        //     'type' => "new_order",
+        //     'cname' => $request->name,
+        //     'oamount' => "",
+        //     'aname' => "",
+        //     'aemail' => "",
+        //     'wtitle' => "",
+        //     'onumber' => $order->order_number,
+        // ];
 
-        $mailer = new GeniusMailer();
-        $mailer->sendAutoOrderMail($data,$order->id);            
-        }
-        else
-        {
+        // $mailer = new GeniusMailer();
+        // $mailer->sendAutoOrderMail($data,$order->id);            
+        // }
+        // else
+        // {
            $to = $request->email;
            $subject = "Your Order Placed!!";
            $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
            $headers = "MIME-Version: 1.0" . "\r\n";
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-           // mail($to,$subject,$msg,$headers);            
-        }
+           // mail($to,$subject,$msg,$headers);
+           Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });              
+        // }
         //Sending Email To Admin
-        if($gs->is_smtp == 1)
-        {
-            $data = [
-                'to' => Pagesetting::find(1)->contact_email,
-                'subject' => "New Order Recieved!!",
-                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
-            ];
+        // if($gs->is_smtp == 1)
+        // {
+        //     $data = [
+        //         'to' => Pagesetting::find(1)->contact_email,
+        //         'subject' => "New Order Recieved!!",
+        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
+        //     ];
 
-            $mailer = new GeniusMailer();
-            $mailer->sendCustomMail($data);            
-        }
-        else
-        {
+        //     $mailer = new GeniusMailer();
+        //     $mailer->sendCustomMail($data);            
+        // }
+        // else
+        // {
            $to = Pagesetting::find(1)->contact_email;
            $subject = "New Order Recieved!!";
            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
            $headers = "MIME-Version: 1.0" . "\r\n";
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-           mail($to,$subject,$msg,$headers);
-        }
+           // mail($to,$subject,$msg,$headers);
+           Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });  
+        // }
 
         return redirect($success_url);
     }
@@ -1128,24 +1148,24 @@ class CheckoutController extends Controller
 		  }
 	   }
         //Sending Email To Buyer
-        if($gs->is_smtp == 1)
-        {
-        $data = [
-            'to' => $request->email,
-            'type' => "new_order",
-            'cname' => $request->name,
-            'oamount' => "",
-            'aname' => "",
-            'aemail' => "",
-            'wtitle' => "",
-            'onumber' => $order->order_number,
-        ];
+        // if($gs->is_smtp == 1)
+        // {
+        // $data = [
+        //     'to' => $request->email,
+        //     'type' => "new_order",
+        //     'cname' => $request->name,
+        //     'oamount' => "",
+        //     'aname' => "",
+        //     'aemail' => "",
+        //     'wtitle' => "",
+        //     'onumber' => $order->order_number,
+        // ];
 
-        $mailer = new GeniusMailer();
-        $mailer->sendAutoOrderMail($data,$order->id);            
-        }
-        else
-        {
+        // $mailer = new GeniusMailer();
+        // $mailer->sendAutoOrderMail($data,$order->id);            
+        // }
+        // else
+        // {
            $to = $request->email;
            $subject = "Your Order Placed!!";
 		   if(count($all_licence) > 0 ) {
@@ -1158,31 +1178,41 @@ class CheckoutController extends Controller
            $headers = "MIME-Version: 1.0" . "\r\n";
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-           // mail($to,$subject,$msg,$headers);            
-        }
+           // mail($to,$subject,$msg,$headers); 
+           Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });             
+        // }
 
         //Sending Email To Admin
-        if($gs->is_smtp == 1)
-        {
-            $data = [
-                'to' => Pagesetting::find(1)->contact_email,
-                'subject' => "New Order Recieved!!",
-                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
-            ];
+        // if($gs->is_smtp == 1)
+        // {
+        //     $data = [
+        //         'to' => Pagesetting::find(1)->contact_email,
+        //         'subject' => "New Order Recieved!!",
+        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
+        //     ];
 
-            $mailer = new GeniusMailer();
-            $mailer->sendCustomMail($data);            
-        }
-        else
-        {
+        //     $mailer = new GeniusMailer();
+        //     $mailer->sendCustomMail($data);            
+        // }
+        // else
+        // {
            $to = Pagesetting::find(1)->contact_email;
            $subject = "New Order Recieved!!";
            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
            $headers = "MIME-Version: 1.0" . "\r\n";
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-           mail($to,$subject,$msg,$headers);
-        }
+           // mail($to,$subject,$msg,$headers);
+            Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });      
+        // }
 
         return redirect($success_url);
     }
@@ -1465,24 +1495,25 @@ class CheckoutController extends Controller
 
         //Sending Email To Buyer
 
-        if($gs->is_smtp == 1)
-        {
-        $data = [
-            'to' => $request->email,
-            'type' => "new_order",
-            'cname' => $request->name,
-            'oamount' => "",
-            'aname' => "",
-            'aemail' => "",
-            'wtitle' => "",
-            'onumber' => $order->order_number,
-        ];
+        // if($gs->is_smtp == 1)
+        // {
+        // $data = [
+        //     'to' => $request->email,
+        //     'type' => "new_order",
+        //     'cname' => $request->name,
+        //     'oamount' => "",
+        //     'aname' => "",
+        //     'aemail' => "",
+        //     'wtitle' => "",
+        //     'onumber' => $order->order_number,
+        // ];
 
-        $mailer = new GeniusMailer();
-        $mailer->sendAutoOrderMail($data,$order->id);            
-        }
-        else
-        {
+        // $mailer = new GeniusMailer();
+        // $mailer->sendAutoOrderMail($data,$order->id);            
+        // }
+        // else
+        // {
+
            $to = $request->email;
            $subject = "Your Order Placed!!";
            $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
@@ -1490,29 +1521,34 @@ class CheckoutController extends Controller
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
            // mail($to,$subject,$msg,$headers);            
-        }
-        //Sending Email To Admin
-        if($gs->is_smtp == 1)
-        {
-            $data = [
-                'to' => Pagesetting::find(1)->contact_email,
-                'subject' => "New Order Recieved!!",
-                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
-            ];
+        // }
+        // //Sending Email To Admin
+        // if($gs->is_smtp == 1)
+        // {
+        //     $data = [
+        //         'to' => Pagesetting::find(1)->contact_email,
+        //         'subject' => "New Order Recieved!!",
+        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
+        //     ];
 
-            $mailer = new GeniusMailer();
-            $mailer->sendCustomMail($data);            
-        }
-        else
-        {
+        //     $mailer = new GeniusMailer();
+        //     $mailer->sendCustomMail($data);            
+        // }
+        // else
+        // {
            $to = Pagesetting::find(1)->contact_email;
            $subject = "New Order Recieved!!";
            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
            $headers = "MIME-Version: 1.0" . "\r\n";
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-           mail($to,$subject,$msg,$headers);
-        }
+           // mail($to,$subject,$msg,$headers);
+            Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });      
+        // }/
 
         return redirect($success_url);
     }

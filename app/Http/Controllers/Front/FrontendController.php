@@ -118,7 +118,7 @@ class FrontendController extends Controller
 
 public function index(Request $request)
 {
-    // $this->code_image();
+    // $this->code_image(); 
     $gs = Generalsetting::findOrFail(1);
      if(!empty($request->reff))
      {
@@ -138,11 +138,12 @@ public function index(Request $request)
     $services = DB::table('services')->where('user_id','=',0)->get();
     $top_small_banners = DB::table('banners')->where('type','=','TopSmall')->get();
     $homecategories = Category::select('id', 'name', 'slug', 'image')->with('products')->where('status', '=', 1)->get();
-    $feature_products =  Product::where('featured','=',1)->where('status','=',1)->when($gs->affilate_product == 0, function($q){
-                                                                                    return $q->where('product_type','=', 'normal');
-                                                                                })->orderBy('id','desc')->take(8)->get();
+    $feature_products =  Product::where('featured','=',1)->where('status','=',1)
+    ->when($gs->affilate_product == 0, function($q)
+    {
+        return $q->where('product_type','=', 'normal');
+    })->orderBy('id','desc')->take(8)->select('name','price','photo','attributes','thumbnail','slug')->get();
     $ps = DB::table('pagesettings')->find(1);
-
 
     return view('front.index',compact('ps','sliders','services','top_small_banners','feature_products', 'homecategories'));
 }
@@ -154,35 +155,35 @@ public function extraIndex()
     $large_banners = DB::table('banners')->where('type','=','Large')->get();
     $ps = DB::table('pagesettings')->find(1);
     $partners = DB::table('partners')->get();
-    $discount_products =  Product::where('is_discount','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
+    $discount_products =  Product::where('is_discount','=',1)->select('name','price','photo','attributes','thumbnail','slug')->where('status','=',1)->when($gs->affilate_product == 0,
                                                                                     function($q){
                                                                                         return $q->where('product_type','=', 'normal');
                                                                                     })->orderBy('id','desc')->take(8)->get();
-    $best_products = Product::where('best','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
+    $best_products = Product::where('best','=',1)->select('name','price','photo','attributes','thumbnail','slug')->where('status','=',1)->when($gs->affilate_product == 0,
     function($q){
         return $q->where('product_type','=', 'normal');
     })->orderBy('id','desc')->take(8)->get();
-    $top_products = Product::where('top','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
+    $top_products = Product::where('top','=',1)->select('name','price','photo','attributes','thumbnail','slug')->where('status','=',1)->when($gs->affilate_product == 0,
     function($q){
         return $q->where('product_type','=', 'normal');
     })->orderBy('id','desc')->take(8)->get();;
-    $big_products = Product::where('big','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
+    $big_products = Product::where('big','=',1)->select('name','price','photo','attributes','thumbnail','slug')->where('status','=',1)->when($gs->affilate_product == 0,
     function($q){
         return $q->where('product_type','=', 'normal');
     })->orderBy('id','desc')->take(8)->get();;
-    $hot_products =  Product::where('hot','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
+    $hot_products =  Product::where('hot','=',1)->where('status','=',1)->select('name','price','photo','attributes','thumbnail','slug')->when($gs->affilate_product == 0,
     function($q){
         return $q->where('product_type','=', 'normal');
     })->orderBy('id','desc')->take(9)->get();
-    $latest_products =  Product::where('latest','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
+    $latest_products =  Product::where('latest','=',1)->where('status','=',1)->select('name','price','photo','attributes','thumbnail','slug')->when($gs->affilate_product == 0,
     function($q){
         return $q->where('product_type','=', 'normal');
     })->orderBy('id','desc')->take(9)->get();
-    $trending_products =  Product::where('trending','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
+    $trending_products =  Product::where('trending','=',1)->where('status','=',1)->select('name','price','photo','attributes','thumbnail','slug')->when($gs->affilate_product == 0,
     function($q){
         return $q->where('product_type','=', 'normal');
     })->orderBy('id','desc')->take(9)->get();
-    $sale_products =  Product::where('sale','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
+    $sale_products =  Product::where('sale','=',1)->where('status','=',1)->select('name','price','photo','attributes','thumbnail','slug')->when($gs->affilate_product == 0,
     function($q){
         return $q->where('product_type','=', 'normal');
     })->orderBy('id','desc')->take(9)->get();
@@ -415,7 +416,7 @@ public function extraIndex()
         }
 
         return view('front.page',compact('page'));
-    }
+    } 
 // -------------------------------- PAGE SECTION ENDS----------------------------------------
 
 

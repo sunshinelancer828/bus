@@ -118,7 +118,7 @@ class FrontendController extends Controller
 
 public function index(Request $request)
 {
-    // $this->code_image();
+    // $this->code_image(); 
     $gs = Generalsetting::findOrFail(1);
      if(!empty($request->reff))
      {
@@ -138,11 +138,12 @@ public function index(Request $request)
     $services = DB::table('services')->where('user_id','=',0)->get();
     $top_small_banners = DB::table('banners')->where('type','=','TopSmall')->get();
     $homecategories = Category::select('id', 'name', 'slug', 'image')->with('products')->where('status', '=', 1)->get();
-    $feature_products =  Product::where('featured','=',1)->where('status','=',1)->when($gs->affilate_product == 0, function($q){
-                                                                                    return $q->where('product_type','=', 'normal');
-                                                                                })->orderBy('id','desc')->take(8)->get();
+    $feature_products =  Product::where('featured','=',1)->where('status','=',1)
+    ->when($gs->affilate_product == 0, function($q)
+    {
+        return $q->where('product_type','=', 'normal');
+    })->orderBy('id','desc')->take(8)->select('name','price','photo','attributes','thumbnail')->get();
     $ps = DB::table('pagesettings')->find(1);
-
 
     return view('front.index',compact('ps','sliders','services','top_small_banners','feature_products', 'homecategories'));
 }
@@ -415,7 +416,7 @@ public function extraIndex()
         }
 
         return view('front.page',compact('page'));
-    }
+    } 
 // -------------------------------- PAGE SECTION ENDS----------------------------------------
 
 

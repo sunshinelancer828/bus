@@ -6,19 +6,19 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     @if(isset($page->meta_tag) && isset($page->meta_description))
         <meta name="keywords" content="{{ $page->meta_tag }}">
         <meta name="description" content="{{ $page->meta_description }}">
 		<title>{{$gs->title}}</title>
+		
 	@elseif(isset($blog->meta_tag) && isset($blog->meta_description))
 		<meta property="og:title" content="{{$blog->title}}" />
 		<meta property="og:description" content="{{ $blog->meta_description != null ? $blog->meta_description : strip_tags($blog->meta_description) }}" />
 		<meta property="og:image" content="{{asset('assets/images/blogs'.$blog->photo)}}" />
         <meta name="keywords" content="{{ $blog->meta_tag }}">
         <meta name="description" content="{{ $blog->meta_description }}">
-         <meta name="description" content="{{ $productt->meta_description != null ? $productt->meta_description : strip_tags($productt->description) }}">  
-
 		<title>{{$gs->title}}</title>
     @elseif(isset($productt))
 		<meta name="keywords" content="{{ !empty($productt->tags) ? implode(',', $productt->tags ): '' }}">

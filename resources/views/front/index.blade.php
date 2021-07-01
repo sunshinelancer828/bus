@@ -449,15 +449,15 @@
 @endsection
 
 @section('scripts')
-<!-- <script>
+<script>
     $(window).on('load',function() {
 
         setTimeout(function(){
 
             $('#extraData').load('{{route('front.extraIndex')}}');
 
-        }, 500);
+        }, 100);
     });
 
-</script> -->
+</script>
 @endsection

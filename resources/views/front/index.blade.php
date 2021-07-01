@@ -449,7 +449,7 @@
 @endsection
 
 @section('scripts')
-<script>
+<!-- <script>
     $(window).on('load',function() {
 
         setTimeout(function(){
@@ -459,5 +459,5 @@
         }, 500);
     });
 
-</script>
+</script> -->
 @endsection

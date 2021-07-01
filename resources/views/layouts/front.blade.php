@@ -73,22 +73,7 @@
 
   @endif
 	@yield('styles')
-	<style type="text/css">
-		.sign-in,.register{
-			color: white;
-		}
-		.fa-plus{
-			display: none;
-		}
-		@media(max-width: 767px){
-		 .categorie_sub_menu{
-			display: none;
-		 }
-		 .fa-plus{
-		 	display: block;
-		 }
-		}
-	</style>
+	
 </head>
 <body>
 <?php
@@ -1088,7 +1073,7 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 	<!-- main -->
 	<script src="{{asset('assets/front/js/main.js')}}"></script>
 	<script src="{{asset('assets/front/js/intlTelInput.js')}}"></script>
-	<script src="{{asset('assets/front/js/custom_validate.js')}}"></script>
+	<!-- <script src="{{asset('assets/front/js/custom_validate.js')}}"></script> -->
     <script type="text/javascript">
     	var width = $(window).width();
     	console.log(width)

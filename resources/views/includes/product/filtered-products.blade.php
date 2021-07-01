@@ -80,7 +80,7 @@
 
 @if(isset($ajax_check))
 
-
+<!-- 
 <script type="text/javascript">
 
 
@@ -105,6 +105,6 @@
 
 // Tooltip Section Ends
 
-</script>
+</script> -->
 
 @endif

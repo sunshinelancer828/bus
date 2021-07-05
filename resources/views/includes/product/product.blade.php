@@ -10,9 +10,9 @@
 					@endforeach
 				</div>
 				@endif
-				<img class="img-fluid"
+				<!-- <img class="img-fluid"
 					src="{{ $prod->photo ? asset('assets/images/thumbnails/'.$prod->thumbnail):asset('assets/images/noimage.png') }}"
-					alt="">
+					alt=""> -->
 			</div>
 			<div class="info">
 				<h5 class="name">{{ $prod->showName() }}</h5>

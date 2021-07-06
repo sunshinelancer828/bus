@@ -14,9 +14,9 @@
 							</h4>
 							<ul class="link-list">
 								@foreach(DB::table('featured_links')->get() as $data)
-								<li>
+								<!-- <li>
 									<a href="{{ $data->link }}" target="_blank"><img src="{{ $data->photo ? asset('assets/images/featuredlink/'.$data->photo) :  asset('assets/images/noimage.png') }}" alt="{{ $data->name }}">{{ $data->name }}</a>
-								</li>
+								</li> -->
 								@endforeach
 							</ul>
 						</div>
@@ -35,12 +35,12 @@
 															<div class="slider-content">
 																<!-- layer 1 -->
 																<div class="layer-1">
-																	<h4 style="font-size: {{$data->subtitle_size}}px; color: {{$data->subtitle_color}}" class="subtitle subtitle{{$data->id}}" data-animation="animated {{$data->subtitle_anime}}">{{$data->subtitle_text}}</h4>
-																	<h1 style="font-size: {{$data->title_size}}px; color: {{$data->title_color}}" class="title title{{$data->id}}" data-animation="animated {{$data->title_anime}}">{{$data->title_text}}</h1>
+																	<h4 style="font-size: {{$data->subtitle_size}}px; color: {{$data->subtitle_color}}" class="subtitle subtitle{{$data->id}}">{{$data->subtitle_text}}</h4>
+																	<h1 style="font-size: {{$data->title_size}}px; color: {{$data->title_color}}" class="title title{{$data->id}}">{{$data->title_text}}</h1>
 																</div>
 																<!-- layer 2 -->
 																<div class="layer-2">
-																	<p style="font-size: {{$data->details_size}}px; color: {{$data->details_color}}"  class="text text{{$data->id}}" data-animation="animated {{$data->details_anime}}">{{$data->details_text}}</p>
+																	<p style="font-size: {{$data->details_size}}px; color: {{$data->details_color}}"  class="text text{{$data->id}}" >{{$data->details_text}}</p>
 																</div>
 																<!-- layer 3 -->
 																<div class="layer-3">
@@ -456,7 +456,7 @@
 
             $('#extraData').load('{{route('front.extraIndex')}}');
 
-        }, 100);
+        }, 500);
     });
 
 </script>

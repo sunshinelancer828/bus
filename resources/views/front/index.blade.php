@@ -15,7 +15,7 @@
 							<ul class="link-list">
 								@foreach(DB::table('featured_links')->get() as $data)
 								<!-- <li>
-									<a href="{{ $data->link }}" target="_blank"><img data-src="{{ $data->photo ? asset('assets/images/featuredlink/'.$data->photo) :  asset('assets/images/noimage.png') }}" alt="{{ $data->name }}">{{ $data->name }}</a>
+									<a href="{{ $data->link }}" target="_blank"><img src="{{ $data->photo ? asset('assets/images/featuredlink/'.$data->photo) :  asset('assets/images/noimage.png') }}" alt="{{ $data->name }}">{{ $data->name }}</a>
 								</li> -->
 								@endforeach
 							</ul>
@@ -76,7 +76,7 @@
 						      <span style="font-size: 11px;">{{$category->products()->count()}} item(s)</span>
 							</div>
 							<div class="right">
-								<img data-src="{{ $category->image ? asset('assets/images/categories/'.$category->image) : asset('assets/images/noimage.png') }}" alt="{{ $category->name }}" class="lazy">
+								<img src="{{ $category->image ? asset('assets/images/categories/'.$category->image) : asset('assets/images/noimage.png') }}" alt="{{ $category->name }}">
 							</div>
 							</a>
 						</div>
@@ -95,7 +95,7 @@
     				@foreach($data1 as $data)
     				<div class="col-lg-3 col-6">
         				<a href="{{ $data->link }}" target="_blank" class="banner-effect">
-        					<img data-src="{{ $data->photo ? asset('assets/images/featuredbanner/'.$data->photo) : asset('assets/images/noimage.png') }}" alt="projectshelve" class="lazy">
+        					<img src="{{ $data->photo ? asset('assets/images/featuredbanner/'.$data->photo) : asset('assets/images/noimage.png') }}" alt="projectshelve">
         				</a>
     				</div>
     				@endforeach
@@ -324,7 +324,7 @@
                                 <ul class="captcha-area">
                                     <li>
                                      	<p>
-                                     		<img class="codeimg1" data-src="{{asset("assets/images/capcha_code.png")}}" alt="codeimg"> <i class="fas fa-sync-alt pointer refresh_code "></i>
+                                     		<img class="codeimg1" src="{{asset("assets/images/capcha_code.png")}}" alt="codeimg"> <i class="fas fa-sync-alt pointer refresh_code "></i>
                                      	</p>
     
                                     </li>
@@ -381,7 +381,7 @@
 									    <a class="banner-effect" href="{{ $img->link }}" target="_blank">
 									@endif    
 									    
-										<img data-src="{{asset('assets/images/banners/'.$img->photo)}}" alt="projectshelve" class="lazy">
+										<img src="{{asset('assets/images/banners/'.$img->photo)}}" alt="projectshelve">
 									</a>
 								</div>
 							</div>
@@ -395,7 +395,7 @@
 
 	<section id="extraData">
 		<div class="text-center">
-		<img class="{{ $gs->is_loader == 1 ? '' : 'd-none' }} " data-src="{{asset('assets/images/'.$gs->loader)}}" alt="loader">
+		<img class="{{ $gs->is_loader == 1 ? '' : 'd-none' }}" src="{{asset('assets/images/'.$gs->loader)}}" alt="loader">
 		</div>
 	</section>
 	@if($ps->service == 1)
@@ -415,7 +415,7 @@
 							<div class="col-6 col-xl-3 p-0">
 								<div class="info-box">
 									<div class="icon">
-										<img data-src="{{ asset('assets/images/services/'.$service->photo) }}" alt="Project Helves Benefits" class="lazy"> 
+										<img src="{{ asset('assets/images/services/'.$service->photo) }}" alt="Project Helves Benefits">
 									</div>
 									<div class="info">
 										<div class="details">
@@ -458,35 +458,6 @@
 
         }, 500);
     });
-document.addEventListener("DOMContentLoaded", function() {
-	console.log("here");
-  var lazyloadImages = document.querySelectorAll("img.lazy");    
-  var lazyloadThrottleTimeout;
-  
-  function lazyload () {
-    if(lazyloadThrottleTimeout) {
-      clearTimeout(lazyloadThrottleTimeout);
-    }    
-    
-    lazyloadThrottleTimeout = setTimeout(function() {
-        var scrollTop = window.pageYOffset;
-        lazyloadImages.forEach(function(img) {
-            if(img.offsetTop < (window.innerHeight + scrollTop)) {
-              img.src = img.dataset.src;
-              img.classList.remove('lazy');
-            }
-        });
-        if(lazyloadImages.length == 0) { 
-          document.removeEventListener("scroll", lazyload);
-          window.removeEventListener("resize", lazyload);
-          window.removeEventListener("orientationChange", lazyload);
-        }
-    }, 20);
-  }
-  
-  document.addEventListener("scroll", lazyload);
-  window.addEventListener("resize", lazyload);
-  window.addEventListener("orientationChange", lazyload);
-});
+
 </script>
 @endsection

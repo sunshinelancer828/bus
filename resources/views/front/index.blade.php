@@ -188,19 +188,19 @@
 				               <input type="hidden" name="vendor"  value="1">
 				              <input class="mauthdata" type="hidden"  value="{{ $langg->lang177 }}">
 				              <button type="submit" class="submit-btn">{{ $langg->lang178 }}</button>
-					              @if(App\Models\Socialsetting::find(1)->f_check == 1 || App\Models\Socialsetting::find(1)->g_check == 1)
+					              @if($social->f_check == 1 || $social->g_check == 1)
 					              <div class="social-area">
 					                  <h3 class="title">{{ $langg->lang179 }}</h3>
 					                  <p class="text">{{ $langg->lang180 }}</p>
 					                  <ul class="social-links">
-					                    @if(App\Models\Socialsetting::find(1)->f_check == 1)
+					                    @if($social->f_check == 1)
 					                    <li>
 					                      <a href="{{ route('social-provider','facebook') }}">
 					                        <i class="fab fa-facebook-f"></i>
 					                      </a>
 					                    </li>
 					                    @endif
-					                    @if(App\Models\Socialsetting::find(1)->g_check == 1)
+					                    @if($social->g_check == 1)
 					                    <li>
 					                      <a href="{{ route('social-provider','google') }}">
 					                        <i class="fab fa-google-plus-g"></i>

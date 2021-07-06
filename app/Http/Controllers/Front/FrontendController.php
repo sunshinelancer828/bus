@@ -9,6 +9,7 @@ use App\Models\BlogCategory;
 use App\Models\Counter;
 use App\Models\Generalsetting;
 use App\Models\Order;
+use App\Models\Socialsetting;
 use App\Models\Product;
 use App\Models\Subscriber;
 use App\Models\User;
@@ -133,7 +134,7 @@ public function index(Request $request)
 
         }
      }
-
+     $social =Socialsetting::find(1);
     $sliders = DB::table('sliders')->get();
     $services = DB::table('services')->where('user_id','=',0)->get();
     $top_small_banners = DB::table('banners')->where('type','=','TopSmall')->get();
@@ -147,7 +148,7 @@ public function index(Request $request)
     ->where('product_type','=', 'normal')->orderBy('id','desc')->take(8)->select('name','price','photo','attributes','thumbnail','slug')->get();
     $ps = DB::table('pagesettings')->find(1);
 
-    return view('front.index',compact('ps','sliders','services','top_small_banners','feature_products', 'homecategories'));
+    return view('front.index',compact('ps','sliders','services','social','top_small_banners','feature_products', 'homecategories'));
 }
 
 public function extraIndex()

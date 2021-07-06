@@ -138,11 +138,13 @@ public function index(Request $request)
     $services = DB::table('services')->where('user_id','=',0)->get();
     $top_small_banners = DB::table('banners')->where('type','=','TopSmall')->get();
     $homecategories = Category::select('id', 'name', 'slug', 'image')->where('status', '=', 1)->get();
+    // $feature_products =  Product::where('featured','=',1)->where('status','=',1)
+    // ->when($gs->affilate_product == 0, function($q)
+    // {
+    //     return $q->where('product_type','=', 'normal');
+    // })->orderBy('id','desc')->take(8)->select('name','price','photo','attributes','thumbnail','slug')->get();
     $feature_products =  Product::where('featured','=',1)->where('status','=',1)
-    ->when($gs->affilate_product == 0, function($q)
-    {
-        return $q->where('product_type','=', 'normal');
-    })->orderBy('id','desc')->take(8)->select('name','price','photo','attributes','thumbnail','slug')->get();
+    ->where('product_type','=', 'normal')->orderBy('id','desc')->take(8)->select('name','price','photo','attributes','thumbnail','slug')->get();
     $ps = DB::table('pagesettings')->find(1);
 
     return view('front.index',compact('ps','sliders','services','top_small_banners','feature_products', 'homecategories'));

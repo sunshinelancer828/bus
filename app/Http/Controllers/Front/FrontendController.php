@@ -231,9 +231,11 @@ public function extraIndex()
 
     public function autosearch($slug)
     {
+        try {
+
+ 
             $search = $slug;
             $prods=Product::search($slug)->get();
-            dd(count($prods),"testing ",$slug);
            //  $searchValues = preg_split('/\s+/', $search); 
            //  $items = Product::where(function ($q) use ($searchValues) {
            //          foreach ($searchValues as $value) {
@@ -285,6 +287,10 @@ public function extraIndex()
             
             return view('load.suggest',compact('prods','slug'));
  
+            } catch (\Exception $e) {
+
+                return $e->getMessage();
+            }
     }
 
     function finalize(){

@@ -231,56 +231,56 @@ public function extraIndex()
 
     public function autosearch($slug)
     {
-        
             $search = $slug;
-            
-            $searchValues = preg_split('/\s+/', $search); 
-            $items = Product::where(function ($q) use ($searchValues) {
-                    foreach ($searchValues as $value) {
-                        $q->where('name', 'like', "%{$value}%");
-                    }
-                })->where('status',1)->orderby('id','desc')->take(10)->get();
+            $prods=Product::search($slug)->get();
+            dd(count($prods),"testing ",$slug);
+           //  $searchValues = preg_split('/\s+/', $search); 
+           //  $items = Product::where(function ($q) use ($searchValues) {
+           //          foreach ($searchValues as $value) {
+           //              $q->where('name', 'like', "%{$value}%");
+           //          }
+           //      })->where('status',1)->orderby('id','desc')->take(10)->get();
                 
                
-            if(count($items)<=10){
+           //  if(count($items)<=10){
               
-                $prodss = [];
-             foreach(explode(' ',$search) as $key => $value){
+           //      $prodss = [];
+           //   foreach(explode(' ',$search) as $key => $value){
         
             
-                if($value){
-                    $checks = Product::where('name', 'like', '%' . $value . '%')->where('status','=',1)->get()->take(60);
-                    foreach($checks as $item){
-                        $word = explode(' ',strtolower($item->name));
+           //      if($value){
+           //          $checks = Product::where('name', 'like', '%' . $value . '%')->where('status','=',1)->get()->take(60);
+           //          foreach($checks as $item){
+           //              $word = explode(' ',strtolower($item->name));
                         
-                        $count = 0;
-                        foreach($word as $check){
+           //              $count = 0;
+           //              foreach($word as $check){
                             
-                                 $int = strtolower($slug);
+           //                       $int = strtolower($slug);
                                 
-                                 $int = explode(' ',$int);
-                                 $int = array_merge($int, [""]);
+           //                       $int = explode(' ',$int);
+           //                       $int = array_merge($int, [""]);
                                 
-                                if(in_array(strtolower($check),$int)){
-                                    $count = $count+1;
-                                }
+           //                      if(in_array(strtolower($check),$int)){
+           //                          $count = $count+1;
+           //                      }
                             
-                        }
+           //              }
                    
-                        $item['count'] = $count;
-                        $prodss[] = $item;
-                    }
+           //              $item['count'] = $count;
+           //              $prodss[] = $item;
+           //          }
                    
-                }
+           //      }
                 
-            }
-             $prodsss = new Collection($prodss);
-           $prodsss = collect($prodsss)->sortByDesc('count')->take(10);
-           $prods = $items;
-            $prods = $prods->merge($prodsss);
-            }else{
-                $prods = $items;
-            }
+           //  }
+           //   $prodsss = new Collection($prodss);
+           // $prodsss = collect($prodsss)->sortByDesc('count')->take(10);
+           // $prods = $items;
+           //  $prods = $prods->merge($prodsss);
+           //  }else{
+           //      $prods = $items;
+           //  }
 
             
             return view('load.suggest',compact('prods','slug'));

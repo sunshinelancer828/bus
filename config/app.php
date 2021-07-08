@@ -180,7 +180,8 @@ return [
         Cartalyst\Stripe\Laravel\StripeServiceProvider::class,   
         Laravel\Socialite\SocialiteServiceProvider::class,    
         Intervention\Image\ImageServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
     ],
 
     /*

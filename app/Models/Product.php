@@ -6,11 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Generalsetting;
 use App\Models\Currency;
 use Illuminate\Support\Facades\Session;
+use Laravel\Scout\Searchable;
 
+    
 class Product extends Model
 {
-
+    use Searchable;
+ 
     protected $fillable = ['user_id','category_id','product_type','affiliate_link','sku', 'subcategory_id', 'childcategory_id', 'attributes', 'name', 'photo', 'size','size_qty','size_price', 'color', 'details','price','previous_price','stock','policy','status', 'views','tags','featured','best','top','hot','latest','big','trending','sale','features','colors','product_condition','ship','meta_tag','meta_description','youtube','type','file','license','license_qty','link','platform','region','licence_type','measure','discount_date','is_discount','whole_sell_qty','whole_sell_discount','catalog_id','slug','product_code','pages','chapters','file_format','rejected'];
+
+
+ // protected $casts = [
+ //        'details' => 'array',
+ //    ];
+ public function searchableAs()
+    {
+        return 'products';
+    }
 
     public static function filterProducts($collection)
     {

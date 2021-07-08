@@ -58,7 +58,7 @@ class CheckoutController extends Controller
             
            foreach($userCart->items as $product){
     			$dataFormat =      DB::table('products')->where('id','=',$product['item']['id'])->select('name','price','photo','attributes','thumbnail','slug')->get();
-    			$dataFormat = $dataFormat[0]->file_format;
+                
             	$str .= "Product Title: ".$product['item']['name']."<br>";
             	$str .= "Product Code: 000".$product['item']['id']."<br>";
             	$str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";

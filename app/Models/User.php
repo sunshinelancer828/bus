@@ -12,10 +12,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
     use Notifiable;
 
     protected $fillable = ['name','photo','state','zip','residency','city','country', 'address', 'phone', 'fax', 'email','password','affilate_code','verification_link','shop_name','owner_name','shop_number','shop_address','reg_number','shop_message','is_vendor','shop_details','shop_image','f_url','g_url','t_url','l_url','f_check','g_check','t_check','l_check','shipping_cost','date','mail_sent','balance'];
+ 
+public function __construct()
+{
+    // parent::boot();
+}  
 
+ public function searchableAs()
+    {
+        return 'users';
+    }
 
     protected $hidden = [
         'password', 'remember_token'

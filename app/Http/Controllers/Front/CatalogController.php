@@ -28,13 +28,7 @@ class CatalogController extends Controller
 {
 
 
-    // public function searchFunction($data)
-    // {   
-    //     $value =User::search($data)->get();
-    //     dd($value);
-    //     return response()->json($value);
-    // }
-
+    
     // CATEGORIES SECTOPN
 
     public function categories()
@@ -188,62 +182,66 @@ class CatalogController extends Controller
     
     
         if($search){
-
-            $prods=Product::search($search)->paginate(1000);
-//             $searchValues = preg_split('/\s+/', $search); 
-            
-//                          $items = Product::where(function ($q) use ($searchValues) {
-//                     foreach ($searchValues as $value) {
-//                         $q->where('name', 'like', "%{$value}%");
-//                     }
-//                 })->where('status',1)->orderby('id','desc')->take(10)->get();
-// // dd($items);
-//             if(count($items)<=10 && count($items)>0){
+              $items =[];
+            // $prods=Product::search($search)->paginate(1000);
+            $searchValues = preg_split('/\s+/', $search); 
+           
+                //          $items = Product::where(function ($q) use ($searchValues) {
+                //     foreach ($searchValues as $value) {
+                //         $q->where('name', 'like', "%{$value}%");
+                //     }
+                // })->where('status',1)->orderby('id','desc')->take(10)->get();
+            foreach($searchValues as $value){
+                $items =Product::where('name','like',"%{$value}%")->take(10)->get();
+            }
+                         
+// dd($items);
+            if(count($items)<=10 && count($items)>0){
               
              
               
-//              foreach(explode(' ',$search) as $key => $value){
+             foreach(explode(' ',$search) as $key => $value){
                     
-//                 if($value){
-//                     $checks = Product::where('name','like', "%".$value."%")->where('status','=',1)->get()->take(60);
+                if($value){
+                    $checks = Product::where('name','like', "%".$value."%")->where('status','=',1)->get()->take(60);
                     
-//                     foreach($checks as $item){
-//                         $word = explode(' ',strtolower($item->name));
+                    foreach($checks as $item){
+                        $word = explode(' ',strtolower($item->name));
                         
-//                         $count = 0;
-//                         foreach($word as $check){
+                        $count = 0;
+                        foreach($word as $check){
                             
-//                                  $int = strtolower($search);
+                                 $int = strtolower($search);
                                 
-//                                  $int = explode(' ',$int);
-//                                  $int = array_merge($int, [""]);
+                                 $int = explode(' ',$int);
+                                 $int = array_merge($int, [""]);
                                 
-//                                 if(in_array(strtolower($check),$int)){
-//                                     $count = $count+1;
-//                                 }
+                                if(in_array(strtolower($check),$int)){
+                                    $count = $count+1;
+                                }
                             
-//                         }
+                        }
                    
-//                         $item['count'] = $count;
-//                         $prodss[] = $item;
-//                     }
+                        $item['count'] = $count;
+                        $prodss[] = $item;
+                    }
                    
-//                 }
+                }
                 
-//             }
+            }
             
-//             $prodsss = new Collection($prodss);
-//            $prodsss = collect($prodsss)->sortByDesc('count')->take(30 - count($items));
+            $prodsss = new Collection($prodss);
+           $prodsss = collect($prodsss)->sortByDesc('count')->take(30 - count($items));
            
           
-//             $prodsssss = $items;
-//             $prods = $prodsssss->merge($prodsss);
+            $prodsssss = $items;
+            $prods = $prodsssss->merge($prodsss);
             
-//             }
-//             else{
-//                 $prods=[];
-//                 $prods=Collect($prods);
-//             }
+            }
+            else{
+                $prods=[];
+                $prods=Collect($prods);
+            }
     
 }else{
     $prods = $prods;
@@ -306,8 +304,11 @@ class CatalogController extends Controller
     {
         $this->code_image();
         $productt = Product::where('slug','=',$slug)->firstOrFail();
+
         $productt->views+=1;
+
         $productt->update();
+        
         if (Session::has('currency'))
         {
             $curr = Currency::find(Session::get('currency'));

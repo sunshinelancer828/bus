@@ -192,7 +192,7 @@ class CatalogController extends Controller
                 //     }
                 // })->where('status',1)->orderby('id','desc')->take(10)->get();
             foreach($searchValues as $value){
-                $items =Product::where('name','like',"%{$value}%")->where('status',1)->orderby('id','desc')->take(10)->get();
+                $items =Product::where('name','like',"%{$value}%")->select('name','price','photo','attributes','thumbnail','slug')->where('status',1)->orderby('id','desc')->take(10)->get();
             }
                          
 // dd($items);
@@ -203,7 +203,7 @@ class CatalogController extends Controller
              foreach(explode(' ',$search) as $key => $value){
                     
                 if($value){
-                    $checks = Product::where('name','like', "%".$value."%")->where('status','=',1)->get()->take(60);
+                    $checks = Product::where('name','like', "%".$value."%")->select('name','price','photo','attributes','thumbnail','slug')->where('status','=',1)->get()->take(60);
                     
                     foreach($checks as $item){
                         $word = explode(' ',strtolower($item->name));

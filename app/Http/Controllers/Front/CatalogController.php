@@ -192,7 +192,7 @@ class CatalogController extends Controller
                 //     }
                 // })->where('status',1)->orderby('id','desc')->take(10)->get();
             foreach($searchValues as $value){
-                $items =Product::where('name','like',"%{$value}%")->take(10)->get();
+                $items =Product::where('name','like',"%{$value}%")->where('status',1)->orderby('id','desc')->take(10)->get();
             }
                          
 // dd($items);

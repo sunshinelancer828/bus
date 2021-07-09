@@ -243,7 +243,7 @@ public function extraIndex()
             //     })->where('status',1)->orderby('id','desc')->take(10)->get();
                 $items =[];
                 foreach($searchValues as $value){
-                $items =Product::where('name','like',"%{$value}%")->take(10)->get();
+                $items =Product::where('name','like',"%{$value}%")->where('status',1)->orderby('id','desc')->take(10)->get();
             }
             if(count($items)<=10){
               

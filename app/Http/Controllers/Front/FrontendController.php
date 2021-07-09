@@ -243,7 +243,7 @@ public function extraIndex()
             //     })->where('status',1)->orderby('id','desc')->take(10)->get();
                 $items =[];
                 foreach($searchValues as $value){
-                $items =Product::where('name','like',"%{$value}%")->select('name','price','photo','attributes','thumbnail','slug')->where('status',1)->orderby('id','desc')->take(10)->get();
+                $items =Product::where('name','like',"%{$value}%")->where('status',1)->orderby('id','desc')->take(10)->get();
             }
             if(count($items)<=10){
               
@@ -252,7 +252,7 @@ public function extraIndex()
         
             
                 if($value){
-                    $checks = Product::where('name', 'like', '%' . $value . '%')->where('status','=',1)->select('name','price','photo','attributes','thumbnail','slug')->get()->take(60);
+                    $checks = Product::where('name', 'like', '%' . $value . '%')->orderby('id','desc')->where('status',1)->get()->take(60);
                     foreach($checks as $item){
                         $word = explode(' ',strtolower($item->name));
                         

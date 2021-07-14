@@ -49,6 +49,8 @@ class CatalogController extends Controller
 
     public function category(Request $request, $slug=null, $slug1=null, $slug2=null)
     {
+
+
       if (Session::has('currency')) 
       {
         $curr = Currency::find(Session::get('currency'));
@@ -180,7 +182,6 @@ class CatalogController extends Controller
 
 
     
-    
         if($search){
               $items =[];
             // $prods=Product::search($search)->paginate(1000);
@@ -304,7 +305,7 @@ class CatalogController extends Controller
     {
         $this->code_image();
         $productt = Product::where('slug','=',$slug)->firstOrFail();
-
+        dd($productt,$slug);
         $productt->views+=1;
 
         $productt->update();

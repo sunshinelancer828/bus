@@ -305,7 +305,7 @@ class CatalogController extends Controller
     {
         $this->code_image();
         $productt = Product::where('slug','=',$slug)->firstOrFail();
-        dd($productt,$slug);
+
         $productt->views+=1;
 
         $productt->update();

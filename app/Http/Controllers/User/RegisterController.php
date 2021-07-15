@@ -12,6 +12,7 @@ use Auth;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Session;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -23,9 +24,8 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-
+          
     	$gs = Generalsetting::findOrFail(1);
-      
     	if($gs->is_capcha == 1)
     	{
 	        $value = session('captcha_string');
@@ -92,7 +92,6 @@ class RegisterController extends Controller
 	            'subject' => $subject,
 	            'body' => $msg,
 	        ];
-
 	        $mailer = new GeniusMailer();
 	        $mailer->sendCustomMail($data);
 	        }
@@ -101,12 +100,27 @@ class RegisterController extends Controller
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	        $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-	        mail($to,$subject,$msg,$headers);
+	        // mail($to,$subject,$msg,$headers);
+	         $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });  
 	        }
           	return response()->json('We need to verify your email address. We have sent an email to '.$to.' to verify your email address. Please click link in that email to continue.');
 	        }
 	        else {
-
+            $to = $request->email;
+            $headers = "MIME-Version: 1.0" . "\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+	        $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+	        $subject = 'Registered Successfully.';
+	        $msg = "Dear Customer,<br> You have successfully register to ProjectShelve.com.";
+            $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });
             $user->email_verified = 'Yes';
             $user->update();
 	        $notification = new Notification;

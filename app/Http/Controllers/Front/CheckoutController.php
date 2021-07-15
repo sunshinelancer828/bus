@@ -57,8 +57,7 @@ class CheckoutController extends Controller
             $str=''; $mstr = '';
             
            foreach($userCart->items as $product){
-    			$dataFormat =      DB::table('products')->where('id','=',$product['item']['id'])->select('name','price','photo','attributes','thumbnail','slug')->get();
-                
+    			$dataFormat =      DB::table('products')->where('id','=',$product['item']['id'])->select('name','price','photo','attributes','thumbnail','slug','file_format')->first();
             	$str .= "Product Title: ".$product['item']['name']."<br>";
             	$str .= "Product Code: 000".$product['item']['id']."<br>";
             	$str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
@@ -67,7 +66,7 @@ class CheckoutController extends Controller
             	    $vid = $product['item']['user_id'];
             	}
     			if($dataFormat) {
-            	    $str .= "Format: ".$dataFormat."<br>";
+            	    $str .= "Format: ".$dataFormat->file_format."<br>";
     			}
             	$str .= 'Product Link: <a href="' . url('/')."/item/".$product['item']['slug'].'">' . $product['item']['name'] . '</a><br><br>"';
            }

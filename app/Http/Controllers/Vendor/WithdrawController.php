@@ -10,7 +10,7 @@ use App\Classes\GeniusMailer;
 use App\Models\Currency;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Mail;
 class WithdrawController extends Controller
 {
     public function __construct()
@@ -96,8 +96,12 @@ class WithdrawController extends Controller
                     ]);
     
                 } else {
-    
-                    mail($to, $subject, $msg, $headers);
+                         $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });  
+                    // mail($to, $subject, $msg, $headers);
                 }
 
                 return response()->json('Withdraw Request Sent Successfully.'); 

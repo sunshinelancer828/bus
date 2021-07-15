@@ -16,7 +16,7 @@ use App\Models\Generalsetting;
 use App\Models\UserSubscription;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
-
+use Mail;
 class VendorController extends Controller
 {
     public function __construct()
@@ -396,8 +396,13 @@ class VendorController extends Controller
             ]);
 
         } else {
+            $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg,'text/html');
+                            });  
+            // mail($to, $subject, $msg, $headers);
 
-            mail($to, $subject, $msg, $headers);
         }
         
         return response()->json('Withdraw Rejected Successfully.'); 

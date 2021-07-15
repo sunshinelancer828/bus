@@ -97,7 +97,7 @@ class CheckoutController extends Controller
 			$file_name = $file_uniqe.'.json';
 			$payhere = "";
 			$url = url('/');
-			$payhere .='<a href="'.$url.'?user-cart='.$file_uniqe.'">PAY HERE</a>';
+			$payhere .='<a href="https://projectshelve.com/checkout">PAY HERE</a>';
 			$payhere2 = 'pay here '.$url.'?user-cart='.$file_uniqe;
 
             $msg .= $str."<br><br>";

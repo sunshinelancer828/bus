@@ -23,7 +23,7 @@ use App\Models\Generalsetting;
 use Validator;
 use Image;
 use DB;
-
+use Mail;
 
 class ProductController extends Controller
 {
@@ -279,8 +279,13 @@ class ProductController extends Controller
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ProjectShelve <".$gs->from_email.">";
-             
-            mail($to, $subject, $msg1, $headers);
+         
+            // mail($to, $subject, $msg1, $headers);
+            $sent =   Mail::send(array(), array(), function ($message) use ($msg1,$to,$subject,$headers) {
+                              $message->to($to)
+                             ->subject($subject)
+                              ->setBody($msg1,'text/html');
+                            });  
              
         // 	 $phone_number = $dataUsers->phone;
         // 	 $mailer = new GeniusMailer();

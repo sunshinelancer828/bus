@@ -161,7 +161,8 @@ public function extraIndex()
     $discount_products =  Product::where('is_discount','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
             function($q){
                     return $q->where('product_type','=', 'normal');
-        })->orderBy('id','desc')->take(8)->select('name','price','photo','attributes','thumbnail','slug')->get();
+        })->orderBy('id','desc')->take(8)->get();
+
     $best_products = Product::where('best','=',1)->where('status','=',1)->when($gs->affilate_product == 0,
     function($q){
         return $q->where('product_type','=', 'normal');

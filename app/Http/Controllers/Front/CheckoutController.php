@@ -52,7 +52,7 @@ class CheckoutController extends Controller
             $msg .="Thank you for your interest in service. Below is an overview of your order:<br><br>";
             $msg2 = $msg;
             $msg .="<h3>Overview:</h3><br>";
-            $msg2 .="Overview:<br>";
+            $msg2 .="Overview:";
             
             $str=''; $mstr = '';
             

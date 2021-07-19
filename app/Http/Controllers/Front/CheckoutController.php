@@ -798,7 +798,8 @@ class CheckoutController extends Controller
         // }
         // else
         // {
-           $to = $request->email;
+
+           /*$to = $request->email;
            $subject = "Your Order Placed!!";
            $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
            $headers = "MIME-Version: 1.0" . "\r\n";
@@ -809,7 +810,8 @@ class CheckoutController extends Controller
                               $message->to($to)
                              ->subject($subject)
                               ->setBody($msg,'text/html');
-                            });              
+                            });              */
+
         // }
         //Sending Email To Admin
         // if($gs->is_smtp == 1)

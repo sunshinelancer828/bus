@@ -56,52 +56,47 @@ class CheckoutController extends Controller
             
             $str=''; $mstr = '';
             
-           foreach($userCart->items as $product){
-    			$dataFormat =      DB::table('products')->where('id','=',$product['item']['id'])->select('name','price','photo','attributes','thumbnail','slug','file_format')->first();
-            	$str .= "Product Title: ".$product['item']['name']."<br>";
-            	$str .= "Product Code: 000".$product['item']['id']."<br>";
-            	$str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
-            	if($product['item']['user_id'] != 0){
-            	    $mstr .= $product['item']['name'].'<br>';
-            	    $vid = $product['item']['user_id'];
-            	}
-    			if($dataFormat) {
-            	    $str .= "Format: ".$dataFormat->file_format."<br>";
-    			}
-            	$str .= 'Product Link: <a href="' . url('/')."/item/".$product['item']['slug'].'">' . $product['item']['name'] . '</a><br><br>"';
-           }
+            foreach ($userCart->items as $product) {
+                $dataFormat = DB::table('products')->where('id','=',$product['item']['id'])->select('name','price','photo','attributes','thumbnail','slug','file_format')->first();
+                $str .= "Product Title: ".$product['item']['name']."<br>";
+                $str .= "Product Code: 000".$product['item']['id']."<br>";
+                $str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
+                
+                if ($product['item']['user_id'] != 0) {
+                    $mstr .= $product['item']['name'].'<br>';
+                    $vid = $product['item']['user_id'];
+                }
+
+                if ($dataFormat) {
+                    $str .= "Format: ".$dataFormat->file_format."<br>";
+                }
+
+                $str .= 'Product Link: <a href="' . url('/').'\/item\/'.$product['item']['slug'].'">' . $product['item']['name'] . '</a><br>';
+            }
            
-        	if(Session::has('coupon_total')) {
-        	    
-				if($gs->currency_format == 0){
-				    
-					$cost = $curr->sign." ".$totalPrice;
-					
-				} else { 
-				    
+        	if(Session::has('coupon_total')) {        	    
+				if($gs->currency_format == 0){				    
+					$cost = $curr->sign." ".$totalPrice;					
+				} else { 				    
 					$cost = $totalPrice." ".$curr->sign;	
-				} 
-				
-			} elseif (Session::has('coupon_total1')) {
-			    
-				$cost =  Session::get('coupon_total1');
-				
-			} else {
-			    
+				} 				
+			} elseif (Session::has('coupon_total1')) {			    
+				$cost =  Session::get('coupon_total1');				
+			} else {			    
 				$cost =  Product::convertPrice($totalPrice);
 			}
 	
-              $userCart = Session::get('cart');
+            $userCart = Session::get('cart');
  
 			$file_uniqe = uniqid().time();
 			$file_name = $file_uniqe.'.json';
-			$payhere = "";
+			// $payhere = "";
 			$url = url('/');
 			$payhere .='<a href="https://projectshelve.com/checkout">PAY HERE</a>';
-			$payhere2 = 'pay here '.$url.'?user-cart='.$file_uniqe;
+			$payhere2 = 'pay here ' . $url . '?user-cart=' . $file_uniqe;
 
-            $msg .= $str."<br><br>";
-            $msg .= "Kindly ".$payhere." to conclude your order and get your product instantly<br><br>";
+            $msg .= $str . "<br>";
+            $msg .= "Kindly " . $payhere . " to conclude your order and get your product instantly<br><br>";
             $msg .= "Thank you for using ProjectShelve.<br><br>";
             $msg .= "All at ProjectShelve <br>";
             $msg .= "Call/WhatsApp: (+234) 08147801594<br>";
@@ -127,18 +122,16 @@ class CheckoutController extends Controller
                          //      ->setBody($msg1,'text/html');
                                 
                          //    });  
-                              $sent =   Mail::send(array(), array(), function ($message) use ($msg1,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg1,'text/html');
-                            });         
+            $sent =   Mail::send(array(), array(), function ($message) use ($msg1,$to,$subject,$headers) {
+                $message->to($to)->subject($subject)->setBody($msg1,'text/html');
+            });         
                    
-			 if ($sent) {
-				$file = $save_dir . $file_name;
-				$fp = fopen($file, "wb");
-				fwrite($fp,$cartJson);
-				fclose($fp);
-			 }
+            if ($sent) {
+                $file = $save_dir . $file_name;
+                $fp = fopen($file, "wb");
+                fwrite($fp,$cartJson);
+                fclose($fp);
+            }
 			 
 			$msg2 .= $str."<br><br>";
             $msg2 .= "Kindly ".$payhere2." to conclude your order and get your product instantly<br><br>";

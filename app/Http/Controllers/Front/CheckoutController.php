@@ -32,7 +32,7 @@ use Validator;
 class CheckoutController extends Controller
 {
     
-    public function sendconfirmemail(){
+    public function sendconfirmemail() {
         
         $email = $_GET['uemail'];
         $totalPrice = $_GET['totalcost'];
@@ -68,10 +68,10 @@ class CheckoutController extends Controller
                 }
 
                 if ($dataFormat) {
-                    $str .= "Format: ".$dataFormat->file_format."<br>";
+                    $str .= "Format: ". $dataFormat->file_format ."<br>";
                 }
 
-                $str .= 'Product Link: <a href="' . url('/').'/item/'.$product['item']['slug'].'">' . $product['item']['name'] . '</a><br>';
+                $str .= 'Product Link: <a href="' . url('/').'/item/'.$product['item']['slug'].'">' . $product['item']['name'] . '</a><br>"';
             }
            
         	if(Session::has('coupon_total')) {        	    
@@ -122,7 +122,7 @@ class CheckoutController extends Controller
                          //      ->setBody($msg1,'text/html');
                                 
                          //    });  
-            $sent =   Mail::send(array(), array(), function ($message) use ($msg1,$to,$subject,$headers) {
+            $sent = Mail::send(array(), array(), function ($message) use ($msg1, $to, $subject, $headers) {
                 $message->to($to)->subject($subject)->setBody($msg1,'text/html');
             });         
                    

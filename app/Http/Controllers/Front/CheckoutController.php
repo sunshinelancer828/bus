@@ -71,7 +71,7 @@ class CheckoutController extends Controller
                     $str .= "Format: ". $dataFormat->file_format ."<br>";
                 }
 
-                $str .= 'Product Link: <a href="' . url('/').'/item/'.$product['item']['slug'].'">' . $product['item']['name'] . '</a><br>"';
+                $str .= 'Product Link: <a href="' . url('/').'//item//'.$product['item']['slug'].'">' . $product['item']['name'] . '</a><br>';
             }
            
         	if(Session::has('coupon_total')) {        	    
@@ -90,7 +90,7 @@ class CheckoutController extends Controller
  
 			$file_uniqe = uniqid().time();
 			$file_name = $file_uniqe.'.json';
-			// $payhere = "";
+			$payhere = "";
 			$url = url('/');
 			$payhere .='<a href="https://projectshelve.com/checkout">PAY HERE</a>';
 			$payhere2 = 'pay here ' . $url . '?user-cart=' . $file_uniqe;

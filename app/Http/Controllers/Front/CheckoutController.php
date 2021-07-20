@@ -70,7 +70,7 @@ class CheckoutController extends Controller
                     $str .= "Format: ". $dataFormat->file_format ."<br>";
                 }
 
-                $str .= 'Product Link: <a href="' . url('/').'\/item\/'.$product['item']['slug'].'">' . $product['item']['name'] . '</a><br>';
+                $str .= 'Product Link: <a href="' . url('/').'/item/'.$product['item']['slug'].'">' . $product['item']['name'] . '</a><br>';
             }
            
         	if(Session::has('coupon_total')) {        	    

@@ -79,12 +79,12 @@ class WithdrawController extends Controller
                 $msg .= "Thank you as we look forward for a mutual advantage.<br><br>";
                 $msg .= "All at ProjectShelve<br> ";
                 $msg .= "Call/WhatsApp: (+234) 08147801594<br>";
-                $msg .= "E-mail: info@projectshelve.com<br>";
+                $msg .= "E-mail: projectshelve@gmail.com<br>";
                 $msg .= "Website: www.projectshelve.com<br>";
     
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= "From: ProjectShelve <info@projectshelve.com>";
+                $headers .= "From: ProjectShelve <projectshelve@gmail.com>";
     
                 if ($withdrawcharge->is_smtp == 1) {
     

@@ -75,7 +75,7 @@ class WithdrawController extends Controller
                 $total_amount = $request->amount;
     
                 $msg = "Hello " . $from->shop_name . ",<br><br>";
-                $msg .= "Your withdrawal request of ".$total_amount." has been received. You will receive this amount less transaction fee within 24 hrs.<br><br>";
+                $msg .= "Your withdrawal request of ".$curr.$total_amount." has been received. You will receive this amount less transaction fee within 24 hrs.<br><br>";
                 $msg .= "Thank you as we look forward for a mutual advantage.<br><br>";
                 $msg .= "All at ProjectShelve<br> ";
                 $msg .= "Call/WhatsApp: (+234) 08147801594<br>";

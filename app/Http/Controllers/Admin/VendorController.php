@@ -312,9 +312,7 @@ class VendorController extends Controller
         $amount = round($withdraw->amount * $curr->value, 2);
 
         $msg = "Hello " . $account->shop_name . ",<br><br>";
-        $msg .= "Your withdrawal request of ".$total_amount." has been released and ".$amount." has been sent into your Account.<br><br>";
-        $msg .= "Requested: ". $total_amount ."<br>";
-        $msg .= "Released:  ". $amount ."<br><br>";
+        $msg .= "Your withdrawal request of ".$curr.$total_amount." has been released and ".$curr.$amount." has been sent into your Account.<br><br>";        
         $msg .= "Thank you as we look forward for a mutual advantage.<br><br>";
         $msg .= "All at ProjectShelve<br> ";
         $msg .= "Call/WhatsApp: (+234) 08147801594<br>";
@@ -376,7 +374,7 @@ class VendorController extends Controller
         $total_amount = round(($withdraw->amount + $withdraw->fee) * $curr->value, 2);
 
         $msg = "Hello " . $account->shop_name . ",<br><br>";
-        $msg .= "Your withdrawal request of ".$total_amount." has been cancelled and ".$total_amount." has been refunded back to your current balance.<br><br>";
+        $msg .= "Your withdrawal request of ".$curr.$total_amount." has been cancelled and ".$curr.$total_amount." has been refunded back to your current balance.<br><br>";
         $msg .= "Thank you as we look forward for a mutual advantage.<br><br>";
         $msg .= "All at ProjectShelve<br> ";
         $msg .= "Call/WhatsApp: (+234) 08147801594<br>";

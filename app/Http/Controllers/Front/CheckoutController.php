@@ -51,7 +51,7 @@ class CheckoutController extends Controller
             $msg ="Hello ".$name.",<br><br>";
             $msg .="Thank you for your interest in service. Below is an overview of your order:<br>";
             $msg2 = $msg . "Overview:";
-            $msg .="<h3>Overview:</h3>";
+            $msg .="<p><strong>Overview:</strong></p>";
             
             $str=''; $mstr = '';
             
@@ -94,7 +94,7 @@ class CheckoutController extends Controller
 			$payhere ='<a href="https://projectshelve.com/checkout">PAY HERE</a>';
 			$payhere2 = 'pay here ' . $url . '?user-cart=' . $file_uniqe;
 
-            $msg .= $str;
+            $msg .= $str . '<br>';
             $msg .= "Kindly " . $payhere . " to conclude your order and get your product instantly<br><br>";
             $msg .= "Thank you for using ProjectShelve.<br><br>";
             $msg .= "All at ProjectShelve <br>";

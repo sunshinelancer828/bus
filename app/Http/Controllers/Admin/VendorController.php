@@ -335,12 +335,11 @@ class VendorController extends Controller
         // } else {
 
             // mail($to, $subject, $msg, $headers);
-        Mail::send(array(), array(), function ($message) use ($msg,$headers,$to,$subject) {
-                              $message->to($to)
-                             ->subject($subject)
-                            
-                              ->setBody($msg);
-                            }); 
+        Mail::send(array(), array(), function ($message) use ($msg, $to, $subject, $headers) {
+            $message->to($to)
+            ->subject($subject)                            
+            ->setBody($msg,'text/html');
+        }); 
         // }
 
         return response()->json('Withdraw Accepted Successfully.');      

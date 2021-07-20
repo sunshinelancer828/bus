@@ -81,7 +81,7 @@ class OrderController extends Controller
 
         $cart = unserialize(bzdecompress(utf8_decode($data->cart)));
 
-        foreach($cart->items as $product) {
+        foreach ($cart->items as $product) {
             
 			$dataFormat = DB::table('products')->where('id','=',$product['item']['id'])->get();
 			if(is_array($dataFormat)){
@@ -176,15 +176,14 @@ class OrderController extends Controller
                     ]);
 
                 } else {
-
                     // mail($to, $subject, $msg1, $headers);
-                    $sent =   Mail::send(array(), array(), function ($message) use ($msg1,$header) {
-                              $message->to("sufianahmed14239@gmail.com")
-                             ->subject("Your Order is Confirmed")
-                              ->setBody($msg1,'text/html')
-                                ->getHeaders()
-                               ->addTextHeader($header, 'true');
-                            });    
+                    $sent =   Mail::send(array(), array(), function ($message) use ($msg1, $to, $subject, $headers) {
+                        $message->to($to)
+                        ->subject($subject)
+                        ->setBody($msg1,'text/html')
+                        ->getHeaders()
+                        ->addTextHeader($headers, 'true');
+                    });    
                 }
         
                 if (!empty($vid)) {

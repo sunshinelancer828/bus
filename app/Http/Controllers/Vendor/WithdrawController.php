@@ -96,21 +96,22 @@ class WithdrawController extends Controller
                     ]);
     
                 } else {
-                         $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg,'text/html');
-                            });  
+                    $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                        $message->to($to)
+                        ->subject($subject)
+                        ->setBody($msg,'text/html');
+                    });  
                     // mail($to, $subject, $msg, $headers);
                 }
 
                 return response()->json('Withdraw Request Sent Successfully.'); 
 
-            }else{
-                 return response()->json(array('errors' => [ 0 => 'Insufficient Balance.' ])); 
+            } else {
+                
+                return response()->json(array('errors' => [ 0 => 'Insufficient Balance.' ])); 
             }
         }
-            return response()->json(array('errors' => [ 0 => 'Please enter a valid amount.' ])); 
-
+        
+        return response()->json(array('errors' => [ 0 => 'Please enter a valid amount.' ]));
     }
 }

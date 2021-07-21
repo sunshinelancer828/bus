@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Subscription;
 use App\Models\Generalsetting;
 use App\Models\UserSubscription;
-use App\Models\VendorOrder;
+// use App\Models\VendorOrder;
 use App\Models\FavoriteSeller;
 
 class UserController extends Controller
@@ -26,12 +26,12 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();  
-        if ($user->is_vendor == 2) {
-            $pending = VendorOrder::where('user_id','=',$user->id)->where('status','=','pending')->get(); 
-            $processing = VendorOrder::where('user_id','=',$user->id)->where('status','=','processing')->get(); 
-            $completed = VendorOrder::where('user_id','=',$user->id)->where('status','=','completed')->get(); 
-            return view('vendor.index', compact('user','pending','processing','completed'));
-        }
+        // if ($user->is_vendor == 2) {
+        //     $pending = VendorOrder::where('user_id','=',$user->id)->where('status','=','pending')->get(); 
+        //     $processing = VendorOrder::where('user_id','=',$user->id)->where('status','=','processing')->get(); 
+        //     $completed = VendorOrder::where('user_id','=',$user->id)->where('status','=','completed')->get(); 
+        //     return view('vendor.index', compact('user','pending','processing','completed'));
+        // }
         return view('user.dashboard', compact('user'));
     }
 

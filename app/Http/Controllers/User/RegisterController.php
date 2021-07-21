@@ -73,11 +73,11 @@ class RegisterController extends Controller
 				return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
 			}
 
-			$input['is_vendor'] = 1;
+			$input['is_vendor'] = 2;
 		}
 			  
 		$user->fill($input)->save();
-		
+
 		if($gs->is_verification_email == 1)
 		{
 	        $to = $request->email;

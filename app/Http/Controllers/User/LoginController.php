@@ -57,13 +57,25 @@ class LoginController extends Controller
 			// Login Via Modal
 			if (!empty($request->modal))
 			{
-				if (!empty($request->vendor)) {
+				Login as Vendor
+				if(!empty($request->vendor))
+				{
+					if(Auth::guard('web')->user()->is_vendor == 2) {
 
-					if (Auth::guard('web')->user()->is_vendor != 2)
-						return response()->json(array('errors' => [ 0 => 'Your vendor account is not activated yet!' ]));     
+						return response()->json(route('vendor-dashboard'));
 
-					return response()->json(route('vendor-dashboard'));
+					} else {
+
+						return response()->json(route('user-package'));
+					}
 				}
+				// if (!empty($request->vendor)) {
+
+				// 	if (Auth::guard('web')->user()->is_vendor != 2)
+				// 		return response()->json(array('errors' => [ 0 => 'Your vendor account is not activated yet!' ]));     
+
+				// 	return response()->json(route('vendor-dashboard'));
+				// }
 
 				// Login as User
 				return response()->json(1);          

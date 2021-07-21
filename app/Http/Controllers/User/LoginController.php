@@ -54,7 +54,8 @@ class LoginController extends Controller
 				return response()->json(array('errors' => [ 0 => 'Your Account Has Been Banned.' ]));   
 			}
 
-			return response()->json($request);
+			dd($request);
+			return;// response()->json($request);
 
 			// Login Via Modal
 			if(!empty($request->modal))

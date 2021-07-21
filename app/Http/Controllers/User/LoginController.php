@@ -57,18 +57,6 @@ class LoginController extends Controller
 			// Login Via Modal
 			if (!empty($request->modal))
 			{
-				// Login as Vendor
-				// if(!empty($request->vendor))
-				// {
-				// 	if(Auth::guard('web')->user()->is_vendor == 2) {
-
-				// 		return response()->json(route('vendor-dashboard'));
-
-				// 	} else {
-
-				// 		return response()->json(route('user-package'));
-				// 	}
-				// }
 				if (!empty($request->vendor)) {
 
 					if (Auth::guard('web')->user()->is_vendor != 2)

@@ -560,13 +560,13 @@ class FlutterWaveController extends Controller
                 $msg .= "Thank you for trusting us. We look forward to your next visit.<br><br>";
                 $msg .= "All at ProjectShelve <br>";
                 $msg .= "Call/WhatsApp: (+234) 08147801594<br>";
-                $msg .= "E-mail: info@projectshelve.com<br>";
+                $msg .= "E-mail: projectshelve@gmail.com<br>";
                 $msg .= "Website: www.projectshelve.com<br>";
                 
                 $headers  = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= 'From: ProjectShelve <info@projectshelve.com>' . "\r\n" .
-                    'Reply-To: info@projectshelve.com ' . "\r\n" .
+                $headers .= 'From: ProjectShelve <projectshelve@gmail.com>' . "\r\n" .
+                    'Reply-To: projectshelve@gmail.com ' . "\r\n" .
                     'X-Mailer: PHP/' . phpversion();
 
                 if ($settings->is_smtp == 1) {
@@ -589,7 +589,7 @@ class FlutterWaveController extends Controller
                 $msg3 .= "Thank you for trusting us. We look forward to your next visit.<br><br>";
                 $msg3 .= "All at ProjectShelve <br>";
                 $msg3 .= "Call/WhatsApp: (+234) 08147801594<br>";
-                $msg3 .= "E-mail: info@projectshelve.com<br>";
+                $msg3 .= "E-mail: projectshelve@gmail.com<br>";
                 $msg3 .= "Website: www.projectshelve.com<br>";
 				  
                 $phone_number = $order->customer_phone;

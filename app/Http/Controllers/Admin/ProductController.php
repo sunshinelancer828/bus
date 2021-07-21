@@ -245,7 +245,7 @@ class ProductController extends Controller
                 $msg.="Thank you as we look forward for a mutual advantage.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";
                 $msg.="Call/WhatsApp: (+234) 08147801594<br> ";
-                $msg.="E-mail: info@projectshelve.com<br>";
+                $msg.="E-mail: projectshelve@gmail.com<br>";
                 $msg.="Website: www.projectshelve.com<br>";
                 
             } elseif ($status == 2) {
@@ -256,7 +256,7 @@ class ProductController extends Controller
                 $msg.="Thank you as we look forward for a mutual advantage.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";
                 $msg.="Call/WhatsApp: (+234) 08147801594<br> ";
-                $msg.="E-mail: info@projectshelve.com<br>";
+                $msg.="E-mail: projectshelve@gmail.com<br>";
                 $msg.="Website: www.projectshelve.com<br>";
                 
                 
@@ -268,7 +268,7 @@ class ProductController extends Controller
                 $msg.="Wish you impressive sales ahead.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";
                 $msg.="Call/WhatsApp: (+234) 08147801594<br> ";
-                $msg.="E-mail: info@projectshelve.com<br>";
+                $msg.="E-mail: projectshelve@gmail.com<br>";
                 $msg.="Website: www.projectshelve.com<br>";	 
             }
             
@@ -1180,7 +1180,7 @@ class ProductController extends Controller
                 $msg.="Thank you as we look forward for a mutual advantage.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";
                 $msg.="Call/WhatsApp: (+234) 08147801594<br> ";
-                $msg.="E-mail: info@projectshelve.com<br>";
+                $msg.="E-mail: projectshelve@gmail.com<br>";
                 $msg.="Website: www.projectshelve.com<br>";
             
                 $to = $user_data->email;

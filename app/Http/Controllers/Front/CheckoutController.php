@@ -99,7 +99,7 @@ class CheckoutController extends Controller
             $msg .= "Thank you for using ProjectShelve.<br><br>";
             $msg .= "All at ProjectShelve <br>";
             $msg .= "Call/WhatsApp: (+234) 08147801594<br>";
-            // $msg .= "E-mail: info@projectshelve.com<br>";
+            // $msg .= "E-mail: projectshelve@gmail.com<br>";
             // $msg .= "Website: www.projectshelve.com<br>";
             
     	    $to = $email;
@@ -109,8 +109,8 @@ class CheckoutController extends Controller
             $msg1 = $msg;
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= "From: ProjectShelve <info@projectshelve.com>" . "\r\n" .
-                'Reply-To: info@projectshelve.com' . "\r\n" .
+            $headers .= "From: ProjectShelve <projectshelve@gmail.com>" . "\r\n" .
+                'Reply-To: projectshelve@gmail.com' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
    
             // $sent =  mail($to,$subject,$msg1,$headers);
@@ -137,7 +137,7 @@ class CheckoutController extends Controller
             $msg2 .= "Thank you for using ProjectShelve.<br><br>";
             $msg2 .= "All at ProjectShelve <br>";
             $msg2 .= "Call/WhatsApp: (+234) 08147801594<br>";
-            $msg2 .= "E-mail: info@projectshelve.com<br>";
+            $msg2 .= "E-mail: projectshelve@gmail.com<br>";
             $msg2 .= "Website: www.projectshelve.com<br>";
             
             $userReg = User::where('phone', $phone_number)->count();

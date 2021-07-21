@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $user = Auth::user();  
         if ($user->is_vendor == 2) 
-            return view('vendor.dashboard', compact('user'));
+            return view('vendor.index', compact('user'));
         return view('user.dashboard', compact('user'));
     }
 

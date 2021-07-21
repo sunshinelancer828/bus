@@ -55,7 +55,7 @@ class LoginController extends Controller
 			}
 
 			// Login Via Modal
-			if(!empty($request->modal))
+			if (!empty($request->modal))
 			{
 				// Login as Vendor
 				// if(!empty($request->vendor))

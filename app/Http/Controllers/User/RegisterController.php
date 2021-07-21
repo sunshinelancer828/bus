@@ -99,35 +99,55 @@ class RegisterController extends Controller
 	        {
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-	        $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-	        // mail($to,$subject,$msg,$headers);
-	         $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg,'text/html');
-                            });  
+				$headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+
+				// mail($to,$subject,$msg,$headers);
+				$sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+					$message->to($to)
+					->subject($subject)
+					->setBody($msg,'text/html');
+				});  
 	        }
           	return response()->json('We need to verify your email address. We have sent an email to '.$to.' to verify your email address. Please click link in that email to continue.');
 	        }
 	        else {
-            $to = $request->email;
-            $headers = "MIME-Version: 1.0" . "\r\n";
+				$to = $request->email;
+				$pwd = $request['password'];
+
+				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-	        $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-	        $subject = 'Registered Successfully.';
-	        $msg = "Dear Customer,<br> You have successfully register to ProjectShelve.com.";
-            $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg,'text/html');
-                            });
-            $user->email_verified = 'Yes';
-            $user->update();
-	        $notification = new Notification;
-	        $notification->user_id = $user->id;
-	        $notification->save();
-            Auth::guard('web')->login($user); 
-          	return response()->json(1);
+				$headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+				
+				$subject = 'Registered Successfully.';
+
+				$msg = "Dear Customer,<br><br> You have successfully registered to ProjectShelve.com.";
+				$msg .= "We wish you have a wonderful experience using our service. Below is your login details. ";
+				$msg .= "Below is your login details. <br>";
+				$msg .= "Email: " . $to . "<br>";
+				$msg .= "Password: " . $pwd . "<br><br>";
+				$msg .= "Thank you.<br><br>";
+								
+				$msg .= "All at ProjectShelve<br> ";
+				$msg .= "Call/WhatsApp: (+234) 08147801594<br>";
+				$msg .= "E-mail: projectshelve@gmail.com<br>";
+				$msg .= "Website: www.projectshelve.com<br>";
+
+				$sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+								$message->to($to)
+								->subject($subject)
+								->setBody($msg,'text/html');
+								});
+
+				$user->email_verified = 'Yes';
+				$user->update();
+
+				$notification = new Notification;
+				$notification->user_id = $user->id;
+				$notification->save();
+
+				Auth::guard('web')->login($user); 
+
+				return response()->json(1);
 	        }
 
     }

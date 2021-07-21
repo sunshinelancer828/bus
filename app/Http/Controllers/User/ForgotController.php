@@ -9,6 +9,7 @@ use App\Classes\GeniusMailer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Validator;
+use Mail;
 
 class ForgotController extends Controller
 {

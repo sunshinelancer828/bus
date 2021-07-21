@@ -25,8 +25,11 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();  
-        if ($user->is_vendor == 2) 
-            return view('vendor.index', compact('user'));
+        if ($user->is_vendor == 2) {
+
+			return response()->json(route('vendor-dashboard'));
+            // return view('vendor.index', compact('user'));
+        }
         return view('user.dashboard', compact('user'));
     }
 

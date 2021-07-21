@@ -71,6 +71,9 @@ class LoginController extends Controller
 				// }
 				if (!empty($request->vendor)) {
 
+					if (Auth::guard('web')->user()->is_vendor != 2)
+						return response()->json(array('errors' => [ 0 => 'Your vendor account is not activated yet!' ]));     
+
 					return response()->json(route('vendor-dashboard'));
 				}
 

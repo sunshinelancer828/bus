@@ -30,7 +30,7 @@ class RedirectIfAuthenticated
                 return redirect()->route('vendor-dashboard');
               }
 
-            return redirect()->route('user-dashboard');
+            // return redirect()->route('user-dashboard');
           }
           break;
       }

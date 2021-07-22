@@ -147,7 +147,11 @@ class RegisterController extends Controller
 
 			Auth::guard('web')->login($user); 
 
-			// return response()->json(1);
+			if (Auth::guard('web')->user()->is_vendor == 2) {
+				return response()->json(2);
+			}
+
+			return response()->json(1);
 		}
 
     }

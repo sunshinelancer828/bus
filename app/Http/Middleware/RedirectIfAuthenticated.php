@@ -26,8 +26,11 @@ class RedirectIfAuthenticated
 
         default:
           if (Auth::guard($guard)->check()) {
-            if ($request->is_vendor == 2) 
-              return redirect()->route('vendor-dashboard');
+            if (!empty($request->vendor)) {
+    					if(Auth::guard($guard)->user()->is_vendor == 2) {
+                return redirect()->route('vendor-dashboard');
+              }
+            }
 
             // return redirect()->route('user-dashboard');
           }

@@ -147,7 +147,7 @@ class RegisterController extends Controller
 
 			Auth::guard('web')->login($user); 
 
-			return response()->json(1);
+			// return response()->json(1);
 		}
 
     }

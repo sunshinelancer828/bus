@@ -71,17 +71,16 @@ class LoginController extends Controller
 						return response()->json(route('user-package'));
 					}
 				}
-				// if (!empty($request->vendor)) {
-
-				// 	if (Auth::guard('web')->user()->is_vendor != 2)
-				// 		return response()->json(array('errors' => [ 0 => 'Your vendor account is not activated yet!' ]));     
-
-				// 	return response()->json(route('vendor-dashboard'));
-				// }
 
 				// Login as User
 				return response()->json(1);          
 			}
+
+			if(Auth::guard('web')->user()->is_vendor == 2) {
+				
+				return response()->json(route('vendor-dashboard'));
+			}
+
 			// Login as User
 			return response()->json(route('user-dashboard'));
 		}

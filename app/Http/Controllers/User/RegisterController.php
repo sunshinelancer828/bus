@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Generalsetting;
@@ -9,7 +10,6 @@ use App\Models\User;
 use App\Classes\GeniusMailer;
 use App\Models\Notification;
 use Auth;
-use Illuminate\Support\Facades\Input;
 use Validator;
 use Session;
 use Mail;

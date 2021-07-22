@@ -28,7 +28,8 @@ class RedirectIfAuthenticated
           if (Auth::guard($guard)->check()) {
             if ($request->is_vendor == 2) 
               return redirect()->route('vendor-dashboard');
-      //         return redirect()->route('user-dashboard');
+              
+            return redirect()->route('user-dashboard');
           }
           break;
       }

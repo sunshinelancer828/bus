@@ -444,10 +444,14 @@ class ProductController extends Controller
 
             if ($file = $request->file('photo')) 
             {      
-               $name = time().str_replace(' ', '', $file->getClientOriginalName());
-               $file->move('assets/images/products',$name);           
-               $input['photo'] = $name;
-           } 
+                $name = time().str_replace(' ', '', $file->getClientOriginalName());
+                $file->move('assets/images/products',$name);           
+                $input['photo'] = $name;
+
+            } else {
+
+                return response()->json(array('errors' => [ 0 => 'You got a default photo: '. $input['default_photo']]));
+            }
 
             // Check Physical
             if($request->type == "Physical")

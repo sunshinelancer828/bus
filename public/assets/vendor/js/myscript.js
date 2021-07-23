@@ -96,7 +96,7 @@ function enablekey()
 
           }
 
-          var photo_url = window.location.origin + (data.category.image) ? '/assets/images/categories/' + data.category.image : '/assets/images/noimage.png';
+          var photo_url = encodeURIComponent(window.location.origin + '/assets/images/categories/' + data.category.image);
 
           $('#image-preview').css('background', 'url(' + photo_url + ')');
           $('#image-default').val(photo_url);

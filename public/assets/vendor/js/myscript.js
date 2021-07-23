@@ -94,12 +94,13 @@ function enablekey()
             </div>
             `;
 
-            var photo_url = window.location.origin + '/assets/images/categories/' + data[i].category.photo;
-
-            $('#image-preview').css('background', 'url(' + photo_url + ')');
-            $('#image-default').val(data[i].category.photo);
-            $('#image-test').text($('#image-preview').css('background'));
           }
+
+          var photo_url = window.location.origin + '/assets/images/categories/' + data[i].category.image;
+
+          $('#image-preview').css('background', 'url(' + photo_url + ')');
+          $('#image-default').val(data[i].category.image);
+          // $('#image-test').text($('#image-preview').css('background'));
 
           $("#catAttributes").html(attrHtml);
           $("#subcatAttributes").html('');

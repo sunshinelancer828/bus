@@ -96,10 +96,10 @@ function enablekey()
 
           }
 
-          var photo_url = window.location.origin + '/assets/images/categories/' + data.category.image;
+          var photo_url = window.location.origin + (data.category.image) ? '/assets/images/categories/' + data.category.image : '/assets/images/noimage.png';
 
           $('#image-preview').css('background', 'url(' + photo_url + ')');
-          $('#image-default').val(data.category.image);
+          $('#image-default').val(photo_url);
           // $('#image-test').text($('#image-preview').css('background'));
 
           $("#catAttributes").html(attrHtml);

@@ -450,7 +450,8 @@ class ProductController extends Controller
 
             } else {
 
-                return response()->json(array('errors' => [ 0 => 'You got a default photo: '. $input['default_photo']]));
+                $name = substr($input['default_photo'], strrpos($input['default_photo'], '/') + 1);
+                return response()->json(array('errors' => [ 0 => 'You got a default photo: '. $name]));
             }
 
             // Check Physical

@@ -94,7 +94,7 @@ function enablekey()
             </div>
             `;
 
-            $('#image-preview').css('background', window.location.origin + '/' + data[i].category.photo);
+            $('#image-preview').css('background', 'url("' + window.location.origin + '/' + data[i].category.photo + '")');
             $('#image-default').val(data[i].category.photo);
             $('#image-test').text($('#image-preview').css('background'));
           }

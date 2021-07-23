@@ -68,7 +68,7 @@
 															<select id="cat" name="category_id" required="">
 																	<option value="">{{ $langg->lang691 }}</option>
 						                                              @foreach($cats as $cat)
-						                                                  <option data-href="{{ route('vendor-subcat-load',$cat->id) }}" value="{{ $cat->id }}">{{$cat->name}}</option>
+						                                                  <option data-href="{{ route('vendor-subcat-load', $cat->id) }}" value="{{ $cat->id }}">{{$cat->name}}</option>
 						                                              @endforeach
 						                                     </select>
 													</div>

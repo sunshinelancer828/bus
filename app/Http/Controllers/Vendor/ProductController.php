@@ -451,9 +451,10 @@ class ProductController extends Controller
             } else {
 
                 $name = substr($input['default_photo'], strrpos($input['default_photo'], '/') + 1);
+                // $name = time().str_replace(' ', '', $name);
                 $tmp_file = public_path('assets/images/products/') . $name;
                 copy($input['default_photo'], $tmp_file);
-                return response()->json(array('errors' => [ 0 => 'You got a default photo: '. $name . $tmp_file]));
+                $input['photo'] = $name;
             }
 
             // Check Physical

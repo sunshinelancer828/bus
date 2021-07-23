@@ -96,7 +96,9 @@ function enablekey()
 
           }
 
-          var photo_url = encodeURIComponent(window.location.origin + '/assets/images/categories/' + data.category.image);
+          var photo_url = window.location.origin + '/assets/images/categories/' + data.category.image;
+          photo_url.replace('(', '%28');
+          photo_url.replace(')', '%29');
 
           $('#image-preview').css('background', 'url(' + photo_url + ')');
           $('#image-default').val(photo_url);

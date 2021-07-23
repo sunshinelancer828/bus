@@ -419,7 +419,7 @@ class ProductController extends Controller
         if($allow_free == 'yes') {
         //--- Validation Section
         $rules = [
-               'photo'      => 'required|mimes:jpeg,jpg,png,svg',
+            //    'photo'      => 'required|mimes:jpeg,jpg,png,svg',
                //'file'       => 'mimes:zip'
                 ];
 

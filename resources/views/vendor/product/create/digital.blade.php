@@ -144,10 +144,12 @@
 													</div>
 													<div class="col-lg-7">
 													  <div class="img-upload">
-														  <div id="image-preview" class="img-preview" style="background: url({{ asset('assets/vendor/images/upload.png') }});">
+
+														  	<div id="image-preview" class="img-preview" style="background: url({{ asset('assets/vendor/images/upload.png') }});">
 															  <label for="image-upload" class="img-label" id="image-label"><i class="icofont-upload-alt"></i>{{ $langg->lang512 }}</label>
 															  <input type="file" name="photo" class="img-upload-p" id="image-upload" required>
 															</div>
+															
 															<p class="img-alert mt-2 text-danger d-none"></p>
 														
 													  </div>

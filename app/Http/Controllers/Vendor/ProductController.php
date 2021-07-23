@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Category;
 use App\Models\Childcategory;
 use App\Models\Currency;
@@ -12,14 +13,15 @@ use App\Models\Subcategory;
 use App\Models\Attribute;
 use App\Models\AttributeOption;
 use App\Models\Notification;
+
 use Auth;
 use DB;
 use Datatables;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Image;
 use Session;
 use Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
@@ -1548,9 +1550,10 @@ class ProductController extends Controller
     }
 
     public function getAttributes(Request $request) {
-      $model = '';
+      $model = ''; $category = [];
       if ($request->type == 'category') {
         $model = 'App\Models\Category';
+        $category = Category::findOrFail($request->id);
       } elseif ($request->type == 'subcategory') {
         $model = 'App\Models\Subcategory';
       } elseif ($request->type == 'childcategory') {
@@ -1561,7 +1564,7 @@ class ProductController extends Controller
       $attrOptions = [];
       foreach ($attributes as $key => $attribute) {
         $options = AttributeOption::where('attribute_id', $attribute->id)->get();
-        $attrOptions[] = ['attribute' => $attribute, 'options' => $options];
+        $attrOptions[] = ['attribute' => $attribute, 'options' => $options, 'category' => $category];
       }
       return response()->json($attrOptions);
     }

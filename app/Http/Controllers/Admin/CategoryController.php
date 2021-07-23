@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Validator;
 use Datatables;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Validator;
 
 class CategoryController extends Controller
 {

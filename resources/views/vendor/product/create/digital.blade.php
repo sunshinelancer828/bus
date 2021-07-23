@@ -68,7 +68,7 @@
 															<select id="cat" name="category_id" required="">
 																	<option value="">{{ $langg->lang691 }}</option>
 						                                              @foreach($cats as $cat)
-						                                                  <option data-href="{{ route('vendor-subcat-load',$cat->id) }}" value="{{ $cat->id }}">{{$cat->name}}</option>
+						                                                  <option data-href="{{ route('vendor-subcat-load', $cat->id) }}" value="{{ $cat->id }}">{{$cat->name}}</option>
 						                                              @endforeach
 						                                     </select>
 													</div>
@@ -147,9 +147,11 @@
 
 														  	<div id="image-preview" class="img-preview" style="background: url({{ asset('assets/vendor/images/upload.png') }});">
 															  <label for="image-upload" class="img-label" id="image-label"><i class="icofont-upload-alt"></i>{{ $langg->lang512 }}</label>
-															  <input type="file" name="photo" class="img-upload-p" id="image-upload" required>
+															  <input type="file" name="photo" class="img-upload-p" id="image-upload">
+															  <input type="hidden" name="default_photo" value="" id="image-default">
+															  <!-- <span id="image-test" style="color: black">{{ asset('assets/vendor/images/upload.png') }}</span> -->
 															</div>
-															
+
 															<p class="img-alert mt-2 text-danger d-none"></p>
 														
 													  </div>

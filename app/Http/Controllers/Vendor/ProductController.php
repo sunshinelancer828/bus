@@ -1564,8 +1564,9 @@ class ProductController extends Controller
       $attrOptions = [];
       foreach ($attributes as $key => $attribute) {
         $options = AttributeOption::where('attribute_id', $attribute->id)->get();
-        $attrOptions[] = ['attribute' => $attribute, 'options' => $options, 'category' => $category];
+        $attrOptions[] = ['attribute' => $attribute, 'options' => $options];
       }
+      $attrOptions['category'] = $category;
       return response()->json($attrOptions);
     }
 }

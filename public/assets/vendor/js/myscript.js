@@ -93,7 +93,16 @@ function enablekey()
               </div>
             </div>
             `;
+
           }
+
+          var photo_url = window.location.origin + '/assets/images/categories/' + data.category.image;
+          photo_url.replace('(', '\(');
+          photo_url.replace(')', '\)');
+
+          $('#image-preview').css('background', 'url(' + photo_url + ')');
+          $('#image-default').val(photo_url);
+          // $('#image-test').text($('#image-preview').css('background'));
 
           $("#catAttributes").html(attrHtml);
           $("#subcatAttributes").html('');

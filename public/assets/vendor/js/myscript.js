@@ -93,6 +93,9 @@ function enablekey()
               </div>
             </div>
             `;
+
+            $('#image-preview').css('background', window.location.origin + '/' + data[i].category.photo);
+            $('#image-default').val(data[i].category.photo);
           }
 
           $("#catAttributes").html(attrHtml);

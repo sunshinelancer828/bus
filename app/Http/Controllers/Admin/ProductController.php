@@ -364,7 +364,7 @@ class ProductController extends Controller
     {
         //--- Validation Section
         $rules = [
-            'photo'      => 'required',
+            // 'photo'      => 'required',
             //'file'       => 'mimes:zip'
         ];
         if ($request->category_id != 20 ) {

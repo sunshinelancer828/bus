@@ -198,29 +198,25 @@
 
 
 												
-							                     <div class="row">
-							                        <div class="col-lg-4">
-							                          <div class="left-area">
-							                              <h4 class="heading">{{ __("Feature Image") }} *</h4>
-							                          </div>
-							                        </div>
-							                        <div class="col-lg-7">
-	<div class="row">
-	<div class="panel panel-body">
-		<div class="span4 cropme text-center" id="landscape" style="width: 400px; height: 400px; border: 1px dashed black;">
-		</div>
-		</div>
-	</div>
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Feature Image") }} *</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="img-upload">
+									<div id="image-preview" class="img-preview"  style="background: url({{ $data->photo }}) no-repeat;">
+										<!-- <div class="span4 cropme text-center" id="landscape" style="width: 250px; height: 250px; border: 1px dashed black;"></div>										 -->
+										<label for="image-upload" class="img-label" id="image-label"><i class="icofont-upload-alt"></i>{{ $langg->lang512 }}</label>
+										<input type="file" name="photo" class="img-upload-p" id="image-upload">
+										<input type="hidden" id="feature_photo" name="default_photo" value="">
+									</div>
+								</div>
+							</div>
+						</div>
 
-			<a href="javascript:;" id="crop-image" class="d-inline-block mybtn1">
-				<i class="icofont-upload-alt"></i> {{ __("Upload Image Here") }}
-			</a>
-
-
-							                        </div>
-							                      </div>
-
-							                      <input type="hidden" id="feature_photo" name="photo" value="{{ $data->photo }}">
+						<input type="file" name="gallery[]" class="hidden" id="uploadgallery" accept="image/*" multiple>
 						                        
 												<div class="row">
 													<div class="col-lg-4">

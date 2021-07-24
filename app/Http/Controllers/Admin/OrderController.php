@@ -90,7 +90,7 @@ class OrderController extends Controller
 			    $dataFormat = '';
 			}
 			
-            $msg .= "Find below your ".$product['item']['name'].".<br><br>";
+            $str .= "Find below your ".$product['item']['name'].".<br><br>";
             $str .= "Product Title: ".$product['item']['name']."<br>";
         	$str .= "Product Code: 000".$product['item']['id']."<br>";
         	$str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";

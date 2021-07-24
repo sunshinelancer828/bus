@@ -402,6 +402,7 @@ class ProductController extends Controller
             $tmp_file = public_path('assets/images/products/') . $name;
             copy($input['default_photo'], $tmp_file);
             $input['photo'] = $name;
+            return response()->json(array('errors' => [ 0 => 'You Can\'t Add More Product.'.$name.$tmp_file]));
         }
 
 

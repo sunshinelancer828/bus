@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Childcategory;
 use App\Models\Subcategory;
-use Datatables;
 use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\Category;
@@ -24,6 +23,7 @@ use Validator;
 use Image;
 use DB;
 use Mail;
+use Datatables;
 
 class ProductController extends Controller
 {
@@ -1345,10 +1345,11 @@ class ProductController extends Controller
     }
 
     public function getAttributes(Request $request) {
-      $model = '';
+      $model = ''; $category = [];
       if ($request->type == 'category') {
         $model = 'App\Models\Category';
-      } elseif ($request->type == 'subcategory') {
+        $category = Category::findOrFail($request->id);
+    } elseif ($request->type == 'subcategory') {
         $model = 'App\Models\Subcategory';
       } elseif ($request->type == 'childcategory') {
         $model = 'App\Models\Childcategory';
@@ -1360,6 +1361,7 @@ class ProductController extends Controller
         $options = AttributeOption::where('attribute_id', $attribute->id)->get();
         $attrOptions[] = ['attribute' => $attribute, 'options' => $options];
       }
+      $attrOptions['category'] = $category;
       return response()->json($attrOptions);
     }
 }

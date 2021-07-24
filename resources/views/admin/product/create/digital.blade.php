@@ -9,410 +9,402 @@
 @endsection
 @section('content')
 
-						<div class="content-area">
-							<div class="mr-breadcrumb">
+<div class="content-area">
+	<div class="mr-breadcrumb">
+		<div class="row">
+			<div class="col-lg-12">
+				<h4 class="heading">{{ __("Digital Product") }} <a class="add-btn" href="{{ route('admin-prod-types') }}"><i class="fas fa-arrow-left"></i> {{ __("Back") }}</a></h4>
+				<ul class="links">
+					<li>
+						<a href="{{ route('admin.dashboard') }}">{{ __("Dashboard") }} </a>
+					</li>
+				<li>
+					<a href="javascript:;">{{ __("Products") }} </a>
+				</li>
+				<li>
+					<a href="{{ route('admin-prod-index') }}">{{ __("All Products") }}</a>
+				</li>
+					<li>
+						<a href="{{ route('admin-prod-types') }}">{{ __("Add Product") }}</a>
+					</li>
+					<li>
+						<a href="{{ route('admin-prod-digital-create') }}">{{ __("Digital Product") }}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="add-product-content">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="product-description">
+					<div class="body-area" id="modalEdit">
+
+						<div class="gocover" style="background: url({{asset('assets/images/'.$gs->admin_loader)}}) no-repeat scroll center center rgba(45, 45, 45, 0.5);"></div>
+						<form id="geniusform" action="{{route('admin-prod-store')}}" method="POST" enctype="multipart/form-data">
+						{{csrf_field()}}
+
+						@include('includes.admin.form-both')  
+
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Title") }}* </h4>
+									<p class="sub-heading">{{ __("(In Any Language)") }}</p>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<input type="text" class="input-field" placeholder="{{ __("Enter Product Name") }}" name="name" required="">
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Category") }}*</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<select id="cat" name="category_id" required="">
+									<option value="">{{ __("Select Category") }}</option>
+									@foreach($cats as $cat)
+										<option data-href="{{ route('admin-subcat-load',$cat->id) }}" value="{{ $cat->id }}">{{$cat->name}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Sub Category") }}*</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<select id="subcat" name="subcategory_id" disabled="">
+									<option value="">{{ __("Select Sub Category") }}</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Child Category") }}*</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<select id="childcat" name="childcategory_id" disabled="">
+									<option value="">{{ __("Select Child Category") }}</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Select Upload Type") }}*</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<select id="type_check" name="type_check">
+									<option value="1">{{ __("Upload By File") }}</option>
+									<option value="2">{{ __("Upload By Link") }}</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row file">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Select File") }}*</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<input type="file" name="file" required="">
+							</div>
+						</div>
+
+						<div class="row link hidden">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Link") }}*</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<textarea class="input-field" rows="4" name="link" placeholder="{{ __("Link") }}"></textarea> 
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Feature Image") }} *</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
 								<div class="row">
-									<div class="col-lg-12">
-											<h4 class="heading">{{ __("Digital Product") }} <a class="add-btn" href="{{ route('admin-prod-types') }}"><i class="fas fa-arrow-left"></i> {{ __("Back") }}</a></h4>
-											<ul class="links">
-												<li>
-													<a href="{{ route('admin.dashboard') }}">{{ __("Dashboard") }} </a>
-												</li>
-											<li>
-												<a href="javascript:;">{{ __("Products") }} </a>
-											</li>
-											<li>
-												<a href="{{ route('admin-prod-index') }}">{{ __("All Products") }}</a>
-											</li>
-												<li>
-													<a href="{{ route('admin-prod-types') }}">{{ __("Add Product") }}</a>
-												</li>
-												<li>
-													<a href="{{ route('admin-prod-digital-create') }}">{{ __("Digital Product") }}</a>
-												</li>
-											</ul>
+									<div id="image-preview" class="img-preview"  style="background: url({{ asset('assets/vendor/images/upload.png') }});">
+										<div class="span4 cropme text-center" id="landscape" style="width: 250px; height: 250px; border: 1px dashed black;"></div>										
+										<input type="hidden" id="feature_photo" name="photo" value="">
+									</div>
+								</div>
+
+								<a href="javascript:;" id="crop-image" class="d-inline-block mybtn1">
+									<i class="icofont-upload-alt"></i> {{ __("Upload Image Here") }}
+								</a>
+							</div>
+						</div>
+
+						<input type="file" name="gallery[]" class="hidden" id="uploadgallery" accept="image/*" multiple>
+						
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+										<h4 class="heading">
+												{{ __("Product Gallery Images") }} *
+										</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<a href="#" class="set-gallery"  data-toggle="modal" data-target="#setgallery">
+										<i class="icofont-plus"></i> {{ __("Set Gallery") }}
+								</a>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">
+										{{ __("Product Current Price") }}*
+									</h4>
+									<p class="sub-heading">
+										({{ __("In") }} {{$sign->name}})
+									</p>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<input name="price" type="number" class="input-field" placeholder="{{ __("e.g 20") }}" step="0.01" required="" min="0">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+										<h4 class="heading">{{ __("Product Previous Price") }}*</h4>
+										<p class="sub-heading">{{ __("(Optional)") }}</p>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<input name="previous_price" step="0.01" type="number" class="input-field" placeholder="{{ __("e.g 20") }}" min="0">
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">
+											{{ __("Product Description") }}*
+									</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="text-editor">
+									<textarea name="details" class="nic-edit-p"></textarea> 
+								</div>
+							</div>
+						</div>
+						
+
+
+						<!--div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">
+											{{ __("Product Buy/Return Policy") }}*
+									</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="text-editor">
+									<textarea name="policy" class="nic-edit-p"></textarea> 
+								</div>
+							</div>
+						</div-->
+
+
+						<!--div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+										<h4 class="heading">{{ __("Youtube Video URL") }}*</h4>
+										<p class="sub-heading">{{ __("(Optional)") }}</p>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<input  name="youtube" type="text" class="input-field" placeholder="{{ __('Enter Youtube Video URL') }}">
+								<div class="checkbox-wrapper">
+									<input type="checkbox" name="seo_check" class="checkclick" id="allowProductSEO" value="1">
+									<label for="allowProductSEO">{{ __("Allow Product SEO") }}</label>
+								</div>
+							</div>
+						</div-->
+
+
+
+						<div class="showbox">
+							<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									<h4 class="heading">{{ __("Meta Tags") }} *</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<ul id="metatags" class="myTags">
+								</ul>
+							</div>
+						</div>  
+
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+								<h4 class="heading">
+									{{ __("Meta Description") }} *
+								</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="text-editor">
+								<textarea name="meta_description" class="input-field" placeholder="{{ __("Meta Description") }}"></textarea> 
+								</div>
+							</div>
+						</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="featured-keyword-area">
+									<div class="heading-area">
+										<h4 class="title">{{ __("Product Information") }}</h4>
 									</div>
 								</div>
 							</div>
-							<div class="add-product-content">
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="product-description">
-											<div class="body-area" id="modalEdit">
+						</div>
+						<!--div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+										<h4 class="heading">Product Code* </h4>
+										<p class="sub-heading">(In Any Language)</p>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<input type="text" class="input-field" placeholder="Enter Product Code" name="product_code" required="">
+							</div>
+						</div-->
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+										<h4 class="heading">No of Pages* </h4>
+										<p class="sub-heading">(In Any Language)</p>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<input type="text" class="input-field" placeholder="Enter Number of Pages" name="pages" required="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+										<h4 class="heading">No of Chapters* </h4>
+										<p class="sub-heading">(In Any Language)</p>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<input type="text" class="input-field" placeholder="Enter Number of Chapters" name="chapters" required="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+										<h4 class="heading">File Format*</h4>
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<select  name="file_format" required="">
+								<option value="">Select File Format</option>
+									<option value="Microsoft Word">Microsoft Word</option>
+									<option value="Pdf">Pdf</option>
+									<option value="PowerPoint">PowerPoint</option>
+									<option value="Microsoft Excel">Microsoft Excel</option>         <option value="Jpeg">Jpeg</option>  
+									<option value="MP4">MP4</option>  					                                     </select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
 
-					                      <div class="gocover" style="background: url({{asset('assets/images/'.$gs->admin_loader)}}) no-repeat scroll center center rgba(45, 45, 45, 0.5);"></div>
-					                      <form id="geniusform" action="{{route('admin-prod-store')}}" method="POST" enctype="multipart/form-data">
-					                        {{csrf_field()}}
+								</div>
+							</div>
+							<div class="col-lg-7">
+								<div class="featured-keyword-area">
+									<div class="heading-area">
+										<h4 class="title">{{ __("Feature Tags") }}</h4>
+									</div>
 
-                        @include('includes.admin.form-both')  
-
-
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">{{ __("Title") }}* </h4>
-																<p class="sub-heading">{{ __("(In Any Language)") }}</p>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<input type="text" class="input-field" placeholder="{{ __("Enter Product Name") }}" name="name" required="">
-													</div>
+									<div class="feature-tag-top-filds" id="feature-section">
+										<div class="feature-area">
+											<span class="remove feature-remove"><i class="fas fa-times"></i></span>
+											<div class="row">
+												<div class="col-lg-6">
+												<input type="text" name="features[]" class="input-field" placeholder="{{ __("Enter Your Keyword") }}">
 												</div>
 
-
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">{{ __("Category") }}*</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-															<select id="cat" name="category_id" required="">
-																	<option value="">{{ __("Select Category") }}</option>
-						                                              @foreach($cats as $cat)
-						                                                  <option data-href="{{ route('admin-subcat-load',$cat->id) }}" value="{{ $cat->id }}">{{$cat->name}}</option>
-						                                              @endforeach
-						                                     </select>
+												<div class="col-lg-6">
+													<div class="input-group colorpicker-component cp">
+														<input type="text" name="colors[]" value="#000000" class="input-field cp"/>
+														<span class="input-group-addon"><i></i></span>
 													</div>
 												</div>
+											</div>
+										</div>
+									</div>
 
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">{{ __("Sub Category") }}*</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-															<select id="subcat" name="subcategory_id" disabled="">
-                                                  				<option value="">{{ __("Select Sub Category") }}</option>
-															</select>
-													</div>
-												</div>
-
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">{{ __("Child Category") }}*</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-															<select id="childcat" name="childcategory_id" disabled="">
-                                                  				<option value="">{{ __("Select Child Category") }}</option>
-															</select>
-													</div>
-												</div>
-
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">{{ __("Select Upload Type") }}*</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-															<select id="type_check" name="type_check">
-			                                                  <option value="1">{{ __("Upload By File") }}</option>
-			                                                  <option value="2">{{ __("Upload By Link") }}</option>
-															</select>
-													</div>
-												</div>
-
-												<div class="row file">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">{{ __("Select File") }}*</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-															<input type="file" name="file" required="">
-													</div>
-												</div>
-
-												<div class="row link hidden">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">{{ __("Link") }}*</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-															<textarea class="input-field" rows="4" name="link" placeholder="{{ __("Link") }}"></textarea> 
-													</div>
-												</div>
-
-							                     <div class="row">
-							                        <div class="col-lg-4">
-							                          <div class="left-area">
-							                              <h4 class="heading">{{ __("Feature Image") }} *</h4>
-							                          </div>
-							                        </div>
-							                        <div class="col-lg-7">
-	<div class="row">
-	<div class="panel panel-body">
-		<div class="span4 cropme text-center" id="landscape" style="width: 250px; height: 250px; border: 1px dashed black;">
-		</div>
-		</div>
-	</div>
-
-			<a href="javascript:;" id="crop-image" class="d-inline-block mybtn1">
-				<i class="icofont-upload-alt"></i> {{ __("Upload Image Here") }}
-			</a>
+									<a href="javascript:;" id="feature-btn" class="add-fild-btn"><i class="icofont-plus"></i> {{ __("Add More Field") }}</a>
+								</div>
+							</div>
+						</div>
 
 
-							                        </div>
-							                      </div>
+						<div class="row">
+							<div class="col-lg-4">
+							<div class="left-area">
+								<h4 class="heading">Tags *</h4>
+							</div>
+							</div>
+							<div class="col-lg-7">
+							<ul id="tags" class="myTags">
+							</ul>
+							</div>
+						</div>
 
-							                      <input type="hidden" id="feature_photo" name="photo" value="">
-
-
-
-						                        <input type="file" name="gallery[]" class="hidden" id="uploadgallery" accept="image/*" multiple>
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">
-																		{{ __("Product Gallery Images") }} *
-																</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<a href="#" class="set-gallery"  data-toggle="modal" data-target="#setgallery">
-																<i class="icofont-plus"></i> {{ __("Set Gallery") }}
-														</a>
-													</div>
-												</div>
-
-
-
-
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-															<h4 class="heading">
-																{{ __("Product Current Price") }}*
-															</h4>
-															<p class="sub-heading">
-																({{ __("In") }} {{$sign->name}})
-															</p>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<input name="price" type="number" class="input-field" placeholder="{{ __("e.g 20") }}" step="0.01" required="" min="0">
-													</div>
-												</div>
-
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">{{ __("Product Previous Price") }}*</h4>
-																<p class="sub-heading">{{ __("(Optional)") }}</p>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<input name="previous_price" step="0.01" type="number" class="input-field" placeholder="{{ __("e.g 20") }}" min="0">
-													</div>
-												</div>
-
-
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-															<h4 class="heading">
-																	{{ __("Product Description") }}*
-															</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<div class="text-editor">
-															<textarea name="details" class="nic-edit-p"></textarea> 
-														</div>
-													</div>
-												</div>
-												
-
-
-												<!--div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-															<h4 class="heading">
-																	{{ __("Product Buy/Return Policy") }}*
-															</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<div class="text-editor">
-															<textarea name="policy" class="nic-edit-p"></textarea> 
-														</div>
-													</div>
-												</div-->
-
-
-												<!--div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">{{ __("Youtube Video URL") }}*</h4>
-																<p class="sub-heading">{{ __("(Optional)") }}</p>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<input  name="youtube" type="text" class="input-field" placeholder="{{ __('Enter Youtube Video URL') }}">
-							                            <div class="checkbox-wrapper">
-							                              <input type="checkbox" name="seo_check" class="checkclick" id="allowProductSEO" value="1">
-							                              <label for="allowProductSEO">{{ __("Allow Product SEO") }}</label>
-							                            </div>
-													</div>
-												</div-->
-
-
-
-						                        <div class="showbox">
-						                          <div class="row">
-						                            <div class="col-lg-4">
-						                              <div class="left-area">
-						                                  <h4 class="heading">{{ __("Meta Tags") }} *</h4>
-						                              </div>
-						                            </div>
-						                            <div class="col-lg-7">
-						                              <ul id="metatags" class="myTags">
-						                              </ul>
-						                            </div>
-						                          </div>  
-
-						                          <div class="row">
-						                            <div class="col-lg-4">
-						                              <div class="left-area">
-						                                <h4 class="heading">
-						                                    {{ __("Meta Description") }} *
-						                                </h4>
-						                              </div>
-						                            </div>
-						                            <div class="col-lg-7">
-						                              <div class="text-editor">
-						                                <textarea name="meta_description" class="input-field" placeholder="{{ __("Meta Description") }}"></textarea> 
-						                              </div>
-						                            </div>
-						                          </div>
-						                        </div>
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<div class="featured-keyword-area">
-															<div class="heading-area">
-																<h4 class="title">{{ __("Product Information") }}</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">Product Code* </h4>
-																<p class="sub-heading">(In Any Language)</p>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<input type="text" class="input-field" placeholder="Enter Product Code" name="product_code" required="">
-													</div>
-												</div-->
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">No of Pages* </h4>
-																<p class="sub-heading">(In Any Language)</p>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<input type="text" class="input-field" placeholder="Enter Number of Pages" name="pages" required="">
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">No of Chapters* </h4>
-																<p class="sub-heading">(In Any Language)</p>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<input type="text" class="input-field" placeholder="Enter Number of Chapters" name="chapters" required="">
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-																<h4 class="heading">File Format*</h4>
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<select  name="file_format" required="">
-														<option value="">Select File Format</option>
-		                                                  <option value="Microsoft Word">Microsoft Word</option>
-														  <option value="Pdf">Pdf</option>
-														  <option value="PowerPoint">PowerPoint</option>
-														  <option value="Microsoft Excel">Microsoft Excel</option>         <option value="Jpeg">Jpeg</option>  
-														  <option value="MP4">MP4</option>  					                                     </select>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-
-														</div>
-													</div>
-													<div class="col-lg-7">
-														<div class="featured-keyword-area">
-															<div class="heading-area">
-																<h4 class="title">{{ __("Feature Tags") }}</h4>
-															</div>
-
-															<div class="feature-tag-top-filds" id="feature-section">
-																<div class="feature-area">
-																	<span class="remove feature-remove"><i class="fas fa-times"></i></span>
-																	<div class="row">
-																		<div class="col-lg-6">
-																		<input type="text" name="features[]" class="input-field" placeholder="{{ __("Enter Your Keyword") }}">
-																		</div>
-
-																		<div class="col-lg-6">
-											                                <div class="input-group colorpicker-component cp">
-											                                  <input type="text" name="colors[]" value="#000000" class="input-field cp"/>
-											                                  <span class="input-group-addon"><i></i></span>
-											                                </div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-
-															<a href="javascript:;" id="feature-btn" class="add-fild-btn"><i class="icofont-plus"></i> {{ __("Add More Field") }}</a>
-														</div>
-													</div>
-												</div>
-
-
-						                        <div class="row">
-						                          <div class="col-lg-4">
-						                            <div class="left-area">
-						                                <h4 class="heading">Tags *</h4>
-						                            </div>
-						                          </div>
-						                          <div class="col-lg-7">
-						                            <ul id="tags" class="myTags">
-						                            </ul>
-						                          </div>
-						                        </div>
-
-						                        <input type="hidden" name="type" value="Digital">
-												<div class="row">
-													<div class="col-lg-4">
-														<div class="left-area">
-															
-														</div>
-													</div>
-													<div class="col-lg-7 text-center">
-														<button class="addProductSubmit-btn" type="submit">Create Product</button>
-													</div>
-												</div>
+						<input type="hidden" name="type" value="Digital">
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="left-area">
+									
+								</div>
+							</div>
+							<div class="col-lg-7 text-center">
+								<button class="addProductSubmit-btn" type="submit">Create Product</button>
+							</div>
+						</div>
 											</form>
 											</div>
 										</div>

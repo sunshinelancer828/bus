@@ -389,14 +389,20 @@ class ProductController extends Controller
             $input['file'] = $name;
         }
 
-        $image = $request->photo;
-        list($type, $image) = explode(';', $image);
-        list(, $image)      = explode(',', $image);
-        $image = base64_decode($image);
-        $image_name = time().str_random(8).'.png';
-        $path = 'assets/images/products/'.$image_name;
-        file_put_contents($path, $image);
-        $input['photo'] = $image_name;
+        if ($file = $request->file('photo')) 
+        {      
+            $name = time().str_replace(' ', '', $file->getClientOriginalName());
+            $file->move('assets/images/products',$name);           
+            $input['photo'] = $name;
+
+        } else {
+
+            $name = substr($input['default_photo'], strrpos($input['default_photo'], '/') + 1);
+            // $name = time().str_replace(' ', '', $name);
+            $tmp_file = public_path('assets/images/products/') . $name;
+            copy($input['default_photo'], $tmp_file);
+            $input['photo'] = $name;
+        }
 
 
         // Check Physical

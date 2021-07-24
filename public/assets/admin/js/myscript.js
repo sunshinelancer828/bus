@@ -100,7 +100,7 @@ function enablekey()
           photo_url.replace(')', '%29');
 
           $('#image-preview').css('background', 'url("' + photo_url + '")');
-          $('#image-default').val(photo_url);
+          $('#feature_photo').val(photo_url);
 
           $("#catAttributes").html(attrHtml);
           $("#subcatAttributes").html('');

@@ -105,8 +105,6 @@ class OrderController extends Controller
             $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
             // $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
             $str .= "PIN: ".$product['license']."<br><br>";
-            dd($product['license']);
-            return;
         }
 
         $msg  = "Hello ".$data->customer_name.",<br><br>";

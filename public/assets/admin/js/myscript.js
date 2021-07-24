@@ -101,7 +101,6 @@ function enablekey()
 
           $('#image-preview').css('background', 'url("' + photo_url + '")');
           $('#image-default').val(photo_url);
-          // $('#image-test').text($('#image-preview').css('background'));
 
           $("#catAttributes").html(attrHtml);
           $("#subcatAttributes").html('');

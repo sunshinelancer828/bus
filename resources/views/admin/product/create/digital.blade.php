@@ -146,7 +146,7 @@
 							<div class="col-lg-7">
 								<div class="img-upload">
 									<div id="image-preview" class="img-preview"  style="background: url({{ asset('assets/vendor/images/upload.png') }}) no-repeat;">
-										<div class="span4 cropme text-center" id="landscape" style="width: 250px; height: 250px; border: 1px dashed black;"></div>										
+										<!-- <div class="span4 cropme text-center" id="landscape" style="width: 250px; height: 250px; border: 1px dashed black;"></div>										 -->
 										<input type="hidden" id="feature_photo" name="photo" value="">
 									</div>
 								</div>

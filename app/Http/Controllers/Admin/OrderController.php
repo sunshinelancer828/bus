@@ -90,7 +90,8 @@ class OrderController extends Controller
 			    $dataFormat = '';
 			}
 			
-        	$str .= "Product Title: ".$product['item']['name']."<br>";
+            $msg .= "Find below your ".$product['item']['name'].".<br><br>";
+            $str .= "Product Title: ".$product['item']['name']."<br>";
         	$str .= "Product Code: 000".$product['item']['id']."<br>";
         	$str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
         	if($product['item']['user_id'] != 0){
@@ -102,11 +103,13 @@ class OrderController extends Controller
             }
             $str2 .= $str;
             $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
-            $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
+            // $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
+            $str .= "PIN: ";
+            dd($product);
+            return;
         }
 
         $msg  = "Hello ".$data->customer_name.",<br><br>";
-        $msg .= "Click link below to download your product.<br><br>";
         $msg .= $str."<br>";
         $msg .= "Thank you for trusting us. We look forward to your next visit.<br><br>";
         $msg .= "All at ProjectShelve <br>";

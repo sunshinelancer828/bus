@@ -37,7 +37,7 @@
 
 	<link href="{{asset('assets/vendor/css/style.css')}}" rel="stylesheet"/>
 	<link href="{{asset('assets/vendor/css/custom.css')}}" rel="stylesheet"/>
-    <link href="{{ asset('assets/vendor/css/common.css') }}" rel="stylesheet">
+    <link href="{{asset('assets/vendor/css/common.css') }}" rel="stylesheet">
 	<link href="{{asset('assets/vendor/css/responsive.css')}}" rel="stylesheet" />
 
 	@endif

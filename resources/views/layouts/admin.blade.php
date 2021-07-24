@@ -39,8 +39,8 @@
 
 		<link href="{{asset('assets/admin/css/style.css')}}" rel="stylesheet"/>
 		<link href="{{asset('assets/admin/css/custom.css')}}" rel="stylesheet"/>
-		<link href="{{asset('assets/admin/css/responsive.css')}}" rel="stylesheet" />
 		<link href="{{asset('assets/admin/css/common.css')}}" rel="stylesheet" />
+		<link href="{{asset('assets/admin/css/responsive.css')}}" rel="stylesheet" />
 		@endif
 
 		@yield('styles')

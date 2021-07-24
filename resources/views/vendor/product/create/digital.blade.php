@@ -4,6 +4,7 @@
 <link href="{{asset('assets/vendor/css/product.css')}}" rel="stylesheet"/>
 <link href="{{asset('assets/admin/css/jquery.Jcrop.css')}}" rel="stylesheet"/>
 <link href="{{asset('assets/admin/css/Jcrop-style.css')}}" rel="stylesheet"/>
+
 @endsection
 @section('content')
 

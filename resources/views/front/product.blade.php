@@ -113,6 +113,7 @@
                   @if($productt->type == 'License')
                     <p class="estimate-time"><b>Sub Category: </b> {{ $productt->subcategory->name }}</p>
                     <p class="estimate-time"><b>License Type: </b> {{ $productt->licence_type }}</b></p>
+                    <p class="estimate-time"><b>Product Code: </b>{{ sprintf("%'.08d",$productt->id) }}</p>
                   @endif
                  
                   @if($productt->type == 'Digital')

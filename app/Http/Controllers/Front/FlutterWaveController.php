@@ -435,15 +435,21 @@ class FlutterWaveController extends Controller
             if ($paymentStatus == "successful") {
     
                 $order = Order::where('order_number',$resp['data']['txref'])->first();
-                $data['txnid'] = $resp['data']['txid'];
-                $data['payment_status'] = 'Completed';
-                if($order->dp == 1)
-                {
-                    $data['status'] = 'completed';
-                }
+                // $data['txnid'] = $resp['data']['txid'];
+                // $data['payment_status'] = 'Completed';
+                // if($order->dp == 1)
+                // {
+                //     $data['status'] = 'completed';
+                // }
+                // $order->update($data);
+                $order->update([
+                    'txnid' => $resp['data']['txid'],
+                    'payment_status' => 'Completed',
+                    'dp' => 1,
+                    'status' => 'completed'
+                ]);
                 dd($order);
                 return;
-                $order->update($data);
                 if($order->dp == 1){
                     $track = new OrderTrack;
                     $track->title = 'Completed';

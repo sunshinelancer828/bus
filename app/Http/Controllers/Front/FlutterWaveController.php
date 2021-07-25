@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use DB;
+use Mail;
 
 class FlutterWaveController extends Controller
 {
@@ -588,8 +589,12 @@ class FlutterWaveController extends Controller
                     ]);
 
                 } else {
-
-                    mail($to, $subject, $msg, $headers);
+                    $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                        $message->to($to)
+                       ->subject($subject)
+                        ->setBody($msg,'text/html');
+                      });  
+                    // mail($to, $subject, $msg, $headers);
                 }
                 
                 $msg3  = "Hello ".$order->customer_name.",<br><br>";

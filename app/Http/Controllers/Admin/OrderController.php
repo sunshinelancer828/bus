@@ -305,14 +305,15 @@ class OrderController extends Controller
 
                 // } else {
 
-                   $headers = "MIME-Version: 1.0" . "\r\n";
-                   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                   $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-                         Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg,'text/html');
-                            });      
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+
+                    Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                        $message->to($to)
+                        ->subject($subject)
+                        ->setBody($msg,'text/html');
+                    });      
                    // Mail::send($to, $subject, $msg, $headers);
                 // }
             }

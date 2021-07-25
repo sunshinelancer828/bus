@@ -52,13 +52,12 @@ class FlutterWaveController extends Controller
                 return redirect()->back()->with('unsuccess',"This Email Already Exist.");  
             }
         }
-    
-    
-         $oldCart = Session::get('cart');
-         $cart = new Cart($oldCart);
+        
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
         if (Session::has('currency')) 
         {
-          $curr = Currency::find(Session::get('currency'));
+            $curr = Currency::find(Session::get('currency'));
         }
         else
         {
@@ -93,13 +92,13 @@ class FlutterWaveController extends Controller
         );
         if(!in_array($curr->name,$available_currency))
         {
-        return redirect()->back()->with('unsuccess','Invalid Currency For Flutter Wave.');
+            return redirect()->back()->with('unsuccess','Invalid Currency For Flutter Wave.');
         }
 
         foreach($cart->items as $key => $prod)
         {
-        if(!empty($prod['item']['license']) && !empty($prod['item']['license_qty']))
-        {
+            if(!empty($prod['item']['license']) && !empty($prod['item']['license_qty']))
+            {
                 foreach($prod['item']['license_qty']as $ttl => $dtl)
                 {
                     if($dtl != 0)
@@ -120,7 +119,7 @@ class FlutterWaveController extends Controller
                         break;
                     }                    
                 }
-        }
+            }
         }
 
         $settings = Generalsetting::findOrFail(1);
@@ -200,74 +199,75 @@ class FlutterWaveController extends Controller
         }
 
 
-                if($request->coupon_id != "")
-                {
-                $coupon = Coupon::findOrFail($request->coupon_id);
-                $coupon->used++;
-                if($coupon->times != null)
-                {
-                        $i = (int)$coupon->times;
-                        $i--;
-                        $coupon->times = (string)$i;
-                }
-                $coupon->update();
+        if($request->coupon_id != "")
+        {
+            $coupon = Coupon::findOrFail($request->coupon_id);
+            $coupon->used++;
+            if($coupon->times != null)
+            {
+                $i = (int)$coupon->times;
+                $i--;
+                $coupon->times = (string)$i;
+            }
+            $coupon->update();
 
-                }
-                foreach($cart->items as $prod)
-                {
+        }
+
+        foreach($cart->items as $prod)
+        {
             $x = (string)$prod['stock'];
-                if($x != null)
-                {
-                    $product = Product::findOrFail($prod['item']['id']);
-                    $product->stock =  $prod['stock'];
-                    $product->update();                
-                }
-            }
-
-            foreach($cart->items as $prod)
+            if($x != null)
             {
-                $x = (string)$prod['size_qty'];
-                if(!empty($x))
-                {
-                    $product = Product::findOrFail($prod['item']['id']);
-                    $x = (int)$x;
-                    $x = $x - $prod['qty'];
-                    $temp = $product->size_qty;
-                    $temp[$prod['size_key']] = $x;
-                    $temp1 = implode(',', $temp);
-                    $product->size_qty =  $temp1;
-                    $product->update();               
-                }
+                $product = Product::findOrFail($prod['item']['id']);
+                $product->stock =  $prod['stock'];
+                $product->update();                
             }
+        }
 
-            foreach($cart->items as $prod)
+        foreach($cart->items as $prod)
+        {
+            $x = (string)$prod['size_qty'];
+            if(!empty($x))
             {
-                $x = (string)$prod['stock'];
-                if($x != null)
-                {
+                $product = Product::findOrFail($prod['item']['id']);
+                $x = (int)$x;
+                $x = $x - $prod['qty'];
+                $temp = $product->size_qty;
+                $temp[$prod['size_key']] = $x;
+                $temp1 = implode(',', $temp);
+                $product->size_qty =  $temp1;
+                $product->update();               
+            }
+        }
 
-                    $product = Product::findOrFail($prod['item']['id']);
-                    $product->stock =  $prod['stock'];
-                    $product->update();  
-                    if($product->stock <= 5)
+        foreach($cart->items as $prod)
+        {
+            $x = (string)$prod['stock'];
+            if($x != null)
+            {
+
+                $product = Product::findOrFail($prod['item']['id']);
+                $product->stock =  $prod['stock'];
+                $product->update();  
+                if($product->stock <= 5)
+                {
+                    $notification = new Notification;
+                    $notification->product_id = $product->id;
+                    $notification->save();    
+                    
+                    $gs = Generalsetting::first();
+                    if($gs->is_smtp == 1)
                     {
-                        $notification = new Notification;
-                        $notification->product_id = $product->id;
-                        $notification->save();    
-                        
-                        $gs = Generalsetting::first();
-                        if($gs->is_smtp == 1)
-                        {
-                            $maildata = [
-                                'to' => $product->user->email,
-                                'subject' => 'Out of Stock Alert!',
-                                'body' => "One of your product is almost out of stock (less or equal to 5).\n<strong>Product Link: </strong> <a target='_blank' href='".url('/').'/'.'item/'.$product->slug."'>".$product->name."</a>",
-                            ];
-                            $mailer = new GeniusMailer();
-                            $mailer->sendCustomMail($maildata);
-                        }
-                        else
-                        {
+                        $maildata = [
+                            'to' => $product->user->email,
+                            'subject' => 'Out of Stock Alert!',
+                            'body' => "One of your product is almost out of stock (less or equal to 5).\n<strong>Product Link: </strong> <a target='_blank' href='".url('/').'/'.'item/'.$product->slug."'>".$product->name."</a>",
+                        ];
+                        $mailer = new GeniusMailer();
+                        $mailer->sendCustomMail($maildata);
+                    }
+                    else
+                    {
                         $to = $product->user->email;
                         $subject = 'Out of Stock Alert!';
                         $msg = "One of your product is almost out of stock (less or equal to 5).\n<strong>Product Link: </strong> <a target='_blank' href='".url('/').'/'.'item/'.$product->slug."'>".$product->name."</a>";
@@ -275,13 +275,13 @@ class FlutterWaveController extends Controller
                         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                         $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
                         mail($to,$subject,$msg,$headers);
-                        }
-                    }              
-                }
+                    }
+                }              
             }
+        }
 
 
-            $gs = Generalsetting::find(1);
+        $gs = Generalsetting::find(1);
 
 
         //Sending Email To Buyer
@@ -312,6 +312,7 @@ class FlutterWaveController extends Controller
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
            // mail($to,$subject,$msg,$headers);            
         }
+
         //Sending Email To Admin
         if($gs->is_smtp == 1)
         {
@@ -430,6 +431,9 @@ class FlutterWaveController extends Controller
             // $chargeResponsecode = $resp['data']['chargecode'];
 
             //  (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($paymentStatus == "successful")) {
+
+                dd('Payment Success!');
+                return;
                 
             if ($paymentStatus == "successful") {
     

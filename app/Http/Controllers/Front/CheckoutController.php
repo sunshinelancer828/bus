@@ -345,7 +345,7 @@ class CheckoutController extends Controller
 
                 }
                 else{
-                $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
+                    $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
                 }
 
                 // Packaging
@@ -374,7 +374,7 @@ class CheckoutController extends Controller
 
                 }
                 else{
-                $package_data  = DB::table('packages')->where('user_id','=',0)->get();
+                    $package_data  = DB::table('packages')->where('user_id','=',0)->get();
                 }
 
 

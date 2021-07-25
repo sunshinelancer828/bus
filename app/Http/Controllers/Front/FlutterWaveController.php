@@ -431,9 +431,6 @@ class FlutterWaveController extends Controller
             // $chargeResponsecode = $resp['data']['chargecode'];
 
             //  (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($paymentStatus == "successful")) {
-
-                dd('Payment Success!');
-                return;
                 
             if ($paymentStatus == "successful") {
     
@@ -444,6 +441,8 @@ class FlutterWaveController extends Controller
                 {
                     $data['status'] = 'completed';
                 }
+                dd($order);
+                return;
                 $order->update($data);
                 if($order->dp == 1){
                     $track = new OrderTrack;

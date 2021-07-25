@@ -445,25 +445,25 @@ class FlutterWaveController extends Controller
                 $order->update([
                     'txnid' => $resp['data']['txid'],
                     'payment_status' => 'Completed',
-                    'dp' => 1,
+                    // 'dp' => 1,
                     'status' => 'completed'
                 ]);
-                dd($order);
-                return;
-                if($order->dp == 1){
+                // dd($order);
+                // return;
+                // if($order->dp == 1){
                     $track = new OrderTrack;
                     $track->title = 'Completed';
                     $track->text = 'Your order has completed successfully.';
                     $track->order_id = $order->id;
                     $track->save();
-                }
-                else {
-                    $track = new OrderTrack;
-                    $track->title = 'Pending';
-                    $track->text = 'You have successfully placed your order.';
-                    $track->order_id = $order->id;
-                    $track->save();
-                }
+                // }
+                // else {
+                //     $track = new OrderTrack;
+                //     $track->title = 'Pending';
+                //     $track->text = 'You have successfully placed your order.';
+                //     $track->order_id = $order->id;
+                //     $track->save();
+                // }
                 if($order->wallet_price != 0)
                 {
                     $user = User::find($order->user_id);

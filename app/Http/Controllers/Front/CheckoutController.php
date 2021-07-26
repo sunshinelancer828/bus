@@ -173,146 +173,119 @@ class CheckoutController extends Controller
         if (!Session::has('cart')) {
             return redirect()->route('front.cart')->with('success',"You don't have any product to checkout.");
         }
+
         $gs = Generalsetting::findOrFail(1);
         $dp = 0;
         $vendor_shipping_id = 0;
         $vendor_packing_id = 0;
-        if (Session::has('currency')) 
-        {
-          $curr = Currency::find(Session::get('currency'));
-        }
-        else
-        {
+
+        if (Session::has('currency'))  {
+            $curr = Currency::find(Session::get('currency'));
+        } else {
             $curr = Currency::where('is_default','=',1)->first();
         }
 
-        if(Auth::guard('web')->check())
-        {
-                $gateways =  PaymentGateway::where('status','=',1)->get();
-                $pickups = Pickup::all();
-                $oldCart = Session::get('cart');
-                $cart = new Cart($oldCart);
-                $products = $cart->items;
+        if(Auth::guard('web')->check()) {
+            $gateways =  PaymentGateway::where('status','=',1)->get();
+            $pickups = Pickup::all();
+            $oldCart = Session::get('cart');
+            $cart = new Cart($oldCart);
+            $products = $cart->items;
 
-                // Shipping Method
+            // Shipping Method
 
-                if($gs->multiple_shipping == 1)
-                {                        
-                    $user = null;
-                    foreach ($cart->items as $prod) {
-                            $user[] = $prod['item']['user_id'];
-                    }
-                    $users = array_unique($user);
-                   
-                   foreach($cart->items as $keyProduct =>$valueProduct ){
-                       // echo "<pre>";print_r($valueProduct['item']['user_id']);die;
-                       if($valueProduct['item']['user_id'] != 0 ){
-                       
-                            $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price');
-                        
-                       }
-               
-                    }
-                    
-                    if(isset($cartitemprice)) {
-                    
-                    
-                        foreach($cartitemprice as $k=> $v){
-                            
-                            $fprice[]= $v;
-                        }
-               
-                        $sumtotalcartprice = array_sum($fprice);
-                    
-                    }
-                   
-                  // echo "<pre>";print_r($sumtotalcartprice);die;
-                    if(count($users) == 1)
-                    {
-
-                        $shipping_data  = DB::table('shippings')->where('user_id','=',$users[0])->get();
-                        if(count($shipping_data) == 0){
-                            $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
-                        }
-                        else{
-                            $vendor_shipping_id = $users[0];
-                        }
-                    }
-                    else {
-                        $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
-                    }
-
+            if($gs->multiple_shipping == 1) {                        
+                $user = null;
+                foreach ($cart->items as $prod) {
+                    $user[] = $prod['item']['user_id'];
                 }
-                else{
-                $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
-                }
-
-                // Packaging
-
-                if($gs->multiple_packaging == 1)
-                {
-                    $user = null;
-                    foreach ($cart->items as $prod) {
-                            $user[] = $prod['item']['user_id'];
-                    }
-                    $users = array_unique($user);
-                    if(count($users) == 1)
-                    {
-                        $package_data  = DB::table('packages')->where('user_id','=',$users[0])->get();
-                        if(count($package_data) == 0){
-                            $package_data  = DB::table('packages')->where('user_id','=',0)->get();
-                        }
-                        else{
-                            $vendor_packing_id = $users[0];
-                        }
-                    }
-                    else {
-                        $package_data  = DB::table('packages')->where('user_id','=',0)->get();
-                    }
-
-                }
-                else{
-                $package_data  = DB::table('packages')->where('user_id','=',0)->get();
-                }
-
-
-                foreach ($products as $prod) {
-                    if($prod['item']['type'] == 'Physical')
-                    {
-                        $dp = 0;
-                        break;
-                    }
-                }
-                if($dp == 1)
-                {
-                $ship  = 0;                    
-                }
-                $total = $cart->totalPrice;
-                $coupon = Session::has('coupon') ? Session::get('coupon') : 0;
-                if($gs->tax != 0)
-                {
-                    $tax = ($total / 100) * $gs->tax;
-                    $total = $total + $tax;
-                }
-                if(!Session::has('coupon_total'))
-                {
-                $total = $total - $coupon;     
-                $total = $total + 0;               
-                }
-                else {
-                $total = Session::get('coupon_total');  
-                $total = $total + round(0 * $curr->value, 2); 
+                $users = array_unique($user);
+                
+                foreach($cart->items as $keyProduct =>$valueProduct ) {
+                    // echo "<pre>";print_r($valueProduct['item']['user_id']);die;
+                    if($valueProduct['item']['user_id'] != 0 ) {                    
+                        $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price');                    
+                    }            
                 }
                 
-          
-        return view('front.checkout', ['products' => $cart->items, 'totalPrice' => $total, 'pickups' => $pickups, 'totalQty' => $cart->totalQty, 'gateways' => $gateways, 'shipping_cost' => 0, 'digital' => $dp, 'curr' => $curr,'shipping_data' => $shipping_data,'package_data' => $package_data, 'vendor_shipping_id' => $vendor_shipping_id, 'vendor_packing_id' => $vendor_packing_id]);             
-        }
+                if(isset($cartitemprice)) {                
+                    foreach($cartitemprice as $k=> $v){                        
+                        $fprice[]= $v;
+                    }            
+                    $sumtotalcartprice = array_sum($fprice);                
+                }
+                
+                // echo "<pre>";print_r($sumtotalcartprice);die;
+                if(count($users) == 1) {
+                    $shipping_data  = DB::table('shippings')->where('user_id','=',$users[0])->get();
+                    if(count($shipping_data) == 0) {
+                        $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
+                    } else {
+                        $vendor_shipping_id = $users[0];
+                    }
+                } else {
+                    $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
+                }
 
-        else
+            } else{
+                $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
+            }
 
-        {
-           	if($gs->guest_checkout == 1)
-              {
+            // Packaging
+
+            if($gs->multiple_packaging == 1) {
+                $user = null;
+                foreach ($cart->items as $prod) {
+                    $user[] = $prod['item']['user_id'];
+                }
+
+                $users = array_unique($user);
+                if(count($users) == 1) {
+                    $package_data  = DB::table('packages')->where('user_id','=',$users[0])->get();
+                    if(count($package_data) == 0) {
+                        $package_data  = DB::table('packages')->where('user_id','=',0)->get();
+                    } else {
+                        $vendor_packing_id = $users[0];
+                    }
+                } else {
+                    $package_data  = DB::table('packages')->where('user_id','=',0)->get();
+                }
+
+            } else {
+                $package_data  = DB::table('packages')->where('user_id','=',0)->get();
+            }
+
+
+            foreach ($products as $prod) {
+                if($prod['item']['type'] == 'Physical') {
+                    $dp = 0;
+                    break;
+                }
+            }
+
+            if($dp == 1) {
+                $ship  = 0;                    
+            }
+            $total = $cart->totalPrice;
+            $coupon = Session::has('coupon') ? Session::get('coupon') : 0;
+
+            if ($gs->tax != 0) {
+                $tax = ($total / 100) * $gs->tax;
+                $total = $total + $tax;
+            }
+            if (!Session::has('coupon_total')) {
+                $total = $total - $coupon;     
+                $total = $total + 0;               
+            } else {
+                $total = Session::get('coupon_total');  
+                $total = $total + round(0 * $curr->value, 2); 
+            }
+            
+            return view('front.checkout', ['products' => $cart->items, 'totalPrice' => $total, 'pickups' => $pickups, 'totalQty' => $cart->totalQty, 'gateways' => $gateways, 'shipping_cost' => 0, 'digital' => $dp, 'curr' => $curr,'shipping_data' => $shipping_data,'package_data' => $package_data, 'vendor_shipping_id' => $vendor_shipping_id, 'vendor_packing_id' => $vendor_packing_id]);             
+        
+        } else { // ! Auth::guard('web')->check()
+
+           	if($gs->guest_checkout == 1) {
                 $gateways =  PaymentGateway::where('status','=',1)->get();
                 $pickups = Pickup::all();
                 $oldCart = Session::get('cart');
@@ -320,107 +293,94 @@ class CheckoutController extends Controller
                 $products = $cart->items;
 
                 // Shipping Method
-
-                if($gs->multiple_shipping == 1)
-                {
+                if($gs->multiple_shipping == 1) {
                     $user = null;
                     foreach ($cart->items as $prod) {
-                            $user[] = $prod['item']['user_id'];
+                        $user[] = $prod['item']['user_id'];
                     }
+
                     $users = array_unique($user);
-                    if(count($users) == 1)
-                    {
+                    if(count($users) == 1) {
                         $shipping_data  = DB::table('shippings')->where('user_id','=',$users[0])->get();
 
-                        if(count($shipping_data) == 0){
+                        if(count($shipping_data) == 0) {
                             $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
-                        }
-                        else{
+                        } else {
                             $vendor_shipping_id = $users[0];
                         }                        
-                    }
-                    else {
+                    } else {
                         $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
                     }
-
-                }
-                else{
+                } else{
                     $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
                 }
 
                 // Packaging
 
-                if($gs->multiple_packaging == 1)
-                {
+                if($gs->multiple_packaging == 1) {
                     $user = null;
                     foreach ($cart->items as $prod) {
-                            $user[] = $prod['item']['user_id'];
+                        $user[] = $prod['item']['user_id'];
                     }
+
                     $users = array_unique($user);
-                    if(count($users) == 1)
-                    {
+                    if(count($users) == 1) {
                         $package_data  = DB::table('packages')->where('user_id','=',$users[0])->get();
 
                         if(count($package_data) == 0){
                             $package_data  = DB::table('packages')->where('user_id','=',0)->get();
-                        }
-                        else{
+                        } else {
                             $vendor_packing_id = $users[0];
                         }  
-                    }
-                    else {
+                    } else {
                         $package_data  = DB::table('packages')->where('user_id','=',0)->get();
                     }
 
-                }
-                else{
+                } else {
                     $package_data  = DB::table('packages')->where('user_id','=',0)->get();
                 }
 
 
                 foreach ($products as $prod) {
-                    if($prod['item']['type'] == 'Physical')
-                    {
+                    if($prod['item']['type'] == 'Physical') {
                         $dp = 0;
                         break;
                     }
                 }
-                if($dp == 1)
-                {
-                $ship  = 0;                    
+
+                if($dp == 1) {
+                    $ship  = 0;                    
                 }
+
                 $total = $cart->totalPrice;
                 $coupon = Session::has('coupon') ? Session::get('coupon') : 0;
-                if($gs->tax != 0)
-                {
+                if($gs->tax != 0) {
                     $tax = ($total / 100) * $gs->tax;
                     $total = $total + $tax;
                 }
-                if(!Session::has('coupon_total'))
-                {
-                $total = $total - $coupon;     
-                $total = $total + 0;               
+
+                if(!Session::has('coupon_total')) {
+                    $total = $total - $coupon;     
+                    $total = $total + 0;               
+                } else {
+                    $total = Session::get('coupon_total');  
+                    $total =  str_replace($curr->sign,'',$total) + round(0 * $curr->value, 2); 
                 }
-                else {
-                $total = Session::get('coupon_total');  
-                $total =  str_replace($curr->sign,'',$total) + round(0 * $curr->value, 2); 
-                }
+
                 foreach ($products as $prod) {
                     if($prod['item']['type'] != 'Physical')
                     {
                         if(!Auth::guard('web')->check())
                         {
-                $ck = 1;
-        return view('front.checkout', ['products' => $cart->items, 'totalPrice' => $total, 'pickups' => $pickups, 'totalQty' => $cart->totalQty, 'gateways' => $gateways, 'shipping_cost' => 0, 'checked' => $ck, 'digital' => $dp, 'curr' => $curr,'shipping_data' => $shipping_data,'package_data' => $package_data, 'vendor_shipping_id' => $vendor_shipping_id, 'vendor_packing_id' => $vendor_packing_id]);  
+                            $ck = 1;
+                            return view('front.checkout', ['products' => $cart->items, 'totalPrice' => $total, 'pickups' => $pickups, 'totalQty' => $cart->totalQty, 'gateways' => $gateways, 'shipping_cost' => 0, 'checked' => $ck, 'digital' => $dp, 'curr' => $curr,'shipping_data' => $shipping_data,'package_data' => $package_data, 'vendor_shipping_id' => $vendor_shipping_id, 'vendor_packing_id' => $vendor_packing_id]);  
                         }
                     }
                 }
-        return view('front.checkout', ['products' => $cart->items, 'totalPrice' => $total, 'pickups' => $pickups, 'totalQty' => $cart->totalQty, 'gateways' => $gateways, 'shipping_cost' => 0, 'digital' => $dp, 'curr' => $curr,'shipping_data' => $shipping_data,'package_data' => $package_data, 'vendor_shipping_id' => $vendor_shipping_id, 'vendor_packing_id' => $vendor_packing_id]);                 
-               }
-
-// If guest checkout is Deactivated then display pop up form with proper error message
-
-                    else{
+             
+                return view('front.checkout', ['products' => $cart->items, 'totalPrice' => $total, 'pickups' => $pickups, 'totalQty' => $cart->totalQty, 'gateways' => $gateways, 'shipping_cost' => 0, 'digital' => $dp, 'curr' => $curr,'shipping_data' => $shipping_data,'package_data' => $package_data, 'vendor_shipping_id' => $vendor_shipping_id, 'vendor_packing_id' => $vendor_packing_id]);                 
+            
+            } else { // If guest checkout is Deactivated then display pop up form with proper error message
                 $gateways =  PaymentGateway::where('status','=',1)->get();
                 $pickups = Pickup::all();
                 $oldCart = Session::get('cart');
@@ -433,80 +393,70 @@ class CheckoutController extends Controller
                 {
                     $user = null;
                     foreach ($cart->items as $prod) {
-                            $user[] = $prod['item']['user_id'];
+                        $user[] = $prod['item']['user_id'];
                     }
+
                     $users = array_unique($user);
-                    if(count($users) == 1)
-                    {
+                    if(count($users) == 1) {
                         $shipping_data  = DB::table('shippings')->where('user_id','=',$users[0])->get();
 
                         if(count($shipping_data) == 0){
                             $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
-                        }
-                        else{
+                        } else {
                             $vendor_shipping_id = $users[0];
                         }  
-                    }
-                    else {
+                    } else {
                         $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
                     }
 
-                }
-                else{
-                $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
+                } else {
+                    $shipping_data  = DB::table('shippings')->where('user_id','=',0)->get();
                 }
 
                 // Packaging
 
-                if($gs->multiple_packaging == 1)
-                {
+                if($gs->multiple_packaging == 1) {
                     $user = null;
                     foreach ($cart->items as $prod) {
                             $user[] = $prod['item']['user_id'];
                     }
+
                     $users = array_unique($user);
-                    if(count($users) == 1)
-                    {
+                    if(count($users) == 1) {
                         $package_data  = DB::table('packages')->where('user_id','=',$users[0])->get();
 
                         if(count($package_data) == 0){
                             $package_data  = DB::table('packages')->where('user_id','=',0)->get();
-                        }
-                        else{
+                        } else {
                             $vendor_packing_id = $users[0];
                         }  
-                    }
-                    else {
+                    } else {
                         $package_data  = DB::table('packages')->where('user_id','=',0)->get();
                     }
-
-                }
-                else{
-                $package_data  = DB::table('packages')->where('user_id','=',0)->get();
+                } else {
+                    $package_data  = DB::table('packages')->where('user_id','=',0)->get();
                 }
 
 
                 $total = $cart->totalPrice;
                 $coupon = Session::has('coupon') ? Session::get('coupon') : 0;
-                if($gs->tax != 0)
-                {
+                if($gs->tax != 0) {
                     $tax = ($total / 100) * $gs->tax;
                     $total = $total + $tax;
                 }
-                if(!Session::has('coupon_total'))
-                {
-                $total = $total - $coupon;     
-                $total = $total + 0;               
+
+                if(!Session::has('coupon_total')) {
+                    $total = $total - $coupon;     
+                    $total = $total + 0;               
+                } else {
+                    $total = Session::get('coupon_total');  
+                    $total = $total + round(0 * $curr->value, 2); 
                 }
-                else {
-                $total = Session::get('coupon_total');  
-                $total = $total + round(0 * $curr->value, 2); 
-                }
+
                 $ck = 1;
                 return view('front.checkout', ['products' => $cart->items, 'totalPrice' => $total, 'pickups' => $pickups, 'totalQty' => $cart->totalQty, 'gateways' => $gateways, 'shipping_cost' => 0, 'checked' => $ck, 'digital' => $dp, 'curr' => $curr,'shipping_data' => $shipping_data,'package_data' => $package_data, 'vendor_shipping_id' => $vendor_shipping_id, 'vendor_packing_id' => $vendor_packing_id]);                 
             }
         }
-
     }
 
 
@@ -526,11 +476,10 @@ class CheckoutController extends Controller
                     $user->email_verified = 'Yes';
                     $user->save();
                     Auth::guard('web')->login($user);                     
-                }else{
+                } else {
                     return redirect()->back()->with('unsuccess',"Confirm Password Doesn't Match.");     
                 }
-            }
-            else {
+            } else {
                 return redirect()->back()->with('unsuccess',"This Email Already Exist.");  
             }
         }
@@ -540,64 +489,58 @@ class CheckoutController extends Controller
         if (!Session::has('cart')) {
             return redirect()->route('front.cart')->with('success',"You don't have any product to checkout.");
         }
-            if (Session::has('currency')) 
-            {
-              $curr = Currency::find(Session::get('currency'));
-            }
-            else
-            {
-                $curr = Currency::where('is_default','=',1)->first();
-            }
+
+        if (Session::has('currency')) {
+            $curr = Currency::find(Session::get('currency'));
+        } else {
+            $curr = Currency::where('is_default','=',1)->first();
+        }
+
         $gs = Generalsetting::findOrFail(1);
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         
-         foreach($cart->items as $keyProduct =>$valueProduct ){
-                       // echo "<pre>";print_r($valueProduct['item']['user_id']);die;
-                       if($valueProduct['item']['user_id'] != 0 ){
-                       
-                            $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price');
-                        
-                       }
-               
-                    }
-                    
-                    if(isset($cartitemprice)) {
-                    
-                    
-                        foreach($cartitemprice as $k=> $v){
-                            
-                            $fprice[]= $v;
-                        }
-               
-                        $sumtotalcartprice = array_sum($fprice);
-                    
-                    }
+        foreach($cart->items as $keyProduct =>$valueProduct ) {
+            // echo "<pre>";print_r($valueProduct['item']['user_id']);die;
+            if($valueProduct['item']['user_id'] != 0 ) {
+            
+                $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price');
+            
+            }    
+        }
+        
+        if(isset($cartitemprice)) {
+            foreach($cartitemprice as $k=> $v) {                
+                $fprice[]= $v;
+            }
+    
+            $sumtotalcartprice = array_sum($fprice);        
+        }
 
         foreach($cart->items as $key => $prod)
         {
             if(!empty($prod['item']['license']) && !empty($prod['item']['license_qty']))
             {
-                    foreach($prod['item']['license_qty']as $ttl => $dtl)
+                foreach($prod['item']['license_qty']as $ttl => $dtl)
+                {
+                    if($dtl != 0)
                     {
-                        if($dtl != 0)
-                        {
-                            $dtl--;
-                            $produc = Product::findOrFail($prod['item']['id']);
-                            $temp = $produc->license_qty;
-                            $temp[$ttl] = $dtl;
-                            $final = implode(',', $temp);
-                            $produc->license_qty = $final;
-                            $produc->update();
-                            $temp =  $produc->license;
-                            $license = $temp[$ttl];
-                            $oldCart = Session::has('cart') ? Session::get('cart') : null;
-                            $cart = new Cart($oldCart);
-                            $cart->updateLicense($prod['item']['id'],$license);  
-                            Session::put('cart',$cart);
-                            break;
-                        }                    
-                    }
+                        $dtl--;
+                        $produc = Product::findOrFail($prod['item']['id']);
+                        $temp = $produc->license_qty;
+                        $temp[$ttl] = $dtl;
+                        $final = implode(',', $temp);
+                        $produc->license_qty = $final;
+                        $produc->update();
+                        $temp =  $produc->license;
+                        $license = $temp[$ttl];
+                        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+                        $cart = new Cart($oldCart);
+                        $cart->updateLicense($prod['item']['id'],$license);  
+                        Session::put('cart',$cart);
+                        break;
+                    }                    
+                }
             }
         }
         $order = new Order;
@@ -643,18 +586,22 @@ class CheckoutController extends Controller
         $order['vendor_shipping_id'] = $request->vendor_shipping_id;
         $order['vendor_packing_id'] = $request->vendor_packing_id;
         $order['wallet_price'] = round($request->wallet_price / $curr->value, 2);
-            if (Session::has('affilate')) 
-            {
-                $val = $request->total / $curr->value;
-                $val = $val / 100;
-                $sub = $val * $gs->affilate_charge;
-                $order['affilate_user'] = Session::get('affilate');
-                $order['affilate_charge'] = $sub;
-            }
+
+        if (Session::has('affilate')) 
+        {
+            $val = $request->total / $curr->value;
+            $val = $val / 100;
+            $sub = $val * $gs->affilate_charge;
+            $order['affilate_user'] = Session::get('affilate');
+            $order['affilate_charge'] = $sub;
+        }
+
         $order->save();
+
         if(Auth::check()){
             Auth::user()->update(['balance' => (Auth::user()->balance - $order->wallet_price)]);
         }
+
         $track = new OrderTrack;
         $track->title = 'Pending';
         $track->text = 'You have successfully placed your order.';
@@ -664,19 +611,20 @@ class CheckoutController extends Controller
         $notification = new Notification;
         $notification->order_id = $order->id;
         $notification->save();
-                    if($request->coupon_id != "")
-                    {
-                       $coupon = Coupon::findOrFail($request->coupon_id);
-                       $coupon->used++;
-                       if($coupon->times != null)
-                       {
-                            $i = (int)$coupon->times;
-                            $i--;
-                            $coupon->times = (string)$i;
-                       }
-                        $coupon->update();
 
-                    }
+        if($request->coupon_id != "")
+        {
+            $coupon = Coupon::findOrFail($request->coupon_id);
+            $coupon->used++;
+            if($coupon->times != null)
+            {
+                $i = (int)$coupon->times;
+                $i--;
+                $coupon->times = (string)$i;
+            }
+            $coupon->update();
+
+        }
 
         foreach($cart->items as $prod)
         {
@@ -746,29 +694,27 @@ class CheckoutController extends Controller
             }
         }
 
-            Session::put('temporder',$order);
-            Session::put('tempcart',$cart);
-            Session::forget('cart');
-            Session::forget('already');
-            Session::forget('coupon');
-            Session::forget('coupon_total');
-            Session::forget('coupon_total1');
-            Session::forget('coupon_percentage');
+        Session::put('temporder',$order);
+        Session::put('tempcart',$cart);
+        Session::forget('cart');
+        Session::forget('already');
+        Session::forget('coupon');
+        Session::forget('coupon_total');
+        Session::forget('coupon_total1');
+        Session::forget('coupon_percentage');
 
-
-
-            if ($order->user_id != 0 && $order->wallet_price != 0) {
-                $transaction = new \App\Models\Transaction;
-                $transaction->txn_number = str_random(3).substr(time(), 6,8).str_random(3);
-                $transaction->user_id = $order->user_id;
-                $transaction->amount = $order->wallet_price;
-                $transaction->currency_sign = $order->currency_sign;
-                $transaction->currency_code = \App\Models\Currency::where('sign',$order->currency_sign)->first()->name;
-                $transaction->currency_value= $order->currency_value;
-                $transaction->details = 'Payment Via Wallet';
-                $transaction->type = 'minus';
-                $transaction->save();
-            }
+        if ($order->user_id != 0 && $order->wallet_price != 0) {
+            $transaction = new \App\Models\Transaction;
+            $transaction->txn_number = str_random(3).substr(time(), 6,8).str_random(3);
+            $transaction->user_id = $order->user_id;
+            $transaction->amount = $order->wallet_price;
+            $transaction->currency_sign = $order->currency_sign;
+            $transaction->currency_code = \App\Models\Currency::where('sign',$order->currency_sign)->first()->name;
+            $transaction->currency_value= $order->currency_value;
+            $transaction->details = 'Payment Via Wallet';
+            $transaction->type = 'minus';
+            $transaction->save();
+        }
 
         //Sending Email To Buyer
 
@@ -806,32 +752,30 @@ class CheckoutController extends Controller
 
         // }
         //Sending Email To Admin
-        // if($gs->is_smtp == 1)
-        // {
-        //     $data = [
-        //         'to' => Pagesetting::find(1)->contact_email,
-        //         'subject' => "New Order Recieved!!",
-        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
-        //     ];
+        if($gs->is_smtp == 1)
+        {
+            $data = [
+                'to' => Pagesetting::find(1)->contact_email,
+                'subject' => "New Order Recieved!!",
+                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
+            ];
 
-        //     $mailer = new GeniusMailer();
-        //     $mailer->sendCustomMail($data);            
-        // }
-        // else
-        // {
-           $to = Pagesetting::find(1)->contact_email;
-           $subject = "New Order Recieved!!";
-           $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
-           $headers = "MIME-Version: 1.0" . "\r\n";
-           $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-           $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-           // mail($to,$subject,$msg,$headers);
-           Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg,'text/html');
-                            });  
-        // }
+            $mailer = new GeniusMailer();
+            $mailer->sendCustomMail($data);            
+        } else {
+            $to = Pagesetting::find(1)->contact_email;
+            $subject = "New Order Recieved!!";
+            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+            // mail($to,$subject,$msg,$headers);
+            Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                $message->to($to)
+                ->subject($subject)
+                ->setBody($msg,'text/html');
+            });  
+        }
 
         return redirect($success_url);
     }
@@ -841,12 +785,9 @@ class CheckoutController extends Controller
 
         $input = $request->all();
         
-        
-        
         $rules = [
             //'txn_id4' => 'required',
-        ];
-        
+        ];        
         
         $messages = [
             'required' => 'The Transaction ID field is required.',
@@ -854,10 +795,10 @@ class CheckoutController extends Controller
         
         $validator = Validator::make($input, $rules, $messages);
 
-       if ($validator->fails()) {
+        if ($validator->fails()) {
             Session::flash('unsuccess', $validator->messages()->first());
             return redirect()->back()->withInput();
-       }
+        }
 
         if($request->pass_check) {
             $users = User::where('email','=',$request->personal_email)->get();
@@ -886,20 +827,23 @@ class CheckoutController extends Controller
         if (!Session::has('cart')) {
             return redirect()->route('front.cart')->with('success',"You don't have any product to checkout.");
         }
+
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-            if (Session::has('currency')) 
-            {
-              $curr = Currency::find(Session::get('currency'));
-            }
-            else
-            {
-                $curr = Currency::where('is_default','=',1)->first();
-            }
+
+        if (Session::has('currency')) 
+        {
+            $curr = Currency::find(Session::get('currency'));
+        }
+        else
+        {
+            $curr = Currency::where('is_default','=',1)->first();
+        }
+
         foreach($cart->items as $key => $prod)
         {
-        if(!empty($prod['item']['license']) && !empty($prod['item']['license_qty']))
-        {
+            if(!empty($prod['item']['license']) && !empty($prod['item']['license_qty']))
+            {
                 foreach($prod['item']['license_qty']as $ttl => $dtl)
                 {
                     if($dtl != 0)
@@ -920,8 +864,9 @@ class CheckoutController extends Controller
                         break;
                     }                    
                 }
+            }
         }
-        }
+
         $settings = Generalsetting::findOrFail(1);
         $order = new Order;
         $order['customer_state'] = $request->state;
@@ -960,7 +905,7 @@ class CheckoutController extends Controller
         $order['txnid'] = $request->txn_id4;
         $order['account_name'] = $request->account_name;
 		
-		 if ($file = $request->file('screenshot')) {
+        if ($file = $request->file('screenshot')) {
 		
             $name = time().str_replace(' ', '', $file->getClientOriginalName());
             $file->move('assets/order_screenshot',$name);
@@ -972,16 +917,19 @@ class CheckoutController extends Controller
         $order['coupon_code'] = $request->coupon_code;
         $order['coupon_discount'] = $request->coupon_discount;
         $order['dp'] = $request->dp;
+
 		if($order['method'] =='Bank Payment' ) {
-        $order['payment_status'] = "Pending";
+            $order['payment_status'] = "Pending";
 		} else {
 			$order['payment_status'] = "Completed";
 		}
+
         $order['currency_sign'] = $curr->sign;
         $order['currency_value'] = $curr->value;
         $order['vendor_shipping_id'] = $request->vendor_shipping_id;
         $order['vendor_packing_id'] = $request->vendor_packing_id;  
         $order['wallet_price'] = round($request->wallet_price / $curr->value, 2);     
+
         if (Session::has('affilate')) 
         {
             $val = $request->total / $curr->value;
@@ -991,9 +939,12 @@ class CheckoutController extends Controller
             $order['affilate_charge'] = $sub;
         }
         $order->save();
+
+
         if(Auth::check()){
             Auth::user()->update(['balance' => (Auth::user()->balance - $order->wallet_price)]);
         }
+
         $track = new OrderTrack;
         $track->title = 'Pending';
         $track->text = 'You have successfully placed your order.';
@@ -1003,18 +954,18 @@ class CheckoutController extends Controller
         $notification = new Notification;
         $notification->order_id = $order->id;
         $notification->save();
+
         if($request->coupon_id != "")
         {
-           $coupon = Coupon::findOrFail($request->coupon_id);
-           $coupon->used++;
-           if($coupon->times != null)
-           {
+            $coupon = Coupon::findOrFail($request->coupon_id);
+            $coupon->used++;
+            if($coupon->times != null)
+            {
                 $i = (int)$coupon->times;
                 $i--;
                 $coupon->times = (string)$i;
-           }
-            $coupon->update();
-
+            }
+            $coupon->update();  
         }
 
         foreach($cart->items as $prod)
@@ -1052,26 +1003,18 @@ class CheckoutController extends Controller
             }
         }
         
-       foreach($cart->items as $keyProduct =>$valueProduct ){
+        foreach($cart->items as $keyProduct =>$valueProduct ){
            // echo "<pre>";print_r($valueProduct['item']['user_id']);die;
-           if($valueProduct['item']['user_id'] != 0 ){
-           
-                $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price');
-            
-           }
-   
+            if($valueProduct['item']['user_id'] != 0 ){            
+                $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price');            
+            }   
         }
         
-        if(isset($cartitemprice)) {
-        
-        
-            foreach($cartitemprice as $k=> $v){
-                
+        if(isset($cartitemprice)) {       
+            foreach($cartitemprice as $k=> $v){                
                 $fprice[]= $v;
-            }
-   
-            $sumtotalcartprice = array_sum($fprice);
-        
+            }   
+            $sumtotalcartprice = array_sum($fprice);        
         }
 
         $notf = null;
@@ -1090,7 +1033,7 @@ class CheckoutController extends Controller
                 $str.= $prod['item']['name']."<br>";
                 $vorder->qty = $prod['qty'];
                 $vorder->price = $prod['price'];
-                  $vorder->total_price = $sumtotalcartprice;
+                $vorder->total_price = $sumtotalcartprice;
                 $vorder->order_number = $order->order_number;             
                 $vorder->save();
             }
@@ -1133,13 +1076,13 @@ class CheckoutController extends Controller
         }
 
         $all_licence = array();
-       if ($order['payment_status'] == 'Completed') {
-		  foreach($cart->items as $product) {
-			  if($product['license'] !='' ) {
-			  array_push($all_licence, $product['license'] );
-			  }
-		  }
-	   }
+        if ($order['payment_status'] == 'Completed') {
+            foreach($cart->items as $product) {
+                if($product['license'] !='' ) {
+                array_push($all_licence, $product['license'] );
+                }
+            }
+        }
         //Sending Email To Buyer
         // if($gs->is_smtp == 1)
         // {
@@ -1197,18 +1140,18 @@ class CheckoutController extends Controller
         // }
         // else
         // {
-           $to = Pagesetting::find(1)->contact_email;
-           $subject = "New Order Recieved!!";
-           $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
-           $headers = "MIME-Version: 1.0" . "\r\n";
-           $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-           $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-           // mail($to,$subject,$msg,$headers);
+            $to = Pagesetting::find(1)->contact_email;
+            $subject = "New Order Recieved!!";
+            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+            // mail($to,$subject,$msg,$headers);
             Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg,'text/html');
-                            });      
+                $message->to($to)
+                ->subject($subject)
+                ->setBody($msg,'text/html');
+            });      
         // }
 
         return redirect($success_url);
@@ -1243,42 +1186,37 @@ class CheckoutController extends Controller
         if (!Session::has('cart')) {
             return redirect()->route('front.cart')->with('success',"You don't have any product to checkout.");
         }
-        if (Session::has('currency')) 
-        {
+        if (Session::has('currency')) {
             $curr = Currency::find(Session::get('currency'));
-        }
-        else
-        {
+        } else {
             $curr = Currency::where('is_default','=',1)->first();
         }
+
         $gs = Generalsetting::findOrFail(1);
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        foreach($cart->items as $key => $prod)
-        {
-        if(!empty($prod['item']['license']) && !empty($prod['item']['license_qty']))
-        {
-            foreach($prod['item']['license_qty']as $ttl => $dtl)
-            {
-                if($dtl != 0)
-                {
-                    $dtl--;
-                    $produc = Product::findOrFail($prod['item']['id']);
-                    $temp = $produc->license_qty;
-                    $temp[$ttl] = $dtl;
-                    $final = implode(',', $temp);
-                    $produc->license_qty = $final;
-                    $produc->update();
-                    $temp =  $produc->license;
-                    $license = $temp[$ttl];
-                     $oldCart = Session::has('cart') ? Session::get('cart') : null;
-                     $cart = new Cart($oldCart);
-                     $cart->updateLicense($prod['item']['id'],$license);  
-                     Session::put('cart',$cart);
-                    break;
-                }                    
+
+        foreach($cart->items as $key => $prod) {
+            if(!empty($prod['item']['license']) && !empty($prod['item']['license_qty'])) {
+                foreach($prod['item']['license_qty']as $ttl => $dtl) {
+                    if($dtl != 0) {
+                        $dtl--;
+                        $produc = Product::findOrFail($prod['item']['id']);
+                        $temp = $produc->license_qty;
+                        $temp[$ttl] = $dtl;
+                        $final = implode(',', $temp);
+                        $produc->license_qty = $final;
+                        $produc->update();
+                        $temp =  $produc->license;
+                        $license = $temp[$ttl];
+                        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+                        $cart = new Cart($oldCart);
+                        $cart->updateLicense($prod['item']['id'],$license);  
+                        Session::put('cart',$cart);
+                        break;
+                    }                    
+                }
             }
-        }
         }
         $order = new Order;
         $order['customer_state'] = $request->state;
@@ -1323,28 +1261,26 @@ class CheckoutController extends Controller
         $order['vendor_shipping_id'] = $request->vendor_shipping_id;
         $order['vendor_packing_id'] = $request->vendor_packing_id;
         $order['wallet_price'] = round($request->wallet_price / $curr->value, 2);
-        if($order['dp'] == 1)
-        {
+        if($order['dp'] == 1) {
             $order['status'] = 'completed';
         }
-            if (Session::has('affilate')) 
-            {
 
-                $val = $request->total / $curr->value;
-                $val = $val / 100;
-                $sub = $val * $gs->affilate_charge;
-                $user = User::find(Session::get('affilate'));
-                if($user){
-                    if($order['dp'] == 1)
-                    {
-                        $user->affilate_income += $sub;
-                        $user->update();
-                    }
+        if (Session::has('affilate'))  {
 
-                    $order['affilate_user'] = $user->id;
-                    $order['affilate_charge'] = $sub;
+            $val = $request->total / $curr->value;
+            $val = $val / 100;
+            $sub = $val * $gs->affilate_charge;
+            $user = User::find(Session::get('affilate'));
+            if($user) {
+                if($order['dp'] == 1) {
+                    $user->affilate_income += $sub;
+                    $user->update();
                 }
+
+                $order['affilate_user'] = $user->id;
+                $order['affilate_charge'] = $sub;
             }
+        }
         $order->save();
 
         if(Auth::check()){
@@ -1360,25 +1296,22 @@ class CheckoutController extends Controller
         $notification = new Notification;
         $notification->order_id = $order->id;
         $notification->save();
-                    if($request->coupon_id != "")
-                    {
-                       $coupon = Coupon::findOrFail($request->coupon_id);
-                       $coupon->used++;
-                       if($coupon->times != null)
-                       {
-                            $i = (int)$coupon->times;
-                            $i--;
-                            $coupon->times = (string)$i;
-                       }
-                        $coupon->update();
 
-                    }
-
-        foreach($cart->items as $prod)
-        {
-            $x = (string)$prod['size_qty'];
-            if(!empty($x))
+        if($request->coupon_id != "") {
+            $coupon = Coupon::findOrFail($request->coupon_id);
+            $coupon->used++;
+            if($coupon->times != null)
             {
+                $i = (int)$coupon->times;
+                $i--;
+                $coupon->times = (string)$i;
+            }
+            $coupon->update();
+        }
+
+        foreach($cart->items as $prod) {
+            $x = (string)$prod['size_qty'];
+            if(!empty($x)) {
                 $product = Product::findOrFail($prod['item']['id']);
                 $x = (int)$x;
                 $x = $x - $prod['qty'];
@@ -1391,17 +1324,14 @@ class CheckoutController extends Controller
         }
 
 
-        foreach($cart->items as $prod)
-        {
+        foreach($cart->items as $prod) {
             $x = (string)$prod['stock'];
-            if($x != null)
-            {
+            if($x != null) {
 
                 $product = Product::findOrFail($prod['item']['id']);
                 $product->stock =  $prod['stock'];
                 $product->update();  
-                if($product->stock <= 5)
-                {
+                if($product->stock <= 5) {
                     $notification = new Notification;
                     $notification->product_id = $product->id;
                     $notification->save();                    
@@ -1409,34 +1339,25 @@ class CheckoutController extends Controller
             }
         }
         
-         foreach($cart->items as $keyProduct =>$valueProduct ){
+        foreach($cart->items as $keyProduct =>$valueProduct ) {
            // echo "<pre>";print_r($valueProduct['item']['user_id']);die;
-           if($valueProduct['item']['user_id'] != 0 ){
+           if($valueProduct['item']['user_id'] != 0 ) {
            
-                $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price');
-            
-           }
-   
+                $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price'); 
+            }   
         }
         
-        if(isset($cartitemprice)) {
-        
-        
-            foreach($cartitemprice as $k=> $v){
-                
+        if(isset($cartitemprice)) { 
+            foreach($cartitemprice as $k=> $v) {
                 $fprice[]= $v;
-            }
-   
-            $sumtotalcartprice = array_sum($fprice);
-        
+            }   
+            $sumtotalcartprice = array_sum($fprice);        
         }
         $notf = null;
         $str = '';
 
-        foreach($cart->items as $prod)
-        {
-            if($prod['item']['user_id'] != 0)
-            {
+        foreach($cart->items as $prod) {
+            if($prod['item']['user_id'] != 0) {
                 $vorder =  new VendorOrder;
                 $vorder->order_id = $order->id;
                 $vorder->user_id = $prod['item']['user_id'];
@@ -1449,13 +1370,9 @@ class CheckoutController extends Controller
                 $vorder->order_number = $order->order_number;             
                 $vorder->save();
             }
-
         }
         
-                
-
-        if(!empty($notf))
-        {
+        if(!empty($notf)) {
             $users = array_unique($notf);
             foreach ($users as $user) {
                 $notification = new UserNotification;
@@ -1469,26 +1386,24 @@ class CheckoutController extends Controller
         Session::put('tempcart',$cart);
 
         Session::forget('cart');
+        Session::forget('already');
+        Session::forget('coupon');
+        Session::forget('coupon_total');
+        Session::forget('coupon_total1');
+        Session::forget('coupon_percentage');
 
-            Session::forget('already');
-            Session::forget('coupon');
-            Session::forget('coupon_total');
-            Session::forget('coupon_total1');
-            Session::forget('coupon_percentage');
-
-
-            if ($order->user_id != 0 && $order->wallet_price != 0) {
-                $transaction = new \App\Models\Transaction;
-                $transaction->txn_number = str_random(3).substr(time(), 6,8).str_random(3);
-                $transaction->user_id = $order->user_id;
-                $transaction->amount = $order->wallet_price;
-                $transaction->currency_sign = $order->currency_sign;
-                $transaction->currency_code = \App\Models\Currency::where('sign',$order->currency_sign)->first()->name;
-                $transaction->currency_value= $order->currency_value;
-                $transaction->details = 'Payment Via Wallet';
-                $transaction->type = 'minus';
-                $transaction->save();
-            }
+        if ($order->user_id != 0 && $order->wallet_price != 0) {
+            $transaction = new \App\Models\Transaction;
+            $transaction->txn_number = str_random(3).substr(time(), 6,8).str_random(3);
+            $transaction->user_id = $order->user_id;
+            $transaction->amount = $order->wallet_price;
+            $transaction->currency_sign = $order->currency_sign;
+            $transaction->currency_code = \App\Models\Currency::where('sign',$order->currency_sign)->first()->name;
+            $transaction->currency_value= $order->currency_value;
+            $transaction->details = 'Payment Via Wallet';
+            $transaction->type = 'minus';
+            $transaction->save();
+        }
 
         //Sending Email To Buyer
 
@@ -1511,12 +1426,12 @@ class CheckoutController extends Controller
         // else
         // {
 
-           $to = $request->email;
-           $subject = "Your Order Placed!!";
-           $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
-           $headers = "MIME-Version: 1.0" . "\r\n";
-           $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-           $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+            $to = $request->email;
+            $subject = "Your Order Placed!!";
+            $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
            // mail($to,$subject,$msg,$headers);            
         // }
         // //Sending Email To Admin
@@ -1533,18 +1448,18 @@ class CheckoutController extends Controller
         // }
         // else
         // {
-           $to = Pagesetting::find(1)->contact_email;
-           $subject = "New Order Recieved!!";
-           $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
-           $headers = "MIME-Version: 1.0" . "\r\n";
-           $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-           $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-           // mail($to,$subject,$msg,$headers);
+            $to = Pagesetting::find(1)->contact_email;
+            $subject = "New Order Recieved!!";
+            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+            // mail($to,$subject,$msg,$headers);
             Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg,'text/html');
-                            });      
+                $message->to($to)
+                ->subject($subject)
+                ->setBody($msg,'text/html');
+            });      
         // }/
 
         return redirect($success_url);

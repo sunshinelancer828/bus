@@ -449,8 +449,8 @@ class FlutterWaveController extends Controller
                     // 'dp' => 1,
                     'status' => 'completed'
                 ]);
-                dd($order);
-                return;
+                // dd($order);
+                // return;
                 if($order->dp == 1) {
                     $track = new OrderTrack;
                     $track->title = 'Completed';

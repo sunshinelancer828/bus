@@ -172,18 +172,11 @@ class FlutterWaveController extends Controller
         $order['vendor_packing_id'] = $request->vendor_packing_id;
         $order['wallet_price'] = round($wallet / $curr->value, 2);  
 
-        
-        
-        dd ($order);
-        return;
-
-        if($order['dp'] == 1)
-        {
+        if($order['dp'] == 1) {
             $order['status'] = 'completed';
         }
 
-        if (Session::has('affilate')) 
-        {
+        if (Session::has('affilate')) {
             $val = $request->total / $curr->value;
             $val = $val / 100;
             $sub = $val * $settings->affilate_charge;
@@ -289,8 +282,10 @@ class FlutterWaveController extends Controller
 
 
         $gs = Generalsetting::find(1);
-
-
+       
+        
+        dd ($gs);
+        return;
         //Sending Email To Buyer
 
         if($gs->is_smtp == 1)

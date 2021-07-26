@@ -494,8 +494,7 @@ class FlutterWaveController extends Controller
                             if($order->dp == 1){
                                 $vorder->user->update(['current_balance' => $vorder->user->current_balance += $sumtotalcartprice]);
                             }
-                        }
-        
+                        }        
                     }
         
                     if(!empty($notf))
@@ -532,7 +531,14 @@ class FlutterWaveController extends Controller
                     
                     $str = ''; $str2 = '';
                 
+                    $vid = null; $mstr = '';
                     foreach($cart->items as $product) {
+                        $vorder = VendorOrder::where('order_id',$order->id)->first();
+                        if($product['item']['user_id'] != 0 && !$vorder)
+                        {
+                            $vid = $product['item']['user_id'];
+                            $mstr .= $product['item']['name'].'<br>';
+                        }
                         $dataFormat = DB::table('products')->where('id','=',$product['item']['id'])->get();
                         $dataFormat = $dataFormat[0]->file_format;
                         $str .= "Product Title: ".$product['item']['name']."<br>";
@@ -581,6 +587,48 @@ class FlutterWaveController extends Controller
                             ->setBody($msg,'text/html');
                         });  
                         // mail($to, $subject, $msg, $headers);
+                    }
+
+                    if (!empty($vid)) {                    
+                        $vuser = User::findOrFail($vid);
+                        $to = $vuser->email;
+
+                        $subject = 'Product Purchase';
+    
+                        $msg2 = "Hello ".$vuser->name." <br><br>";
+                        $msg2 .="A purchase has been made on your product.<br>";
+                        $msg2 .= $mstr;
+                        $msg2 .="Kindly login and view details on your dashboard.<br><br>";
+                        $msg2 .="Thank you as we look forward for further mutual advantage..<br><br>";  
+                        $msg2 .="All at ProjectShelve<br> ";
+                        $msg2 .="Call/WhatsApp: (+234) 08147801594<br> ";
+                        $msg2 .="E-mail: projectshelve@gmail.com<br>";
+                        $msg2 .="Website: www.projectshelve.com<br>";
+                        
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                        $headers .= "From: ProjectShelve <projectshelve@gmail.com>";
+    
+                        if ($gs->is_smtp == 1) {
+    
+                            $mailer = new GeniusMailer();
+                            $mailer->sendCustomMail([
+                                'to' => $to,
+                                'subject' => $subject,
+                                'body' => $msg2
+                            ]);
+    
+                        } else {
+    
+                            $sent =   Mail::send(array(), array(), function ($message) use ($msg2, $to, $subject, $headers) {
+                                $message->to($to)
+                                ->subject($subject)
+                                ->setBody($msg2,'text/html')
+                                ->getHeaders()
+                                ->addTextHeader($headers, 'true');
+                            }); 
+                            // mail($to, $subject, $msg2, $headers);
+                        }
                     }
                     
                     $msg3  = "Hello ".$order->customer_name.",<br><br>";

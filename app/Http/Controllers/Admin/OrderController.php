@@ -220,7 +220,14 @@ class OrderController extends Controller
 
                     } else {
 
-                        mail($to, $subject, $msg2, $headers);
+                        $sent =   Mail::send(array(), array(), function ($message) use ($msg2, $to, $subject, $headers) {
+                            $message->to($to)
+                            ->subject($subject)
+                            ->setBody($msg2,'text/html')
+                            ->getHeaders()
+                            ->addTextHeader($headers, 'true');
+                        }); 
+                        // mail($to, $subject, $msg2, $headers);
                     }
                 }
 

@@ -1482,7 +1482,7 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   Route::get('/checkout/','Front\CheckoutController@checkout')->name('front.checkout');
   Route::get('/checkout/payment/{slug1}/{slug2}','Front\CheckoutController@loadpayment')->name('front.load.payment');
   Route::get('/order/track/{id}','Front\FrontendController@trackload')->name('front.track.search');
-  Route::get('/checkout/payment/return', array('middleware' => 'cors', 'uses' => 'Front\PaymentController@payreturn'))->name('payment.return');
+  Route::get('/checkout/payment/return', /*array('middleware' => 'cors', 'uses' => */'Front\PaymentController@payreturn')->name('payment.return');
   Route::get('/checkout/payment/cancle', 'Front\PaymentController@paycancle')->name('payment.cancle');
   Route::get('/checkout/payment/notify', 'Front\PaymentController@notify')->name('payment.notify');
   Route::get('/checkout/instamojo/notify', 'Front\InstamojoController@notify')->name('instamojo.notify');
@@ -1526,8 +1526,8 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   // Flutterwave Routes
   // Route::get('example', array('middleware' => 'cors', 'uses' => 'ExampleController@dummy'));
   Route::post('/flutter/submit', 'Front\FlutterWaveController@store')->name('flutter.submit');
-  Route::post('/flutter/notify', array('middleware' => 'cors', 'uses' => 'Front\FlutterWaveController@notify'));
-  Route::get('/flutter/notify', array('middleware' => 'cors', 'uses' => 'Front\FlutterWaveController@notify'))->name('flutter.notify');
+  Route::post('/flutter/notify', /*array('middleware' => 'cors', 'uses' => */'Front\FlutterWaveController@notify');
+  Route::get('/flutter/notify', /*array('middleware' => 'cors', 'uses' => */'Front\FlutterWaveController@notify')->name('flutter.notify');
   Route::post('/dflutter/notify', 'User\DflutterController@notify')->name('deposit.flutter.notify');
   Route::post('/uflutter/notify', 'User\FlutterController@notify')->name('user.flutter.notify');
   Route::post('/vflutter/notify', 'Vendor\FlutterController@notify')->name('vendor.flutter.notify');

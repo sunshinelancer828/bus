@@ -1049,9 +1049,9 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 <!-- Order Tracking modal End -->
 
     <script type="text/javascript">
-      var mainurl = "{{url('/')}}";
-      var gs      = {!! json_encode(DB::table('generalsettings')->where('id','=',1)->first(['is_loader'])) !!};
-      var langg    = {!! json_encode($langg) !!};
+		var mainurl = "{{url('/')}}";
+		var gs      = {!! json_encode(DB::table('generalsettings')->where('id','=',1)->first(['is_loader'])) !!};
+		var langg   = {!! json_encode($langg) !!};
     </script>
 
 	<!-- jquery -->
@@ -1078,30 +1078,30 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
     	var width = $(window).width();
     	console.log(width)
     
-    	 if (width < 740) {
+		if (width < 740) {
         	console.log("mobile view");
-    	$(".categories_mega_menu").click(function(e){
-			   e.stopPropagation();
-	     });
-    	$(".subCategory-icon").click(function(e){
-                           console.log(e.target);
+			$(".categories_mega_menu").click(e => {
+				e.stopPropagation();
+			});
 
-                   		$(e.target).parent().siblings('div').toggle(function(){
-		              if($(e.target).parent().siblings('div').css('display')=='none'){
+			$(".subCategory-icon").click(e => {
+				
+				console.log(e.target);
 
-                    	$(e.target).removeClass('fa-minus');
-                   		$(e.target).addClass('fa-plus');
-                    }
-                     if($(e.target).parent().siblings('div').css('display')=='block'){
-                     	console.log("blcokl");
-                    	$(e.target).removeClass('fa-plus');
-                   		$(e.target).addClass('fa-minus');
-                    }
-                   		});
-                   
+				$(e.target).parent().siblings('div').toggle(() => {
+					if($(e.target).parent().siblings('div').css('display')=='none'){
 
-    	});
-    }
+						$(e.target).removeClass('fa-minus');
+						$(e.target).addClass('fa-plus');
+					}
+					if($(e.target).parent().siblings('div').css('display')=='block'){
+						console.log("blcokl");
+						$(e.target).removeClass('fa-plus');
+						$(e.target).addClass('fa-minus');
+					}
+				});
+			});
+		}
     </script>	
 	<!-- custom -->
 	<script src="{{asset('assets/front/js/custom.js')}}"></script>

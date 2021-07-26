@@ -209,13 +209,13 @@
 										<input type="hidden" id="image-default" name="default_photo" value="">
 									</div>
 
-									<p class="img-alert mt-2 text-danger d-none">{{$data->photo}}</p>
+									<p class="img-alert mt-2 text-danger d-none"></p>
 								</div>
 							</div>
 						</div>
 
 						<input type="file" name="gallery[]" class="hidden" id="uploadgallery" accept="image/*" multiple>
-						                        
+						{{$data->photo}}
 												<div class="row">
 													<div class="col-lg-4">
 														<div class="left-area">

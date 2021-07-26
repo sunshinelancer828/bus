@@ -589,9 +589,6 @@ class FlutterWaveController extends Controller
                         // mail($to, $subject, $msg, $headers);
                     }
 
-                    dd($vid.' => '.$mstr);
-                    return;
-
                     if ($vid) {                    
                         $vuser = User::findOrFail($vid);
                         $to = $vuser->email;

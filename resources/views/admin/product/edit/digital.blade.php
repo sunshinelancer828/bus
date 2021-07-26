@@ -209,7 +209,7 @@
 										<input type="hidden" id="image-default" name="default_photo" value="">
 									</div>
 
-									<p class="img-alert mt-2 text-danger d-none"></p>
+									<p class="img-alert mt-2 text-danger d-none">{{$data->photo}}</p>
 								</div>
 							</div>
 						</div>

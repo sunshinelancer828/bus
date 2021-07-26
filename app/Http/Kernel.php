@@ -65,6 +65,6 @@ class Kernel extends HttpKernel
         'maintenance' => \App\Http\Middleware\MaintenanceMode::class,
         'setapi' => \App\Http\Middleware\SetApiGuard::class,
         //other middlewares
-        'cors' => \App\Http\Middleware\Cors::class,
+        // 'cors' => \App\Http\Middleware\Cors::class,
     ];
 }

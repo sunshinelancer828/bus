@@ -352,9 +352,6 @@ class FlutterWaveController extends Controller
         $PBFPubKey = $settings->flutter_public_key; // get your public key from the dashboard.
         $redirect_url = action('Front\FlutterWaveController@notify');
         $payment_plan = ""; // this is only required for recurring payments.
-        
-        dd ($redirect_url);
-        return;
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
@@ -375,13 +372,12 @@ class FlutterWaveController extends Controller
             ],
         ));
         
-        $response = curl_exec($curl);        
-        $err = curl_error($curl);
-        curl_close($curl);
-
-        if($err) { // there was an error contacting the rave API
-            die('Curl returned error: ' . $err);
+        $response = curl_exec($curl);   
+        if ($response === FALSE) {  // there was an error contacting the rave API
+            dd('Curl returned error: ' . curl_error($curl));
+            return;
         }
+        curl_close($curl);
         
         $transaction = json_decode($response);
         
@@ -433,13 +429,6 @@ class FlutterWaveController extends Controller
                 if ($paymentStatus == "successful") {
         
                     $order = Order::where('order_number',$resp['data']['txref'])->first();
-                    // $data['txnid'] = $resp['data']['txid'];
-                    // $data['payment_status'] = 'Completed';
-                    // if($order->dp == 1)
-                    // {
-                    //     $data['status'] = 'completed';
-                    // }
-                    // $order->update($data);
                     $order->update([
                         'txnid' => $resp['data']['txid'],
                         'payment_status' => 'Completed',

@@ -1482,7 +1482,7 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   Route::get('/checkout/','Front\CheckoutController@checkout')->name('front.checkout');
   Route::get('/checkout/payment/{slug1}/{slug2}','Front\CheckoutController@loadpayment')->name('front.load.payment');
   Route::get('/order/track/{id}','Front\FrontendController@trackload')->name('front.track.search');
-  Route::get('/checkout/payment/return', 'Front\PaymentController@payreturn')->name('payment.return');
+  Route::get('/checkout/payment/return', array('middleware' => 'cors', 'uses' => 'Front\PaymentController@payreturn'))->name('payment.return');
   Route::get('/checkout/payment/cancle', 'Front\PaymentController@paycancle')->name('payment.cancle');
   Route::get('/checkout/payment/notify', 'Front\PaymentController@notify')->name('payment.notify');
   Route::get('/checkout/instamojo/notify', 'Front\InstamojoController@notify')->name('instamojo.notify');

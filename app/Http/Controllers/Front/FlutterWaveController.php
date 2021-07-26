@@ -589,7 +589,7 @@ class FlutterWaveController extends Controller
                         // mail($to, $subject, $msg, $headers);
                     }
 
-                    if (!empty($vid)) {                    
+                    if ($vid) {                    
                         $vuser = User::findOrFail($vid);
                         $to = $vuser->email;
 

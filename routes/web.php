@@ -1524,10 +1524,10 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
 
 
   // Flutterwave Routes
-
+  // Route::get('example', array('middleware' => 'cors', 'uses' => 'ExampleController@dummy'));
   Route::post('/flutter/submit', 'Front\FlutterWaveController@store')->name('flutter.submit');
-  Route::post('/flutter/notify', 'Front\FlutterWaveController@notify');
-  Route::get('/flutter/notify', 'Front\FlutterWaveController@notify')->name('flutter.notify');
+  Route::post('/flutter/notify', array('middleware' => 'cors', 'uses' => 'Front\FlutterWaveController@notify'));
+  Route::get('/flutter/notify', array('middleware' => 'cors', 'uses' => 'Front\FlutterWaveController@notify'))->name('flutter.notify');
   Route::post('/dflutter/notify', 'User\DflutterController@notify')->name('deposit.flutter.notify');
   Route::post('/uflutter/notify', 'User\FlutterController@notify')->name('user.flutter.notify');
   Route::post('/vflutter/notify', 'Vendor\FlutterController@notify')->name('vendor.flutter.notify');

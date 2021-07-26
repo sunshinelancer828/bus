@@ -589,11 +589,11 @@ class FlutterWaveController extends Controller
                     ]);
 
                 } else {
-                    $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                    Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
                         $message->to($to)
-                       ->subject($subject)
+                        ->subject($subject)
                         ->setBody($msg,'text/html');
-                      });  
+                    });  
                     // mail($to, $subject, $msg, $headers);
                 }
                 

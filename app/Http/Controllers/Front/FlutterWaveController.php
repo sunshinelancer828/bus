@@ -533,8 +533,8 @@ class FlutterWaveController extends Controller
                 
                     $vid = null; $mstr = '';
                     foreach($cart->items as $product) {
-                        $vorder = VendorOrder::where('order_id', $order->id)->first();
-                        if($product['item']['user_id'] != 0 && !$vorder)
+                        
+                        if($product['item']['user_id'] != 0)
                         {
                             $vid = $product['item']['user_id'];
                             $mstr .= $product['item']['name'].'<br>';

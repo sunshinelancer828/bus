@@ -283,9 +283,6 @@ class FlutterWaveController extends Controller
 
         $gs = Generalsetting::find(1);
        
-        
-        dd ($gs);
-        return;
         //Sending Email To Buyer
 
         if($gs->is_smtp == 1)
@@ -356,6 +353,9 @@ class FlutterWaveController extends Controller
         $redirect_url = action('Front\FlutterWaveController@notify');
         $payment_plan = ""; // this is only required for recurring payments.
         
+        dd ($redirect_url);
+        return;
+
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
             CURLOPT_RETURNTRANSFER => true,

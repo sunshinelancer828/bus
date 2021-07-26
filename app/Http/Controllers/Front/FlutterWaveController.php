@@ -533,7 +533,7 @@ class FlutterWaveController extends Controller
                 
                     $vid = null; $mstr = '';
                     foreach($cart->items as $product) {
-                        $vorder = VendorOrder::where('order_id',$order->id)->first();
+                        $vorder = VendorOrder::where('order_id', $order->id)->first();
                         if($product['item']['user_id'] != 0 && !$vorder)
                         {
                             $vid = $product['item']['user_id'];
@@ -588,6 +588,9 @@ class FlutterWaveController extends Controller
                         });  
                         // mail($to, $subject, $msg, $headers);
                     }
+
+                    dd($vid.' => '.$mstr);
+                    return;
 
                     if ($vid) {                    
                         $vuser = User::findOrFail($vid);

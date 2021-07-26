@@ -25,7 +25,6 @@ use Mail;
 use Auth;
 use Image;
 use DB;
-
 use Session;
 use Validator;
 

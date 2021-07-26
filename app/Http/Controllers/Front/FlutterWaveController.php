@@ -355,33 +355,34 @@ class FlutterWaveController extends Controller
         $redirect_url = action('Front\FlutterWaveController@notify');
         $payment_plan = ""; // this is only required for recurring payments.
         
+        dd ($redirect_url);
+        return;
         
         curl_setopt_array($curl, array(
-          CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => json_encode([
-            'amount' => $amount,
-            'customer_email' => $customer_email,
-            'currency' => $currency,
-            'txref' => $txref,
-            'PBFPubKey' => $PBFPubKey,
-            'redirect_url' => $redirect_url,
-            'payment_plan' => $payment_plan
-          ]),
-          CURLOPT_HTTPHEADER => [
-            "content-type: application/json",
-            "cache-control: no-cache"
-          ],
+            CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode([
+                'amount' => $amount,
+                'customer_email' => $customer_email,
+                'currency' => $currency,
+                'txref' => $txref,
+                'PBFPubKey' => $PBFPubKey,
+                'redirect_url' => $redirect_url,
+                'payment_plan' => $payment_plan
+            ]),
+            CURLOPT_HTTPHEADER => [
+                "content-type: application/json",
+                "cache-control: no-cache"
+            ],
         ));
         
-        $response = curl_exec($curl);
-        
+        $response = curl_exec($curl);        
         $err = curl_error($curl);
         curl_close($curl);
-        if($err){
-          // there was an error contacting the rave API
-          die('Curl returned error: ' . $err);
+
+        if($err) { // there was an error contacting the rave API
+            die('Curl returned error: ' . $err);
         }
         
         $transaction = json_decode($response);

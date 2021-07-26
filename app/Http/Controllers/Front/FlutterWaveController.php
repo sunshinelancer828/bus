@@ -609,7 +609,7 @@ class FlutterWaveController extends Controller
                         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                         $headers .= "From: ProjectShelve <projectshelve@gmail.com>";
     
-                        if ($gs->is_smtp == 1) {
+                        if ($settings->is_smtp == 1) {
     
                             $mailer = new GeniusMailer();
                             $mailer->sendCustomMail([

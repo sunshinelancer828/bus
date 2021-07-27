@@ -433,6 +433,11 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 
 @yield('content')
 
+
+<div class="whatsapp-icon whatsapp-toggle-button">
+	<a href="https://wa.me/23408147801594" target="_blank"><img src="{{ asset('assets/images/whatsapp.png') }}" alt="whatsapp"> +(234) 08147801594</a>
+</div>
+
 <!-- Footer Area Start -->
 <footer class="footer" id="footer">
 	<div class="container">

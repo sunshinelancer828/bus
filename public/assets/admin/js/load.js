@@ -52,13 +52,13 @@
               var width = this.width;
               if (height < 600 && width < 600) {
                 if(height != width){
-                  $('.img-alert').html(langg.lang807);
+                  $('.img-alert').html('Image must have square size.');
                   $('.img-alert').removeClass('d-none');
                   $('#image-upload').val(''); 
                   $('#image-upload').prop('required',true);
                   imgpath.css('background', 'url()');
                 }else {
-                  $('.img-alert').html(langg.lang806);
+                  $('.img-alert').html("Image height and width must be 600 x 600...........");
                   $('.img-alert').removeClass('d-none');
                   $('#image-upload').val(''); 
                   $('#image-upload').prop('required',true);
@@ -66,7 +66,7 @@
                 }
               }else {
                 if(height != width){
-                  $('.img-alert').html(langg.lang807);
+                  $('.img-alert').html('Image must have square size.');
                   $('.img-alert').removeClass('d-none');
                   $('#image-upload').val(''); 
                   $('#image-upload').prop('required',true);

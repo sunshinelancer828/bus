@@ -73,6 +73,15 @@
 
   @endif
 	@yield('styles')
+
+	<style>
+		.whatsapp-toggle-button {
+			position: fixed;
+			left: 30px;
+			bottom: 30px;
+			z-index: 999;
+		}
+	</style>
 	
 </head>
 <body>
@@ -435,7 +444,7 @@ if (isset($_GET['user-cart'] ) && $_GET['user-cart'] != '' ) {
 
 
 <div class="whatsapp-icon whatsapp-toggle-button">
-	<a href="https://wa.me/23408147801594" target="_blank"><img src="{{ asset('assets/images/whatsapp.png') }}" alt="whatsapp"> +(234) 08147801594</a>
+	<a href="https://wa.me/23408147801594" target="_blank"><img src="{{ asset('assets/images/whatsapp_lg.png') }}" alt="whatsapp"></a>
 </div>
 
 <!-- Footer Area Start -->

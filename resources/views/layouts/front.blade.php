@@ -93,7 +93,7 @@
 		}
 
 		.whatsapp-ico:hover{
-			box-shadow: 2px 2px 11px rgba(0,0,0,0.7);
+			box-shadow: 4px 3px 11px rgba(0,0,0,0.7);
 		}
 	</style>
 	

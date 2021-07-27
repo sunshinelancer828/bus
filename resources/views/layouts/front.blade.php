@@ -90,10 +90,6 @@
 			border-radius: 50%;
 			box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
 			/* box-shadow: 2px 2px 11px rgba(0,0,0,0.7); */
-			position: fixed;
-			bottom: 20px;
-			right : 20px;
-			z-index: 10;
 		}
 
 		.whatsapp-ico:hover{

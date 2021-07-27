@@ -81,6 +81,24 @@
 			bottom: 30px;
 			z-index: 999;
 		}
+		.whatsapp-ico{
+			fill: white;
+			width: 50px;
+			height: 50px;
+			padding: 3px;
+			background-color: #4dc247;
+			border-radius: 50%;
+			box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+			/* box-shadow: 2px 2px 11px rgba(0,0,0,0.7); */
+			position: fixed;
+			bottom: 20px;
+			right : 20px;
+			z-index: 10;
+		}
+
+		.whatsapp-ico:hover{
+			box-shadow: 2px 2px 11px rgba(0,0,0,0.7);
+		}
 	</style>
 	
 </head>

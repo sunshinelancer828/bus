@@ -241,8 +241,7 @@
 											<div class="col-lg-12  mt-3">
 												<div class="bottom-area paystack-area-btn">
 													<button type="submit"  class="mybtn1">{{ $langg->lang753 }}</button>
-												</div>
-												
+												</div>												
 											</div>
 										</div>
 									</div>
@@ -533,7 +532,7 @@
 
 																	<small>
 																		{{ $gs->mercado_text }}
-																	</small
+																	</small>
 
 																</p>
 															</a>
@@ -1595,7 +1594,7 @@ $('#step3-btn').on('click',function(){
 	var wallet_price = parseFloat($("#wallet-price").val());
 	    
     $.ajax({
-		type: "POST", //"GET",
+		type: "GET",
 		url: mainurl + "/order/confirm/email",
 		data: {
 			'email': email,

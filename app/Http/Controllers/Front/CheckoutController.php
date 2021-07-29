@@ -107,7 +107,7 @@ class CheckoutController extends Controller
         }
         $order->save();
 
-        Session::set('order', $order->id);
+        Session::put('order', $order->id);
         
         if($email) {
        

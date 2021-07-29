@@ -1497,7 +1497,7 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
 
   // WALLET SECTION
   Route::get('/wallet/check','Front\CartController@walletcheck');
-  Route::get('/order/confirm/email','Front\CheckoutController@sendconfirmemail');
+  Route::post('/order/confirm/email','Front\CheckoutController@sendconfirmemail');
   // WALLET SECTION ENDS
 
   // ssl Routes

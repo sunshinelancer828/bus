@@ -1594,7 +1594,7 @@ $('#step3-btn').on('click',function(){
 	var wallet_price = parseFloat($("#wallet-price").val());
 	    
     $.ajax({
-		type: "GET",
+		type: "POST", // "GET",
 		url: mainurl + "/order/confirm/email",
 		data: {
 			'email': email,

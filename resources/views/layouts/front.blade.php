@@ -77,8 +77,8 @@
 	<style>
 		.whatsapp-toggle-button {
 			position: fixed;
-			left: 30px;
-			bottom: 30px;
+			left: 25px;
+			bottom: 25px;
 			z-index: 999;
 		}
 		.whatsapp-ico{

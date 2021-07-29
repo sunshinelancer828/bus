@@ -33,17 +33,75 @@ class CheckoutController extends Controller
     
     public function sendconfirmemail() {
         
-        $email = $_GET['uemail'];
-        $totalPrice = $_GET['totalcost'];
-        $name = $_GET['nametest'];
-        $phone_number = $_GET['phone_number'];
+        // $email = $_GET['uemail'];
+        // $totalPrice = $_GET['totalcost'];
+        // $name = $_GET['nametest'];
+        // $phone_number = $_GET['phone_number'];
               
         $gs = Generalsetting::findOrFail(1);
-		$userCart =  Session::get('cart')  ;
+		$userCart =  Session::get('cart');
         $cartArr =  (array) $userCart;
         $cartJson = json_encode ( $cartArr ) ;
      
         $save_dir =   public_path().'/user-cart/';
+
+        $request = $_POST;
+        dd($request);
+        return;
+
+        $cart = new Cart($userCart);
+
+        $order = new Order;
+        $order['customer_state'] = $request->state;
+        $order['shipping_state'] = $request->shipping_state;
+        $order['user_id'] = Auth::check() ? Auth::user()->id : $request->user_id;
+        $order['cart'] = utf8_encode(bzcompress(serialize($cart), 9)); 
+        $order['totalQty'] = $request->totalQty;
+        $order['pay_amount'] = $request->total / $curr->value; //
+        // $order['method'] = $request->method;
+        $order['shipping'] = $request->shipping;
+        $order['pickup_location'] = $request->pickup_location;
+        $order['customer_email'] = $request->email;
+        $order['customer_name'] = $request->name;
+        $order['shipping_cost'] = $request->shipping_cost;
+        $order['packing_cost'] = $request->packing_cost;
+        $order['shipping_title'] = $request->shipping_title;
+        $order['packing_title'] = $request->packing_title;
+        $order['tax'] = $request->tax;
+        $order['customer_phone'] = $request->phone;
+        $order['order_number'] = str_random(4).time();
+        $order['customer_address'] = $request->address;
+        $order['customer_country'] = $request->customer_country;
+        $order['customer_city'] = $request->city;
+        $order['customer_zip'] = $request->zip;
+        $order['shipping_email'] = $request->shipping_email;
+        $order['shipping_name'] = $request->shipping_name;
+        $order['shipping_phone'] = $request->shipping_phone;
+        $order['shipping_address'] = $request->shipping_address;
+        $order['shipping_country'] = $request->shipping_country;
+        $order['shipping_city'] = $request->shipping_city;
+        $order['shipping_zip'] = $request->shipping_zip;
+        $order['order_note'] = $request->order_notes;
+        $order['coupon_code'] = $request->coupon_code;
+        $order['coupon_discount'] = $request->coupon_discount;
+        $order['dp'] = $request->dp;
+        $order['payment_status'] = "Pending";
+        $order['currency_sign'] = $curr->sign;
+        $order['currency_value'] = $curr->value;
+        $order['vendor_shipping_id'] = $request->vendor_shipping_id;
+        $order['vendor_packing_id'] = $request->vendor_packing_id;
+        $order['wallet_price'] = round($request->wallet_price / $curr->value, 2);
+
+        if (Session::has('affilate')) 
+        {
+            $val = $request->total / $curr->value;
+            $val = $val / 100;
+            $sub = $val * $gs->affilate_charge;
+            $order['affilate_user'] = Session::get('affilate');
+            $order['affilate_charge'] = $sub;
+        }
+
+        $order->save();
         
         if($email) {
        

@@ -1517,7 +1517,7 @@ $('.checkoutform').on('submit',function(e) {
     $("input[name='phone']").val(full_number);
   
 	if(ck == 0) {
-			e.preventDefault();			
+		e.preventDefault();			
 		$('#pills-step2-tab').removeClass('disabled');
 		$('#pills-step2-tab').click();
 
@@ -1552,19 +1552,89 @@ $('#step2-btn').on('click',function(){
 
 $('#step3-btn').on('click',function(){
     
-    var uemail = $("#emailtest").val();
-    var totalcost =$("#totalp").val();
-    var nametest=$("#nametest").val();
-    var phone_number=$("#phone_number").val();
-    
+	// var total = $('#totalp').val();
+	// var email = $('#emailtest').val();
+	// var name = $('#nametest').val();
+	// var phone = $('#phone_number').val();
+
+	/////////// 07/28/2021 ////////////
+	var total = $('#totalp').val();
+	var email = $('#emailtest').val();
+	var name = $('#nametest').val();
+	var phone = $('#phone_number').val();
+	var address = $('input[name="address"]').val();
+	var pickup_location = $('select[name="pickup_location"]').val();
+	var customer_country = $('select[name="customer_country"]').val();
+	var state = $('input[name="state"]').val();
+	var city = '';
+	var zip = '';
+
+	var shipping = $('input[name="shipping"]').val();
+	var shipping_title = $('#shipping-title').val();
+	var shipping_name  = !$('input[name="shipping_name"]').val() ? $('input[name="name"]').val() : $('input[name="shipping_name"]').val();
+	var shipping_address  = !$('input[name="shipping_address"]').val() ? $('input[name="address"]').val() : $('input[name="shipping_address"]').val();
+	var shipping_phone = !$('input[name="shipping_phone"]').val() ? $('input[name="phone"]').val() : $('input[name="shipping_phone"]').val();
+	var shipping_email= !$('input[name="shipping_email"]').val() ? $('input[name="email"]').val() : $('input[name="shipping_email"]').val();
+	var shipping_country = $('select[name="shipping_country"]').val();
+	var shipping_state = $('#shipping_state').val();	
+	var shipping_city = $('#shipping_city').val();
+	var shipping_zip = $('#shippingPostal_code').val();
+	var shipping_cost = parseFloat($('#shipping-cost').val());
+	
+	var packing_cost = parseFloat($('#packing-cost').val());
+	var packing_title = $('#packing-title').val();
+
+	var order_notes = $('#Order_Note').val();
+	var coupon_code = $('#coupon_code').val();
+	var coupon_discount = $('#coupon_discount').val();
+	var dp = $('input[name="dp"]').val();
+	var tax = $('input[name="tax"]').val();
+	var totalQty = $('input[name="totalQty"]').val();
+	var vendor_shipping_id = $('input[name="vendor_shipping_id"]').val();
+	var vendor_packing_id = $('input[name="vendor_packing_id"]').val();
+	var wallet_price = parseFloat($("#wallet-price").val());
+	    
     $.ajax({
-                type: "GET",
-                url:mainurl+"/order/confirm/email",
-                data:{'uemail':uemail,'totalcost':totalcost,'nametest':nametest,'phone_number':phone_number},
-                success:function(data){
-                    
-                }
-                
+		type: "POST", //"GET",
+		url: mainurl + "/order/confirm/email",
+		data: {
+			'email': email,
+			'total': total,
+			'name': name,
+			'phone': phone,
+			////////////////////////
+			'address': address,
+			'pickup_location': pickup_location,
+			'customer_country': customer_country,
+			'state': state,
+			'city': city,
+			'zip': zip,
+			'shipping': shipping,
+			'shipping_title': shipping_title,
+			'shipping_name': shipping_name,
+			'shipping_address': shipping_address,
+			'shipping_phone': shipping_phone,
+			'shipping_email': shipping_email,
+			'shipping_country': shipping_country,
+			'shipping_state': shipping_state,
+			'shipping_city': shipping_city,
+			'shipping_zip': shipping_zip,
+			'shipping_cost': shipping_cost,
+			'packing_cost': packing_cost,
+			'packing_title': packing_title,
+			'order_notes': order_notes,
+			'coupon_code': coupon_code,
+			'coupon_discount': coupon_discount,
+			'dp': dp,
+			'tax': tax,
+			'totalQty': totalQty,
+			'vendor_shipping_id': vendor_shipping_id,
+			'vendor_packing_id': vendor_packing_id,
+			'wallet_price':, wallet_price
+		},
+		success: data => {
+			console.log(data);
+		}                
     });
  	
  	if($('a.payment:first').data('val') == 'paystack'){
@@ -1579,15 +1649,15 @@ $('#step3-btn').on('click',function(){
 	$('#pills-step3-tab').removeClass('disabled');
 	$('#pills-step3-tab').click();
 
-	var shipping_user  = !$('input[name="shipping_name"]').val() ? $('input[name="name"]').val() : $('input[name="shipping_name"]').val();
-	var shipping_location  = !$('input[name="shipping_address"]').val() ? $('input[name="address"]').val() : $('input[name="shipping_address"]').val();
-	var shipping_phone = !$('input[name="shipping_phone"]').val() ? $('input[name="phone"]').val() : $('input[name="shipping_phone"]').val();
-	var shipping_email= !$('input[name="shipping_email"]').val() ? $('input[name="email"]').val() : $('input[name="shipping_email"]').val();
+	// var shipping_user  = !$('input[name="shipping_name"]').val() ? $('input[name="name"]').val() : $('input[name="shipping_name"]').val();
+	// var shipping_location  = !$('input[name="shipping_address"]').val() ? $('input[name="address"]').val() : $('input[name="shipping_address"]').val();
+	// var shipping_phone = !$('input[name="shipping_phone"]').val() ? $('input[name="phone"]').val() : $('input[name="shipping_phone"]').val();
+	// var shipping_email= !$('input[name="shipping_email"]').val() ? $('input[name="email"]').val() : $('input[name="shipping_email"]').val();
 
-	$('#shipping_user').html('<i class="fas fa-user"></i>'+shipping_user);
-	$('#shipping_location').html('<i class="fas fas fa-map-marker-alt"></i>'+shipping_location);
-	$('#shipping_phone').html('<i class="fas fa-phone"></i>'+shipping_phone);
-	$('#shipping_email').html('<i class="fas fa-envelope"></i>'+shipping_email);
+	$('#shipping_user').html('<i class="fas fa-user"></i>' + shipping_name);
+	$('#shipping_location').html('<i class="fas fas fa-map-marker-alt"></i>' + shipping_address);
+	$('#shipping_phone').html('<i class="fas fa-phone"></i>' + shipping_phone);
+	$('#shipping_email').html('<i class="fas fa-envelope"></i>' + shipping_email);
 
 	$('#pills-step1-tab').addClass('active');
 	$('#pills-step2-tab').addClass('active');

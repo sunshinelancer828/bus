@@ -71,7 +71,7 @@ class CheckoutController extends Controller
         $order['shipping_cost'] = $request['shipping_cost'];
         $order['packing_cost'] = $request['packing_cost'];
         $order['shipping_title'] = (isset($request['shipping_title'])) ? $request['shipping_title'] : '';
-        $order['packing_title'] = $request['packing_title'];
+        $order['packing_title'] = (isset($request['packing_title'])) ? $request['packing_title'] : '';
         $order['tax'] = $request['tax'];
         $order['customer_phone'] = $request['phone'];
         $order['order_number'] = str_random(4).time();

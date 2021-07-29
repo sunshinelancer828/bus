@@ -125,7 +125,8 @@ class FlutterWaveController extends Controller
         }
 
         $settings = Generalsetting::findOrFail(1);
-        $order = new Order;
+
+        $order = Order::findOrFail(Session::get('order'));
 
         $item_number = str_random(4).time();
         $item_amount = $request->total;

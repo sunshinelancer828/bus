@@ -1540,7 +1540,6 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
 
   Route::post('/cashondelivery', 'Front\CheckoutController@cashondelivery')->name('cash.submit');
   Route::post('/gateway', 'Front\CheckoutController@gateway')->name('gateway.submit');
-
   Route::post('/wallet-submit', 'Front\CheckoutController@wallet')->name('wallet.submit');
 
   // CHECKOUT SECTION ENDS

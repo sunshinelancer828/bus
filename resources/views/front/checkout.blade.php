@@ -1239,20 +1239,21 @@ var mpack = $('.packing').length > 0 ? $('.packing').first().val() : 0;
 mship = parseFloat(mship);
 mpack = parseFloat(mpack);
 
-$('#shipping-cost').val(mship);
-$('#packing-cost').val(mpack);
-var ftotal = parseFloat($('#grandtotal').val()) + mship + mpack;
-ftotal = parseFloat(ftotal);
-      if(ftotal % 1 != 0)
-      {
-        ftotal = ftotal.toFixed(2);
-      }
-		if(pos == 0){
-			$('#final-cost').html('{{ $curr->sign }}'+ftotal)
-		}
-		else{
-			$('#final-cost').html(ftotal+'{{ $curr->sign }}')
-		}
+	$('#shipping-cost').val(mship);
+	$('#packing-cost').val(mpack);
+	var ftotal = parseFloat($('#grandtotal').val()) + mship + mpack;
+	ftotal = parseFloat(ftotal);
+	
+	if(ftotal % 1 != 0)
+	{
+		ftotal = ftotal.toFixed(2);
+	}
+	if(pos == 0){
+		$('#final-cost').html('{{ $curr->sign }}'+ftotal)
+	}
+	else{
+		$('#final-cost').html(ftotal+'{{ $curr->sign }}')
+	}
 
 $('#grandtotal').val(ftotal);
 
@@ -1275,43 +1276,46 @@ $('#shipop').on('change',function(){
 });
 
 
-$('.shipping').on('click',function(){
+$('.shipping').on('click',function() {
 	mship = $(this).val();
 
-$('#shipping-cost').val(mship);
-var ttotal = parseFloat($('#tgrandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
-ttotal = parseFloat(ttotal);
-      if(ttotal % 1 != 0)
-      {
-        ttotal = ttotal.toFixed(2);
-      }
-		if(pos == 0){
-			$('#final-cost').html('{{ $curr->sign }}'+ttotal);
-		}
-		else{
-			$('#final-cost').html(ttotal+'{{ $curr->sign }}');
-		}
+	$('#shipping-cost').val(mship);
+	var ttotal = parseFloat($('#tgrandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
+	ttotal = parseFloat(ttotal);
+
+	if(ttotal % 1 != 0)
+	{
+		ttotal = ttotal.toFixed(2);
+	}
+
+	if(pos == 0){
+		$('#final-cost').html('{{ $curr->sign }}'+ttotal);
+	}
+	else{
+		$('#final-cost').html(ttotal+'{{ $curr->sign }}');
+	}
 	
-$('#grandtotal').val(ttotal);
+	$('#grandtotal').val(ttotal);
 
 })
 
-$('.packing').on('click',function(){
+$('.packing').on('click',function() {
 	mpack = $(this).val();
-$('#packing-cost').val(mpack);
-var ttotal = parseFloat($('#tgrandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
-ttotal = parseFloat(ttotal);
-      if(ttotal % 1 != 0)
-      {
-        ttotal = ttotal.toFixed(2);
-      }
+	$('#packing-cost').val(mpack);
 
-		if(pos == 0){
-			$('#final-cost').html('{{ $curr->sign }}'+ttotal);
-		}
-		else{
-			$('#final-cost').html(ttotal+'{{ $curr->sign }}');
-		}	
+	var ttotal = parseFloat($('#tgrandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
+	ttotal = parseFloat(ttotal);
+	if(ttotal % 1 != 0)
+	{
+		ttotal = ttotal.toFixed(2);
+	}
+
+	if(pos == 0){
+		$('#final-cost').html('{{ $curr->sign }}'+ttotal);
+	}
+	else{
+		$('#final-cost').html(ttotal+'{{ $curr->sign }}');
+	}	
 
 
 $('#grandtotal').val(ttotal);

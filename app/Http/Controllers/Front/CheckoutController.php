@@ -105,8 +105,9 @@ class CheckoutController extends Controller
             $order['affilate_user'] = Session::get('affilate');
             $order['affilate_charge'] = $sub;
         }
-
         $order->save();
+
+        Session::set('order', $order->id);
         
         if($email) {
        
@@ -605,7 +606,7 @@ class CheckoutController extends Controller
                 }
             }
         }
-        $order = new Order;
+        $order = Order::findOrFail(Session::get('order'));
         $order['customer_state'] = $request->state;
         $order['shipping_state'] = $request->shipping_state;
         $success_url = action('Front\PaymentController@payreturn');
@@ -930,7 +931,7 @@ class CheckoutController extends Controller
         }
 
         $settings = Generalsetting::findOrFail(1);
-        $order = new Order;
+        $order = Order::findOrFail(Session::get('order'));
         $order['customer_state'] = $request->state;
         $order['shipping_state'] = $request->shipping_state;
         $success_url = action('Front\PaymentController@payreturn');
@@ -1280,7 +1281,7 @@ class CheckoutController extends Controller
                 }
             }
         }
-        $order = new Order;
+        $order = Order::findOrFail(Session::get('order'));
         $order['customer_state'] = $request->state;
         $order['shipping_state'] = $request->shipping_state;
         $success_url = action('Front\PaymentController@payreturn');

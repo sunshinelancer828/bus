@@ -59,7 +59,11 @@ class CheckoutController extends Controller
         $order = new Order;
         $order['customer_state'] = $request['state'];
         $order['shipping_state'] = $request['shipping_state'];
-        $order['user_id'] = Auth::check() ? Auth::user()->id : $request['user_id'];
+        if (Auth::check()) {
+            $order['user_id'] = Auth::user()->id;
+        } else {
+            return 'login';
+        }
         $order['cart'] = utf8_encode(bzcompress(serialize($cart), 9)); 
         $order['totalQty'] = $request['totalQty'];
         $order['pay_amount'] = $request['total'] / $curr->value; //

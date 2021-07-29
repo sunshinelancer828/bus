@@ -967,6 +967,7 @@ class CheckoutController extends Controller
         $order['order_note'] = $request->order_notes;
         $order['txnid'] = $request->txn_id4;
         $order['account_name'] = $request->account_name;
+        $order['status'] = 'pending';
 		
         if ($file = $request->file('screenshot')) {
 		

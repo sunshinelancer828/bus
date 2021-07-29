@@ -1629,7 +1629,7 @@ $('#step3-btn').on('click',function(){
 			'totalQty': totalQty,
 			'vendor_shipping_id': vendor_shipping_id,
 			'vendor_packing_id': vendor_packing_id,
-			'wallet_price':, wallet_price
+			'wallet_price': wallet_price
 		},
 		success: data => {
 			console.log(data);

@@ -1243,7 +1243,7 @@ mpack = parseFloat(mpack);
 	$('#packing-cost').val(mpack);
 	var ftotal = parseFloat($('#grandtotal').val()) + mship + mpack;
 	ftotal = parseFloat(ftotal);
-	
+
 	if(ftotal % 1 != 0)
 	{
 		ftotal = ftotal.toFixed(2);
@@ -1637,6 +1637,9 @@ $('#step3-btn').on('click',function(){
 		},
 		success: data => {
 			console.log(data);
+			if (data == 'login') {
+				window.location.href = mainurl + '/user/login';
+			}
 		}                
     });
  	

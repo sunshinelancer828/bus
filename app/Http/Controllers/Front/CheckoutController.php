@@ -33,10 +33,10 @@ class CheckoutController extends Controller
     
     public function sendconfirmemail() {
         
-        // $email = $_GET['uemail'];
-        // $totalPrice = $_GET['totalcost'];
-        // $name = $_GET['nametest'];
-        // $phone_number = $_GET['phone_number'];
+        $email = $_GET['email'];
+        $totalPrice = $_GET['total'];
+        $name = $_GET['name'];
+        $phone_number = $_GET['phone'];
               
         $gs = Generalsetting::findOrFail(1);
 		$userCart =  Session::get('cart');
@@ -46,8 +46,8 @@ class CheckoutController extends Controller
         $save_dir =   public_path().'/user-cart/';
 
         $request = $_GET;
-        dd($request);
-        return;
+        // dd($request);
+        // return;
 
         $cart = new Cart($userCart);
 
@@ -101,7 +101,7 @@ class CheckoutController extends Controller
             $order['affilate_charge'] = $sub;
         }
 
-        $order->save();
+        // $order->save();
         
         if($email) {
        

@@ -33,10 +33,10 @@ class CheckoutController extends Controller
     
     public function sendconfirmemail() {
         
-        // $email = $_GET['email'];
-        // $totalPrice = $_GET['total'];
-        // $name = $_GET['name'];
-        // $phone_number = $_GET['phone'];
+        $email = $_GET['email'];
+        $totalPrice = $_GET['total'];
+        $name = $_GET['name'];
+        $phone_number = $_GET['phone'];
               
         $gs = Generalsetting::findOrFail(1);
 		$userCart =  Session::get('cart');
@@ -70,7 +70,7 @@ class CheckoutController extends Controller
         $order['customer_name'] = $request['name'];
         $order['shipping_cost'] = $request['shipping_cost'];
         $order['packing_cost'] = $request['packing_cost'];
-        $order['shipping_title'] = $request['shipping_title'];
+        $order['shipping_title'] = (!empty($request['shipping_title'])) ? $request['shipping_title'] : '';
         $order['packing_title'] = $request['packing_title'];
         $order['tax'] = $request['tax'];
         $order['customer_phone'] = $request['phone'];

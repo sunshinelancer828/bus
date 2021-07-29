@@ -45,9 +45,9 @@ class CheckoutController extends Controller
      
         $save_dir =   public_path().'/user-cart/';
 
-        // $request = $_GET;
-        // dd($request);
-        // return;
+        $request = $_GET;
+        dd($request);
+        return;
 
         // $cart = new Cart($userCart);
 

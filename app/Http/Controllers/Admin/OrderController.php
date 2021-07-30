@@ -89,12 +89,9 @@ class OrderController extends Controller
 			}else{
 			    $dataFormat = '';
 			}
-			
-            dd($prod);
-            return;
-            
+
             if (isset($product['license'])) {
-                $subcat = DB::table('subcategories')->where('id','=',$prod['subcategory_id'])->get();
+                $subcat = DB::table('subcategories')->where('id','=',$prod[0]->subcategory_id)->get();
                 $subcat = is_array($subcat) ? $subcat[0]->name : '';
                 $str .= "Find below your \"" . $subcat . "\".<br><br>";
             } else {                

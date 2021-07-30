@@ -1618,10 +1618,10 @@ $('#step3-btn').on('click',function(){
 		},
 		success: data => {
 			console.log(data);
-			if (data == 'login') {
-        		$('#preloader').show();
-				window.location.href = mainurl + '/user/login';
-			} 
+			// if (data == 'login') {
+        	// 	$('#preloader').show();
+			// 	window.location.href = mainurl + '/user/login';
+			// } 
 		}                
     });
  	

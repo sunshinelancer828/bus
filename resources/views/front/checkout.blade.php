@@ -1621,7 +1621,7 @@ $('#step3-btn').on('click',function(){
 			if (data == 'login') {
         		$('#preloader').show();
 				window.location.href = mainurl + '/user/login';
-			}
+			} 
 		}                
     });
  	
@@ -1634,11 +1634,6 @@ $('#step3-btn').on('click',function(){
 	}
 	$('#pills-step3-tab').removeClass('disabled');
 	$('#pills-step3-tab').click();
-
-	// var shipping_user  = !$('input[name="shipping_name"]').val() ? $('input[name="name"]').val() : $('input[name="shipping_name"]').val();
-	// var shipping_location  = !$('input[name="shipping_address"]').val() ? $('input[name="address"]').val() : $('input[name="shipping_address"]').val();
-	// var shipping_phone = !$('input[name="shipping_phone"]').val() ? $('input[name="phone"]').val() : $('input[name="shipping_phone"]').val();
-	// var shipping_email= !$('input[name="shipping_email"]').val() ? $('input[name="email"]').val() : $('input[name="shipping_email"]').val();
 
 	$('#shipping_user').html('<i class="fas fa-user"></i>' + shipping_name);
 	$('#shipping_location').html('<i class="fas fas fa-map-marker-alt"></i>' + shipping_address);

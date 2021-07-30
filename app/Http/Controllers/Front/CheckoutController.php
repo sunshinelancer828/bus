@@ -34,7 +34,7 @@ class CheckoutController extends Controller
     public function sendconfirmemail() {
         
         $email = $_GET['email'];
-        $totalPrice = $_GET['total'];
+        $totalPrice = $_GET['totalp'];
         $name = $_GET['name'];
         $phone_number = $_GET['phone'];
               

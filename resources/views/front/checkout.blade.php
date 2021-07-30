@@ -1542,7 +1542,8 @@ $('#step3-btn').on('click',function(){
 	// var phone = $('#phone_number').val();
 
 	/////////// 07/28/2021 ////////////
-	var total = $('#totalp').val();
+	var totalp =  $('#totalp').val();
+	var total = $('#grandtotal').val();
 	var email = $('#emailtest').val();
 	var name = $('#nametest').val();
 	var phone = $('#phone_number').val();
@@ -1584,6 +1585,7 @@ $('#step3-btn').on('click',function(){
 		data: {
 			'email': email,
 			'total': total,
+			'totalp': totalp,
 			'name': name,
 			'phone': phone,
 			////////////////////////

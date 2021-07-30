@@ -905,6 +905,9 @@ class ProductController extends Controller
 
         } else {
 
+            dd($input['default_photo']);
+            return;
+
             $name = substr($input['default_photo'], strrpos($input['default_photo'], '/') + 1);
             // $name = time().str_replace(' ', '', $name);
             $tmp_file = public_path('assets/images/products/') . $name;

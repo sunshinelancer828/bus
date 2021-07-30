@@ -91,7 +91,9 @@ class OrderController extends Controller
 			}
 			
             if (isset($product['license'])) {
-                $str .= "Find below your \"" . $product['item']['subcategory'] . "\".<br><br>";
+                $subcat = DB::table('subcategories')->where('id','=',$product['subcategory_id'])->get();
+                $subcat = is_array($subcat) ? $subcat[0]->name : '';
+                $str .= "Find below your \"" . $subcat . "\".<br><br>";
             } else {                
                 $str .= "Click link below to download your product.<br><br>";
             }
@@ -112,7 +114,7 @@ class OrderController extends Controller
             if (isset($product['license'])) {
                 $str .= "PIN: ".$product['license']."<br><br>";
             } else {
-                $str .= "Format: ".$product['file_format']."<br>";
+                $str .= "Format: ".$dataFormat."<br>";
                 $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
             }
         }

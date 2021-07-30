@@ -90,10 +90,16 @@ class OrderController extends Controller
 			    $dataFormat = '';
 			}
 			
-            $str .= "Find below your ".$product['item']['name'].".<br><br>";
+            if (isset($product['license'])) {
+                $str .= "Find below your \"" . $product['item']['subcategory'] . "\".<br><br>";
+            } else {                
+                $str .= "Click link below to download your product.<br><br>";
+            }
+
             $str .= "Product Title: ".$product['item']['name']."<br>";
         	$str .= "Product Code: 000".$product['item']['id']."<br>";
-        	$str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
+        	$str .= "Price: " .Product::convertPrice($product['item_price'])."<br>";
+
         	if($product['item']['user_id'] != 0){
         	    $mstr .= $product['item']['name'].'<br>';
         	    $vid = $product['item']['user_id'];
@@ -103,8 +109,12 @@ class OrderController extends Controller
             }
             $str2 .= $str;
             $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
-            // $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
-            $str .= "PIN: ".$product['license']."<br><br>";
+            if (isset($product['license'])) {
+                $str .= "PIN: ".$product['license']."<br><br>";
+            } else {
+                $str .= "Format: ".$product['file_format']."<br>";
+                $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
+            }
         }
 
         $msg  = "Hello ".$data->customer_name.",<br><br>";

@@ -106,11 +106,10 @@ class OrderController extends Controller
         	    $mstr .= $product['item']['name'].'<br>';
         	    $vid = $product['item']['user_id'];
         	}
-			if($dataFormat) {
-        	    $str .= "Format: ".$dataFormat."<br>";
-            }
+			
             $str2 .= $str;
             $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
+
             if (isset($product['license'])) {
                 $str .= "PIN: ".$product['license']."<br><br>";
             } else {

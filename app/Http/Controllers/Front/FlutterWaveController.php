@@ -540,17 +540,32 @@ class FlutterWaveController extends Controller
                             $vid = $product['item']['user_id'];
                             $mstr .= $product['item']['name'].'<br>';
                         }
+
                         $dataFormat = DB::table('products')->where('id','=',$product['item']['id'])->get();
                         $dataFormat = $dataFormat[0]->file_format;
+
+                        if (isset($product['license'])) {
+                            $subcat = DB::table('subcategories')->where('id','=',$product['subcategory_id'])->get();
+                            $subcat = is_array($subcat) ? $subcat[0]->name : '';
+                            $str .= "Find below your \"" . $subcat . "\".<br><br>";
+                        } else {                
+                            $str .= "Click link below to download your product.<br><br>";
+                        }
+
                         $str .= "Product Title: ".$product['item']['name']."<br>";
                         $str .= "Product Code: 000".$product['item']['id']."<br>";
                         $str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
-                        if($dataFormat) {
-                            $str .= "Format: ".$dataFormat."<br>";
-                        }
+
+                        
                         $str2 .= $str;
                         $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
-                        $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
+                        // $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
+                        if (isset($product['license'])) {
+                            $str .= "PIN: ".$product['license']."<br><br>";
+                        } else {
+                            $str .= "Format: ".$dataFormat."<br>";
+                            $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
+                        }
                     }
                     
                     $to = $order->customer_email;

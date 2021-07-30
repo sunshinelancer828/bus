@@ -90,6 +90,9 @@ class OrderController extends Controller
 			    $dataFormat = '';
 			}
 			
+            dd($prod);
+            return;
+            
             if (isset($product['license'])) {
                 $subcat = DB::table('subcategories')->where('id','=',$prod['subcategory_id'])->get();
                 $subcat = is_array($subcat) ? $subcat[0]->name : '';

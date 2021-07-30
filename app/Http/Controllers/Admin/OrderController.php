@@ -83,18 +83,15 @@ class OrderController extends Controller
 
         foreach ($cart->items as $product) {
             
-			$dataFormat = DB::table('products')->where('id','=',$product['item']['id'])->get();
-			if(is_array($dataFormat)){
-			    $dataFormat = $dataFormat[0]->file_format;
+			$prod = DB::table('products')->where('id','=',$product['item']['id'])->get();
+			if(is_array($prod)){
+			    $dataFormat = $prod[0]->file_format;
 			}else{
 			    $dataFormat = '';
 			}
-
-            dd($product);
-            return;
 			
             if (isset($product['license'])) {
-                $subcat = DB::table('subcategories')->where('id','=',$product['subcategory_id'])->get();
+                $subcat = DB::table('subcategories')->where('id','=',$prod['subcategory_id'])->get();
                 $subcat = is_array($subcat) ? $subcat[0]->name : '';
                 $str .= "Find below your \"" . $subcat . "\".<br><br>";
             } else {                

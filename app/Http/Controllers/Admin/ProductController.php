@@ -905,13 +905,12 @@ class ProductController extends Controller
 
         } else {
 
-            dd($input['default_photo']);
-            return;
-
             $name = substr($input['default_photo'], strrpos($input['default_photo'], '/') + 1);
             // $name = time().str_replace(' ', '', $name);
             $tmp_file = public_path('assets/images/products/') . $name;
-            copy($input['default_photo'], $tmp_file);
+            if ($tmp_file != $input['default_photo'])
+                copy($input['default_photo'], $tmp_file);
+                
             $input['photo'] = $name;
             // return response()->json(array('errors' => [ 0 => 'You Can\'t Add More Product.'.$name.$tmp_file]));
         }

@@ -211,7 +211,7 @@
 										<!-- <div class="span4 cropme text-center" id="landscape" style="width: 250px; height: 250px; border: 1px dashed black;"></div>										 -->
 										<label for="image-upload" class="img-label" id="image-label"><i class="icofont-upload-alt"></i>{{ $langg->lang512 }}</label>
 										<input type="file" name="photo" class="img-upload-p" id="image-upload">
-										<input type="hidden" id="image-default" name="default_photo" value="">
+										<input type="hidden" id="image-default" name="default_photo" value="{{ asset('assets/images/products/'.$data->photo) }}">
 									</div>
 
 									<p class="img-alert mt-2 text-danger d-none"></p>

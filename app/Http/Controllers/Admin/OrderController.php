@@ -90,7 +90,7 @@ class OrderController extends Controller
 			    $dataFormat = '';
 			}
 
-            if (isset($product['license'])) {
+            if ($prod[0]->type == 'License') {
                 $subcat = DB::table('subcategories')->where('id','=',$prod[0]->subcategory_id)->get();
                 $subcat = is_array($subcat) ? $subcat[0]->name : '';
                 $str .= "Find below your \"" . $subcat . "\".<br><br>";
@@ -110,7 +110,7 @@ class OrderController extends Controller
             $str2 .= $str;
             $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
 
-            if (isset($product['license'])) {
+            if ($prod[0]->type == 'License') {
                 $str .= "PIN: ".$product['license']."<br><br>";
             } else {
                 $str .= "Format: ".$dataFormat."<br>";

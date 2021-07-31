@@ -1199,7 +1199,7 @@ class ProductController extends Controller
                 $admin_message = $request->reject;
            
                 $subject = 'Product Rejected';
-                $msg = "Hello ".$user_data->shop_name."<br><br>";
+                $msg = "Hello ".$user_data->shop_name.",<br><br>";
                 $msg.="Your product ".$request->name." has been rejected. hence not yet visible on our website<br><br>";
                 $msg.="Reason: ".$admin_message."<br><br>";
                 $msg.="Thank you as we look forward for a mutual advantage.<br><br>";  

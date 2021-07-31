@@ -556,7 +556,7 @@ class FlutterWaveController extends Controller
 
                         if (isset($product['license'])) {
                             $subcat = DB::table('subcategories')->where('id','=',$product['subcategory_id'])->get();
-                            $subcat = is_array($subcat) ? $subcat[0]->name : '';
+                            $subcat = $subcat[0]->name;
                             $str .= "Find below your \"" . $subcat . "\".<br><br>";
                         } else {                
                             $str .= "Click link below to download your product.<br><br>";

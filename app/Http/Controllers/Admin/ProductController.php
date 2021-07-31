@@ -1211,11 +1211,17 @@ class ProductController extends Controller
                 $to = $user_data->email;
                 $gs = Generalsetting::findOrFail(1);
       
-                 $msg1 = $msg;
-                 $headers = "MIME-Version: 1.0" . "\r\n";
-                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                 $headers .= "From: ProjectShelve <".$gs->from_email.">";
-                 mail($to,$subject,$msg1,$headers);
+                //  $msg1 = $msg;
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                $headers .= "From: ProjectShelve <projectshelve@gmail.com>";
+
+                //  mail($to,$subject,$msg1,$headers);
+                Mail::send(array(), array(), function ($message) use ($msg, $headers, $to, $subject) {
+                    $message->to($to)
+                    ->subject($subject)                            
+                    ->setBody($msg,'text/html');
+                });
           
                 $msg = 'Email sent to user.'; 
                 

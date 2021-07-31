@@ -237,6 +237,7 @@ class ProductController extends Controller
             
             $dataUsers = User::findOrFail($data->user_id);
             
+            $msg = '';
             if ($status == 0) {
                 
                 $subject = 'Product Deactivated';
@@ -275,17 +276,16 @@ class ProductController extends Controller
             $to = $dataUsers->email;
             $gs = Generalsetting::findOrFail(1);
       
-            $msg1 = $msg;
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= "From: ProjectShelve <".$gs->from_email.">";
+            $headers .= "From: ProjectShelve <projectshelve@gmail.com>";
          
             // mail($to, $subject, $msg1, $headers);
-            $sent =   Mail::send(array(), array(), function ($message) use ($msg1,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg1,'text/html');
-                            });  
+            Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                $message->to($to)
+                ->subject($subject)
+                ->setBody($msg,'text/html');
+            });  
              
         // 	 $phone_number = $dataUsers->phone;
         // 	 $mailer = new GeniusMailer();

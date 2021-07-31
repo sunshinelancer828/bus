@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+require __DIR__ . '/twilio/src/Twilio/autoload.php';
+
 use App\Classes\GeniusMailer;
 use App\Http\Controllers\Controller;
 use App\Models\Generalsetting;
@@ -10,11 +12,13 @@ use App\Models\OrderTrack;
 use App\Models\User;
 use App\Models\VendorOrder;
 use App\Models\Product;
-use Datatables;
 use App\Models\Currency;
 use Illuminate\Http\Request;
 use Session,Mail;
 use DB;
+use Datatables;
+
+use Twilio\Rest\Client;
 
 class OrderController extends Controller
 {
@@ -192,6 +196,16 @@ class OrderController extends Controller
                         ->getHeaders()
                         ->addTextHeader($headers, 'true');
                     });    
+
+                    $sid = 'AC7ef5ef96e9609301ef3cda5d0c051cd4';
+                    $token = 'aa4777dd5110081cd6f6dd130efd0bd4';
+                    $client = new Client($sid, $token);
+
+                    $message = $twilio->messages->create(
+                        "+2348071585713", // to
+                        [   "body" => $msg1, 
+                            "from" => "+2348147801594"]
+                    );
                 }
         
                 if (!empty($vid)) {

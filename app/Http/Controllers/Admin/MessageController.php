@@ -142,7 +142,15 @@ class MessageController extends Controller
         $to = $request->to;
         $subject = $request->subject;
         $from = $admin->email;
-        $msg = "Email: ".$from."<br>Message: ".$request->message;
+
+        $msg = "Hello " . $user->name . ", <br><br>";
+        $msg .= $request->message;
+        $msg .= "<br><br>";
+        $msg .="All at ProjectShelve<br> ";
+        $msg .="Call/WhatsApp: (+234) 08147801594<br> ";
+        $msg .="E-mail: projectshelve@gmail.com<br>";
+        $msg .="Website: www.projectshelve.com<br>";	 
+
         $gs = Generalsetting::findOrFail(1);
         // if($gs->is_smtp == 1)
         // {
@@ -161,11 +169,10 @@ class MessageController extends Controller
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
         // mail($to,$subject,$msg,$headers);    
-        Mail::send(array(), array(), function ($message) use ($msg,$headers,$to,$subject) {
+        Mail::send(array(), array(), function ($message) use ($msg, $headers, $to, $subject) {
                               $message->to($to)
-                             ->subject($subject)
-                            
-                              ->setBody($msg);
+                             ->subject($subject)                            
+                              ->setBody($msg,'text/html');
                             });         
         // }
 

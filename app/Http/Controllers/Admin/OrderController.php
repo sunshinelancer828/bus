@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-require base_path() . '../twilio/src/Twilio/autoload.php';
+require base_path() . '/../twilio/src/Twilio/autoload.php';
 
 use App\Classes\GeniusMailer;
 use App\Http\Controllers\Controller;

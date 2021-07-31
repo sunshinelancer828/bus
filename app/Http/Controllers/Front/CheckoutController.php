@@ -833,10 +833,15 @@ class CheckoutController extends Controller
         } else {
             $to = Pagesetting::find(1)->contact_email;
             $subject = "New Order Recieved!!";
-            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+
+            $msg = "Hello Admin!<br><br>Your store has recieved a new order.<br>Order Number is ".$order->order_number;
+            $msg .= ".Please login to your panel to check.<br>Thank you.<br><br>";
+            $msg .= "All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+            
             // mail($to,$subject,$msg,$headers);
             Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
                 $message->to($to)

@@ -124,7 +124,7 @@ class RegisterController extends Controller
 			$msg .= empty($request->vendor) ? $request->name : $request->shop_name;
 			$msg .= ",<br><br>You have successfully registered to ProjectShelve.com. ";
 			$msg .= "We wish you a wonderful experience using our service. <br>";
-			$msg .= "Below is your login details.<br>";
+			$msg .= "Below is your login details.<br><br>";
 			$msg .= "Email: " . $to . "<br>";
 			$msg .= "Password: " . $pwd . "<br><br>";
 			$msg .= "Thank you.<br><br>";

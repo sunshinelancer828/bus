@@ -213,21 +213,23 @@ class CheckoutController extends Controller
         
     }
     
-    public function loadpayment($slug1,$slug2)
+    public function loadpayment($slug1, $slug2)
     {
         if (Session::has('currency')) {
             $curr = Currency::find(Session::get('currency'));
-        }
-        else {
+        } else {
             $curr = Currency::where('is_default','=',1)->first();
         }
+
         $payment = $slug1;
         $pay_id = $slug2;
         $gateway = '';
+
         if($pay_id != 0) {
             $gateway = PaymentGateway::findOrFail($pay_id);
         }
-        return view('load.payment',compact('payment','pay_id','gateway','curr'));
+
+        return view('load.payment', compact('payment','pay_id','gateway','curr'));
     }
 
     public function checkout()

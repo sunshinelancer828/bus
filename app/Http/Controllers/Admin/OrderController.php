@@ -432,11 +432,11 @@ class OrderController extends Controller
             $to =$request->to;
             $subject =$request->subject;
 
-            $mail =   Mail::send(array(), array(), function ($message) use ($msg,$headers,$to,$subject) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg, 'text/html');
-                            }); 
+            $mail = Mail::send(array(), array(), function ($message) use ($msg,$headers,$to,$subject) {
+                $message->to($to)
+                ->subject($subject)
+                ->setBody($msg, 'text/html');
+            }); 
 
             if($mail==null) {
                 $data = 1;

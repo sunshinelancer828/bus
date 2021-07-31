@@ -413,11 +413,22 @@ class OrderController extends Controller
         // else
         // {
             $data = 0;
+
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-            $mail = mail($request->to,$request->subject,$request->message,$headers);
-            $msg =$request->message;
+
+            // $mail = mail($request->to,$request->subject,$request->message,$headers);
+            $user = User::where('email','=',$request->to)->first();        
+            $msg = empty($user) ? "Hello,<br><br>" : "Hello " . $user->name . ",<br><br>";
+            $msg .= $request->message;
+            $msg .= "<br><br>";
+            $msg .= "All at ProjectShelve<br> ";
+            $msg .= "Call/WhatsApp: (+234) 08147801594<br> ";
+            $msg .= "E-mail: projectshelve@gmail.com<br>";
+            $msg .= "Website: www.projectshelve.com<br>";	 
+
+
             $to =$request->to;
             $subject =$request->subject;
 

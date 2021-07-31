@@ -134,11 +134,11 @@ class MessageController extends Controller
         $data = 1;
         $admin = Auth::guard('admin')->user();
         $user = User::where('email','=',$request->to)->first();
-        if(empty($user))
-        {
+        if ( empty($user) ) {
             $data = 0;
-            return response()->json($data);   
+            return response()->json( $data );   
         }
+
         $to = $request->to;
         $subject = $request->subject;
         $from = $admin->email;

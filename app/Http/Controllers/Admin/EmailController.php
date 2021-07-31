@@ -59,46 +59,54 @@ class EmailController extends Controller
         $config = Generalsetting::findOrFail(1);
         if($request->type == 0)
         {
-        $users = User::all();
-        //Sending Email To Users
-        foreach($users as $user)
-        {
-            if($config->is_smtp == 1)
-            {
-                $data = [
-                    'to' => $user->email,
-                    'subject' => $request->subject,
-                    'body' => $request->body,
-                ];
+            $users = User::all();
+            //Sending Email To Users
+            foreach($users as $user) {
+                if($config->is_smtp == 1) {
+                    $data = [
+                        'to' => $user->email,
+                        'subject' => $request->subject,
+                        'body' => $request->body,
+                    ];
 
-                $mailer = new GeniusMailer();
-                $mailer->sendCustomMail($data);            
-            }
-            else
-            {
-               $to = $user->email;
-               $subject = $request->subject;
-               $msg = $request->body;
-               $headers = "MIME-Version: 1.0" . "\r\n";
-               $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-               $headers .= "From: ".$config->from_name."<".$config->from_email.">";
-               mail($to,$subject,$msg,$headers);
-            }  
-        } 
-        //--- Redirect Section          
-        $msg = 'Email Sent Successfully.';
-        return response()->json($msg);    
-        //--- Redirect Section Ends  
+                    $mailer = new GeniusMailer();
+                    $mailer->sendCustomMail($data);            
+                } else {
+                    $to = $user->email;
+                    $subject = $request->subject;
+                    
+                    $msg = "Hello " . $user->name . ", <br><br>";
+                    $msg .= $request->body;
+                    $msg .= "<br><br>";
+                    $msg .="All at ProjectShelve<br> ";
+                    $msg .="Call/WhatsApp: (+234) 08147801594<br> ";
+                    $msg .="E-mail: projectshelve@gmail.com<br>";
+                    $msg .="Website: www.projectshelve.com<br>";
+
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    $headers .= "From: ".$config->from_name."<".$config->from_email.">";
+
+                    Mail::send(array(), array(), function ($message) use ($msg, $headers, $to, $subject) {
+                        $message->to($to)
+                        ->subject($subject)                            
+                        ->setBody($msg,'text/html');
+                    });  
+                    // mail($to,$subject,$msg,$headers);
+                }  
+            } 
+            //--- Redirect Section          
+            $msg = 'Email Sent Successfully.';
+            return response()->json($msg);    
+            //--- Redirect Section Ends  
         }
 
         else if($request->type == 1)
         {
             $users = User::where('is_vendor','=','2')->get();
             //Sending Email To Vendors        
-            foreach($users as $user)
-            {
-                if($config->is_smtp == 1)
-                {
+            foreach($users as $user) {
+                if($config->is_smtp == 1) {
                     $data = [
                         'to' => $user->email,
                         'subject' => $request->subject,
@@ -107,27 +115,38 @@ class EmailController extends Controller
 
                     $mailer = new GeniusMailer();
                     $mailer->sendCustomMail($data);            
-                }
-                else
-                {
-                $to = $user->email;
-                $subject = $request->subject;
-                $msg = $request->body;
-                $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= "From: ".$config->from_name."<".$config->from_email.">";
-                mail($to,$subject,$msg,$headers);
+                } else {
+                    $to = $user->email;
+                    $subject = $request->subject;
+                    
+                    $msg = "Hello " . $user->name . ", <br><br>";
+                    $msg .= $request->body;
+                    $msg .= "<br><br>";
+                    $msg .="All at ProjectShelve<br> ";
+                    $msg .="Call/WhatsApp: (+234) 08147801594<br> ";
+                    $msg .="E-mail: projectshelve@gmail.com<br>";
+                    $msg .="Website: www.projectshelve.com<br>";
+
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    $headers .= "From: ".$config->from_name."<".$config->from_email.">";
+                    
+                    Mail::send(array(), array(), function ($message) use ($msg, $headers, $to, $subject) {
+                        $message->to($to)
+                        ->subject($subject)                            
+                        ->setBody($msg,'text/html');
+                    });  
+                    // mail($to,$subject,$msg,$headers);
                 }  
             }
         } 
+        
         else
         {
             $users = Subscriber::all();
             //Sending Email To Subscribers
-            foreach($users as $user)
-            {
-                if($config->is_smtp == 1)
-                {
+            foreach($users as $user) {
+                if($config->is_smtp == 1) {
                     $data = [
                         'to' => $user->email,
                         'subject' => $request->subject,
@@ -136,16 +155,28 @@ class EmailController extends Controller
 
                     $mailer = new GeniusMailer();
                     $mailer->sendCustomMail($data);            
-                }
-                else
-                {
-                $to = $user->email;
-                $subject = $request->subject;
-                $msg = $request->body;
-                $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= "From: ".$config->from_name."<".$config->from_email.">";
-                mail($to,$subject,$msg,$headers);
+                } else {
+                    $to = $user->email;
+                    $subject = $request->subject;
+                    
+                    $msg = "Hello " . $user->name . ", <br><br>";
+                    $msg .= $request->body;
+                    $msg .= "<br><br>";
+                    $msg .="All at ProjectShelve<br> ";
+                    $msg .="Call/WhatsApp: (+234) 08147801594<br> ";
+                    $msg .="E-mail: projectshelve@gmail.com<br>";
+                    $msg .="Website: www.projectshelve.com<br>";
+
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    $headers .= "From: ".$config->from_name."<".$config->from_email.">";
+                    
+                    Mail::send(array(), array(), function ($message) use ($msg, $headers, $to, $subject) {
+                        $message->to($to)
+                        ->subject($subject)                            
+                        ->setBody($msg,'text/html');
+                    });  
+                    // mail($to,$subject,$msg,$headers);
                 }  
             }   
         }

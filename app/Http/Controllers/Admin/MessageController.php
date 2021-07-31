@@ -170,10 +170,10 @@ class MessageController extends Controller
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
         // mail($to,$subject,$msg,$headers);    
         Mail::send(array(), array(), function ($message) use ($msg, $headers, $to, $subject) {
-                              $message->to($to)
-                             ->subject($subject)                            
-                              ->setBody($msg,'text/html');
-                            });         
+            $message->to($to)
+            ->subject($subject)                            
+            ->setBody($msg,'text/html');
+        });         
         // }
 
         if($request->type == 'Ticket'){

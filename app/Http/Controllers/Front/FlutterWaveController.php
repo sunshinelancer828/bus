@@ -306,7 +306,7 @@ class FlutterWaveController extends Controller
         {
            $to = $request->email;
            $subject = "Your Order Placed!!";
-           $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+           $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
            $headers = "MIME-Version: 1.0" . "\r\n";
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
@@ -319,7 +319,7 @@ class FlutterWaveController extends Controller
             $data = [
                 'to' => $gs->header_email,
                 'subject' => "New Order Recieved!!",
-                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
+                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com",
             ];
 
             $mailer = new GeniusMailer();
@@ -332,7 +332,7 @@ class FlutterWaveController extends Controller
             
             $msg = "Hello Admin!<br><br>Your store has recieved a new order.<br>Order Number is " . $order->order_number;
             $msg .= ".Please login to your panel to check.<br>Thank you.<br><br>";
-            $msg .= "All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            $msg .= "All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Email: projectshelve@gmail.com";
 
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";

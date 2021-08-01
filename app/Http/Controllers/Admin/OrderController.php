@@ -165,11 +165,11 @@ class OrderController extends Controller
 
 				if (count($all_licence) > 0 ) {
 
-                    $msg1 = $msg; // "Hello ".$data->customer_name.","."\n Thank you for shopping with us. We are looking forward to your next visit.<br>License Key :  ".implode (',',$all_licence)."<br><br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+                    $msg1 = $msg; // "Hello ".$data->customer_name.","."\n Thank you for shopping with us. We are looking forward to your next visit.<br>License Key :  ".implode (',',$all_licence)."<br><br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
                 
                 } else {
 
-					$msg1 = $msg; // "Hello ".$data->customer_name.",<br>"."\n Thank you for your interest in service. Below is an overview of your order:<br><br>Overview:<br>Product Title:".$cart['name']."<br>Product Code:000".$cart['id']." <br><br>We are looking forward to your next visit.<br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";  
+					$msg1 = $msg; // "Hello ".$data->customer_name.",<br>"."\n Thank you for your interest in service. Below is an overview of your order:<br><br>Overview:<br>Product Title:".$cart['name']."<br>Product Code:000".$cart['id']." <br><br>We are looking forward to your next visit.<br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";  
                 }
                 
                 $headers  = "MIME-Version: 1.0" . "\r\n";
@@ -204,7 +204,7 @@ class OrderController extends Controller
                     $message = $client->messages->create(
                         "+2348071585713", // to
                         [   "body" => $msg1, 
-                            "from" => "+234 814 780 1594"]
+                            "from" => "+2348147801594"]
                     );
                 }
         
@@ -318,7 +318,7 @@ class OrderController extends Controller
 
                 $subject = 'Your order '.$data->order_number.' is Declined!';
 
-                $msg = "Hello ".$data->customer_name.","."\n We are sorry for the inconvenience caused. We are looking forward to your next visit.<br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+                $msg = "Hello ".$data->customer_name.","."\n We are sorry for the inconvenience caused. We are looking forward to your next visit.<br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
 
                 // if ($gs->is_smtp == 1) {
 

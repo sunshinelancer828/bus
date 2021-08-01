@@ -807,7 +807,7 @@ class CheckoutController extends Controller
 
            /*$to = $request->email;
            $subject = "Your Order Placed!!";
-           $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+           $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
            $headers = "MIME-Version: 1.0" . "\r\n";
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
@@ -825,7 +825,7 @@ class CheckoutController extends Controller
             $data = [
                 'to' => Pagesetting::find(1)->contact_email,
                 'subject' => "New Order Recieved!!",
-                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
+                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com",
             ];
 
             $mailer = new GeniusMailer();
@@ -836,7 +836,7 @@ class CheckoutController extends Controller
 
             $msg = "Hello Admin!<br><br>Your store has recieved a new order.<br>Order Number is ".$order->order_number;
             $msg .= ".Please login to your panel to check.<br>Thank you.<br><br>";
-            $msg .= "All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            $msg .= "All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
 
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -1182,9 +1182,9 @@ class CheckoutController extends Controller
             if(count($all_licence) > 0 ) {
             $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br>
             License Key :  ".implode (',',$all_licence)."<br>
-            <br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            <br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
             } else {
-                    $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+                    $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
             }
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -1206,7 +1206,7 @@ class CheckoutController extends Controller
         //     $data = [
         //         'to' => Pagesetting::find(1)->contact_email,
         //         'subject' => "New Order Recieved!!",
-        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
+        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com",
         //     ];
 
         //     $mailer = new GeniusMailer();
@@ -1216,7 +1216,7 @@ class CheckoutController extends Controller
         // {
             $to = Pagesetting::find(1)->contact_email;
             $subject = "New Order Recieved!!";
-            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
@@ -1502,7 +1502,7 @@ class CheckoutController extends Controller
 
             $to = $request->email;
             $subject = "Your Order Placed!!";
-            $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
@@ -1514,7 +1514,7 @@ class CheckoutController extends Controller
         //     $data = [
         //         'to' => Pagesetting::find(1)->contact_email,
         //         'subject' => "New Order Recieved!!",
-        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
+        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com",
         //     ];
 
         //     $mailer = new GeniusMailer();
@@ -1524,7 +1524,7 @@ class CheckoutController extends Controller
         // {
             $to = Pagesetting::find(1)->contact_email;
             $subject = "New Order Recieved!!";
-            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";

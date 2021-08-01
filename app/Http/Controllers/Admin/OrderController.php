@@ -372,17 +372,17 @@ class OrderController extends Controller
 
             $order = VendorOrder::where('order_id', '=', $id)->update(['status' => $input['status']]);   
             
-            return response()->json('Status Updated Successfully.');    
+            $dbg_message = '';
+            if (file_exists(app_path('Classes/Instamojo.php'))) {
+                $dbg_message = 'true';
+            } else {
+                $dbg_message = 'false';
+            }
+
+            return response()->json('Testing this feature! '. $dbg_message);
         }
         
-        $dbg_message = '';
-        if (file_exists(app_path('Classes/Instamojo.php'))) {
-            $dbg_message = 'true';
-        } else {
-            $dbg_message = 'false';
-        }
-
-        return response()->json('Testing this feature! '. $dbg_message);
+        return response()->json('Status Updated Successfully.');    
     }
 
     public function pending()

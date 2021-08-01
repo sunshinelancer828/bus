@@ -199,13 +199,13 @@ class OrderController extends Controller
 
                     $sid = 'AC7ef5ef96e9609301ef3cda5d0c051cd4';
                     $token = 'aa4777dd5110081cd6f6dd130efd0bd4';
-                    $client = new Client($sid, $token);
+                    // $client = new Client($sid, $token);
 
-                    $message = $twilio->messages->create(
-                        "+2348071585713", // to
-                        [   "body" => $msg1, 
-                            "from" => "+2348147801594"]
-                    );
+                    // $message = $twilio->messages->create(
+                    //     "+2348071585713", // to
+                    //     [   "body" => $msg1, 
+                    //         "from" => "+2348147801594"]
+                    // );
                 }
         
                 if (!empty($vid)) {

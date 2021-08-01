@@ -373,7 +373,7 @@ class OrderController extends Controller
             $order = VendorOrder::where('order_id', '=', $id)->update(['status' => $input['status']]);   
             
             $dbg_message = '';
-            if (file_exists(app_path('Classes/Instamojo.php'))) {
+            if (file_exists(app_path('../twilio/sdk/Twilio/autoload.php'))) {
                 $dbg_message = 'true';
             } else {
                 $dbg_message = 'false';

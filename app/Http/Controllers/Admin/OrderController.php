@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-// require realpath(base_path() . '/..//') . '/twilio/src/Twilio/autoload.php';
 require app_path('../twilio/sdk/Twilio/autoload.php');
 
 use App\Classes\GeniusMailer;
@@ -19,7 +18,7 @@ use Session,Mail;
 use DB;
 use Datatables;
 
-// use Twilio\Rest\Client;
+use Twilio\Rest\Client;
 
 class OrderController extends Controller
 {
@@ -200,13 +199,13 @@ class OrderController extends Controller
 
                     $sid = 'AC7ef5ef96e9609301ef3cda5d0c051cd4';
                     $token = 'aa4777dd5110081cd6f6dd130efd0bd4';
-                    // $client = new Client($sid, $token);
+                    $client = new Client($sid, $token);
 
-                    // $message = $twilio->messages->create(
-                    //     "+2348071585713", // to
-                    //     [   "body" => $msg1, 
-                    //         "from" => "+2348147801594"]
-                    // );
+                    $message = $twilio->messages->create(
+                        "+2348071585713", // to
+                        [   "body" => $msg1, 
+                            "from" => "+2348147801594"]
+                    );
                 }
         
                 if (!empty($vid)) {
@@ -372,15 +371,8 @@ class OrderController extends Controller
             } 
 
             $order = VendorOrder::where('order_id', '=', $id)->update(['status' => $input['status']]);   
-            
-            $dbg_message = '';
-            if (file_exists(app_path('../twilio/sdk/Twilio/autoload.php'))) {
-                $dbg_message = 'true';
-            } else {
-                $dbg_message = 'false';
-            }
-
-            return response()->json('Testing this feature! '. $dbg_message);
+       
+            return response()->json('Status Updated Successfully.');    
         }
         
         return response()->json('Status Updated Successfully.');    

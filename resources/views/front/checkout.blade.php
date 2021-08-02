@@ -251,6 +251,7 @@
 								<div class="content-box">
 									<div class="content">
 										<div class="order-area">
+											@if ($products)
 											@foreach($products as $product)
 											<div class="order-item">
 												<div class="product-img">
@@ -299,6 +300,7 @@
 												</div>
 											</div>
 											@endforeach
+											@endif
 
 										</div>
 

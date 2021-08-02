@@ -251,8 +251,7 @@
 								<div class="content-box">
 									<div class="content">
 										<div class="order-area">
-											{{ dd($products) }}
-											<!--@foreach($products as $product)
+											@foreach($products as $product)
 											<div class="order-item">
 												<div class="product-img">
 													<div class="d-flex">
@@ -299,7 +298,7 @@
 													</div>
 												</div>
 											</div>
-											@endforeach-->
+											@endforeach
 
 										</div>
 

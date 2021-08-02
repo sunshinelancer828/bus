@@ -201,11 +201,11 @@ class OrderController extends Controller
                     $token = 'aa4777dd5110081cd6f6dd130efd0bd4';
                     $client = new Client($sid, $token);
 
-                    $message = $client->messages->create(
-                        "+2348071585713", // to
-                        [   "body" => $msg1, 
-                            "from" => "+2348147801594"]
-                    );
+                    // $message = $client->messages->create(
+                    //     "+2348071585713", // to
+                    //     [   "body" => $msg1, 
+                    //         "from" => "+2348147801594"]
+                    // );
                 }
         
                 if (!empty($vid)) {

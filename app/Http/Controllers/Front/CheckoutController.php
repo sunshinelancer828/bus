@@ -260,8 +260,6 @@ class CheckoutController extends Controller
             $cart = new Cart($oldCart);
             $products = $cart->items;
 
-            dd($cart);
-            return;
             // Shipping Method
 
             if($gs->multiple_shipping == 1) {                        

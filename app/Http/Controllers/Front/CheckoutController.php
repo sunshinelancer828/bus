@@ -154,7 +154,7 @@ class CheckoutController extends Controller
 			$file_name = $file_uniqe.'.json';
 			// $payhere = "";
 			$url = url('/');
-			$payhere ='<a href="https://projectshelve.com/checkout?cart="'.$userCart.'>PAY HERE</a>';
+			$payhere ='<a href="https://projectshelve.com/checkout?cart="'. json_encode($userCart) .'>PAY HERE</a>';
 			$payhere2 = 'pay here ' . $url . '?user-cart=' . $file_uniqe;
 
             $msg .= $str . '<br>';
@@ -238,7 +238,7 @@ class CheckoutController extends Controller
         if (!Session::has('cart')) {
             // return redirect()->route('front.cart')->with('success',"You don't have any product to checkout.");
             if (isset($_GET['cart'])) {
-                Session::put('cart', $_GET['cart']);
+                Session::put('cart', json_decode($_GET['cart']));
             }
         }
 

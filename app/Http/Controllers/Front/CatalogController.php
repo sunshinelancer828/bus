@@ -121,11 +121,14 @@ class CatalogController extends Controller
 
             $keywords = preg_split('/\s+/', $search); 
             
+            dd($keywords);
+            return;
+
             foreach ($keywords as $word) {
                 // $items = Product::where('name','like',"%{$word}%")
                 // $prods = $prods->where('name','like','%'.$word.'%')->where('status', 1);
                 $prods = $prods->when($word, function ($query, $word) {
-                    return $query->where('name','like','%'.$word.'%')->where('status', 1);
+                    return $query->orWhere('name','LIKE','%'.$word.'%')->where('status', 1);
                 });
             }
 

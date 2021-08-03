@@ -47,143 +47,128 @@ class CatalogController extends Controller
 
     // -------------------------------- CATEGORY SECTION ----------------------------------------
 
-    public function category(Request $request, $slug=null, $slug1=null, $slug2=null)
-    {
+    public function category(Request $request, $slug=null, $slug1=null, $slug2=null) {
 
+        if (Session::has('currency')) {
+            $curr = Currency::find(Session::get('currency'));
+        } else {
+            $curr = Currency::where('is_default','=',1)->first();
+        }
 
-      if (Session::has('currency')) 
-      {
-        $curr = Currency::find(Session::get('currency'));
-      }
-      else
-      {
-          $curr = Currency::where('is_default','=',1)->first();
-      }
-      $cat = null;
-      $subcat = null;
-      $childcat = null;
-      $minprice = $request->min;
-      $maxprice = $request->max;
-      $sort = $request->sort;
-      $search = $request->search;
-      $minprice = round(($minprice / $curr->value),2);
-      $maxprice = round(($maxprice / $curr->value),2);
-       //echo "<pre>";print_r(gettype($search));die;
+        $cat = null;
+        $subcat = null;
+        $childcat = null;
+        $minprice = $request->min;
+        $maxprice = $request->max;
+        $sort = $request->sort;
+        $search = $request->search;
+        $minprice = round(($minprice / $curr->value),2);
+        $maxprice = round(($maxprice / $curr->value),2);
+        //echo "<pre>";print_r(gettype($search));die;
 
-      if (!empty($slug)) {
-        $cat = Category::where('slug', $slug)->firstOrFail();
-        $data['cat'] = $cat;
-      }
-      if (!empty($slug1)) {
-        $subcat = Subcategory::where('slug', $slug1)->firstOrFail();
-        $data['subcat'] = $subcat;
-      }
-      if (!empty($slug2)) {
-        $childcat = Childcategory::where('slug', $slug2)->firstOrFail();
-        $data['childcat'] = $childcat;
-      }
-      $prods = Product::select('user_id','category_id','product_type','affiliate_link','sku', 'subcategory_id', 'childcategory_id', 'attributes', 'name', 'photo', 'size','size_qty','size_price', 'color','price','previous_price','stock','policy','status', 'views','tags','featured','best','top','hot','latest','big','trending','sale','features','colors','product_condition','ship','meta_tag','meta_description','youtube','type','file','license','license_qty','link','platform','region','licence_type','measure','discount_date','is_discount','whole_sell_qty','thumbnail','whole_sell_discount','catalog_id','slug','product_code','pages','chapters','file_format','rejected')->when($cat, function ($query, $cat) {
-                                      return $query->where('category_id', $cat->id);
-                                  })
-                                  ->when($subcat, function ($query, $subcat) {
-                                      return $query->where('subcategory_id', $subcat->id);
-                                  })
-                                  ->when($childcat, function ($query, $childcat) {
-                                      return $query->where('childcategory_id', $childcat->id);
-                                  })
-                                  ->when($minprice, function($query, $minprice) {
-                                    return $query->where('price', '>=', $minprice);
-                                  })
-                                  ->when($maxprice, function($query, $maxprice) {
-                                    return $query->where('price', '<=', $maxprice);
-                                  })
-                                  ->when($sort, function ($query, $sort) {
-                                      if ($sort=='date_desc') {
-                                        return $query->orderBy('id', 'DESC');
-                                      }
-                                      elseif($sort=='date_asc') {
-                                        return $query->orderBy('id', 'ASC');
-                                      }
-                                      elseif($sort=='price_desc') {
-                                        return $query->orderBy('price', 'DESC');
-                                      }
-                                      elseif($sort=='price_asc') {
-                                        return $query->orderBy('price', 'ASC');
-                                      }
-                                  });
-                                  // ->when(empty($sort), function ($query, $sort) {
-                                  //     return $query->orderBy('id', 'DESC');
-                                  // });
-                                
-                        
+        if (!empty($slug)) {
+            $cat = Category::where('slug', $slug)->firstOrFail();
+            $data['cat'] = $cat;
+        }
+
+        if (!empty($slug1)) {
+            $subcat = Subcategory::where('slug', $slug1)->firstOrFail();
+            $data['subcat'] = $subcat;
+        }
+
+        if (!empty($slug2)) {
+            $childcat = Childcategory::where('slug', $slug2)->firstOrFail();
+            $data['childcat'] = $childcat;
+        }
+
+        $prods = Product::select('user_id','category_id','product_type','affiliate_link','sku', 'subcategory_id', 'childcategory_id', 'attributes', 'name', 'photo', 'size','size_qty','size_price', 'color','price','previous_price','stock','policy','status', 'views','tags','featured','best','top','hot','latest','big','trending','sale','features','colors','product_condition','ship','meta_tag','meta_description','youtube','type','file','license','license_qty','link','platform','region','licence_type','measure','discount_date','is_discount','whole_sell_qty','thumbnail','whole_sell_discount','catalog_id','slug','product_code','pages','chapters','file_format','rejected')->when($cat, function ($query, $cat) {
+            return $query->where('category_id', $cat->id);
+        })
+        ->when($subcat, function ($query, $subcat) {
+            return $query->where('subcategory_id', $subcat->id);
+        })
+        ->when($childcat, function ($query, $childcat) {
+            return $query->where('childcategory_id', $childcat->id);
+        })
+        ->when($minprice, function($query, $minprice) {
+            return $query->where('price', '>=', $minprice);
+        })
+        ->when($maxprice, function($query, $maxprice) {
+            return $query->where('price', '<=', $maxprice);
+        })
+        ->when($sort, function ($query, $sort) {
+            if ($sort=='date_desc') {
+                return $query->orderBy('id', 'DESC');
+            } else if ($sort=='date_asc') {
+                return $query->orderBy('id', 'ASC');
+            } else if ($sort=='price_desc') {
+                return $query->orderBy('price', 'DESC');
+            } else if($sort=='price_asc') {
+                return $query->orderBy('price', 'ASC');
+            }
+        });        
+        // ->when(empty($sort), function ($query, $sort) {
+        //     return $query->orderBy('id', 'DESC');
+        // });     
                                
-                                //   $prods = $prods->where(function ($query) use ($cat, $subcat, $childcat, $request) {
-                                //               $flag = 0;
+        // $prods = $prods->where(function ($query) use ($cat, $subcat, $childcat, $request) {
+        //     $flag = 0;
+        //     if (!empty($cat)) {
+        //         foreach ($cat->attributes as $key => $attribute) {
+        //             $inname = $attribute->input_name;
+        //             $chFilters = $request["$inname"];
+        //             if (!empty($chFilters)) {
+        //                 $flag = 1;
+        //                 foreach ($chFilters as $key => $chFilter) {
+        //                     if ($key == 0) {
+        //                         $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+        //                     } else {
+        //                         $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
 
-                                //               if (!empty($cat)) {
-                                //                 foreach ($cat->attributes as $key => $attribute) {
-                                //                   $inname = $attribute->input_name;
-                                //                   $chFilters = $request["$inname"];
-                                //                   if (!empty($chFilters)) {
-                                //                     $flag = 1;
-                                //                     foreach ($chFilters as $key => $chFilter) {
-                                //                       if ($key == 0) {
-                                //                         $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-                                //                       } else {
-                                //                         $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-                                //                       }
+        //     if (!empty($subcat)) {
+        //         foreach ($subcat->attributes as $attribute) {
+        //             $inname = $attribute->input_name;
+        //             $chFilters = $request["$inname"];
+        //             if (!empty($chFilters)) {
+        //                 $flag = 1;
+        //                 foreach ($chFilters as $key => $chFilter) {
+        //                     if ($key == 0 && $flag == 0) {
+        //                         $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+        //                     } else {
+        //                         $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+        //                     }
 
-                                //                     }
-                                //                   }
-                                //                 }
-                                //               }
+        //                 }
+        //             }
+        //         }
+        //     }
 
-
-                                //               if (!empty($subcat)) {
-                                //                 foreach ($subcat->attributes as $attribute) {
-                                //                   $inname = $attribute->input_name;
-                                //                   $chFilters = $request["$inname"];
-                                //                   if (!empty($chFilters)) {
-                                //                     $flag = 1;
-                                //                     foreach ($chFilters as $key => $chFilter) {
-                                //                       if ($key == 0 && $flag == 0) {
-                                //                         $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-                                //                       } else {
-                                //                         $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-                                //                       }
-
-                                //                     }
-                                //                   }
-
-                                //                 }
-                                //               }
-
-
-                                //               if (!empty($childcat)) {
-                                //                 foreach ($childcat->attributes as $attribute) {
-                                //                   $inname = $attribute->input_name;
-                                //                   $chFilters = $request["$inname"];
-                                //                   if (!empty($chFilters)) {
-                                //                     $flag = 1;
-                                //                     foreach ($chFilters as $key => $chFilter) {
-                                //                       if ($key == 0 && $flag == 0) {
-                                //                         $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-                                //                       } else {
-                                //                         $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-                                //                       }
-
-                                //                     }
-                                //                   }
-
-                                //                 }
-                                //               }
-                                //           });
-
-
+        //     if (!empty($childcat)) {
+        //         foreach ($childcat->attributes as $attribute) {
+        //             $inname = $attribute->input_name;
+        //             $chFilters = $request["$inname"];
+        //             if (!empty($chFilters)) {
+        //                 $flag = 1;
+        //                 foreach ($chFilters as $key => $chFilter) {
+        //                     if ($key == 0 && $flag == 0) {
+        //                         $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+        //                     } else {
+        //                         $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // });
 
     
-        if($search){
-              $items =[];
+        if($search) {
+            $items =[];
             // $prods=Product::search($search)->paginate(1000);
             $searchValues = preg_split('/\s+/', $search); 
            
@@ -192,81 +177,71 @@ class CatalogController extends Controller
                 //         $q->where('name', 'like', "%{$value}%");
                 //     }
                 // })->where('status',1)->orderby('id','desc')->take(10)->get();
-            foreach($searchValues as $value){
-                $items =Product::where('name','like',"%{$value}%")->where('status',1)->orderby('id','desc')->take(10)->get();
+            foreach($searchValues as $value) {
+                $items =Product::where('name','like',"%{$value}%")
+                ->where('status',1)->orderby('id','desc')->take(10)->get();
             }
                          
-// dd($items);
-            if(count($items)<=10 && count($items)>0){
-              
-             
-              
-             foreach(explode(' ',$search) as $key => $value){
-                    
-                if($value){
-                    $checks = Product::where('name','like', "%".$value."%")->where('status','=',1)->get()->take(60);
-                    
-                    foreach($checks as $item){
-                        $word = explode(' ',strtolower($item->name));
+            // dd($items);  
+            if(count($items)<=10 && count($items)>0) {  
+
+                foreach(explode(' ',$search) as $key => $value) {
                         
-                        $count = 0;
-                        foreach($word as $check){
-                            
-                                 $int = strtolower($search);
+                    if($value) {
+                        $checks = Product::where('name','like', "%".$value."%")->where('status','=',1)->get()->take(60);
+                        
+                        foreach($checks as $item) {
+                            $word = explode(' ',strtolower($item->name));                            
+                            $count = 0;
+                            foreach($word as $check) {
                                 
-                                 $int = explode(' ',$int);
-                                 $int = array_merge($int, [""]);
+                                $int = strtolower($search);
                                 
-                                if(in_array(strtolower($check),$int)){
+                                $int = explode(' ',$int);
+                                $int = array_merge($int, [""]);
+                                
+                                if(in_array(strtolower($check),$int)) {
                                     $count = $count+1;
-                                }
-                            
+                                }                                
+                            }
+                    
+                            $item['count'] = $count;
+                            $prodss[] = $item;
                         }
-                   
-                        $item['count'] = $count;
-                        $prodss[] = $item;
                     }
-                   
                 }
+            
+                $prodsss = new Collection($prodss);
+                $prodsss = collect($prodsss)->sortByDesc('count')->take(30 - count($items));
                 
-            }
+                
+                $prodsssss = $items;
+                $prods = $prodsssss->merge($prodsss);
             
-            $prodsss = new Collection($prodss);
-           $prodsss = collect($prodsss)->sortByDesc('count')->take(30 - count($items));
-           
-          
-            $prodsssss = $items;
-            $prods = $prodsssss->merge($prodsss);
-            
-            }
-            else{
+            } else {
                 $prods=[];
                 $prods=Collect($prods);
             }
     
-}else{
-    $prods = $prods;
-     
-}
+        } else {
+            $prods = $prods;
+        }
 
+        $data['prods'] = $prods->paginate(30);
 
-
-      $data['prods'] = $prods->paginate(30);
-
-
-      if($request->ajax()) {
-      $data['ajax_check'] = 1;
-
-        return view('includes.product.filtered-products', $data);
-      }
-      return view('front.category', $data);
+        if($request->ajax()) {
+            $data['ajax_check'] = 1;
+            return view('includes.product.filtered-products', $data);
+        }
+        return view('front.category', $data);
     }
 
 
     public function getsubs(Request $request) {
-      $category = Category::where('slug', $request->category)->firstOrFail();
-      $subcategories = Subcategory::where('category_id', $category->id)->get();
-      return $subcategories;
+
+        $category = Category::where('slug', $request->category)->firstOrFail();
+        $subcategories = Subcategory::where('category_id', $category->id)->get();
+        return $subcategories;
     }
 
 

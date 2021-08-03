@@ -240,6 +240,7 @@ class CheckoutController extends Controller
             if (isset($_GET['cart'])) {
                 Session::put('cart', unserialize(base64_decode($_GET['cart'])));
             }
+            return redirect()->route('front.cart');
         }
 
         $gs = Generalsetting::findOrFail(1);

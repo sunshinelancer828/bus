@@ -174,8 +174,8 @@ class CatalogController extends Controller
         // });
 
     
-        if($search) {
-            $items =[];
+        if ($search) {
+            $items = [];
             // $prods=Product::search($search)->paginate(1000);
             $searchValues = preg_split('/\s+/', $search); 
            
@@ -184,30 +184,34 @@ class CatalogController extends Controller
                 //         $q->where('name', 'like', "%{$value}%");
                 //     }
                 // })->where('status',1)->orderby('id','desc')->take(10)->get();
-            foreach($searchValues as $value) {
-                $items =Product::where('name','like',"%{$value}%")
-                ->where('status',1)->orderby('id','desc')->take(10)->get();
+            
+            foreach ($searchValues as $value) {
+                // $items = Product::where('name','like',"%{$value}%")
+                $prods = $prods->where('name','like',"%{$value}%")->where('status', 1);
             }
+            $items = $prods->orderby('id','desc')->take(10)->get();
                          
-            // dd($items);  
-            if(count($items)<=10 && count($items)>0) {  
+            dd($items);  
+            return;
+            
+            if (count($items) <= 10 && count($items) > 0) {  
 
-                foreach(explode(' ',$search) as $key => $value) {
+                foreach (explode(' ',$search) as $key => $value) {
                         
-                    if($value) {
+                    if ($value) {
                         $checks = Product::where('name','like', "%".$value."%")->where('status','=',1)->get()->take(60);
                         
-                        foreach($checks as $item) {
+                        foreach ($checks as $item) {
                             $word = explode(' ',strtolower($item->name));                            
                             $count = 0;
-                            foreach($word as $check) {
+                            foreach ($word as $check) {
                                 
                                 $int = strtolower($search);
                                 
                                 $int = explode(' ',$int);
                                 $int = array_merge($int, [""]);
                                 
-                                if(in_array(strtolower($check),$int)) {
+                                if (in_array(strtolower($check),$int)) {
                                     $count = $count+1;
                                 }                                
                             }

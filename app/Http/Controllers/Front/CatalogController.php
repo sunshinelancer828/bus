@@ -122,6 +122,7 @@ class CatalogController extends Controller
             $trash = array('on', 'of', 'at', 'a', 'an', 'as', 'the', 's', 'over', 'up', 'down', 'am', 'is', 'are', 'to');
             $keywords = preg_split('/\s+/', strtolower($search)); 
 
+            $keywords = array_unique($keywords);
             $keywords = array_diff($keywords, $trash);
             
             foreach ($keywords as $word) {

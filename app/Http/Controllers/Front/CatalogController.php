@@ -119,7 +119,7 @@ class CatalogController extends Controller
     
         if ($search) {
 
-            $trash = array('on', 'of', 'at', 'a', 'an', 'as', 'the', 's', 'over', 'up', 'down', 'am', 'is', 'are', 'to');
+            $trash = array('on', 'of', 'at', 'a', 'an', 'as', 'the', 's', 'over', 'up', 'down', 'am', 'is', 'are', 'to', 'in');
             $keywords = preg_split('/\s+/', strtolower($search)); 
 
             $keywords = array_unique($keywords);

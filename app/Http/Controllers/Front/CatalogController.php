@@ -119,11 +119,11 @@ class CatalogController extends Controller
     
         if ($search) {
 
-            $keywords = preg_split('/\s+/', $search); 
-            
-            dd($keywords);
-            return;
+            $trash = array('on', 'of', 'at', 'a', 'an', 'as', 'the', 's', 'over', 'up', 'down', 'am', 'is', 'are', 'to');
+            $keywords = preg_split('/\s+/', strtolower($search)); 
 
+            $keywords = array_diff($keywords, $trash);
+            
             foreach ($keywords as $word) {
                 // $items = Product::where('name','like',"%{$word}%")
                 // $prods = $prods->where('name','like','%'.$word.'%')->where('status', 1);

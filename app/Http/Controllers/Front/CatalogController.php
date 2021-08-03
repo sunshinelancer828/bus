@@ -54,16 +54,17 @@ class CatalogController extends Controller
         } else {
             $curr = Currency::where('is_default','=',1)->first();
         }
+        $minprice = $request->min;
+        $maxprice = $request->max;
+        $minprice = round(($minprice / $curr->value),2);
+        $maxprice = round(($maxprice / $curr->value),2);
 
         $cat = null;
         $subcat = null;
         $childcat = null;
-        $minprice = $request->min;
-        $maxprice = $request->max;
         $sort = $request->sort;
         $search = $request->search;
-        $minprice = round(($minprice / $curr->value),2);
-        $maxprice = round(($maxprice / $curr->value),2);
+
         //echo "<pre>";print_r(gettype($search));die;
 
         if (!empty($slug)) {
@@ -113,66 +114,11 @@ class CatalogController extends Controller
             } else if($sort=='price_asc') {
                 return $query->orderBy('price', 'ASC');
             }
-        });        
-        // ->when(empty($sort), function ($query, $sort) {
-        //     return $query->orderBy('id', 'DESC');
-        // });     
-                               
-        // $prods = $prods->where(function ($query) use ($cat, $subcat, $childcat, $request) {
-        //     $flag = 0;
-        //     if (!empty($cat)) {
-        //         foreach ($cat->attributes as $key => $attribute) {
-        //             $inname = $attribute->input_name;
-        //             $chFilters = $request["$inname"];
-        //             if (!empty($chFilters)) {
-        //                 $flag = 1;
-        //                 foreach ($chFilters as $key => $chFilter) {
-        //                     if ($key == 0) {
-        //                         $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-        //                     } else {
-        //                         $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-
-        //     if (!empty($subcat)) {
-        //         foreach ($subcat->attributes as $attribute) {
-        //             $inname = $attribute->input_name;
-        //             $chFilters = $request["$inname"];
-        //             if (!empty($chFilters)) {
-        //                 $flag = 1;
-        //                 foreach ($chFilters as $key => $chFilter) {
-        //                     if ($key == 0 && $flag == 0) {
-        //                         $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-        //                     } else {
-        //                         $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-        //                     }
-
-        //                 }
-        //             }
-        //         }
-        //     }
-
-        //     if (!empty($childcat)) {
-        //         foreach ($childcat->attributes as $attribute) {
-        //             $inname = $attribute->input_name;
-        //             $chFilters = $request["$inname"];
-        //             if (!empty($chFilters)) {
-        //                 $flag = 1;
-        //                 foreach ($chFilters as $key => $chFilter) {
-        //                     if ($key == 0 && $flag == 0) {
-        //                         $query->where('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-        //                     } else {
-        //                         $query->orWhere('attributes', 'like', '%'.'"'.$chFilter.'"'.'%');
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // });
-
+        });  
+        
+        dd($prods);
+        return;
+        
     
         if ($search) {
             $items = [];

@@ -8,6 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="facebook-domain-verification" content="vj9kkp1iqeh6eh93n9myxna52lz6yw" />
     @if(isset($page->meta_tag) && isset($page->meta_description))
         <meta name="keywords" content="{{ $page->meta_tag }}">
         <meta name="description" content="{{ $page->meta_description }}">

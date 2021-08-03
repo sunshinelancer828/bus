@@ -115,27 +115,19 @@ class CatalogController extends Controller
                 return $query->orderBy('price', 'ASC');
             }
         });  
-        
-        dd($prods->get());
-        return;
-        
+          
     
         if ($search) {
-            $items = [];
-            // $prods=Product::search($search)->paginate(1000);
-            $searchValues = preg_split('/\s+/', $search); 
-           
-                //          $items = Product::where(function ($q) use ($searchValues) {
-                //     foreach ($searchValues as $value) {
-                //         $q->where('name', 'like', "%{$value}%");
-                //     }
-                // })->where('status',1)->orderby('id','desc')->take(10)->get();
+
+            $keywords = preg_split('/\s+/', $search); 
             
-            foreach ($searchValues as $value) {
-                // $items = Product::where('name','like',"%{$value}%")
-                $prods = $prods->where('name','like',"%{$value}%")->where('status', 1);
+            foreach ($keywords as $word) {
+                // $items = Product::where('name','like',"%{$word}%")
+                $prods = $prods->where('name','like',"%{$word}%")->where('status', 1);
             }
-            $items = $prods->orderby('id','desc')->take(10)->get();
+
+            $items = [];
+            $items = $prods->orderby('id','desc')/*->take(10)*/->get();
                          
             // dd($items);  
             // return;
@@ -177,7 +169,7 @@ class CatalogController extends Controller
             
             } else {
                 $prods=[];
-                $prods=Collect($prods);
+                $prods = Collect($prods);
             }
     
         } else {

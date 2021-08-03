@@ -123,7 +123,10 @@ class CatalogController extends Controller
             
             foreach ($keywords as $word) {
                 // $items = Product::where('name','like',"%{$word}%")
-                $prods = $prods->where('name','like','%'.$word.'%')->where('status', 1);
+                // $prods = $prods->where('name','like','%'.$word.'%')->where('status', 1);
+                $prods = $prods->when($word, function ($query, $word) {
+                    return $query->where('name','like','%'.$word.'%')->where('status', 1);
+                });
             }
 
             // $items = [];

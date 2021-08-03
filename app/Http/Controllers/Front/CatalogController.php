@@ -134,7 +134,7 @@ class CatalogController extends Controller
             // }
 
             $prods = $prods->when($search, function ($query, $search) {
-                return $query->whereRaw("MATCH(name) AGAINST(" . $search . ")");
+                return $query->whereRaw("MATCH(name) AGAINST('" . $search . "')");
             });
 
             // $items = [];

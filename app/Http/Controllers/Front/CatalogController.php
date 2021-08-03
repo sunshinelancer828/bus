@@ -81,7 +81,14 @@ class CatalogController extends Controller
             $data['childcat'] = $childcat;
         }
 
-        $prods = Product::select('user_id','category_id','product_type','affiliate_link','sku', 'subcategory_id', 'childcategory_id', 'attributes', 'name', 'photo', 'size','size_qty','size_price', 'color','price','previous_price','stock','policy','status', 'views','tags','featured','best','top','hot','latest','big','trending','sale','features','colors','product_condition','ship','meta_tag','meta_description','youtube','type','file','license','license_qty','link','platform','region','licence_type','measure','discount_date','is_discount','whole_sell_qty','thumbnail','whole_sell_discount','catalog_id','slug','product_code','pages','chapters','file_format','rejected')->when($cat, function ($query, $cat) {
+        $prods = Product::select('user_id','category_id','product_type','affiliate_link','sku', 'subcategory_id', 
+        'childcategory_id', 'attributes', 'name', 'photo', 'size','size_qty','size_price', 'color','price',
+        'previous_price','stock','policy','status', 'views','tags','featured','best','top','hot','latest','big',
+        'trending','sale','features','colors','product_condition','ship','meta_tag','meta_description','youtube',
+        'type','file','license','license_qty','link','platform','region','licence_type','measure','discount_date',
+        'is_discount','whole_sell_qty','thumbnail','whole_sell_discount','catalog_id','slug','product_code','pages',
+        'chapters','file_format','rejected')
+        ->when($cat, function ($query, $cat) {
             return $query->where('category_id', $cat->id);
         })
         ->when($subcat, function ($query, $subcat) {

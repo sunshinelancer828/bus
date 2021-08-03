@@ -119,19 +119,23 @@ class CatalogController extends Controller
     
         if ($search) {
 
-            $trash = array('on', 'of', 'at', 'a', 'an', 'as', 'the', 's', 'over', 'up', 'down', 'am', 'is', 'are', 'to', 'in');
-            $keywords = preg_split('/\s+/', strtolower($search)); 
+            // $trash = array('on', 'of', 'at', 'a', 'an', 'as', 'the', 's', 'over', 'up', 'down', 'am', 'is', 'are', 'to', 'in');
+            // $keywords = preg_split('/\s+/', strtolower($search)); 
 
-            $keywords = array_unique($keywords);
-            $keywords = array_diff($keywords, $trash);
+            // $keywords = array_unique($keywords);
+            // $keywords = array_diff($keywords, $trash);
             
-            foreach ($keywords as $word) {
-                // $items = Product::where('name','like',"%{$word}%")
-                // $prods = $prods->where('name','like','%'.$word.'%')->where('status', 1);
-                $prods = $prods->when($word, function ($query, $word) {
-                    return $query->orWhere('name','LIKE','%'.$word.'%')->where('status', 1);
-                });
-            }
+            // foreach ($keywords as $word) {
+            //     // $items = Product::where('name','like',"%{$word}%")
+            //     // $prods = $prods->where('name','like','%'.$word.'%')->where('status', 1);
+            //     $prods = $prods->when($word, function ($query, $word) {
+            //         return $query->orWhere('name','LIKE','%'.$word.'%')->where('status', 1);
+            //     });
+            // }
+
+            $prods = $prods->when($search, function ($query, $search) {
+                return $query->whereRaw("MATCH(name) AGAINST(" . $search . ")");
+            });
 
             // $items = [];
             // $items = $prods->orderby('id','desc')->take(10)->get();

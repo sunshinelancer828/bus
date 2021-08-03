@@ -116,7 +116,7 @@ class CatalogController extends Controller
             }
         });  
         
-        dd($prods);
+        dd($prods->get());
         return;
         
     

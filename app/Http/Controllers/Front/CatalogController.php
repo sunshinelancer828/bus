@@ -129,8 +129,8 @@ class CatalogController extends Controller
             $items = [];
             $items = $prods->orderby('id','desc')/*->take(10)*/->get();
                          
-            // dd($items);  
-            // return;
+            dd($items);  
+            return;
 
             if (count($items) <= 10 && count($items) > 0) {  
 

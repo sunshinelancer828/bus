@@ -191,9 +191,9 @@ class CatalogController extends Controller
             }
             $items = $prods->orderby('id','desc')->take(10)->get();
                          
-            dd($items);  
-            return;
-            
+            // dd($items);  
+            // return;
+
             if (count($items) <= 10 && count($items) > 0) {  
 
                 foreach (explode(' ',$search) as $key => $value) {

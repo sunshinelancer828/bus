@@ -123,58 +123,53 @@ class CatalogController extends Controller
             
             foreach ($keywords as $word) {
                 // $items = Product::where('name','like',"%{$word}%")
-                $prods = $prods->where('name','like',"%{$word}%")->where('status', 1);
+                $prods = $prods->where('name','like','%{$word}%')->where('status', 1);
             }
 
-            $items = [];
-            $items = $prods->orderby('id','desc')/*->take(10)*/->get();
+            // $items = [];
+            // $items = $prods->orderby('id','desc')->take(10)->get();
                          
-            dd($items);  
-            return;
+            // if (count($items) <= 10 && count($items) > 0) {  
 
-            if (count($items) <= 10 && count($items) > 0) {  
-
-                foreach (explode(' ',$search) as $key => $value) {
+            //     foreach (explode(' ',$search) as $key => $value) {
                         
-                    if ($value) {
-                        $checks = Product::where('name','like', "%".$value."%")->where('status','=',1)->get()->take(60);
+            //         if ($value) {
+            //             $checks = Product::where('name','like', "%".$value."%")->where('status','=',1)->get()->take(60);
                         
-                        foreach ($checks as $item) {
-                            $word = explode(' ',strtolower($item->name));                            
-                            $count = 0;
-                            foreach ($word as $check) {
+            //             foreach ($checks as $item) {
+            //                 $word = explode(' ',strtolower($item->name));                            
+            //                 $count = 0;
+            //                 foreach ($word as $check) {
                                 
-                                $int = strtolower($search);
+            //                     $int = strtolower($search);
                                 
-                                $int = explode(' ',$int);
-                                $int = array_merge($int, [""]);
+            //                     $int = explode(' ',$int);
+            //                     $int = array_merge($int, [""]);
                                 
-                                if (in_array(strtolower($check),$int)) {
-                                    $count = $count+1;
-                                }                                
-                            }
+            //                     if (in_array(strtolower($check),$int)) {
+            //                         $count = $count+1;
+            //                     }                                
+            //                 }
                     
-                            $item['count'] = $count;
-                            $prodss[] = $item;
-                        }
-                    }
-                }
+            //                 $item['count'] = $count;
+            //                 $prodss[] = $item;
+            //             }
+            //         }
+            //     }
             
-                $prodsss = new Collection($prodss);
-                $prodsss = collect($prodsss)->sortByDesc('count')->take(30 - count($items));
+            //     $prodsss = new Collection($prodss);
+            //     $prodsss = collect($prodsss)->sortByDesc('count')->take(30 - count($items));
                 
                 
-                $prodsssss = $items;
-                $prods = $prodsssss->merge($prodsss);
+            //     $prodsssss = $items;
+            //     $prods = $prodsssss->merge($prodsss);
             
-            } else {
-                $prods=[];
-                $prods = Collect($prods);
-            }
-    
-        } else {
-            $prods = $prods;
-        }
+            // } else {
+            //     $prods=[];
+            //     $prods = Collect($prods);
+            // }    
+        } 
+        
 
         $data['prods'] = $prods->paginate(30);
 

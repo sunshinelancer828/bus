@@ -795,7 +795,7 @@
                 @foreach(   
                   $productt->category->products()->where('status','=',1)
                   ->whereRaw("MATCH(name) AGAINST('" . $productt->name . "')")
-                  ->where('id','!=',$productt->id)->get() as $prod)
+                  ->where('id','!=',$productt->id)->take(8)->get() as $prod)
                   @include('includes.product.slider-product')
                 @endforeach
 
@@ -805,7 +805,7 @@
                   $productt->category->products()->where('status','=',1)
                   {{-- ->where('name','like','%'.$productt->name.'%') --}}
                   ->whereRaw("MATCH(name) AGAINST('" . $productt->name . "')")
-                  ->where('id','!=',$productt->id)->get() as $prod
+                  ->where('id','!=',$productt->id)->take(8)->get() as $prod
                   )
                   @include('includes.product.slider-product')
                 @endforeach

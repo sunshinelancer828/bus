@@ -15,12 +15,12 @@ use App\Models\Reply;
 use App\Models\Report;
 use App\Models\User;
 use App\Models\Subcategory;
-use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Session;
 use Illuminate\Support\Facades\Input;
+use Auth;
+use Session;
 use Validator;
 
 
@@ -199,11 +199,10 @@ class CatalogController extends Controller
             $vendors = Product::where('status','=',1)->where('user_id','=',0)->take(8)->get();
         }
 
-        $related = DB::table('products')->distinct('name')
-        ->whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
+        $related = Product::whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
         ->where('status','=',1)
         ->where('id','!=',$prod->id)
-        // ->groupBy('name')
+        ->distinct()
         ->take(8)->get();
 
         return view('front.product', compact('prod', 'curr', 'vendors', 'related'));

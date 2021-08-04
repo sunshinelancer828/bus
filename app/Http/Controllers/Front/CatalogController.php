@@ -270,7 +270,6 @@ class CatalogController extends Controller
 //        $product->views+=1;
 //        $product->update();
 
-
         return redirect($product->affiliate_link);
 
     }

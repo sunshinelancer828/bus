@@ -199,11 +199,10 @@ class CatalogController extends Controller
             $vendors = Product::where('status','=',1)->where('user_id','=',0)->take(8)->get();
         }
 
-        $related = $prod->category->products()
-        ->whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
+        $related = Product::whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
         ->where('status','=',1)
         ->where('id','!=',$prod->id)
-        ->groupBy('name')
+        // ->groupBy('name')
         ->take(8)->get();
 
         return view('front.product', compact('prod', 'curr', 'vendors', 'related'));

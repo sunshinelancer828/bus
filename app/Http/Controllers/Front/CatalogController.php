@@ -177,35 +177,29 @@ class CatalogController extends Controller
     public function product($slug)
     {
         $this->code_image();
+
         $productt = Product::where('slug','=',$slug)->firstOrFail();
-
-        $productt->views+=1;
-
+        $productt->views += 1;
         $productt->update();
         
-        if (Session::has('currency'))
-        {
+        if (Session::has('currency')) {
             $curr = Currency::find(Session::get('currency'));
-        }
-        else
-        {
+        } else {
             $curr = Currency::where('is_default','=',1)->first();
         }
+
         $product_click =  new ProductClick;
         $product_click->product_id = $productt->id;
         $product_click->date = Carbon::now()->format('Y-m-d');
         $product_click->save();
 
-        if($productt->user_id != 0)
-        {
-            $vendors = Product::where('status','=',1)->where('user_id','=',$productt->user_id)->get();
+        if($productt->user_id != 0) {
+            $vendors = Product::where('status','=',1)->where('user_id','=',$productt->user_id)->take(8)->get();
+        } else {
+            $vendors = Product::where('status','=',1)->where('user_id','=',0)->take(8)->get();
         }
-        else
-        {
-            $vendors = Product::where('status','=',1)->where('user_id','=',0)->get();
-        }
-        return view('front.product',compact('productt','curr','vendors'));
 
+        return view('front.product',compact('productt','curr','vendors'));
     }
 
 

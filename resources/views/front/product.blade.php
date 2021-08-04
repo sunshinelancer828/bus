@@ -10,18 +10,18 @@
         <ul class="pages">
 
           <li><a href="{{route('front.index')}}">{{ $langg->lang17 }}</a></li>
-          <li><a href="{{route('front.category',$productt->category->slug)}}">{{$productt->category->name}}</a></li>
-          @if($productt->subcategory_id != null)
+          <li><a href="{{route('front.category',$prod->category->slug)}}">{{$prod->category->name}}</a></li>
+          @if($prod->subcategory_id != null)
           <li><a
-              href="{{ route('front.subcat',['slug1' => $productt->category->slug, 'slug2' => $productt->subcategory->slug]) }}">{{$productt->subcategory->name}}</a>
+              href="{{ route('front.subcat',['slug1' => $prod->category->slug, 'slug2' => $prod->subcategory->slug]) }}">{{$prod->subcategory->name}}</a>
           </li>
           @endif
-          @if($productt->childcategory_id != null)
+          @if($prod->childcategory_id != null)
           <li><a
-              href="{{ route('front.childcat',['slug1' => $productt->category->slug, 'slug2' => $productt->subcategory->slug, 'slug3' => $productt->childcategory->slug]) }}">{{$productt->childcategory->name}}</a>
+              href="{{ route('front.childcat',['slug1' => $prod->category->slug, 'slug2' => $prod->subcategory->slug, 'slug3' => $prod->childcategory->slug]) }}">{{$prod->childcategory->name}}</a>
           </li>
           @endif
-          <li><a href="{{ route('front.product', $productt->slug) }}">{{ $productt->name }}</a>
+          <li><a href="{{ route('front.product', $prod->slug) }}">{{ $prod->name }}</a>
 
         </ul>
       </div>
@@ -35,20 +35,20 @@
     <div class="row">
     <div class="col-lg-9">
         <div class="row">
-       @if($productt->category->name !='Project')
+       @if($prod->category->name !='Project')
             <div class="col-lg-5 col-md-12">
 
           <div class="xzoom-container">
-              <img class="xzoom5" id="xzoom-magnific" src="{{filter_var($productt->photo, FILTER_VALIDATE_URL) ?$productt->photo:asset('assets/images/products/'.$productt->photo)}}" xoriginal="{{filter_var($productt->photo, FILTER_VALIDATE_URL) ?$productt->photo:asset('assets/images/products/'.$productt->photo)}}" />
+              <img class="xzoom5" id="xzoom-magnific" src="{{filter_var($prod->photo, FILTER_VALIDATE_URL) ?$prod->photo:asset('assets/images/products/'.$prod->photo)}}" xoriginal="{{filter_var($prod->photo, FILTER_VALIDATE_URL) ?$prod->photo:asset('assets/images/products/'.$prod->photo)}}" />
               <div class="xzoom-thumbs">
 
                 <div class="all-slider">
 
-                    <a href="{{filter_var($productt->photo, FILTER_VALIDATE_URL) ?$productt->photo:asset('assets/images/products/'.$productt->photo)}}">
-                  <img class="xzoom-gallery5" width="80" src="{{filter_var($productt->photo, FILTER_VALIDATE_URL) ?$productt->photo:asset('assets/images/products/'.$productt->photo)}}" title="The description goes here">
+                    <a href="{{filter_var($prod->photo, FILTER_VALIDATE_URL) ?$prod->photo:asset('assets/images/products/'.$prod->photo)}}">
+                  <img class="xzoom-gallery5" width="80" src="{{filter_var($prod->photo, FILTER_VALIDATE_URL) ?$prod->photo:asset('assets/images/products/'.$prod->photo)}}" title="The description goes here">
                     </a>
 
-                @foreach($productt->galleries as $gal)
+                @foreach($prod->galleries as $gal)
 
 
                     <a href="{{asset('assets/images/galleries/'.$gal->photo)}}">
@@ -67,12 +67,12 @@
             <div class="col-lg-7">
               <div class="right-area">
                 <div class="product-info">
-                  <h4 class="product-name">{{ $productt->name }}</h4>
+                  <h4 class="product-name">{{ $prod->name }}</h4>
                   <div class="info-meta-1">
                     <ul>
 
-                      @if($productt->type == 'Physical')
-                      @if($productt->emptyStock())
+                      @if($prod->type == 'Physical')
+                      @if($prod->emptyStock())
                       <li class="product-outstook">
                         <p>
                           <i class="icofont-close-circled"></i>
@@ -83,7 +83,7 @@
                       <li class="product-isstook">
                         <p>
                           <i class="icofont-check-circled"></i>
-                          {{ $gs->show_stock == 0 ? '' : $productt->stock }} {{ $langg->lang79 }}
+                          {{ $gs->show_stock == 0 ? '' : $prod->stock }} {{ $langg->lang79 }}
                         </p>
                       </li>
                       @endif
@@ -91,16 +91,16 @@
                       <li>
                         <div class="ratings">
                           <div class="empty-stars"></div>
-                          <div class="full-stars" style="width:{{App\Models\Rating::ratings($productt->id)}}%"></div>
+                          <div class="full-stars" style="width:{{App\Models\Rating::ratings($prod->id)}}%"></div>
                         </div>
                       </li>
                       <li class="review-count">
-                        <p>{{count($productt->ratings)}} {{ $langg->lang80 }}</p>
+                        <p>{{count($prod->ratings)}} {{ $langg->lang80 }}</p>
                       </li>
-                  @if($productt->product_condition != 0)
+                  @if($prod->product_condition != 0)
                      <li>
-                       <div class="{{ $productt->product_condition == 2 ? 'mybadge' : 'mybadge1' }}">
-                        {{ $productt->product_condition == 2 ? 'New' : 'Used' }}
+                       <div class="{{ $prod->product_condition == 2 ? 'mybadge' : 'mybadge1' }}">
+                        {{ $prod->product_condition == 2 ? 'New' : 'Used' }}
                        </div>
                      </li>
                   @endif
@@ -108,28 +108,28 @@
                   </div>
 
                   <div class="digital-extra">
-                  <p class="estimate-time"><b>Product Category:</b> {{$productt->category->name}} </p>
+                  <p class="estimate-time"><b>Product Category:</b> {{$prod->category->name}} </p>
                   
-                  @if($productt->type == 'License')
-                    <p class="estimate-time"><b>Sub Category: </b> {{ $productt->subcategory->name }}</p>
-                    <p class="estimate-time"><b>License Type: </b> {{ $productt->licence_type }}</b></p>
-                    <p class="estimate-time"><b>Product Code: </b>{{ sprintf("%'.08d",$productt->id) }}</p>
+                  @if($prod->type == 'License')
+                    <p class="estimate-time"><b>Sub Category: </b> {{ $prod->subcategory->name }}</p>
+                    <p class="estimate-time"><b>License Type: </b> {{ $prod->licence_type }}</b></p>
+                    <p class="estimate-time"><b>Product Code: </b>{{ sprintf("%'.08d",$prod->id) }}</p>
                   @endif
                  
-                  @if($productt->type == 'Digital')
-                    <p class="estimate-time"><b>Product Code: </b>{{ sprintf("%'.08d",$productt->id) }}</p>
-                    <p class="estimate-time"><b>No of Pages: </b> {{ $productt->pages }}</b></p>
-                    <p class="estimate-time"><b>No of Chapters: </b> {{ $productt->chapters }}</p>
-                    <p class="estimate-time"><b>File Format: </b> {{ $productt->file_format }}</p>
+                  @if($prod->type == 'Digital')
+                    <p class="estimate-time"><b>Product Code: </b>{{ sprintf("%'.08d",$prod->id) }}</p>
+                    <p class="estimate-time"><b>No of Pages: </b> {{ $prod->pages }}</b></p>
+                    <p class="estimate-time"><b>No of Chapters: </b> {{ $prod->chapters }}</p>
+                    <p class="estimate-time"><b>File Format: </b> {{ $prod->file_format }}</p>
                   @endif
                 </div>
                  
             <div class="product-price">
               <p class="title">{{ $langg->lang87 }} :</p>
-                    <p class="price"><span id="sizeprice">{{ $productt->showPrice() }}</span>
-                      <small><del>{{ $productt->showPreviousPrice() }}</del></small></p>
-                      @if($productt->youtube != null)
-                      <a href="{{ $productt->youtube }}" class="video-play-btn mfp-iframe">
+                    <p class="price"><span id="sizeprice">{{ $prod->showPrice() }}</span>
+                      <small><del>{{ $prod->showPreviousPrice() }}</del></small></p>
+                      @if($prod->youtube != null)
+                      <a href="{{ $prod->youtube }}" class="video-play-btn mfp-iframe">
                         <i class="fas fa-play"></i>
                       </a>
                     @endif
@@ -138,23 +138,23 @@
                   <div class="info-meta-2">
                     <ul>
 
-                      @if($productt->type == 'License')
+                      @if($prod->type == 'License')
 
-                      @if($productt->platform != null)
+                      @if($prod->platform != null)
                       <li>
-                        <p>{{ $langg->lang82 }}: <b>{{ $productt->platform }}</b></p>
+                        <p>{{ $langg->lang82 }}: <b>{{ $prod->platform }}</b></p>
                       </li>
                       @endif
 
-                      @if($productt->region != null)
+                      @if($prod->region != null)
                       <li>
-                        <p>{{ $langg->lang83 }}: <b>{{ $productt->region }}</b></p>
+                        <p>{{ $langg->lang83 }}: <b>{{ $prod->region }}</b></p>
                       </li>
                       @endif
 
-                      @if($productt->licence_type != null)
+                      @if($prod->licence_type != null)
                       <li>
-                        <p>{{ $langg->lang84 }}: <b>{{ $productt->licence_type }}</b></p>
+                        <p>{{ $langg->lang84 }}: <b>{{ $prod->licence_type }}</b></p>
                       </li>
                       @endif
 
@@ -164,21 +164,21 @@
                   </div>
 
 
-                  @if(!empty($productt->size))
+                  @if(!empty($prod->size))
                   <div class="product-size">
                     <p class="title">{{ $langg->lang88 }} :</p>
                     <ul class="siz-list">
                       @php
                       $is_first = true;
                       @endphp
-                      @foreach($productt->size as $key => $data1)
+                      @foreach($prod->size as $key => $data1)
                       <li class="{{ $is_first ? 'active' : '' }}">
                         <span class="box">{{ $data1 }}
                           <input type="hidden" class="size" value="{{ $data1 }}">
-                          <input type="hidden" class="size_qty" value="{{ $productt->size_qty[$key] }}">
+                          <input type="hidden" class="size_qty" value="{{ $prod->size_qty[$key] }}">
                           <input type="hidden" class="size_key" value="{{$key}}">
                           <input type="hidden" class="size_price"
-                            value="{{ round($productt->size_price[$key] * $curr->value,2) }}">
+                            value="{{ round($prod->size_price[$key] * $curr->value,2) }}">
                         </span>
                       </li>
                       @php
@@ -190,16 +190,16 @@
                   </div>
                   @endif
 
-                  @if(!empty($productt->color))
+                  @if(!empty($prod->color))
                   <div class="product-color">
                     <p class="title">{{ $langg->lang89 }} :</p>
                     <ul class="color-list">
                       @php
                       $is_first = true;
                       @endphp
-                      @foreach($productt->color as $key => $data1)
+                      @foreach($prod->color as $key => $data1)
                       <li class="{{ $is_first ? 'active' : '' }}">
-                        <span class="box" data-color="{{ $productt->color[$key] }}" style="background-color: {{ $productt->color[$key] }}"></span>
+                        <span class="box" data-color="{{ $prod->color[$key] }}" style="background-color: {{ $prod->color[$key] }}"></span>
                       </li>
                       @php
                       $is_first = false;
@@ -210,32 +210,32 @@
                   </div>
                   @endif
 
-                  @if(!empty($productt->size))
+                  @if(!empty($prod->size))
 
-                  <input type="hidden" id="stock" value="{{ $productt->size_qty[0] }}">
+                  <input type="hidden" id="stock" value="{{ $prod->size_qty[0] }}">
                   @else
                   @php
-                  $stck = (string)$productt->stock;
+                  $stck = (string)$prod->stock;
                   @endphp
                   @if($stck != null)
                   <input type="hidden" id="stock" value="{{ $stck }}">
-                  @elseif($productt->type != 'Physical')
+                  @elseif($prod->type != 'Physical')
                   <input type="hidden" id="stock" value="0">
                   @else
                   <input type="hidden" id="stock" value="">
                   @endif
 
                   @endif
-                  <input type="hidden" id="product_price" value="{{ round($productt->vendorPrice() * $curr->value,2) }}">
+                  <input type="hidden" id="product_price" value="{{ round($prod->vendorPrice() * $curr->value,2) }}">
 
-                  <input type="hidden" id="product_id" value="{{ $productt->id }}">
+                  <input type="hidden" id="product_id" value="{{ $prod->id }}">
                   <input type="hidden" id="curr_pos" value="{{ $gs->currency_format }}">
                   <input type="hidden" id="curr_sign" value="{{ $curr->sign }}">
                   <div class="info-meta-3">
                     <ul class="meta-list">
                      
-                      @if($productt->product_type == "License")
-                      <li class="d-block count {{ $productt->type == 'Physical' ? '' : 'd-none' }}">
+                      @if($prod->product_type == "License")
+                      <li class="d-block count {{ $prod->type == 'Physical' ? '' : 'd-none' }}">
                         <div class="qty">
                           <ul>
                             <li>
@@ -258,9 +258,9 @@
                       <span class="qttotal" style="visibility:hidden">1</span>
                       @endif
 
-                      @if (!empty($productt->attributes))
+                      @if (!empty($prod->attributes))
                         @php
-                          $attrArr = json_decode($productt->attributes, true);
+                          $attrArr = json_decode($prod->attributes, true);
                         @endphp
                       @endif
                       @if (!empty($attrArr))
@@ -296,14 +296,14 @@
                         </div>
                       @endif
 
-                      @if($productt->product_type == "affiliate")
+                      @if($prod->product_type == "affiliate")
 
                       <li class="addtocart">
-                        <a href="{{ route('affiliate.product', $productt->slug) }}" target="_blank"><i
+                        <a href="{{ route('affiliate.product', $prod->slug) }}" target="_blank"><i
                             class="icofont-cart"></i> {{ $langg->lang251 }}</a>
                       </li>
                       @else
-                      @if($productt->emptyStock())
+                      @if($prod->emptyStock())
                       <li class="addtocart">
                         <a href="javascript:;" class="cart-out-of-stock">
                           <i class="icofont-close-circled"></i>
@@ -327,7 +327,7 @@
                       @if(Auth::guard('web')->check())
                       <li class="favorite">
                         <a href="javascript:;" class="add-to-wish"
-                          data-href="{{ route('user-wishlist-add',$productt->id) }}"><i class="icofont-heart-alt"></i></a>
+                          data-href="{{ route('user-wishlist-add',$prod->id) }}"><i class="icofont-heart-alt"></i></a>
                       </li>
                       @else
                       <li class="favorite">
@@ -337,7 +337,7 @@
                       @endif
                       <li class="compare">
                         <a href="javascript:;" class="add-to-compare"
-                          data-href="{{ route('product.compare.add',$productt->id) }}"><i class="icofont-exchange"></i></a>
+                          data-href="{{ route('product.compare.add',$prod->id) }}"><i class="icofont-exchange"></i></a>
                       </li>
                     </ul>
                   </div>
@@ -368,12 +368,12 @@
                   <script async src="https://static.addtoany.com/menu/page.js"></script>
 
 
-                  @if($productt->ship != null)
-                    <p class="estimate-time">{{ $langg->lang86 }}: <b> {{ $productt->ship }}</b></p>
+                  @if($prod->ship != null)
+                    <p class="estimate-time">{{ $langg->lang86 }}: <b> {{ $prod->ship }}</b></p>
                   @endif
-                  @if( $productt->sku != null )
+                  @if( $prod->sku != null )
                   <p class="p-sku">
-                    {{ $langg->lang77 }}: <span class="idno">{{ $productt->sku }}</span>
+                    {{ $langg->lang77 }}: <span class="idno">{{ $prod->sku }}</span>
                   </p>
                   @endif
       @if($gs->is_report)
@@ -411,19 +411,19 @@
                       <ul class="tab-menu">
                         <li><a href="#tabs-1">{{ $langg->lang92 }}</a></li>
                         <li><a href="#tabs-2">{{ $langg->lang93 }}</a></li>
-                        <li><a href="#tabs-3">{{ $langg->lang94 }}({{ count($productt->ratings) }})</a></li>
+                        <li><a href="#tabs-3">{{ $langg->lang94 }}({{ count($prod->ratings) }})</a></li>
                         @if($gs->is_comment == 1)
                         <li><a href="#tabs-4">{{ $langg->lang95 }}(<span
-                              id="comment_count">{{ count($productt->comments) }}</span>)</a></li>
+                              id="comment_count">{{ count($prod->comments) }}</span>)</a></li>
                         @endif
                       </ul>
                     </div>
                     <div class="tab-content-wrapper">
                       <div id="tabs-1" class="tab-content-area">
-                        <p>{!! $productt->details !!}</p>
+                        <p>{!! $prod->details !!}</p>
                       </div>
                       <div id="tabs-2" class="tab-content-area">
-                        <!--p>{!! $productt->policy !!}</p-->
+                        <!--p>{!! $prod->policy !!}</p-->
                         <p>{!! $gs->return_policy !!}</p>
                       </div>
                       <div id="tabs-3" class="tab-content-area">
@@ -432,15 +432,15 @@
                             {{ $langg->lang96 }}
                           </h4>
                           <div class="reating-area">
-                            <div class="stars"><span id="star-rating">{{App\Models\Rating::rating($productt->id)}}</span> <i
+                            <div class="stars"><span id="star-rating">{{App\Models\Rating::rating($prod->id)}}</span> <i
                                 class="fas fa-star"></i></div>
                           </div>
                         </div>
                         <div id="replay-area">
                           <div id="reviews-section">
-                            @if(count($productt->ratings) > 0)
+                            @if(count($prod->ratings) > 0)
                             <ul class="all-replay">
-                              @foreach($productt->ratings as $review)
+                              @foreach($prod->ratings as $review)
                               <li>
                                 <div class="single-review">
                                   <div class="left-area">
@@ -515,12 +515,12 @@
                               style="background: url({{ asset('assets/images/'.$gs->loader) }}) no-repeat scroll center center rgba(45, 45, 45, 0.5);">
                             </div>
                             <form id="reviewform" action="{{route('front.review.submit')}}"
-                              data-href="{{ route('front.reviews',$productt->id) }}" method="POST">
+                              data-href="{{ route('front.reviews',$prod->id) }}" method="POST">
                               @include('includes.admin.form-both')
                               {{ csrf_field() }}
                               <input type="hidden" id="rating" name="rating" value="5">
                               <input type="hidden" name="user_id" value="{{Auth::guard('web')->user()->id}}">
-                              <input type="hidden" name="product_id" value="{{$productt->id}}">
+                              <input type="hidden" name="product_id" value="{{$prod->id}}">
                               <div class="row">
                                 <div class="col-lg-12">
                                   <textarea name="review" placeholder="{{ $langg->lang99 }}" required=""></textarea>
@@ -561,7 +561,7 @@
     </div>
     <div class="col-lg-3">
 
-      @if(!empty($productt->whole_sell_qty))
+      @if(!empty($prod->whole_sell_qty))
       <div class="table-area wholesell-details-page">
         <h3>{{ $langg->lang770 }}</h3>
         <table class="table">
@@ -569,10 +569,10 @@
             <th>{{ $langg->lang768 }}</th>
             <th>{{ $langg->lang769 }}</th>
           </tr>
-          @foreach($productt->whole_sell_qty as $key => $data1)
+          @foreach($prod->whole_sell_qty as $key => $data1)
           <tr>
-            <td>{{ $productt->whole_sell_qty[$key] }}+</td>
-            <td>{{ $productt->whole_sell_discount[$key] }}% {{ $langg->lang771 }}</td>
+            <td>{{ $prod->whole_sell_qty[$key] }}+</td>
+            <td>{{ $prod->whole_sell_discount[$key] }}% {{ $langg->lang771 }}</td>
           </tr>
           @endforeach
         </table>
@@ -587,11 +587,11 @@
           </h4>
 
           <p class="stor-name">
-           @if( $productt->user_id  != 0)
-              @if(isset($productt->user))
-                {{ $productt->user->shop_name }}
+           @if( $prod->user_id  != 0)
+              @if(isset($prod->user))
+                {{ $prod->user->shop_name }}
 
-                @if($productt->user->checkStatus())
+                @if($prod->user->checkStatus())
                 <br>
                 <a class="verify-link" href="javascript:;"  data-toggle="tooltip" data-placement="top" title="{{ $langg->lang783 }}">
                   {{--  {{ $langg->lang783 }}  --}}
@@ -610,16 +610,16 @@
 
           <div class="total-product">
 
-           @if( $productt->user_id  != 0)
-              <p>{{ App\Models\Product::where('user_id','=',$productt->user_id)->get()->count() }}</p>
+           @if( $prod->user_id  != 0)
+              <p>{{ App\Models\Product::where('user_id','=',$prod->user_id)->get()->count() }}</p>
           @else
               <p>{{ App\Models\Product::where('user_id','=',0)->get()->count() }}</p>
           @endif
             <span>{{ $langg->lang248 }}</span>
           </div>
         </div>
-    @if( $productt->user_id  != 0)
-        <a href="{{ route('front.vendor',str_replace(' ', '-', $productt->user->shop_name)) }}" class="view-stor">{{ $langg->lang249 }}</a>
+    @if( $prod->user_id  != 0)
+        <a href="{{ route('front.vendor',str_replace(' ', '-', $prod->user->shop_name)) }}" class="view-stor">{{ $langg->lang249 }}</a>
     @endif
 
                   {{-- CONTACT SELLER --}}
@@ -630,7 +630,7 @@
 
                     {{-- If The Product Belongs To A Vendor --}}
 
-                    @if($productt->user_id != 0)
+                    @if($prod->user_id != 0)
 
 
                     <ul class="list">
@@ -641,7 +641,7 @@
                       <li>
 
                         @if(
-                        Auth::guard('web')->user()->favorites()->where('vendor_id','=',$productt->user->id)->get()->count() >
+                        Auth::guard('web')->user()->favorites()->where('vendor_id','=',$prod->user->id)->get()->count() >
                         0)
 
                         <a  class="view-stor" href="javascript:;">
@@ -652,7 +652,7 @@
                         @else
 
                         <a class="favorite-prod view-stor"
-                          data-href="{{ route('user-favorite',['data1' => Auth::guard('web')->user()->id, 'data2' => $productt->user->id]) }}"
+                          data-href="{{ route('user-favorite',['data1' => Auth::guard('web')->user()->id, 'data2' => $prod->user->id]) }}"
                           href="javascript:;">
                           <i class="icofont-plus"></i>
                           {{ $langg->lang224 }}
@@ -748,7 +748,7 @@
                           @foreach($vendors->chunk(3) as $chunk)
                             <div class="item-slide">
                               <ul class="item-list">
-                                @foreach($chunk as $prod)
+                                @foreach($chunk as $p)
                                   @include('includes.product.sellers-product')
                                 @endforeach
                               </ul>
@@ -787,26 +787,27 @@
       <div class="col-lg-12 remove-padding">
         <div class="trending-item-slider">
             @php 
-                $explode = explode(' ',$productt->name); 
+                $explode = explode(' ',$prod->name); 
             @endphp
 
             @if(sizeof($explode) > 1)
               
                 @foreach(   
-                  $productt->category->products()->where('status','=',1)
-                  ->whereRaw("MATCH(name) AGAINST('" . $productt->name . "')")
-                  ->where('id','!=',$productt->id)->take(8)->get() as $prod)
+                  $prod->category->products()->where('status','=',1)
+                  ->whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
+                  ->where('id','!=',$prod->id)->take(8)->get() as $p
+                )
                   @include('includes.product.slider-product')
                 @endforeach
 
             @else 
                 
                 @foreach (
-                  $productt->category->products()->where('status','=',1)
-                  {{-- ->where('name','like','%'.$productt->name.'%') --}}
-                  ->whereRaw("MATCH(name) AGAINST('" . $productt->name . "')")
-                  ->where('id','!=',$productt->id)->take(8)->get() as $prod
-                  )
+                  $prod->category->products()->where('status','=',1)
+                  {{-- ->where('name','like','%'.$prod->name.'%') --}}
+                  ->whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
+                  ->where('id','!=',$prod->id)->take(8)->get() as $p
+                )
                   @include('includes.product.slider-product')
                 @endforeach
 
@@ -876,7 +877,7 @@
 
   @if(Auth::guard('web')->check())
 
-  @if($productt->user_id != 0)
+  @if($prod->user_id != 0)
 
   {{-- MESSAGE VENDOR MODAL --}}
 
@@ -901,7 +902,7 @@
 
                       <!--<li>-->
                       <!--  <input type="text" class="input-field" readonly=""-->
-                      <!--    placeholder="Send To {{ $productt->user->shop_name }}" readonly="">-->
+                      <!--    placeholder="Send To {{ $prod->user->shop_name }}" readonly="">-->
                       <!--</li>-->
 
                       <li>
@@ -917,7 +918,7 @@
                       <input type="hidden" name="email" value="{{ Auth::guard('web')->user()->email }}">
                       <input type="hidden" name="name" value="{{ Auth::guard('web')->user()->name }}">
                       <input type="hidden" name="user_id" value="{{ Auth::guard('web')->user()->id }}">
-                      <input type="hidden" name="vendor_id" value="{{ $productt->user->id }}">
+                      <input type="hidden" name="vendor_id" value="{{ $prod->user->id }}">
 
                     </ul>
                     <button class="submit-btn" id="emlsub1" type="submit">{{ $langg->lang118 }}</button>
@@ -973,7 +974,7 @@
 
                                 {{ csrf_field() }}
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                <input type="hidden" name="product_id" value="{{ $productt->id }}">
+                                <input type="hidden" name="product_id" value="{{ $prod->id }}">
                                 <div class="form-input">
                                     <input type="text" name="title" class="User Name" placeholder="{{ $langg->lang779 }}" required="">
                                     <i class="icofont-notepad"></i>

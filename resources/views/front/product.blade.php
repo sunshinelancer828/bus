@@ -787,28 +787,30 @@
       <div class="col-lg-12 remove-padding">
         <div class="trending-item-slider">
             @php 
-                $explode = explode(' ',$productt->name);
+                $explode = explode(' ',$productt->name); 
+            @endphp
+
+            @if(sizeof($explode) > 1)
+              
+                @foreach(   
+                  $productt->category->products()->where('status','=',1)
+                  ->whereRaw("MATCH(name) AGAINST('" . $productt->name . "')")
+                  ->where('id','!=',$productt->id)->take(8)->get() as $prod)
+                  @include('includes.product.slider-product')
+                @endforeach
+
+            @else 
                 
-               
-                   @endphp
-                <!-- @if(sizeof($explode) > 1)
-                 
-                {{-- @foreach(   $productt->category->products()->where('status','=',1)->where('name','like','%'.$productt->name.'%')->orWhere('name','like','%'.$explode[1].'%')->where('id','!=',$productt->id)->take(8)->get() as $prod) --}}
-                      @foreach(   $productt->category->products()->where('status','=',1)->where('id','!=',$productt->id)->take(8)->get() as $prod)
-                      @include('includes.product.slider-product')
-                      @endforeach
-                @else  -->
-                   
-                      @foreach (
-                        $productt->category->products()->where('status','=',1)
-                        {{-- ->where('name','like','%'.$productt->name.'%') --}}
-                        ->whereRaw("MATCH(name) AGAINST('" . $productt->name . "')")
-                        ->where('id','!=',$productt->id)->take(8)->get() as $prod
-                        )
-                      @include('includes.product.slider-product')
-                      @endforeach
-               
-               <!-- @endif -->
+                @foreach (
+                  $productt->category->products()->where('status','=',1)
+                  {{-- ->where('name','like','%'.$productt->name.'%') --}}
+                  ->whereRaw("MATCH(name) AGAINST('" . $productt->name . "')")
+                  ->where('id','!=',$productt->id)->take(8)->get() as $prod
+                  )
+                  @include('includes.product.slider-product')
+                @endforeach
+
+            @endif
                 
          
         </div>

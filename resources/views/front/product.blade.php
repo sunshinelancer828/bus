@@ -786,11 +786,7 @@
     <div class="row">
       <div class="col-lg-12 remove-padding">
         <div class="trending-item-slider">            
-        @foreach (
-          $prod->category->products()->where('status','=',1)
-          ->whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
-          ->where('id','!=',$prod->id)->take(8)->get() as $p
-        )
+        @foreach ( $related as $p )
           @include('includes.product.slider-product')
         @endforeach        
         </div>

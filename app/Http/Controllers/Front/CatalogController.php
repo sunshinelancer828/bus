@@ -203,7 +203,9 @@ class CatalogController extends Controller
         ->where('status','=',1)
         ->where('id','!=',$prod->id)
         // ->groupBy('name')
-        ->take(18)->get();
+        ->take(8)->get();
+
+        $related = array_unique($related);
 
         return view('front.product', compact('prod', 'curr', 'vendors', 'related'));
     }

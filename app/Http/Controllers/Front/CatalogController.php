@@ -178,9 +178,9 @@ class CatalogController extends Controller
     {
         $this->code_image();
 
-        $productt = Product::where('slug','=',$slug)->firstOrFail();
-        $productt->views += 1;
-        $productt->update();
+        $prod = Product::where('slug','=',$slug)->firstOrFail();
+        $prod->views += 1;
+        $prod->update();
         
         if (Session::has('currency')) {
             $curr = Currency::find(Session::get('currency'));
@@ -189,17 +189,17 @@ class CatalogController extends Controller
         }
 
         $product_click =  new ProductClick;
-        $product_click->product_id = $productt->id;
+        $product_click->product_id = $prod->id;
         $product_click->date = Carbon::now()->format('Y-m-d');
         $product_click->save();
 
-        if($productt->user_id != 0) {
-            $vendors = Product::where('status','=',1)->where('user_id','=',$productt->user_id)->take(8)->get();
+        if($prod->user_id != 0) {
+            $vendors = Product::where('status','=',1)->where('user_id','=',$prod->user_id)->take(8)->get();
         } else {
             $vendors = Product::where('status','=',1)->where('user_id','=',0)->take(8)->get();
         }
 
-        return view('front.product',compact('productt','curr','vendors'));
+        return view('front.product', compact('prod', 'curr', 'vendors'));
     }
 
 

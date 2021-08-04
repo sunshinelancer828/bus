@@ -791,13 +791,13 @@
                 
                
                    @endphp
-                @if(sizeof($explode) > 1)
+                <!-- @if(sizeof($explode) > 1)
                  
                 {{-- @foreach(   $productt->category->products()->where('status','=',1)->where('name','like','%'.$productt->name.'%')->orWhere('name','like','%'.$explode[1].'%')->where('id','!=',$productt->id)->take(8)->get() as $prod) --}}
                       @foreach(   $productt->category->products()->where('status','=',1)->where('id','!=',$productt->id)->take(8)->get() as $prod)
                       @include('includes.product.slider-product')
                       @endforeach
-                @else 
+                @else  -->
                    
                       @foreach (
                         $productt->category->products()->where('status','=',1)
@@ -808,7 +808,7 @@
                       @include('includes.product.slider-product')
                       @endforeach
                
-               @endif
+               <!-- @endif -->
                 
          
         </div>

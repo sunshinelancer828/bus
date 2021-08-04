@@ -785,35 +785,14 @@
     </div>
     <div class="row">
       <div class="col-lg-12 remove-padding">
-        <div class="trending-item-slider">
-            @php 
-                $explode = explode(' ',$prod->name); 
-            @endphp
-
-            @if(sizeof($explode) > 1)
-              
-                @foreach(   
-                  $prod->category->products()->where('status','=',1)
-                  ->whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
-                  ->where('id','!=',$prod->id)->take(8)->get() as $p
-                )
-                  @include('includes.product.slider-product')
-                @endforeach
-
-            @else 
-                
-                @foreach (
-                  $prod->category->products()->where('status','=',1)
-                  {{-- ->where('name','like','%'.$prod->name.'%') --}}
-                  ->whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
-                  ->where('id','!=',$prod->id)->take(8)->get() as $p
-                )
-                  @include('includes.product.slider-product')
-                @endforeach
-
-            @endif
-                
-         
+        <div class="trending-item-slider">            
+        @foreach (
+          $prod->category->products()->where('status','=',1)
+          ->whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
+          ->where('id','!=',$prod->id)->take(8)->get() as $p
+        )
+          @include('includes.product.slider-product')
+        @endforeach        
         </div>
       </div>
 

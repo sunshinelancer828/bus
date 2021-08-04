@@ -126,7 +126,7 @@
 				<div class="row">
 					<div class="col-lg-12 remove-padding">
 						<div class="trending-item-slider">
-							@foreach($feature_products as $prod)
+							@foreach($feature_products as $p)
 								@include('includes.product.slider-product')
 							@endforeach
 						</div>

@@ -198,11 +198,11 @@ class CatalogController extends Controller
 
         if($productt->user_id != 0)
         {
-            $vendors = Product::where('status','=',1)->where('user_id','=',$productt->user_id)->take(8)->get();
+            $vendors = Product::where('status','=',1)->where('user_id','=',$productt->user_id)->get();
         }
         else
         {
-            $vendors = Product::where('status','=',1)->where('user_id','=',0)->take(8)->get();
+            $vendors = Product::where('status','=',1)->where('user_id','=',0)->get();
         }
         return view('front.product',compact('productt','curr','vendors'));
 

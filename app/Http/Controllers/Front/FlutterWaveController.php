@@ -48,8 +48,7 @@ class FlutterWaveController extends Controller
                 }else{
                     return redirect()->back()->with('unsuccess',"Confirm Password Doesn't Match.");     
                 }
-            }
-            else {
+            } else {
                 return redirect()->back()->with('unsuccess',"This Email Already Exist.");  
             }
         }

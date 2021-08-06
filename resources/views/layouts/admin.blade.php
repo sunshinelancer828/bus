@@ -200,9 +200,9 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     	<script src="{{asset('assets/admin/js/vendors/vue.js')}}"></script>
 		<script src="https://unpkg.com/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
-		<script src="{{asset('assets/admin/js/jqueryui.min.js')}}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 		<!-- Fullside-menu Js-->
-		<script src="{{asset('assets/admin/plugins/fullside-menu/jquery.slimscroll.min.js')}}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-scroll/1.3.3/slimscroll.min.js"></script>
 		<script src="{{asset('assets/admin/plugins/fullside-menu/waves.min.js')}}"></script>
 
 		<script src="{{asset('assets/admin/js/plugin.js')}}"></script>

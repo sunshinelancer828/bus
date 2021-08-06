@@ -74,15 +74,15 @@
     <!-- Dashboard Core -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://unpkg.com/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
-    <script src="{{asset('assets/admin/js/jqueryui.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <!-- Fullside-menu Js-->
-    <script src="{{asset('assets/admin/plugins/fullside-menu/jquery.slimscroll.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-scroll/1.3.3/slimscroll.min.js"></script>
     <script src="{{asset('assets/admin/plugins/fullside-menu/waves.min.js')}}"></script>
 
     <script src="{{asset('assets/admin/js/plugin.js')}}"></script>
     <script src="{{asset('assets/admin/js/tag-it.js')}}"></script>
     <script src="{{asset('assets/admin/js/nicEdit.js')}}"></script>
-    <script src="{{ asset('assets/admin/js/bootstrap-colorpicker.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-colorpicker@3.4.0/dist/js/bootstrap-colorpicker.min.js"></script>
     <script src="{{asset('assets/admin/js/load.js')}}"></script>
     <!-- Custom Js-->
     <script src="{{asset('assets/admin/js/custom.js')}}"></script>

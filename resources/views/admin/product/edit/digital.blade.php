@@ -410,7 +410,7 @@
 														  <option value="MP4" {{ 'MP4' == $data->file_format ? "selected":""}}>MP4</option> 					                                     </select>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row d-none">
 													<div class="col-lg-4">
 														<div class="left-area">
 

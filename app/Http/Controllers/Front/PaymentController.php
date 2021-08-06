@@ -92,7 +92,7 @@ class PaymentController extends Controller
         $order['item_name'] = $settings->title." Order";
         $order['item_number'] = str_random(4).time();
         $order['item_amount'] = round($request->total / $this->curr->value, 2);
-        $cancel_url = action('Front\PaymentController@paycancel');
+        $cancel_url = action('Front\PaymentController@paycancle');
         $notify_url = action('Front\PaymentController@notify');
 
         $payer = new Payer();
@@ -142,7 +142,7 @@ class PaymentController extends Controller
         return redirect()->back()->with('unsuccess','Unknown error occurred');
     }
 
-    public function paycancel(){
+    public function paycancle(){
         $this->code_image();
          return redirect()->route('front.checkout')->with('unsuccess','Payment Cancelled.');
      }
@@ -172,7 +172,7 @@ class PaymentController extends Controller
         $paypal_data = Session::get('paypal_data');
         $order_data = Session::get('order_data');
         $success_url = action('Front\PaymentController@payreturn');
-        $cancel_url = action('Front\PaymentController@paycancel');
+        $cancel_url = action('Front\PaymentController@paycancle');
         $input = $request->all();
         /** Get the payment ID before session clear **/
         $payment_id = Session::get('paypal_payment_id');

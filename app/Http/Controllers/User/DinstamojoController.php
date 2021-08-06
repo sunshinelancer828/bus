@@ -38,7 +38,7 @@ class DinstamojoController extends Controller
 
         $settings = Generalsetting::findOrFail(1);
         $return_url = action('User\DpaypalController@payreturn');
-        $cancel_url = action('User\DpaypalController@paycancel');
+        $cancel_url = action('User\DpaypalController@paycancle');
         $notify_url = action('User\DinstamojoController@notify');
         $item_name = "Deposit via Instamojo";
         $item_number = $user->id;
@@ -96,7 +96,7 @@ class DinstamojoController extends Controller
         $dep = Session::get('deposit');
 
         $success_url = action('User\DpaypalController@payreturn');
-        $cancel_url = action('User\DpaypalController@paycancel');
+        $cancel_url = action('User\DpaypalController@paycancle');
 
 
         if($dep['pay_id'] == $data['payment_request_id']){

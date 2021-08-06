@@ -223,14 +223,14 @@ class DflutterController extends Controller
             $deposit = Deposit::where('flutter_id','=',$input['txref'])
             ->orderBy('created_at','desc')->first();
               $deposit->delete();
-              return redirect(action('User\DpaypalController@paycancel'));
+              return redirect(action('User\DpaypalController@paycancle'));
           }
 
             } else {
               $deposit = Deposit::where('flutter_id','=',$input['txref'])
               ->orderBy('created_at','desc')->first();
                 $deposit->delete();
-                return redirect(action('User\DpaypalController@paycancel'));
+                return redirect(action('User\DpaypalController@paycancle'));
             }
 
      }

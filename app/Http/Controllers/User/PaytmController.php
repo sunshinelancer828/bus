@@ -34,7 +34,7 @@ class PaytmController extends Controller
      $settings = Generalsetting::findOrFail(1);
      $paypal_email = $settings->paypal_business;
      $return_url = action('User\PaypalController@payreturn');
-     $cancel_url = action('User\PaypalController@paycancel');
+     $cancel_url = action('User\PaypalController@paycancle');
      $notify_url = action('User\PaytmController@notify');
      $item_name = $subs->title." Plan";
      $item_number = str_random(4).time();
@@ -426,7 +426,7 @@ class PaytmController extends Controller
         $order = UserSubscription::where('user_id','=',Session::get('item_number'))
             ->orderBy('created_at','desc')->first();
             $order->delete();
-            return redirect(route('user.payment.cancel'));
+            return redirect(route('user.payment.cancle'));
 		}
     }
 }

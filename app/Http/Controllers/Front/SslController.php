@@ -329,8 +329,8 @@ class SslController extends Controller
             $post_data['currency'] = $curr->name;
             $post_data['tran_id'] = $txnid;
             $post_data['success_url'] = action('Front\SslController@notify');
-            $post_data['fail_url'] =  action('Front\SslController@cancel');
-            $post_data['cancel_url'] =  action('Front\SslController@cancel');
+            $post_data['fail_url'] =  action('Front\SslController@cancle');
+            $post_data['cancel_url'] =  action('Front\SslController@cancle');
             # $post_data['multi_card_name'] = "mastercard,visacard,amexcard";  # DISABLE TO DISPLAY ALL AVAILABLE
             
             $input = $request->all();
@@ -405,7 +405,7 @@ class SslController extends Controller
 
      }
     
-     public function cancel(Request $request){
+     public function cancle(Request $request){
         $this->code_image();
          return redirect()->route('front.checkout')->with('unsuccess','Payment Cancelled.');
      }
@@ -413,7 +413,7 @@ class SslController extends Controller
     public function notify(Request $request){
     
             $success_url = action('Front\PaymentController@payreturn');
-            $cancel_url = action('Front\PaymentController@paycancel');
+            $cancel_url = action('Front\PaymentController@paycancle');
             $input = $request->all();
 
             // dd($response);

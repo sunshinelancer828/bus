@@ -34,7 +34,7 @@ class DsslController extends Controller
             return redirect()->back()->with('unsuccess','Please Select BDT Currency For SSLCommerz.');
         }
 
-        $cancel_url = action('User\DpaypalController@paycancel');
+        $cancel_url = action('User\DpaypalController@paycancle');
         $notify_url = action('User\DsslController@notify');
         $settings = Generalsetting::findOrFail(1);
 
@@ -62,8 +62,8 @@ class DsslController extends Controller
         $post_data['currency'] = $curr->name;
         $post_data['tran_id'] = $txnid;
         $post_data['success_url'] = action('User\DsslController@notify');
-        $post_data['fail_url'] =  action('User\DsslController@cancel');
-        $post_data['cancel_url'] =  action('User\DsslController@cancel');
+        $post_data['fail_url'] =  action('User\DsslController@cancle');
+        $post_data['cancel_url'] =  action('User\DsslController@cancle');
         # $post_data['multi_card_name'] = "mastercard,visacard,amexcard";  # DISABLE TO DISPLAY ALL AVAILABLE
         
         
@@ -131,7 +131,7 @@ class DsslController extends Controller
  }
 
 
- public function cancel(Request $request){
+ public function cancle(Request $request){
     return redirect()->route('user-deposit-create')->with('unsuccess','Payment Cancelled.');
  }
 
@@ -139,7 +139,7 @@ class DsslController extends Controller
     public function notify(Request $request){
 
 
-        $cancel_url = action('User\DpaypalController@paycancel');
+        $cancel_url = action('User\DpaypalController@paycancle');
         $input = $request->all();
 
 

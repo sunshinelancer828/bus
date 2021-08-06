@@ -723,7 +723,7 @@ class PaytmController extends Controller
 		} else if( 'TXN_FAILURE' === $request['STATUS'] ){
             //return view( 'payment-failed' );
 
-            return redirect(route('payment.cancel'));
+            return redirect(route('payment.cancle'));
 		}
     }
 

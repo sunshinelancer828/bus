@@ -683,7 +683,7 @@ class FlutterWaveController extends Controller
                     VendorOrder::where('order_id','=',$payment->id)->delete();
                     $payment->delete();
                     Session::forget('cart');
-                    return redirect(action('Front\PaymentController@paycancel'));
+                    return redirect(action('Front\PaymentController@paycancle'));
                 }
 
             } else { // $resp['status'] != "success" || empty($resp['data']['status'])
@@ -691,7 +691,7 @@ class FlutterWaveController extends Controller
                 VendorOrder::where('order_id','=',$payment->id)->delete();
                 $payment->delete();
                 Session::forget('cart');
-                return redirect(action('Front\PaymentController@paycancel'));
+                return redirect(action('Front\PaymentController@paycancle'));
             }
         }
 

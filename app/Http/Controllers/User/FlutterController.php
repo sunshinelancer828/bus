@@ -227,7 +227,7 @@ class FlutterController extends Controller
             else {
                 $sub = UserSubscription::where('flutter_id','=',$input['txref'])->orderBy('id','desc')->first();
                 $sub->delete();
-                return redirect(action('User\PaypalController@paycancel'));
+                return redirect(action('User\PaypalController@paycancle'));
             }
 
 
@@ -236,7 +236,7 @@ class FlutterController extends Controller
             else {
                 $sub = UserSubscription::where('flutter_id','=',$input['txref'])->orderBy('id','desc')->first();
                 $sub->delete();
-                return redirect(action('User\PaypalController@paycancel'));
+                return redirect(action('User\PaypalController@paycancle'));
             }
         
      }

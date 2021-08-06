@@ -540,9 +540,11 @@ class FlutterWaveController extends Controller
                     
                     $cart = unserialize(bzdecompress(utf8_decode($order->cart)));
                     
-                    $str = ''; $str2 = '';
-                
+                    $str = ''; $str2 = '';                
                     $vid = null; $mstr = '';
+                    
+                    $prd_type = isset($product['license']) && !empty($product['license']) ? 'license' : 'digital';
+
                     foreach($cart->items as $product) {
                         
                         if($product['item']['user_id'] != 0)
@@ -556,7 +558,7 @@ class FlutterWaveController extends Controller
                         $dataFormat = $dataFormat[0]->file_format;
 
 
-                        if (isset($product['license'])) {
+                        if ($prd_type == 'license') {
                             $subcat = DB::table('subcategories')->where('id','=',$subcat_id)->get();
                             $subcat = $subcat[0]->name;
                             $str .= "Find below your \"" . $subcat . "\".<br><br>";
@@ -572,7 +574,7 @@ class FlutterWaveController extends Controller
                         $str2 .= $str;
                         $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
                         // $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
-                        if (isset($product['license'])) {
+                        if ($prd_type == 'license') {
                             $str .= "PIN: ".$product['license']."<br><br>";
                         } else {
                             $str .= "Format: ".$dataFormat."<br>";

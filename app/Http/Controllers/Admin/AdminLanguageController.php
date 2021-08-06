@@ -70,7 +70,7 @@ class AdminLanguageController extends Controller
             $new[$n] = $value;
         }  
         $mydata = json_encode($new);
-        file_put_contents(public_path().'/project/resources/lang/'.$data->file, $mydata); 
+        file_put_contents(public_path().'/assets/languages/'.$data->file, $mydata); 
         //--- Logic Section Ends
 
         //--- Redirect Section        
@@ -83,7 +83,7 @@ class AdminLanguageController extends Controller
     public function edit($id)
     {
         $data = AdminLanguage::findOrFail($id);
-        $data_results = file_get_contents(public_path().'/project/resources/lang/'.$data->file);
+        $data_results = file_get_contents(public_path().'/assets/languages/'.$data->file);
         $lang = json_decode($data_results, true);
         return view('admin.adminlanguage.edit',compact('data','lang'));
     }
@@ -99,8 +99,8 @@ class AdminLanguageController extends Controller
         $new = null;
         $input = $request->all();
         $data = AdminLanguage::findOrFail($id);
-        if (file_exists(public_path().'/project/resources/lang/'.$data->file)) {
-            unlink(public_path().'/project/resources/lang/'.$data->file);
+        if (file_exists(public_path().'/assets/languages/'.$data->file)) {
+            unlink(public_path().'/assets/languages/'.$data->file);
         }
         $data->language = $input['language'];
         $name = time().str_random(8);
@@ -118,7 +118,7 @@ class AdminLanguageController extends Controller
             $new[$n] = $value;
         }        
         $mydata = json_encode($new);
-        file_put_contents(public_path().'/project/resources/lang/'.$data->file, $mydata); 
+        file_put_contents(public_path().'/assets/languages/'.$data->file, $mydata); 
         //--- Logic Section Ends
 
         //--- Redirect Section     
@@ -151,8 +151,8 @@ class AdminLanguageController extends Controller
         {
         return "You can not remove default language.";            
         }
-        if (file_exists(public_path().'/project/resources/lang/'.$data->file)) {
-            unlink(public_path().'/project/resources/lang/'.$data->file);
+        if (file_exists(public_path().'/assets/languages/'.$data->file)) {
+            unlink(public_path().'/assets/languages/'.$data->file);
         }
         $data->delete();
         //--- Redirect Section     

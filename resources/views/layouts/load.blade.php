@@ -2,7 +2,7 @@
 
 @yield('content')
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{{asset('assets/admin/js/vendors/jquery-1.12.4.min.js')}}"></script>
 <script src="{{asset('assets/admin/js/jqueryui.min.js')}}"></script>
 <script src="{{asset('assets/admin/js/vendors/vue.js')}}"></script>
 <script src="{{asset('assets/admin/js/bootstrap-colorpicker.min.js') }}"></script>

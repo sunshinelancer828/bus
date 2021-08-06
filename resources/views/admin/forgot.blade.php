@@ -72,8 +72,8 @@
 
 
     <!-- Dashboard Core -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://unpkg.com/bootstrap.min.js@3.3.5/bootstrap.min.js"></script>
+    <script src="{{asset('assets/admin/js/vendors/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{asset('assets/admin/js/vendors/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/admin/js/jqueryui.min.js')}}"></script>
     <!-- Fullside-menu Js-->
     <script src="{{asset('assets/admin/plugins/fullside-menu/jquery.slimscroll.min.js')}}"></script>

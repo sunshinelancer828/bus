@@ -384,8 +384,9 @@ class FlutterWaveController extends Controller
         
         $response = curl_exec($curl);   
         if ($response === FALSE) {  // there was an error contacting the rave API
-            dd('Curl returned error: ' . curl_error($curl));
-            return;
+            // dd('Curl returned error: ' . curl_error($curl));
+            // return;
+            return redirect()->route('front.cart')->with('unsuccess',"Sorry. We can't connect you to Flutter Wave now.");
         }
         curl_close($curl);
         

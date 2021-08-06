@@ -68,7 +68,7 @@ class PaypalController extends Controller
         $order['item_name'] = $subs->title." Plan";
         $order['item_number'] = str_random(4).time();
         $order['item_amount'] = $subs->price;
-        $cancel_url = action('Vendor\PaypalController@paycancle');
+        $cancel_url = action('Vendor\PaypalController@paycancel');
         $notify_url = action('Vendor\PaypalController@notify');
     
         $payer = new Payer();
@@ -118,7 +118,7 @@ class PaypalController extends Controller
      }
 
 
-     public function paycancle(){
+     public function paycancel(){
          return redirect()->back()->with('unsuccess','Payment Cancelled.');
      }
 
@@ -131,7 +131,7 @@ class PaypalController extends Controller
 
         $paypal_data = Session::get('paypal_data');
         $success_url = action('Vendor\PaypalController@payreturn');
-        $cancel_url = action('Vendor\PaypalController@paycancle');
+        $cancel_url = action('Vendor\PaypalController@paycancel');
         $input = $request->all();
 
         /** Get the payment ID before session clear **/

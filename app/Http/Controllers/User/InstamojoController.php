@@ -39,7 +39,7 @@ class InstamojoController extends Controller
      $settings = Generalsetting::findOrFail(1);
      $paypal_email = $settings->paypal_business;
      $return_url = action('User\PaypalController@payreturn');
-     $cancel_url = action('User\PaypalController@paycancle');
+     $cancel_url = action('User\PaypalController@paycancel');
      $notify_url = action('User\InstamojoController@notify');
      $item_name = $subs->title." Plan";
      $item_number = str_random(4).time();
@@ -103,7 +103,7 @@ public function notify(Request $request){
         $paypal_data = Session::get('paypal_data');
         $paypal_items = Session::get('paypal_items');
         $success_url = action('User\PaypalController@payreturn');
-        $cancel_url = action('User\PaypalController@paycancle');
+        $cancel_url = action('User\PaypalController@paycancel');
 
 
         if($sub['pay_id'] == $data['payment_request_id']){

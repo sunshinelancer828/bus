@@ -117,7 +117,7 @@ class MercadopagoController extends Controller
          $order['shipping_state'] = $request->shipping_state;
 
          $return_url = action('Front\MercadopagoController@payreturn');
-         $cancel_url = action('Front\PaymentController@paycancle');
+         $cancel_url = action('Front\PaymentController@paycancel');
          $notify_url = action('Front\MercadopagoController@notify');
     
             $item_name = $settings->title." Order";
@@ -371,7 +371,7 @@ class MercadopagoController extends Controller
         return $paymentData;
     }
 
-    public function paycancle(){
+    public function paycancel(){
         $this->code_image();
          return redirect()->back()->with('unsuccess','Payment Cancelled.');
      }

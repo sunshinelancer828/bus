@@ -88,7 +88,7 @@ class RazorpayController extends Controller
         $item_number = str_random(4).time();
         $item_amount = $request->total;
         $notify_url = action('Front\RazorpayController@razorCallback');
-        $cancel_url = action('Front\PaymentController@paycancle');
+        $cancel_url = action('Front\PaymentController@paycancel');
 
         foreach($cart->items as $key => $prod)
         {

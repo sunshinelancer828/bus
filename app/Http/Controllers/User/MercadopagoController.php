@@ -136,7 +136,7 @@ class MercadopagoController extends Controller
         return $paymentData;
     }
 
-    public function paycancle(){
+    public function paycancel(){
         $this->code_image();
          return redirect()->back()->with('unsuccess','Payment Cancelled.');
      }

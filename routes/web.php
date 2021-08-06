@@ -995,7 +995,7 @@ Route::prefix('user')->group(function() {
   Route::get('/deposit/index', 'User\DepositController@index')->name('user-deposit-index');
   Route::get('/deposit/create', 'User\DepositController@create')->name('user-deposit-create');
   Route::post('/deposit/paypal/submit', 'User\DpaypalController@store')->name('deposit.paypal.submit');
-  Route::get('/deposit/paypal/cancle', 'User\DpaypalController@paycancle')->name('deposit.paypal.cancle');
+  Route::get('/deposit/paypal/cancel', 'User\DpaypalController@paycancel')->name('deposit.paypal.cancel');
   Route::get('/deposit/paypal/return', 'User\DpaypalController@payreturn')->name('deposit.paypal.return');
   Route::get('/deposit/paypal/notify', 'User\DpaypalController@notify')->name('deposit.paypal.notify');
   Route::post('/deposit/stripe/submit', 'User\DstripeController@store')->name('deposit.stripe.submit');
@@ -1023,12 +1023,12 @@ Route::prefix('user')->group(function() {
   // ssl Routes
   Route::post('/deposit/ssl/submit', 'User\DsslController@store')->name('deposit.ssl.submit');
   Route::post('/deposit/ssl/notify', 'User\DsslController@notify')->name('deposit.ssl.notify');
-  Route::post('/deposit/ssl/cancle', 'User\DsslController@cancle')->name('deposit.ssl.cancle');
+  Route::post('/deposit/ssl/cancel', 'User\DsslController@cancel')->name('deposit.ssl.cancel');
   //Authorize Routes
   Route::post('/deposit-authorize-submit', 'User\DauthorizeController@store')->name('deposit.authorize.submit');
 
   // Mercadopago Routes
-  Route::get('/deposit/mercadopago/cancle', 'User\DmercadopagoController@paycancle')->name('deposit.mercadopago.cancle');
+  Route::get('/deposit/mercadopago/cancel', 'User\DmercadopagoController@paycancel')->name('deposit.mercadopago.cancel');
   Route::get('/deposit/mercadopago/return', 'User\DmercadopagoController@payreturn')->name('deposit.mercadopago.return');
   Route::post('/deposit/mercadopago/notify', 'User\DmercadopagoController@notify')->name('deposit.mercadopago.notify');
   Route::post('/deposit/mercadopago/submit', 'User\DmercadopagoController@store')->name('deposit.mercadopago.submit');
@@ -1050,7 +1050,7 @@ Route::prefix('user')->group(function() {
   Route::post('/vendor-request', 'User\UserController@vendorrequestsub')->name('user-vendor-request-submit');
 
   Route::post('/paypal/submit', 'User\PaypalController@store')->name('user.paypal.submit');
-  Route::get('/paypal/cancle', 'User\PaypalController@paycancle')->name('user.payment.cancle');
+  Route::get('/paypal/cancel', 'User\PaypalController@paycancel')->name('user.payment.cancel');
   Route::get('/paypal/return', 'User\PaypalController@payreturn')->name('user.payment.return');
   Route::get('/paypal/notify', 'User\PaypalController@notify')->name('user.payment.notify');
   Route::post('/stripe/submit', 'User\StripeController@store')->name('user.stripe.submit');
@@ -1064,7 +1064,7 @@ Route::prefix('user')->group(function() {
   // ssl Routes
   Route::post('/ssl/submit', 'User\SslController@store')->name('user.ssl.submit');
   Route::post('/ssl/notify', 'User\SslController@notify')->name('user.ssl.notify');
-  Route::post('/ssl/cancle', 'User\SslController@cancle')->name('user.ssl.cancle');
+  Route::post('/ssl/cancel', 'User\SslController@cancel')->name('user.ssl.cancel');
 
 
   Route::get('/paystack/check', 'User\PaystackController@check')->name('user.paystack.check');
@@ -1088,7 +1088,7 @@ Route::prefix('user')->group(function() {
   Route::post('/razorpay/notify', 'User\RazorpayController@notify')->name('user.razorpay.notify');
 
   // Mercadopago Routes
-  Route::get('/mercadopago/cancle', 'User\MercadopagoController@paycancle')->name('user.mercadopago.cancle');
+  Route::get('/mercadopago/cancel', 'User\MercadopagoController@paycancel')->name('user.mercadopago.cancel');
   Route::get('/mercadopago/return', 'User\MercadopagoController@payreturn')->name('user.mercadopago.return');
   Route::post('/mercadopago/notify', 'User\MercadopagoController@notify')->name('user.mercadopago.notify');
   Route::post('/mercadopago/submit', 'User\MercadopagoController@store')->name('user.mercadopago.submit');
@@ -1332,7 +1332,7 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   Route::post('/vendor-request', 'Vendor\VendorController@vendorrequestsub')->name('vendor-vendor-request-submit');
 
   Route::post('/paypal/submit', 'Vendor\PaypalController@store')->name('vendor.paypal.submit');
-  Route::get('/paypal/cancle', 'Vendor\PaypalController@paycancle')->name('vendor.payment.cancle');
+  Route::get('/paypal/cancel', 'Vendor\PaypalController@paycancel')->name('vendor.payment.cancel');
   Route::get('/paypal/return', 'Vendor\PaypalController@payreturn')->name('vendor.payment.return');
   Route::get('/paypal/notify', 'Vendor\PaypalController@notify')->name('vendor.payment.notify');
   Route::post('/stripe/submit', 'Vendor\StripeController@store')->name('vendor.stripe.submit');
@@ -1346,7 +1346,7 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   // ssl Routes
   Route::post('/ssl/submit', 'Vendor\SslController@store')->name('vendor.ssl.submit');
   Route::post('/ssl/notify', 'Vendor\SslController@notify')->name('vendor.ssl.notify');
-  Route::post('/ssl/cancle', 'Vendor\SslController@cancle')->name('vendor.ssl.cancle');
+  Route::post('/ssl/cancel', 'Vendor\SslController@cancel')->name('vendor.ssl.cancel');
 
   Route::get('/paystack/check', 'Vendor\PaystackController@check')->name('vendor.paystack.check');
   Route::post('/paystack/submit', 'Vendor\PaystackController@store')->name('vendor.paystack.submit');
@@ -1366,7 +1366,7 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   Route::post('/razorpay/notify', 'Vendor\RazorpayController@notify')->name('vendor.razorpay.notify');
 
   // Mercadopago Routes
-  Route::get('/mercadopago/cancle', 'Vendor\MercadopagoController@paycancle')->name('vendor.mercadopago.cancle');
+  Route::get('/mercadopago/cancel', 'Vendor\MercadopagoController@paycancel')->name('vendor.mercadopago.cancel');
   Route::get('/mercadopago/return', 'Vendor\MercadopagoController@payreturn')->name('vendor.mercadopago.return');
   Route::post('/mercadopago/notify', 'Vendor\MercadopagoController@notify')->name('vendor.mercadopago.notify');
   Route::post('/mercadopago/submit', 'Vendor\MercadopagoController@store')->name('vendor.mercadopago.submit');
@@ -1483,7 +1483,7 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   Route::get('/checkout/payment/{slug1}/{slug2}','Front\CheckoutController@loadpayment')->name('front.load.payment');
   Route::get('/order/track/{id}','Front\FrontendController@trackload')->name('front.track.search');
   Route::get('/checkout/payment/return', /*array('middleware' => 'cors', 'uses' => */'Front\PaymentController@payreturn')->name('payment.return');
-  Route::get('/checkout/payment/cancle', 'Front\PaymentController@paycancle')->name('payment.cancle');
+  Route::get('/checkout/payment/cancel', 'Front\PaymentController@paycancel')->name('payment.cancel');
   Route::get('/checkout/payment/notify', 'Front\PaymentController@notify')->name('payment.notify');
   Route::get('/checkout/instamojo/notify', 'Front\InstamojoController@notify')->name('instamojo.notify');
 
@@ -1503,7 +1503,7 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   // ssl Routes
   Route::post('/ssl/submit', 'Front\SslController@store')->name('ssl.submit');
   Route::post('/ssl/notify', 'Front\SslController@notify')->name('ssl.notify');
-  Route::post('/ssl/cancle', 'Front\SslController@cancle')->name('ssl.cancle');
+  Route::post('/ssl/cancel', 'Front\SslController@cancel')->name('ssl.cancel');
 
   // Molly Routes
   Route::post('/molly/submit', 'Front\MollyController@store')->name('molly.submit');

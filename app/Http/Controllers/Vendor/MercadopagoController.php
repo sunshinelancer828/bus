@@ -51,7 +51,7 @@ class MercadopagoController extends Controller
          $settings = Generalsetting::findOrFail(1);
 
          $return_url = action('Vendor\MercadopagoController@payreturn');
-         $cancel_url = action('Vendor\MercadopagoController@paycancle');
+         $cancel_url = action('Vendor\MercadopagoController@paycancel');
          $notify_url = action('Vendor\MercadopagoController@notify');
     
          $item_name = $subs->title." Plan";
@@ -136,7 +136,7 @@ class MercadopagoController extends Controller
         return $paymentData;
     }
 
-    public function paycancle(){
+    public function paycancel(){
         $this->code_image();
          return redirect()->back()->with('unsuccess','Payment Cancelled.');
      }

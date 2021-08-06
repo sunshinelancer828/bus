@@ -88,7 +88,7 @@ class MollyController extends Controller
      $settings = Generalsetting::findOrFail(1);
      $paypal_email = $settings->paypal_business;
      $return_url = action('User\PaypalController@payreturn');
-     $cancel_url = action('User\PaypalController@paycancle');
+     $cancel_url = action('User\PaypalController@paycancel');
      $notify_url = action('User\MollyController@notify');
      $order['item_name'] = $subs->title." Plan";
      $order['item_number'] = str_random(4).time();
@@ -138,7 +138,7 @@ public function notify(Request $request){
         $order = Session::get('order_data');
 
         $success_url = action('User\PaypalController@payreturn');
-        $cancel_url = action('User\PaypalController@paycancle');
+        $cancel_url = action('User\PaypalController@paycancel');
 
         $payment = Mollie::api()->payments()->get(Session::get('payment_id'));
 

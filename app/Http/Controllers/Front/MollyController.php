@@ -114,7 +114,7 @@ public function store(Request $request){
         $order['item_number'] = str_random(4).time();
         $order['item_amount'] = round($request->total / $this->curr->value, 2);
         $data['return_url'] = action('Front\PaymentController@notify');
-        $data['cancel_url'] = action('Front\PaymentController@paycancle');
+        $data['cancel_url'] = action('Front\PaymentController@paycancel');
         Session::put('paypal_items',$data);
 
 
@@ -142,7 +142,7 @@ public function notify(Request $request){
         $paypal_data = Session::get('paypal_data');
         $molly_data = Session::get('molly_data');
         $success_url = action('Front\PaymentController@payreturn');
-        $cancel_url = action('Front\PaymentController@paycancle');
+        $cancel_url = action('Front\PaymentController@paycancel');
         $payment = Mollie::api()->payments()->get(Session::get('payment_id'));
         // dd($response);
         if($payment->status == 'paid'){

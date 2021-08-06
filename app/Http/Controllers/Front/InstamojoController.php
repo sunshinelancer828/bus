@@ -103,7 +103,7 @@ class InstamojoController extends Controller
 
      $paypal_email = $settings->paypal_business;
      $return_url = action('Front\PaymentController@payreturn');
-     $cancel_url = action('Front\PaymentController@paycancle');
+     $cancel_url = action('Front\PaymentController@paycancel');
      $notify_url = action('Front\InstamojoController@notify');
 
      $item_name = $settings->title." Order";

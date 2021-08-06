@@ -69,8 +69,8 @@ class SslController extends Controller
         $post_data['currency'] = $subs->currency_code;
         $post_data['tran_id'] = $txnid;
         $post_data['success_url'] = action('Vendor\SslController@notify');
-        $post_data['fail_url'] =  action('Vendor\SslController@cancle');
-        $post_data['cancel_url'] =  action('Vendor\SslController@cancle');
+        $post_data['fail_url'] =  action('Vendor\SslController@cancel');
+        $post_data['cancel_url'] =  action('Vendor\SslController@cancel');
         # $post_data['multi_card_name'] = "mastercard,visacard,amexcard";  # DISABLE TO DISPLAY ALL AVAILABLE
         
         
@@ -137,7 +137,7 @@ class SslController extends Controller
 
  }
 
- public function cancle(Request $request){
+ public function cancel(Request $request){
     return redirect()->route('vendor-package')->with('unsuccess','Payment Cancelled.');
 }
 
@@ -146,7 +146,7 @@ public function notify(Request $request){
 
 
         $success_url = action('Vendor\PaypalController@payreturn');
-        $cancel_url = action('Vendor\PaypalController@paycancle');
+        $cancel_url = action('Vendor\PaypalController@paycancel');
 
         $input = $request->all();
 

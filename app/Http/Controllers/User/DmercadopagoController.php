@@ -55,7 +55,7 @@ class DmercadopagoController extends Controller
 
             $settings = Generalsetting::findOrFail(1);
             $return_url = action('User\DmercadopagoController@payreturn');
-            $cancel_url = action('User\DmercadopagoController@paycancle');
+            $cancel_url = action('User\DmercadopagoController@paycancel');
             $notify_url = action('User\DmercadopagoController@notify');
             $item_name = "Deposit via Mercadopago";
             $item_number = str_random(4).time();
@@ -137,7 +137,7 @@ class DmercadopagoController extends Controller
         return $paymentData;
     }
 
-    public function paycancle(){
+    public function paycancel(){
         $this->code_image();
          return redirect()->back()->with('unsuccess','Payment Cancelled.');
      }

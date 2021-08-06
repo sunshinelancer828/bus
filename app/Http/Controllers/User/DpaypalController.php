@@ -54,7 +54,7 @@ class DpaypalController extends Controller
         }
 
         $item_name = "Deposit via Paypal Payment";
-        $cancel_url = action('User\DpaypalController@paycancle');
+        $cancel_url = action('User\DpaypalController@paycancel');
         $notify_url = action('User\DpaypalController@notify');
 
         $dep['user_id'] = $user->id;
@@ -111,7 +111,7 @@ class DpaypalController extends Controller
         
  }
 
-      public function paycancle(){
+      public function paycancel(){
           return redirect()->route('user-deposit-create')->with('unsuccess','Payment Cancelled.');
       }
 
@@ -123,7 +123,7 @@ class DpaypalController extends Controller
 
         $dep = Session::get('deposit');
         $success_url = action('User\DpaypalController@payreturn');
-        $cancel_url = action('User\DpaypalController@paycancle');
+        $cancel_url = action('User\DpaypalController@paycancel');
         $input = $request->all();
 
         /** Get the payment ID before session clear **/

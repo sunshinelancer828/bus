@@ -43,7 +43,7 @@ class RazorpayController extends Controller
      $settings = Generalsetting::findOrFail(1);
      $paypal_email = $settings->paypal_business;
      $return_url = action('Vendor\PaypalController@payreturn');
-     $cancel_url = action('Vendor\PaypalController@paycancle');
+     $cancel_url = action('Vendor\PaypalController@paycancel');
      $notify_url = action('Vendor\RazorpayController@notify');
      $item_name = $subs->title." Plan";
      $item_number = str_random(4).time();

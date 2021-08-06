@@ -67,7 +67,7 @@ class DmollyController extends Controller
 
 
         $item_name = "Deposit via Molly Payment";
-        $cancel_url = action('User\DpaypalController@paycancle');
+        $cancel_url = action('User\DpaypalController@paycancel');
         $notify_url = action('User\DmollyController@notify');
 
         $dep['user_id'] = $user->id;
@@ -106,7 +106,7 @@ class DmollyController extends Controller
 
         $dep = Session::get('deposit');
         $success_url = action('User\DpaypalController@payreturn');
-        $cancel_url = action('User\DpaypalController@paycancle');
+        $cancel_url = action('User\DpaypalController@paycancel');
         $payment = Mollie::api()->payments()->get(Session::get('payment_id'));
 
 

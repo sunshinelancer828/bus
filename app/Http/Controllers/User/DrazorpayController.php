@@ -49,7 +49,7 @@ class DrazorpayController extends Controller
 
         $settings = Generalsetting::findOrFail(1);
         $return_url = action('User\DpaypalController@payreturn');
-        $cancel_url = action('User\DpaypalController@paycancle');
+        $cancel_url = action('User\DpaypalController@paycancel');
         $notify_url = action('User\DrazorpayController@notify');
         $item_name = "Deposit via Razorpay";
         $item_number = $user->id;

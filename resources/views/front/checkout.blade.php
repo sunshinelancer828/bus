@@ -177,7 +177,8 @@
 												</div-->
 											</div>
 										</div>
-										<div class="row {{ $digital == 1 ? 'd-none' : '' }}">
+										<!-- <div class="row {{ $digital == 1 ? 'd-none' : '' }}"> -->
+										<div class="row d-none">
 											<div class="col-lg-12 mt-3">
 													<input class="styled-checkbox" id="ship-diff-address" type="checkbox" value="value1" >
 													<label for="ship-diff-address">{{ $langg->lang160 }}</label>

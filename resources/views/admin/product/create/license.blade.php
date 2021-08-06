@@ -385,7 +385,7 @@
 						                          </div>
 						                        </div>
 
-												<div class="row">
+												<div class="row d-none">
 													<div class="col-lg-4">
 														<div class="left-area">
 

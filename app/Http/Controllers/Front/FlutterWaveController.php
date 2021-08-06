@@ -553,6 +553,9 @@ class FlutterWaveController extends Controller
                         $dataFormat = DB::table('products')->where('id','=',$product['item']['id'])->get();
                         $dataFormat = $dataFormat[0]->file_format;
 
+                        dd($product);
+                        return;
+                        
                         if (isset($product['license'])) {
                             $subcat = DB::table('subcategories')->where('id','=',$product['subcategory_id'])->get();
                             $subcat = $subcat[0]->name;

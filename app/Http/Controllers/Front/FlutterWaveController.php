@@ -198,6 +198,8 @@ class FlutterWaveController extends Controller
             Auth::user()->update(['balance' => (Auth::user()->balance - $order->wallet_price)]);
         }
 
+        dd($order);
+        return;
 
         if($request->coupon_id != "")
         {

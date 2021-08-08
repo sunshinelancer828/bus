@@ -120,7 +120,7 @@ class CatalogController extends Controller
         if ($search) {
 
             $prods = $prods->when($search, function ($query, $search) {
-                return $query->whereRaw("MATCH(name) AGAINST('" . $search . "' IN BOOLEAN MODE)");
+                return $query->whereRaw("MATCH(name) AGAINST('" . $search . "' IN BOOLEAN MODE )");
             });
         } 
         

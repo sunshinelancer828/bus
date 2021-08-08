@@ -570,7 +570,6 @@ class FlutterWaveController extends Controller
                         $str .= "Product Code: 000".$product['item']['id']."<br>";
                         $str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
 
-                        
                         $str2 .= $str;
                         $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
                         // $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';

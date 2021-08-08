@@ -103,12 +103,7 @@
 						<div class="section-top">
 							<h2 class="section-title">
 								{{ $langg->lang244 }}
-							</h2>
-							@foreach($langg as $key => $lng)
-								<span>{{$key}}</span>
-								<span>{{$lng}}</span>
-								<br>
-							@endforeach
+							</h2>							
 						</div>
 					</div>
 				</div>

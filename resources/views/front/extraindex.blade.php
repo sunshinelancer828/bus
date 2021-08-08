@@ -102,7 +102,7 @@
 					<div class="col-lg-12 remove-padding">
 						<div class="section-top">
 							<h2 class="section-title">
-							Flash Deals 
+								{{ $langg->lang244 }}
 							</h2>
 							@foreach($langg as $key => $lng)
 								<span>{{$key}}</span>

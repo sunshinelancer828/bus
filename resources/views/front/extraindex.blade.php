@@ -102,8 +102,13 @@
 					<div class="col-lg-12 remove-padding">
 						<div class="section-top">
 							<h2 class="section-title">
-							Flash Deals <?php dd($langg); ?>
+							Flash Deals 
 							</h2>
+							@foreach($langg as $key => $lng)
+								<span>{{$key}}</span>
+								<span>{{$lng}}</span>
+								<br>
+							@endforeach
 						</div>
 					</div>
 				</div>

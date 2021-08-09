@@ -202,7 +202,7 @@ class CatalogController extends Controller
 
         $search = str_replace(array('(', ')', '"', '\'', '<', '>', '+', '-', '~', '*'), 
             '', $prod->name);
-        $related = Product::whereRaw("MATCH(name) AGAINST('" . $search . "')")
+        $related = Product::whereRaw("MATCH(name) AGAINST('" . $search . "' IN BOOLEAN MODE )")
         ->where('status','=',1)
         ->where('id','!=',$prod->id)
         ->distinct()

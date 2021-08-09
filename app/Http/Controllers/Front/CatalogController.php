@@ -200,7 +200,9 @@ class CatalogController extends Controller
             $vendors = Product::where('status','=',1)->where('user_id','=',0)->take(8)->get();
         }
 
-        $related = Product::whereRaw("MATCH(name) AGAINST('" . $prod->name . "')")
+        $search = str_replace(array('(', ')', '"', '\'', '<', '>', '+', '-', '~', '*'), 
+            '', $prod->name);
+        $related = Product::whereRaw("MATCH(name) AGAINST('" . $search . "')")
         ->where('status','=',1)
         ->where('id','!=',$prod->id)
         ->distinct()

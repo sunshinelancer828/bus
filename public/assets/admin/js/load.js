@@ -37,13 +37,10 @@
           },],
         excludeAcceptAllOption: true,
         multiple: false
-      };
-
-      // store a reference to our file handle
-      const fileHandle;
+      };    
       
       // open file picker
-      [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+      const fileHandle = await window.showOpenFilePicker(pickerOpts);
       if (!fileHandle) {
         // User cancelled, or otherwise failed to open a file.
         return;

@@ -30,7 +30,7 @@
         }
     }
 // IMAGE UPLOADING PRODUCT :)
-  $(document).on('click', 'input[type="hidden"]#image-upload', () => {
+  $(document).on('click', 'label[for="image-upload"]', () => {
     const pickerOpts = {
       types: [
         {

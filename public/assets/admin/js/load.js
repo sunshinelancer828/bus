@@ -56,7 +56,7 @@
       img.file = fileData;
       let fileReader = new FileReader();
       // fileReader.readAsText(fileData);
-      fileReader.onload = (readImageFile)(img);  
+      fileReader.onload = (aImg => readImageFile)(img);  
       // fileReader.readAsDataURL(fileData);
     });
 
@@ -65,14 +65,14 @@
       var imgpath = $('#image-preview');
 
       //Initiate the JavaScript Image object.
-      var image = new Image();
-      image.src = e.target.result;
-      image.onerror = (msg, url, lineNo, columnNo, error) => {
+      // var image = new Image();
+      aImg.src = e.target.result;
+      aImg.onerror = (msg, url, lineNo, columnNo, error) => {
         console.log('img loading error: ', msg);
       }
 
       //Validate the File Height and Width.
-      image.onload = () => {
+      aImg.onload = () => {
         var height = this.height;
         var width = this.width;
 

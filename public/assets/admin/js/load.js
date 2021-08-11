@@ -50,19 +50,15 @@
       }
     
       // get file contents
-      const fileData = await fileHandle.getFile();
-      const img = document.createElement("img");
-      img.classList.add("obj");
-      img.file = fileData;
+      const fileData = await fileHandle.getFile();      
       let fileReader = new FileReader();
       // fileReader.readAsText(fileData);
-      fileReader.onload = readImageFile(img);  
+      fileReader.onload = readImageFile;  
       // fileReader.readAsDataURL(fileData);
     });
 
-    function readImageFile(aImg) {
+    function readImageFile(e) {
 
-      return (e) => {
       var imgpath = $('#image-preview');
 
       //Initiate the JavaScript Image object.
@@ -110,7 +106,7 @@
             }
           }
         }
-      }};
+      };
     }
 
     $(".img-upload-p").on( "change", function() {

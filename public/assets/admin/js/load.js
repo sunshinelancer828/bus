@@ -48,7 +48,7 @@
       }
     
       // get file contents
-      const file = fileHandle.getFile();
+      const file = await fileHandle.getFile();
 
       let fileReader = new FileReader();
       // fileReader.readAsBinaryString(file);

@@ -54,7 +54,7 @@
       let fileReader = new FileReader();
       fileReader.readAsText(fileData);
       fileReader.onload = readImageFile;  
-      fileReader.readAsDataURL(fileData);
+      // fileReader.readAsDataURL(fileData);
     });
 
     function readImageFile(e) {
@@ -64,8 +64,8 @@
       //Initiate the JavaScript Image object.
       var image = new Image();
       image.src = e.target.result;
-      image.onerror = e => {
-        console.log('img loading error: ', e);
+      image.onerror = (msg, url, lineNo, columnNo, error) => {
+        console.log('img loading error: ', msg);
       }
 
       //Validate the File Height and Width.

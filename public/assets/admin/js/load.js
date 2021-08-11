@@ -42,6 +42,8 @@
       multiple: false
     };
     
+    // store a reference to our file handle
+    let fileHandle;
     async function getTheFile() {
       // open file picker
       [fileHandle] = await window.showOpenFilePicker(pickerOpts);

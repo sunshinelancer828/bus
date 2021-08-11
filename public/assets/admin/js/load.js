@@ -29,23 +29,70 @@
       }
     }
     // IMAGE UPLOADING PRODUCT :)
-    $(document).on('click', 'label[for="image-upload"]', async () => {
-        // store a reference to our file handle
-        let fileHandle;
-        const pickerOpts = {
-          types: [{
-              description: 'Images',
-              accept: { 'image/*': ['.png', '.gif', '.jpeg', '.jpg'] }
-            },],
-          excludeAcceptAllOption: true,
-          multiple: false
-        };
+    $(document).on('click', 'label[for="image-upload"]', async () => {        
+      const pickerOpts = {
+        types: [{
+            description: 'Images',
+            accept: { 'image/*': ['.png', '.gif', '.jpeg', '.jpg'] }
+          },],
+        excludeAcceptAllOption: true,
+        multiple: false
+      };
 
-        // open file picker
-        [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+      // store a reference to our file handle
+      let fileHandle;
       
-        // get file contents
-        const fileData = await fileHandle.getFile();
+      // open file picker
+      [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+    
+      // get file contents
+      const fileData = await fileHandle.getFile();
+
+      //Initiate the JavaScript Image object.
+      var image = new Image();
+
+      //Set the Base64 string return from FileReader as source.
+      image.src = fileData;
+
+      //Validate the File Height and Width.
+      image.onload = () => {
+        var height = this.height;
+        var width = this.width;
+
+        if (height < 600 && width < 600) {
+          if (height != width){
+            $('.img-alert').html('Image must have square size.');
+            $('.img-alert').removeClass('d-none');
+            $('#image-upload').val(''); 
+            $('#image-upload').prop('required',true);
+            imgpath.css('background', 'url()');
+
+          } else {
+            $('.img-alert').html("Image height and width must be 600 x 600...........");
+            $('.img-alert').removeClass('d-none');
+            $('#image-upload').val(''); 
+            $('#image-upload').prop('required',true);
+            imgpath.css('background', 'url()');
+          }
+
+        } else {
+          if (height != width){
+            $('.img-alert').html('Image must have square size.');
+            $('.img-alert').removeClass('d-none');
+            $('#image-upload').val(''); 
+            $('#image-upload').prop('required',true);
+            imgpath.css('background', 'url()');
+            
+          } else {
+            $('.img-alert').addClass('d-none');
+            imgpath.css('background', 'url('+e.target.result+')');
+
+            if ($("#is_photo").length > 0) {
+              $("#is_photo").val('1')
+            }
+          }
+        }
+      };
     });
 
         $(".img-upload-p").on( "change", function() {

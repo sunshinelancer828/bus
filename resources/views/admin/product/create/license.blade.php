@@ -158,7 +158,7 @@
 									<div id="image-preview" class="img-preview"  style="background: url({{ asset('assets/vendor/images/upload.png') }}) no-repeat;">
 										<!-- <div class="span4 cropme text-center" id="landscape" style="width: 250px; height: 250px; border: 1px dashed black;"></div>										 -->
 										<label for="image-upload" class="img-label" id="image-label"><i class="icofont-upload-alt"></i>{{ $langg->lang512 }}</label>
-										<input type="file" name="photo" class="img-upload-p" id="image-upload">
+										<input accept="image/*" type="file" name="photo" class="img-upload-p" id="image-upload">
 										<input type="hidden" id="image-default" name="default_photo" value="">
 									</div>
 

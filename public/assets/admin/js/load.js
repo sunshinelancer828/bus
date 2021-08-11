@@ -50,11 +50,16 @@
       }
     
       // get file contents
-      const fileData = await fileHandle.getFile();      
+      const files = [];
+      for await (const entry of fileHandle.values()) {
+        const file = await entry.getFile();
+        files.push(file);
+      }
+      
       let fileReader = new FileReader();
-      fileReader.readAsBinaryString(fileData);
+      // fileReader.readAsBinaryString(files[0]);
       fileReader.onload = readImageFile;  
-      // fileReader.readAsDataURL(fileData);
+      fileReader.readAsDataURL(files[0]);
     });
 
     function readImageFile(e) {

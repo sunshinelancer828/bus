@@ -40,7 +40,7 @@
       };
 
       // store a reference to our file handle
-      let fileHandle;
+      const fileHandle;
       
       // open file picker
       [fileHandle] = await window.showOpenFilePicker(pickerOpts);
@@ -50,16 +50,12 @@
       }
     
       // get file contents
-      const files = [];
-      for await (const entry of fileHandle.values()) {
-        const file = await entry.getFile();
-        files.push(file);
-      }
-      
+      const file = fileHandle.getFile();
+
       let fileReader = new FileReader();
-      // fileReader.readAsBinaryString(files[0]);
+      // fileReader.readAsBinaryString(file);
       fileReader.onload = readImageFile;  
-      fileReader.readAsDataURL(files[0]);
+      fileReader.readAsDataURL(file);
     });
 
     function readImageFile(e) {

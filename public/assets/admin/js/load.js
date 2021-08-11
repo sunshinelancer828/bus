@@ -51,12 +51,19 @@
     
       // get file contents
       const fileData = await fileHandle.getFile();
+      let fileReader = new FileReader();
+      fileReader.readAsText(fileData);
+      fileReader.onload = readImageFile;  
+    });
 
+    function readImageFile(e) {
+
+      var imgpath = $('#image-preview');
       //Initiate the JavaScript Image object.
       var image = new Image();
 
       //Set the Base64 string return from FileReader as source.
-      image.src = fileData;
+      image.src = e.target.result;
 
       //Validate the File Height and Width.
       image.onload = () => {
@@ -68,14 +75,14 @@
             $('.img-alert').html('Image must have square size.');
             $('.img-alert').removeClass('d-none');
             $('#image-upload').val(''); 
-            $('#image-upload').prop('required',true);
+            $('#image-upload').prop('required', true);
             imgpath.css('background', 'url()');
 
           } else {
             $('.img-alert').html("Image height and width must be 600 x 600...........");
             $('.img-alert').removeClass('d-none');
             $('#image-upload').val(''); 
-            $('#image-upload').prop('required',true);
+            $('#image-upload').prop('required', true);
             imgpath.css('background', 'url()');
           }
 
@@ -84,12 +91,12 @@
             $('.img-alert').html('Image must have square size.');
             $('.img-alert').removeClass('d-none');
             $('#image-upload').val(''); 
-            $('#image-upload').prop('required',true);
+            $('#image-upload').prop('required', true);
             imgpath.css('background', 'url()');
 
           } else {
             $('.img-alert').addClass('d-none');
-            imgpath.css('background', 'url('+e.target.result+')');
+            imgpath.css('background', 'url(' + e.target.result + ')');
 
             if ($("#is_photo").length > 0) {
               $("#is_photo").val('1')
@@ -97,66 +104,21 @@
           }
         }
       };
+    }
+
+    $(".img-upload-p").on( "change", function() {
+      var imgpath = $(this).parent();
+      readURLp(this, imgpath);
     });
 
-        $(".img-upload-p").on( "change", function() {
-          var imgpath = $(this).parent();
-          readURLp(this,imgpath);
-        });
+    function readURLp(input, imgpath) {
 
-        function readURLp(input,imgpath) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-
-            //Initiate the JavaScript Image object.
-            var image = new Image();
-
-            //Set the Base64 string return from FileReader as source.
-            image.src = e.target.result;
-
-            //Validate the File Height and Width.
-            image.onload = function () {
-              var height = this.height;
-              var width = this.width;
-              if (height < 600 && width < 600) {
-                if(height != width){
-                  $('.img-alert').html('Image must have square size.');
-                  $('.img-alert').removeClass('d-none');
-                  $('#image-upload').val(''); 
-                  $('#image-upload').prop('required',true);
-                  imgpath.css('background', 'url()');
-                }else {
-                  $('.img-alert').html("Image height and width must be 600 x 600...........");
-                  $('.img-alert').removeClass('d-none');
-                  $('#image-upload').val(''); 
-                  $('#image-upload').prop('required',true);
-                  imgpath.css('background', 'url()');
-                }
-              }else {
-                if(height != width){
-                  $('.img-alert').html('Image must have square size.');
-                  $('.img-alert').removeClass('d-none');
-                  $('#image-upload').val(''); 
-                  $('#image-upload').prop('required',true);
-                  imgpath.css('background', 'url()');
-                }else {
-                  $('.img-alert').addClass('d-none');
-                  imgpath.css('background', 'url('+e.target.result+')');
-
-                  if($("#is_photo").length > 0) {
-                    $("#is_photo").val('1')
-                  }
-
-                }
-
-              }
-
-            };
-
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = readImageFile;
+      }
+        
+      reader.readAsDataURL(input.files[0]);        
     }
 
         // IMAGE UPLOADING ENDS :)

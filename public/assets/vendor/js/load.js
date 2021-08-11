@@ -35,10 +35,10 @@
         // IMAGE UPLOADING PRODUCT :)
         $(".img-upload-p").on( "change", function() {
           var imgpath = $(this).parent();
-          readURLp(this,imgpath);
+          readURLp(this, imgpath);
         });
 
-        function readURLp(input,imgpath) {
+        function readURLp(input, imgpath) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {

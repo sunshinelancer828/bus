@@ -51,9 +51,12 @@
     
       // get file contents
       const fileData = await fileHandle.getFile();
+      const img = document.createElement("img");
+      img.classList.add("obj");
+      img.file = fileData;
       let fileReader = new FileReader();
-      fileReader.readAsText(fileData);
-      fileReader.onloadend = readImageFile;  
+      // fileReader.readAsText(fileData);
+      fileReader.onload = (readImageFile)(img);  
       // fileReader.readAsDataURL(fileData);
     });
 

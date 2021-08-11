@@ -56,12 +56,13 @@
       img.file = fileData;
       let fileReader = new FileReader();
       // fileReader.readAsText(fileData);
-      fileReader.onload = (aImg => readImageFile)(img);  
+      fileReader.onload = readImageFile(img);  
       // fileReader.readAsDataURL(fileData);
     });
 
-    function readImageFile(e) {
+    function readImageFile(aImg) {
 
+      return (e) => {
       var imgpath = $('#image-preview');
 
       //Initiate the JavaScript Image object.
@@ -109,7 +110,7 @@
             }
           }
         }
-      };
+      }};
     }
 
     $(".img-upload-p").on( "change", function() {

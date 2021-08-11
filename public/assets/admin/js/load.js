@@ -39,8 +39,9 @@
         multiple: false
       };    
       
+      let fileHandle;
       // open file picker
-      const fileHandle = await window.showOpenFilePicker(pickerOpts);
+      [fileHandle] = await window.showOpenFilePicker(pickerOpts);
       if (!fileHandle) {
         // User cancelled, or otherwise failed to open a file.
         return;

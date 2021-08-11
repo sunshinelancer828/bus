@@ -49,6 +49,8 @@
       // get file contents
       const fileData = await fileHandle.getFile();
     };
+
+    getTheFile();
   });
 
         $(".img-upload-p").on( "change", function() {

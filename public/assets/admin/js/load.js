@@ -62,14 +62,14 @@
       var imgpath = $('#image-preview');
 
       //Initiate the JavaScript Image object.
-      // var image = new Image();
-      aImg.src = e.target.result;
-      aImg.onerror = (msg, url, lineNo, columnNo, error) => {
+      var image = new Image();
+      image.src = e.target.result;
+      image.onerror = (msg, url, lineNo, columnNo, error) => {
         console.log('img loading error: ', msg);
       }
 
       //Validate the File Height and Width.
-      aImg.onload = () => {
+      image.onload = () => {
         var height = this.height;
         var width = this.width;
 

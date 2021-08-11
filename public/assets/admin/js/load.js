@@ -52,7 +52,7 @@
       // get file contents
       const fileData = await fileHandle.getFile();      
       let fileReader = new FileReader();
-      // fileReader.readAsText(fileData);
+      fileReader.readAsBinaryString(fileData);
       fileReader.onload = readImageFile;  
       // fileReader.readAsDataURL(fileData);
     });

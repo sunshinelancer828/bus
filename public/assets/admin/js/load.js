@@ -53,7 +53,7 @@
       const fileData = await fileHandle.getFile();
       let fileReader = new FileReader();
       fileReader.readAsText(fileData);
-      fileReader.onload = readImageFile;  
+      fileReader.onloadend = readImageFile;  
       // fileReader.readAsDataURL(fileData);
     });
 
@@ -74,7 +74,7 @@
         var width = this.width;
 
         if (height < 600 && width < 600) {
-          if (height != width){
+          if (height != width) {
             $('.img-alert').html('Image must have square size.');
             $('.img-alert').removeClass('d-none');
             $('#image-upload').val(''); 
@@ -90,7 +90,7 @@
           }
 
         } else {
-          if (height != width){
+          if (height != width) {
             $('.img-alert').html('Image must have square size.');
             $('.img-alert').removeClass('d-none');
             $('#image-upload').val(''); 

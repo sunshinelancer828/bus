@@ -44,6 +44,10 @@
       
       // open file picker
       [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+      if (!fileHandle) {
+        // User cancelled, or otherwise failed to open a file.
+        return;
+      }
     
       // get file contents
       const fileData = await fileHandle.getFile();
@@ -82,7 +86,7 @@
             $('#image-upload').val(''); 
             $('#image-upload').prop('required',true);
             imgpath.css('background', 'url()');
-            
+
           } else {
             $('.img-alert').addClass('d-none');
             imgpath.css('background', 'url('+e.target.result+')');

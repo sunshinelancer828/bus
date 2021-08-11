@@ -3,57 +3,50 @@
 		
 	$(document).ready(function() {
       //cart item remove code
-    $('.cart-remove').on('click', function(){
+    $('.cart-remove').on('click', () => {
         $(this).parent().parent().remove();
     });
       //cart item remove code ends
 
+    /*  Bootstrap colorpicker js  */
+    $('.cp').colorpicker();
+    // Colorpicker Ends Here
 
-        /*  Bootstrap colorpicker js  */
-        $('.cp').colorpicker();
-        // Colorpicker Ends Here
+    // IMAGE UPLOADING :)
+    $(".img-upload").on( "change", () => {
+      var imgpath = $(this).parent();
+      var file = $(this);
+      readURL(this,imgpath);
+    });
 
-        // IMAGE UPLOADING :)
-        $(".img-upload").on( "change", function() {
-          var imgpath = $(this).parent();
-          var file = $(this);
-          readURL(this,imgpath);
-        });
-
-        function readURL(input,imgpath) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              imgpath.css('background', 'url('+e.target.result+')');
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
+    function readURL(input, imgpath) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            imgpath.css('background', 'url('+e.target.result+')');
+          }
+          reader.readAsDataURL(input.files[0]);
+      }
     }
-// IMAGE UPLOADING PRODUCT :)
-  $(document).on('click', 'label[for="image-upload"]', () => {
-    const pickerOpts = {
-      types: [
-        {
-          description: 'Images',
-          accept: { 'image/*': ['.png', '.gif', '.jpeg', '.jpg'] }
-        },
-      ],
-      excludeAcceptAllOption: true,
-      multiple: false
-    };
-    
-    // store a reference to our file handle
-    let fileHandle;
-    async function getTheFile() {
-      // open file picker
-      [fileHandle] = await window.showOpenFilePicker(pickerOpts);
-    
-      // get file contents
-      const fileData = await fileHandle.getFile();
-    };
+    // IMAGE UPLOADING PRODUCT :)
+    $(document).on('click', 'label[for="image-upload"]', async () => {
+        // store a reference to our file handle
+        let fileHandle;
+        const pickerOpts = {
+          types: [{
+              description: 'Images',
+              accept: { 'image/*': ['.png', '.gif', '.jpeg', '.jpg'] }
+            },],
+          excludeAcceptAllOption: true,
+          multiple: false
+        };
 
-    getTheFile();
-  });
+        // open file picker
+        [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+      
+        // get file contents
+        const fileData = await fileHandle.getFile();
+    });
 
         $(".img-upload-p").on( "change", function() {
           var imgpath = $(this).parent();

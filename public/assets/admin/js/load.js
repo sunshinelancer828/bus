@@ -54,16 +54,19 @@
       let fileReader = new FileReader();
       fileReader.readAsText(fileData);
       fileReader.onload = readImageFile;  
+      fileReader.readAsDataURL(fileData);
     });
 
     function readImageFile(e) {
 
       var imgpath = $('#image-preview');
+
       //Initiate the JavaScript Image object.
       var image = new Image();
-
-      //Set the Base64 string return from FileReader as source.
       image.src = e.target.result;
+      image.onerror = e => {
+        console.log('img loading error: ', e);
+      }
 
       //Validate the File Height and Width.
       image.onload = () => {

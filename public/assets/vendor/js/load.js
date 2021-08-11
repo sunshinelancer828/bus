@@ -45,8 +45,6 @@
 
             //Initiate the JavaScript Image object.
             var image = new Image();
-
-            //Set the Base64 string return from FileReader as source.
             image.src = e.target.result;
 
             //Validate the File Height and Width.

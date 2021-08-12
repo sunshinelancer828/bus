@@ -900,6 +900,8 @@ class ProductController extends Controller
         if ($file = $request->file('photo')) 
         {      
             $name = time().str_replace(' ', '', $file->getClientOriginalName());
+            dd($file->getClientOriginalName());
+            return;
             $file->move('assets/images/products', $name);           
             $input['photo'] = $name;
 

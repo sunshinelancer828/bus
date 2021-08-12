@@ -36,10 +36,17 @@
       // const file = await fileHandle.getFile();
       // $('#image-upload').files.push(file);
 
-      const file = $('#image-upload').files[0];
+      // const file = $('#image-upload').files[0];
+
+      // let fileReader = new FileReader();
+      // fileReader.onload = readImageFile;  
+      // fileReader.readAsDataURL(file);
+    });
+
+    $(document).on('change', '#image-upload', () => {
+      const file = $(this).files[0];
 
       let fileReader = new FileReader();
-      // fileReader.readAsBinaryString(file);
       fileReader.onload = readImageFile;  
       fileReader.readAsDataURL(file);
     });

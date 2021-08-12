@@ -30,68 +30,101 @@
         }
     }
 
+    // IMAGE UPLOADING PRODUCT :)
+    $(document).on('click', 'label[for="image-upload"]', async () => {        
+      const pickerOpts = {
+        types: [{
+            description: 'Images',
+            accept: { 'image/*': ['.png', '.gif', '.jpeg', '.jpg'] }
+          },],
+        excludeAcceptAllOption: true,
+        multiple: false
+      };    
+      
+      let fileHandle;
+      // open file picker
+      [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+      if (!fileHandle) {
+        // User cancelled, or otherwise failed to open a file.
+        return;
+      }
+    
+      // get file contents
+      const file = await fileHandle.getFile();
 
+      let fileReader = new FileReader();
+      // fileReader.readAsBinaryString(file);
+      fileReader.onload = readImageFile;  
+      fileReader.readAsDataURL(file);
+    });
 
-        // IMAGE UPLOADING PRODUCT :)
-        $(".img-upload-p").on( "change", function() {
-          var imgpath = $(this).parent();
-          readURLp(this, imgpath);
-        });
+    function readImageFile(e) {
 
-        function readURLp(input, imgpath) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
+      var imgpath = $('#image-preview');
 
-            //Initiate the JavaScript Image object.
-            var image = new Image();
-            image.src = e.target.result;
+      //Initiate the JavaScript Image object.
+      var image = new Image();
+      image.src = e.target.result;
+      image.onerror = (msg, url, lineNo, columnNo, error) => {
+        console.log('img loading error: ', msg);
+      }
 
-            //Validate the File Height and Width.
-            image.onload = function () {
-              var height = this.height;
-              var width = this.width;
-              if (height < 600 && width < 600) {
-                if(height != width){
-                  $('.img-alert').html(langg.lang807);
-                  $('.img-alert').removeClass('d-none');
-                  $('#image-upload').val(''); 
-                  $('#image-upload').prop('required',true);
-                  imgpath.css('background', 'url()');
-                }else {
-                  $('.img-alert').html(langg.lang806);
-                  $('.img-alert').removeClass('d-none');
-                  $('#image-upload').val(''); 
-                  $('#image-upload').prop('required',true);
-                  imgpath.css('background', 'url()');
-                }
-              }else {
-                if(height != width){
-                  $('.img-alert').html(langg.lang807);
-                  $('.img-alert').removeClass('d-none');
-                  $('#image-upload').val(''); 
-                  $('#image-upload').prop('required',true);
-                  imgpath.css('background', 'url()');
-                }else {
-                  $('.img-alert').addClass('d-none');
-                  imgpath.css('background', 'url('+e.target.result+')');
+      //Validate the File Height and Width.
+      image.onload = () => {
+        var height = this.height;
+        var width = this.width;
 
-                  if($("#is_photo").length > 0) {
-                    $("#is_photo").val('1')
-                  }
+        if (height < 600 && width < 600) {
+          if (height != width) {
+            $('.img-alert').html('Image must have square size.');
+            $('.img-alert').removeClass('d-none');
+            $('#image-upload').val(''); 
+            $('#image-upload').prop('required', true);
+            imgpath.css('background', 'url()');
 
-                }
+          } else {
+            $('.img-alert').html("Image height and width must be 600 x 600...........");
+            $('.img-alert').removeClass('d-none');
+            $('#image-upload').val(''); 
+            $('#image-upload').prop('required', true);
+            imgpath.css('background', 'url()');
+          }
 
-              }
+        } else {
+          if (height != width) {
+            $('.img-alert').html('Image must have square size.');
+            $('.img-alert').removeClass('d-none');
+            $('#image-upload').val(''); 
+            $('#image-upload').prop('required', true);
+            imgpath.css('background', 'url()');
 
-            };
+          } else {
+            $('.img-alert').addClass('d-none');
+            imgpath.css('background', 'url(' + e.target.result + ')');
 
+            if ($("#is_photo").length > 0) {
+              $("#is_photo").val('1')
             }
-          reader.readAsDataURL(input.files[0]);
+          }
         }
+      };
     }
 
-        // IMAGE UPLOADING ENDS :)
+    $(".img-upload-p").on( "change", function() {
+      var imgpath = $(this).parent();
+      readURLp(this, imgpath);
+    });
+
+    function readURLp(input, imgpath) {
+
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = readImageFile;
+      }
+        
+      reader.readAsDataURL(input.files[0]);        
+    }
+    // IMAGE UPLOADING ENDS :)
 
         // GENERAL IMAGE UPLOADING :)
         $(".img-upload1").on( "change", function() {

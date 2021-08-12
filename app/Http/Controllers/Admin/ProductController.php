@@ -899,8 +899,8 @@ class ProductController extends Controller
 
         dd($input['photo']);
         return;
-        
-        if ($file = $input['photo']) //$request->file('photo')) 
+
+        if ($file = $request->file('photo')) 
         {      
             $name = time().str_replace(' ', '', $file->getClientOriginalName());
             $file->move('assets/images/products', $name);           

@@ -94,26 +94,11 @@
       };
     }
 
-    $(document).on('change', '#image-upload', e => {
+    $('#image-upload').on('change', e => {
       e.preventDefault();
     });
 
-    // $(".img-upload-p").on( "change", function() {
-    //   var imgpath = $(this).parent();
-    //   readURLp(this, imgpath);
-    // });
-
-    // function readURLp(input, imgpath) {
-
-    //   if (input.files && input.files[0]) {
-    //     var reader = new FileReader();
-    //     reader.onload = readImageFile;
-    //   }
-        
-    //   reader.readAsDataURL(input.files[0]);        
-    // }
-
-        // IMAGE UPLOADING ENDS :)
+    // IMAGE UPLOADING ENDS :)
 
         // GENERAL IMAGE UPLOADING :)
         $(".img-upload1").on( "change", function() {

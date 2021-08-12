@@ -94,6 +94,10 @@
       };
     }
 
+    $(document).on('change', '#image-upload', e => {
+      e.preventDefault();
+    });
+
     // $(".img-upload-p").on( "change", function() {
     //   var imgpath = $(this).parent();
     //   readURLp(this, imgpath);

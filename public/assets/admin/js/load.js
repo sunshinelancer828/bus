@@ -43,7 +43,7 @@
       // fileReader.readAsDataURL(file);
     });
 
-    $(document).on('change', '#image-upload', () => {
+    $('#image-upload').on('change', () => {
       const file = $(this).files[0];
 
       let fileReader = new FileReader();

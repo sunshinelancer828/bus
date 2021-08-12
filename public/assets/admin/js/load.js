@@ -94,6 +94,10 @@
       };
     }
 
+    $('#image-upload').on('click', e => {
+      e.preventDefault();
+    });
+
     $('#image-upload').on('change', e => {
       e.preventDefault();
     });

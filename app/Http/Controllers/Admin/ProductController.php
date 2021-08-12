@@ -897,8 +897,8 @@ class ProductController extends Controller
             $input['file'] = $name;
         }
 
-        dd($request->file('photo'));
-        return;
+        // dd($request->file('photo'));
+        // return;
 
         if ($file = $request->file('photo')) 
         {      

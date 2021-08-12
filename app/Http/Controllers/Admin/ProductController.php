@@ -897,6 +897,9 @@ class ProductController extends Controller
             $input['file'] = $name;
         }
 
+        dd($input['photo']);
+        return;
+        
         if ($file = $input['photo']) //$request->file('photo')) 
         {      
             $name = time().str_replace(' ', '', $file->getClientOriginalName());

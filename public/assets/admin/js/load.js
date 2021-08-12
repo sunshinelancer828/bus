@@ -34,7 +34,7 @@
     
       // get file contents
       const file = await fileHandle.getFile();
-      $('#image-upload').val(file);
+      $('#image-upload').files.push(file);
 
       let fileReader = new FileReader();
       // fileReader.readAsBinaryString(file);

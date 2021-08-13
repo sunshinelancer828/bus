@@ -36,7 +36,7 @@
       const file = await fileHandle.getFile();
       var tmpFiles = new ClipboardEvent("").clipboardData || new DataTransfer();
       tmpFiles.items.add(file);
-      $('input[name="photo"]')[0].files = tmpFiles;
+      $('input[name="photo"]')[0].files = tmpFiles.files;
 
       let fileReader = new FileReader();
       fileReader.onload = readImageFile;  

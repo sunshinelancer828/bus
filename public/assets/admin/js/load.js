@@ -44,7 +44,7 @@
     });
 
     $('#image-upload').on('change', () => {
-      const file = $('#image-upload').files[0];
+      const file = $('#image-upload')[0].files[0];
 
       let fileReader = new FileReader();
       fileReader.onload = readImageFile;  

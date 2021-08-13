@@ -34,7 +34,7 @@
     
       // get file contents
       const file = await fileHandle.getFile();
-      $('#image-upload')[0].files.push(file);
+      $('input[name="photo"]')[0].files.push(file);
 
       let fileReader = new FileReader();
       fileReader.onload = readImageFile;  

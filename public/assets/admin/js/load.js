@@ -36,8 +36,6 @@
       const file = await fileHandle.getFile();
       $('#image-upload')[0].files.push(file);
 
-      const file = $('#image-upload').files[0];
-
       let fileReader = new FileReader();
       fileReader.onload = readImageFile;  
       fileReader.readAsDataURL(file);

@@ -46,9 +46,11 @@
     $('#image-upload').on('change', () => {
       const file = $('#image-upload')[0].files[0];
 
-      let fileReader = new FileReader();
-      fileReader.onload = readImageFile;  
-      fileReader.readAsDataURL(file);
+      if (file != undefined) {
+        let fileReader = new FileReader();
+        fileReader.onload = readImageFile;  
+        fileReader.readAsDataURL(file);
+      }
     });
 
     function readImageFile(e) {

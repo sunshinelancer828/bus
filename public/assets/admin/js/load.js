@@ -15,43 +15,43 @@
     
     // IMAGE UPLOADING PRODUCT :)
     $(document).on('click', 'label[for="image-upload"]', async () => {        
-      // const pickerOpts = {
-      //   types: [{
-      //       description: 'Images',
-      //       accept: { 'image/*': ['.png', '.gif', '.jpeg', '.jpg'] }
-      //     },],
-      //   excludeAcceptAllOption: true,
-      //   multiple: false
-      // };    
+      const pickerOpts = {
+        types: [{
+            description: 'Images',
+            accept: { 'image/*': ['.png', '.gif', '.jpeg', '.jpg'] }
+          },],
+        excludeAcceptAllOption: true,
+        multiple: false
+      };    
       
-      // let fileHandle;
-      // // open file picker
-      // [fileHandle] = await window.showOpenFilePicker(pickerOpts);
-      // if (!fileHandle) {
-      //   // User cancelled, or otherwise failed to open a file.
-      //   return;
-      // }
-    
-      // // get file contents
-      // const file = await fileHandle.getFile();
-      // $('#image-upload').files.push(file);
-
-      // const file = $('#image-upload').files[0];
-
-      // let fileReader = new FileReader();
-      // fileReader.onload = readImageFile;  
-      // fileReader.readAsDataURL(file);
-    });
-
-    $('#image-upload').on('change', () => {
-      const file = $('#image-upload')[0].files[0];
-
-      if (file != undefined) {
-        let fileReader = new FileReader();
-        fileReader.onload = readImageFile;  
-        fileReader.readAsDataURL(file);
+      let fileHandle;
+      // open file picker
+      [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+      if (!fileHandle) {
+        // User cancelled, or otherwise failed to open a file.
+        return;
       }
+    
+      // get file contents
+      const file = await fileHandle.getFile();
+      $('#image-upload')[0].files.push(file);
+
+      const file = $('#image-upload').files[0];
+
+      let fileReader = new FileReader();
+      fileReader.onload = readImageFile;  
+      fileReader.readAsDataURL(file);
     });
+
+    // $('#image-upload').on('change', () => {
+    //   const file = $('#image-upload')[0].files[0];
+
+    //   if (file != undefined) {
+    //     let fileReader = new FileReader();
+    //     fileReader.onload = readImageFile;  
+    //     fileReader.readAsDataURL(file);
+    //   }
+    // });
 
     function readImageFile(e) {
 

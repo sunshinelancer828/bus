@@ -11,24 +11,7 @@
 
         /*  Bootstrap colorpicker js  */
         $('.cp').colorpicker();
-        // Colorpicker Ends Here
-
-        // IMAGE UPLOADING :)
-        $(".img-upload").on( "change", function() {
-          var imgpath = $(this).parent();
-          var file = $(this);
-          readURL(this,imgpath);
-        });
-
-        function readURL(input,imgpath) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              imgpath.css('background', 'url('+e.target.result+')');
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+        // Colorpicker Ends Here        
 
     // IMAGE UPLOADING PRODUCT :)
     $(document).on('click', 'label[for="image-upload"]', async () => {        
@@ -51,12 +34,24 @@
     
       // get file contents
       const file = await fileHandle.getFile();
+      var tmpFiles = new ClipboardEvent("").clipboardData || new DataTransfer();
+      tmpFiles.items.add(file);
+      $('input[name="photo"]')[0].files = tmpFiles.files;
 
       let fileReader = new FileReader();
-      // fileReader.readAsBinaryString(file);
       fileReader.onload = readImageFile;  
       fileReader.readAsDataURL(file);
     });
+
+    // $('#image-upload').on('change', () => {
+    //   const file = $('#image-upload')[0].files[0];
+
+    //   if (file != undefined) {
+    //     let fileReader = new FileReader();
+    //     fileReader.onload = readImageFile;  
+    //     fileReader.readAsDataURL(file);
+    //   }
+    // });
 
     function readImageFile(e) {
 
@@ -108,39 +103,6 @@
           }
         }
       };
-    }
-
-    $(".img-upload-p").on( "change", function() {
-      var imgpath = $(this).parent();
-      readURLp(this, imgpath);
-    });
-
-    function readURLp(input, imgpath) {
-
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = readImageFile;
-      }
-        
-      reader.readAsDataURL(input.files[0]);        
-    }
-    // IMAGE UPLOADING ENDS :)
-
-        // GENERAL IMAGE UPLOADING :)
-        $(".img-upload1").on( "change", function() {
-          var imgpath = $(this).parent().prev().find('img');
-          var file = $(this);
-          readURL1(this,imgpath);
-        });
-
-        function readURL1(input,imgpath) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              imgpath.attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
     }
         // GENERAL IMAGE UPLOADING ENDS :)
 

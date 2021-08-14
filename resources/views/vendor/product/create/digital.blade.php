@@ -148,7 +148,8 @@
 
 														  	<div id="image-preview" class="img-preview" style="background: url({{ asset('assets/vendor/images/upload.png') }});">
 															  <label for="image-upload" class="img-label" id="image-label"><i class="icofont-upload-alt"></i>{{ $langg->lang512 }}</label>
-															  <input accept="image/*" type="file" name="photo" class="img-upload-p" id="image-upload">
+															  <!-- <input type="hidden" accept="image/*" name="photo" class="img-upload-p" id="image-upload"> -->
+															<input type="file" name="photo" style="visibility: hidden">
 															  <input type="hidden" name="default_photo" value="" id="image-default">
 															</div>
 

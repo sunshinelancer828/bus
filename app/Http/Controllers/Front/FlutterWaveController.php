@@ -346,7 +346,7 @@ class FlutterWaveController extends Controller
         }
 
         Session::put('tempcart',$cart);
-        Session::forget('cart');
+        // Session::forget('cart');
         Session::forget('pickup_text');
         Session::forget('pickup_cost');
         Session::forget('pickup_costshow');

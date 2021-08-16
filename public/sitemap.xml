@@ -6,9 +6,9 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
 	<loc>https://projectshelve.com/</loc>
+	<link rel=”canonical“ href=”https://projectshelve.com/” />
 	<lastmod>2021-07-07T14:15:47+01:00</lastmod>
 	<priority>1.0</priority>
-	<link rel=”canonical“ href=”https://projectshelve.com/” />
 </url>
 <url>
 	<loc>https://projectshelve.com/user/login</loc>
@@ -18,7 +18,7 @@
 <url>
 	<loc>https://projectshelve.com/user/register</loc>
 	<lastmod>2021-07-07T14:16:00+01:00</lastmod>
-	<priority>0.8</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/item/compare/view</loc>
@@ -28,1172 +28,1172 @@
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials</loc>
 	<lastmod>2021-07-07T14:16:12+01:00</lastmod>
-	<priority>0.8</priority>
+	<priority>1.0</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project</loc>
 	<lastmod>2021-07-07T14:16:12+01:00</lastmod>
-	<priority>0.6</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Accounting-project-topics-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:16+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Accounting-Education-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:16:16+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Adult-Education-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:16:26+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Agricultural-Engineering-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:16:23+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Agricultural-Science-project-topics-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:23+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Agricultural-Science-Education-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:16:27+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Anthropology-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:27+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Archaeology-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:32+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Architecture-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:32+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.6</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/postgraduate-Arts-Education-projects</loc>
 	<lastmod>2021-07-07T14:16:32+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Banking-and-Finance-project-topics-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:36+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Biochemistry-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:36+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Biology-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:37+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Biology-Education-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:16:40+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Botany-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:41+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Building-Technology-project-topics-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:41+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Business-Administration-project-topics-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:45+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Business-Education-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:16:46+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Chemical-Engineering-project-topics-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:46+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Chemistry-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:50+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/postgraduate-Chemistry-Education-projects</loc>
 	<lastmod>2021-07-07T14:16:51+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Christian-Religious-Studies-project-topics-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:52+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Civil-Engineering-projects-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:56+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Classics-projects-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:58+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Computer-Engineering-projects-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:16:57+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Computer-Science-projects-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:01+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Computer-Science-Education-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:17:03+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Cooperative-Economics-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:02+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Criminology-projects-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:08+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Demography-projects-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:10+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Dentistry-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:10+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Economics-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:13+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/postgraduate-Economics-Education-projects</loc>
 	<lastmod>2021-07-07T14:17:14+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Education-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:15+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Educational-Foundation-projects-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:17+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Educational-Management-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:17:18+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Electrical-Electronic-Engineering-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:20+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/English-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:23+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/postgraduate-English-Education-projects</loc>
 	<lastmod>2021-07-07T14:17:23+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/English-Literature-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:25+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Environmental-Science-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:27+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Estate-Management-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:27+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Fine-and-Applied-Art-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:17:29+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Food-Technology-projects-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:31+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/French-Language-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:32+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Geography-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:34+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/postgraduate-Geography-Education-projects</loc>
 	<lastmod>2021-07-07T14:17:35+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Geology-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:35+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/German-Language-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:38+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Guidance-and-Counseling-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:39+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/History-project-topics-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:39+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Human-Kinetics-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:42+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/postgraduate-Human-Resource-Management-projects</loc>
 	<lastmod>2021-07-07T14:17:43+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Industrial-Chemistry-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:44+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Industrial-Relations-and-Personnel-Management-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:47+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Insurance-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:47+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/International-Relations-Conflict-Studies-project-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:47+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Islamic-Studies-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:51+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Italian-Studies-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:51+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Language-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:17:51+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Law-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:54+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Library-Science-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:55+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Marketing-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:56+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Mass-Communication-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:17:59+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Mathematics-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:00+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/postgraduate-Mathematics-Education-projects</loc>
 	<lastmod>2021-07-07T14:18:01+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Mechanical-Engineering-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:05+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Medical-Laboratory-Science-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:06+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Medicine-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:08+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Metallurgical-Engineering-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:09+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Microbiology-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:12+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Music-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:11+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Nursing-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:14+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Office-Technology-Management-project-topics-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:15+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Petroleum-Engineering-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:16+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Pharmacology-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:18+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Philosophy-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:20+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Physical-Health-Education-project-topics-and-materials-for-Postgraduate</loc>
 	<lastmod>2021-07-07T14:18:20+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Physics-project-topics-and-materials-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:22+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/postgraduate-Physics-Education-projects</loc>
 	<lastmod>2021-07-07T14:18:23+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Physiology-project-topics-and-materials-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:23+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Political-Science-project-topics-and-materials-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:32+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Portuguese-Studies-project-topics-and-materials-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:30+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Primary-Education-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:30+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Production-Engineering-project-topics-and-materials-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:34+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Psychology-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:35+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Public-Administration-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:37+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Public-Health-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:38+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Purchasing-and-Supply-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:40+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Quantity-Survey-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:41+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Religious-Studies-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:44+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Science-Laboratory-Technology-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:46+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Secretarial-Administration-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:48+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Social-Studies-Education-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:48+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Sociology-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:51+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Spanish-Studies-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:51+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.6</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Special-Education-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:53+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Statistics-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:54+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Sustainable-Development-project-topics</loc>
 	<lastmod>2021-07-07T14:18:56+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Taxation-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:18:56+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/postgraduate-Technical-Education-projects</loc>
 	<lastmod>2021-07-07T14:18:58+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Theatre-Arts-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:19:00+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Theology-and-Biblical-Studies--projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:19:00+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Tourism-and-Hospitality-Management-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:19:02+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Transport-Management-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:19:05+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Urban-and-Regional-Planning-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:19:05+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Veterinary-Medicine-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:19:06+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Vocational-Education-Post-Graduate</loc>
 	<lastmod>2021-07-07T14:19:09+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Postgraduate-project/Zoology-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:19:10+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project</loc>
 	<lastmod>2021-07-07T14:19:12+01:00</lastmod>
-	<priority>0.6</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Accounting-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:16+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Accounting-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:15+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Adult-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:18+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Agric-Economics-projects-for-postgraduate</loc>
 	<lastmod>2021-07-07T14:19:20+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Agric-Extension-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:20+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/undergraduate-Agricultural-Engineering-projects</loc>
 	<lastmod>2021-07-07T14:19:22+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Agricultural-Science-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:25+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Agricultural-Science-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:25+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.8</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Anthropology-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:26+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Archaeology-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:28+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Architecture-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:29+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Arts-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:31+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Banking-and-Finance-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:32+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Biochemistry-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:34+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Biology-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:35+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Biology-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:37+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Botany-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:38+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Building-Technology-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:39+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Business-Administration-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:41+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Business-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:43+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Chemical-Engineering-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:44+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Chemistry-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:44+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Chemistry-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:47+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Christian-Religious-Studies-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:48+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Civil-Engineering-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:50+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Classics-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:53+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Computer-Engineering-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:54+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Computer-Science-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:56+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Computer-Science-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:58+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Cooperative-Economics-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:19:58+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Criminology-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:00+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Demography-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:02+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Dentistry-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:03+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Economics-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:06+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Economics-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:07+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Education-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:08+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Educational-Foundation-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:10+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/undergraduate-Educational-Management-projects</loc>
 	<lastmod>2021-07-07T14:20:14+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Electrical-Electronic-Engineering-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:11+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/English-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:17+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/undergraduate-English-Education-projects</loc>
 	<lastmod>2021-07-07T14:20:17+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/English-Literature-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:20+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Environmental-Science-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:23+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Estate-Management-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:23+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Fine-and-Applied-Art-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:24+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Fishery-and-Aquaculture-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:27+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Food-Technology-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:27+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/French-Language-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:28+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Geography-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:34+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Geography-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:30+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Geology-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:32+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/German-Language-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:34+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Guidance-and-Counseling-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:37+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/History-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:38+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Home-Economics-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:39+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Human-Kinetics-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:42+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Human-Resource-Management-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:44+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Industrial-Chemistry-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:44+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Industrial-Relations-and-Personnel-Management-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:46+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Insurance-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:48+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Integrated-Science-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:48+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/International-and-Diplomatic-Studies-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:50+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/International-Relations-Conflict-Studies-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:52+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Islamic-Studies-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:52+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Italian-Studies-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:55+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Language-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:56+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Law-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:56+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Library-Science-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:20:59+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Linguistic-and-Communication-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:00+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Marketing-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:01+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Mass-Communication-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:04+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Mathematics-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:04+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/undergraduate-Mathematics-Education-projects</loc>
 	<lastmod>2021-07-07T14:21:06+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Mechanical-Engineering-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:08+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Medical-Laboratory-Science-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:09+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Medicine-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:10+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/undergraduate-Metallurgical-Engineering-projects</loc>
 	<lastmod>2021-07-07T14:21:12+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Microbiology-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:12+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Music-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:15+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Nursing-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:16+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Office-Technology-Management-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:17+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Petroleum-Engineering-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:20+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Pharmacology-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:21+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Philosophy-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:23+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Physical-Health-Education-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:27+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Physics-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:27+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Physics-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:28+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Physiology-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:31+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Plant-Science-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:31+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Political-Science-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:33+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Portuguese-Studies-project-topics-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:35+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Primary-Education-projects-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:35+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Production-Engineering-project-topics-and-materials-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:37+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Psychology-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:39+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Public-Administration-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:39+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Public-Health-projects-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:42+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Purchasing-and-Supply-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:44+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Quantity-Survey-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:44+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Religious-Studies-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:46+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Science-Laboratory-Technology-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:47+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Secretarial-Administration-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:48+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Social-Science-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:49+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Social-Studies-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:51+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Sociology-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:52+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Soil-Science-project-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:53+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Spanish-Studies-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:55+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Special-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:57+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Statistics-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:57+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Taxation-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:21:59+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Technical-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:01+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Theatre-Arts-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:03+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Theology-and-Biblical-Studies-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:04+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Tourism-and-Hospitality-Management-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:05+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Transport-and-Maritime-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:07+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Transport-Management-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:08+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Urban-and-Regional-Planning-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:09+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Veterinary-Medicine-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:11+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Vocational-Education-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:12+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Zoology-projects-for-undergraduate</loc>
 	<lastmod>2021-07-07T14:22:13+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Hausa-project</loc>
 	<lastmod>2021-07-25T14:22:11+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Igbo-project</loc>
 	<lastmod>2021-07-25T14:22:12+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.9</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Project-Topics-and-Materials/Undergraduate-Project/Yoruba-project</loc>
 	<lastmod>2021-07-25T14:22:13+01:00</lastmod>
-	<priority>0.4</priority>
+	<priority>0.7</priority>
 </url>
 <url>
 	<loc>https://projectshelve.com/category/Business-Plan-and-Feasibility-Study</loc>

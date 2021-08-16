@@ -237,6 +237,7 @@ class ProductController extends Controller
             
             $dataUsers = User::findOrFail($data->user_id);
             
+            $msg = '';
             if ($status == 0) {
                 
                 $subject = 'Product Deactivated';
@@ -275,17 +276,16 @@ class ProductController extends Controller
             $to = $dataUsers->email;
             $gs = Generalsetting::findOrFail(1);
       
-            $msg1 = $msg;
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= "From: ProjectShelve <".$gs->from_email.">";
+            $headers .= "From: ProjectShelve <projectshelve@gmail.com>";
          
             // mail($to, $subject, $msg1, $headers);
-            $sent =   Mail::send(array(), array(), function ($message) use ($msg1,$to,$subject,$headers) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg1,'text/html');
-                            });  
+            Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                $message->to($to)
+                ->subject($subject)
+                ->setBody($msg,'text/html');
+            });  
              
         // 	 $phone_number = $dataUsers->phone;
         // 	 $mailer = new GeniusMailer();
@@ -900,7 +900,7 @@ class ProductController extends Controller
         if ($file = $request->file('photo')) 
         {      
             $name = time().str_replace(' ', '', $file->getClientOriginalName());
-            $file->move('assets/images/products',$name);           
+            $file->move('assets/images/products', $name);           
             $input['photo'] = $name;
 
         } else {
@@ -908,7 +908,9 @@ class ProductController extends Controller
             $name = substr($input['default_photo'], strrpos($input['default_photo'], '/') + 1);
             // $name = time().str_replace(' ', '', $name);
             $tmp_file = public_path('assets/images/products/') . $name;
-            copy($input['default_photo'], $tmp_file);
+            if ($tmp_file != $input['default_photo'])
+                copy($input['default_photo'], $tmp_file);
+                
             $input['photo'] = $name;
             // return response()->json(array('errors' => [ 0 => 'You Can\'t Add More Product.'.$name.$tmp_file]));
         }
@@ -1197,7 +1199,7 @@ class ProductController extends Controller
                 $admin_message = $request->reject;
            
                 $subject = 'Product Rejected';
-                $msg = "Hello ".$user_data->shop_name."<br><br>";
+                $msg = "Hello ".$user_data->shop_name.",<br><br>";
                 $msg.="Your product ".$request->name." has been rejected. hence not yet visible on our website<br><br>";
                 $msg.="Reason: ".$admin_message."<br><br>";
                 $msg.="Thank you as we look forward for a mutual advantage.<br><br>";  
@@ -1209,11 +1211,17 @@ class ProductController extends Controller
                 $to = $user_data->email;
                 $gs = Generalsetting::findOrFail(1);
       
-                 $msg1 = $msg;
-                 $headers = "MIME-Version: 1.0" . "\r\n";
-                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                 $headers .= "From: ProjectShelve <".$gs->from_email.">";
-                 mail($to,$subject,$msg1,$headers);
+                //  $msg1 = $msg;
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                $headers .= "From: ProjectShelve <projectshelve@gmail.com>";
+
+                //  mail($to,$subject,$msg1,$headers);
+                Mail::send(array(), array(), function ($message) use ($msg, $headers, $to, $subject) {
+                    $message->to($to)
+                    ->subject($subject)                            
+                    ->setBody($msg,'text/html');
+                });
           
                 $msg = 'Email sent to user.'; 
                 

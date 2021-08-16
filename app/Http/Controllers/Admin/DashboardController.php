@@ -246,13 +246,13 @@ class DashboardController extends Controller
         $files = public_path();
         $bkupname = 'Kingcommerce-By-GeniusOcean-'.date('Y-m-d').'.zip';
 
-        $zipper = new \Chumper\Zipper\Zipper;
+        // $zipper = new \Chumper\Zipper\Zipper;
 
-        $zipper->make($bkupname)->add($files);
+        // $zipper->make($bkupname)->add($files);
 
-        $zipper->remove($bkupname);
+        // $zipper->remove($bkupname);
 
-        $zipper->close();
+        // $zipper->close();
 
         $handle = fopen('backup.txt','w+');
         fwrite($handle,$bkupname);

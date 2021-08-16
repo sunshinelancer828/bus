@@ -50,7 +50,7 @@ class PartnerController extends Controller
     {
         //--- Validation Section
         $rules = [
-               'photo'      => 'required|mimes:jpeg,jpg,png,svg',
+            //    'photo'      => 'required|mimes:jpeg,jpg,png,svg',
                 ];
 
         $validator = Validator::make(Input::all(), $rules);
@@ -103,7 +103,7 @@ class PartnerController extends Controller
     {
         //--- Validation Section
         $rules = [
-               'photo'      => 'mimes:jpeg,jpg,png,svg',
+            //    'photo'      => 'mimes:jpeg,jpg,png,svg',
                 ];
 
         $validator = Validator::make(Input::all(), $rules);

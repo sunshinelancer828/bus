@@ -6,7 +6,7 @@
 <div class="write-comment-area">
   <form id="comment-form" action="{{ route('product.comment') }}" method="POST">
     {{csrf_field()}}
-    <input type="hidden" name="product_id" id="product_id" value="{{$productt->id}}">
+    <input type="hidden" name="product_id" id="product_id" value="{{$prod->id}}">
     <input type="hidden" name="user_id" id="user_id" value="{{Auth::guard('web')->user()->id}}">
     <div class="row">
       <div class="col-lg-12">
@@ -24,8 +24,8 @@
 
 
 <ul class="all-comment">
-@if($productt->comments)  
-@foreach($productt->comments()->orderBy('created_at','desc')->get() as $comment)
+@if($prod->comments)  
+@foreach($prod->comments()->orderBy('created_at','desc')->get() as $comment)
   <li>
     <div class="single-comment comment-section">
       <div class="left-area">
@@ -123,10 +123,10 @@
 </div>
 </div>
 
-@if($productt->comments)  
+@if($prod->comments)  
 <ul class="all-comment">
 
-  @foreach($productt->comments()->orderBy('created_at','desc')->get() as $comment)
+  @foreach($prod->comments()->orderBy('created_at','desc')->get() as $comment)
 
   <li>
     <div class="single-comment">

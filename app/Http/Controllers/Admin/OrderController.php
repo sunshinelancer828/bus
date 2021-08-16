@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+require app_path('../twilio/sdk/Twilio/autoload.php');
+
 use App\Classes\GeniusMailer;
 use App\Http\Controllers\Controller;
 use App\Models\Generalsetting;
@@ -10,11 +12,13 @@ use App\Models\OrderTrack;
 use App\Models\User;
 use App\Models\VendorOrder;
 use App\Models\Product;
-use Datatables;
 use App\Models\Currency;
 use Illuminate\Http\Request;
 use Session,Mail;
 use DB;
+use Datatables;
+
+use Twilio\Rest\Client;
 
 class OrderController extends Controller
 {
@@ -83,28 +87,35 @@ class OrderController extends Controller
 
         foreach ($cart->items as $product) {
             
-			$dataFormat = DB::table('products')->where('id','=',$product['item']['id'])->get();
-			if(is_array($dataFormat)){
-			    $dataFormat = $dataFormat[0]->file_format;
-			}else{
-			    $dataFormat = '';
-			}
-			
-            $str .= "Find below your ".$product['item']['name'].".<br><br>";
+			$prod = DB::table('products')->where('id','=',$product['item']['id'])->get();			
+            $dataFormat = $prod[0]->file_format;
+
+            if ($prod[0]->type == 'License') {
+                $subcat = DB::table('subcategories')->where('id','=',$prod[0]->subcategory_id)->get();
+                $subcat = $subcat[0]->name;
+                $str .= "Find below your \"" . $subcat . "\".<br><br>";
+            } else {                
+                $str .= "Click link below to download your product.<br><br>";
+            }
+
             $str .= "Product Title: ".$product['item']['name']."<br>";
         	$str .= "Product Code: 000".$product['item']['id']."<br>";
-        	$str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
+        	$str .= "Price: " .Product::convertPrice($product['item_price'])."<br>";
+
         	if($product['item']['user_id'] != 0){
         	    $mstr .= $product['item']['name'].'<br>';
         	    $vid = $product['item']['user_id'];
         	}
-			if($dataFormat) {
-        	    $str .= "Format: ".$dataFormat."<br>";
-            }
+			
             $str2 .= $str;
             $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
-            // $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
-            $str .= "PIN: ".$product['license']."<br><br>";
+
+            if ($prod[0]->type == 'License') {
+                $str .= "PIN: ".$product['license']."<br><br>";
+            } else {
+                $str .= "Format: ".$dataFormat."<br>";
+                $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
+            }
         }
 
         $msg  = "Hello ".$data->customer_name.",<br><br>";
@@ -154,11 +165,11 @@ class OrderController extends Controller
 
 				if (count($all_licence) > 0 ) {
 
-                    $msg1 = $msg; // "Hello ".$data->customer_name.","."\n Thank you for shopping with us. We are looking forward to your next visit.<br>License Key :  ".implode (',',$all_licence)."<br><br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+                    $msg1 = $msg; // "Hello ".$data->customer_name.","."\n Thank you for shopping with us. We are looking forward to your next visit.<br>License Key :  ".implode (',',$all_licence)."<br><br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
                 
                 } else {
 
-					$msg1 = $msg; // "Hello ".$data->customer_name.",<br>"."\n Thank you for your interest in service. Below is an overview of your order:<br><br>Overview:<br>Product Title:".$cart['name']."<br>Product Code:000".$cart['id']." <br><br>We are looking forward to your next visit.<br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";  
+					$msg1 = $msg; // "Hello ".$data->customer_name.",<br>"."\n Thank you for your interest in service. Below is an overview of your order:<br><br>Overview:<br>Product Title:".$cart['name']."<br>Product Code:000".$cart['id']." <br><br>We are looking forward to your next visit.<br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";  
                 }
                 
                 $headers  = "MIME-Version: 1.0" . "\r\n";
@@ -185,6 +196,16 @@ class OrderController extends Controller
                         ->getHeaders()
                         ->addTextHeader($headers, 'true');
                     });    
+
+                    $sid = 'AC7ef5ef96e9609301ef3cda5d0c051cd4';
+                    $token = 'aa4777dd5110081cd6f6dd130efd0bd4';
+                    $client = new Client($sid, $token);
+
+                    // $message = $client->messages->create(
+                    //     "+2348071585713", // to
+                    //     [   "body" => $msg1, 
+                    //         "from" => "+2348147801594"]
+                    // );
                 }
         
                 if (!empty($vid)) {
@@ -220,7 +241,14 @@ class OrderController extends Controller
 
                     } else {
 
-                        mail($to, $subject, $msg2, $headers);
+                        $sent =   Mail::send(array(), array(), function ($message) use ($msg2, $to, $subject, $headers) {
+                            $message->to($to)
+                            ->subject($subject)
+                            ->setBody($msg2,'text/html')
+                            ->getHeaders()
+                            ->addTextHeader($headers, 'true');
+                        }); 
+                        // mail($to, $subject, $msg2, $headers);
                     }
                 }
 
@@ -290,7 +318,7 @@ class OrderController extends Controller
 
                 $subject = 'Your order '.$data->order_number.' is Declined!';
 
-                $msg = "Hello ".$data->customer_name.","."\n We are sorry for the inconvenience caused. We are looking forward to your next visit.<br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+                $msg = "Hello ".$data->customer_name.","."\n We are sorry for the inconvenience caused. We are looking forward to your next visit.<br><br>All at ProjectShelve<br>Mobile: (+234) 08147801594<br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
 
                 // if ($gs->is_smtp == 1) {
 
@@ -343,11 +371,11 @@ class OrderController extends Controller
             } 
 
             $order = VendorOrder::where('order_id', '=', $id)->update(['status' => $input['status']]);   
-            
+       
             return response()->json('Status Updated Successfully.');    
         }
         
-        return response()->json('Status Updated Successfully.');
+        return response()->json('Status Updated Successfully.');    
     }
 
     public function pending()
@@ -399,19 +427,30 @@ class OrderController extends Controller
         // else
         // {
             $data = 0;
+
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-            $mail = mail($request->to,$request->subject,$request->message,$headers);
-            $msg =$request->message;
+
+            // $mail = mail($request->to,$request->subject,$request->message,$headers);
+            $user = User::where('email','=',$request->to)->first();        
+            $msg = empty($user) ? "Hello,<br><br>" : "Hello " . $user->name . ",<br><br>";
+            $msg .= $request->message;
+            $msg .= "<br><br>";
+            $msg .= "All at ProjectShelve<br> ";
+            $msg .= "Call/WhatsApp: (+234) 08147801594<br> ";
+            $msg .= "E-mail: projectshelve@gmail.com<br>";
+            $msg .= "Website: www.projectshelve.com<br>";	 
+
+
             $to =$request->to;
             $subject =$request->subject;
 
-            $mail =   Mail::send(array(), array(), function ($message) use ($msg,$headers,$to,$subject) {
-                              $message->to($to)
-                             ->subject($subject)
-                              ->setBody($msg);
-                            }); 
+            $mail = Mail::send(array(), array(), function ($message) use ($msg,$headers,$to,$subject) {
+                $message->to($to)
+                ->subject($subject)
+                ->setBody($msg, 'text/html');
+            }); 
 
             if($mail==null) {
                 $data = 1;

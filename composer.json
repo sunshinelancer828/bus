@@ -1,7 +1,10 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -11,15 +14,15 @@
         "authorizenet/authorizenet": "2.0",
         "barryvdh/laravel-dompdf": "^0.8.5",
         "cartalyst/stripe-laravel": "7.0.*",
-        "chumper/zipper": "^1.0",
         "fideloper/proxy": "~3.3",
         "instamojo/instamojo-php": "^0.4.0",
         "intervention/image": "^2.5",
-        "laravel/framework": "5.5.*",
+        "laravel/framework": "^5.5.50",
         "laravel/socialite": "^3.1",
         "laravel/tinker": "~1.0",
         "mollie/laravel-mollie": "2.0",
         "paypal/rest-api-sdk-php": "^1.14",
+        "twilio/sdk": "5.11.*",
         "razorpay/razorpay": "2.*",
         "yajra/laravel-datatables-oracle": "^8.13"
     },

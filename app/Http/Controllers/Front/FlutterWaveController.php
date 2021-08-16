@@ -48,8 +48,7 @@ class FlutterWaveController extends Controller
                 }else{
                     return redirect()->back()->with('unsuccess',"Confirm Password Doesn't Match.");     
                 }
-            }
-            else {
+            } else {
                 return redirect()->back()->with('unsuccess',"This Email Already Exist.");  
             }
         }
@@ -91,6 +90,7 @@ class FlutterWaveController extends Controller
             'ZMW',
             'ZWD'
         );
+
         if(!in_array($curr->name,$available_currency))
         {
             return redirect()->back()->with('unsuccess','Invalid Currency For Flutter Wave.');
@@ -124,7 +124,8 @@ class FlutterWaveController extends Controller
         }
 
         $settings = Generalsetting::findOrFail(1);
-        $order = new Order;
+
+        $order = Order::findOrFail(Session::get('order'));
 
         $item_number = str_random(4).time();
         $item_amount = $request->total;
@@ -171,13 +172,11 @@ class FlutterWaveController extends Controller
         $order['vendor_packing_id'] = $request->vendor_packing_id;
         $order['wallet_price'] = round($wallet / $curr->value, 2);  
 
-        if($order['dp'] == 1)
-        {
+        if($order['dp'] == 1) {
             $order['status'] = 'completed';
         }
 
-        if (Session::has('affilate')) 
-        {
+        if (Session::has('affilate')) {
             $val = $request->total / $curr->value;
             $val = $val / 100;
             $sub = $val * $settings->affilate_charge;
@@ -283,8 +282,7 @@ class FlutterWaveController extends Controller
 
 
         $gs = Generalsetting::find(1);
-
-
+       
         //Sending Email To Buyer
 
         if($gs->is_smtp == 1)
@@ -307,7 +305,7 @@ class FlutterWaveController extends Controller
         {
            $to = $request->email;
            $subject = "Your Order Placed!!";
-           $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
+           $msg = "Hello ".$request->name."!\nYou have placed a new order.\nYour order number is ".$order->order_number.".Please wait for your delivery. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com";
            $headers = "MIME-Version: 1.0" . "\r\n";
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
@@ -320,7 +318,7 @@ class FlutterWaveController extends Controller
             $data = [
                 'to' => $gs->header_email,
                 'subject' => "New Order Recieved!!",
-                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com",
+                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com",
             ];
 
             $mailer = new GeniusMailer();
@@ -328,13 +326,23 @@ class FlutterWaveController extends Controller
         }
         else
         {
-           $to = $gs->from_email;
-           $subject = "New Order Recieved!!";
-           $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is ".$order->order_number.".Please login to your panel to check. \nThank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: support@projectshelve.com";
-           $headers = "MIME-Version: 1.0" . "\r\n";
-           $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-           $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
-           mail($to,$subject,$msg,$headers);
+            $to = $gs->from_email;
+            $subject = "New Order Recieved!!";
+            
+            $msg = "Hello Admin!<br><br>Your store has recieved a new order.<br>Order Number is " . $order->order_number;
+            $msg .= ".Please login to your panel to check.<br>Thank you.<br><br>";
+            $msg .= "All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Email: projectshelve@gmail.com";
+
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+           
+            // mail($to,$subject,$msg,$headers);
+            Mail::send(array(), array(), function ($message) use ($msg, $to, $subject, $headers) {
+                $message->to($to)
+                ->subject($subject)
+                ->setBody($msg,'text/html');
+            });  
         }
 
         Session::put('tempcart',$cart);
@@ -354,35 +362,33 @@ class FlutterWaveController extends Controller
         $PBFPubKey = $settings->flutter_public_key; // get your public key from the dashboard.
         $redirect_url = action('Front\FlutterWaveController@notify');
         $payment_plan = ""; // this is only required for recurring payments.
-        
-        
+
         curl_setopt_array($curl, array(
-          CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => json_encode([
-            'amount' => $amount,
-            'customer_email' => $customer_email,
-            'currency' => $currency,
-            'txref' => $txref,
-            'PBFPubKey' => $PBFPubKey,
-            'redirect_url' => $redirect_url,
-            'payment_plan' => $payment_plan
-          ]),
-          CURLOPT_HTTPHEADER => [
-            "content-type: application/json",
-            "cache-control: no-cache"
-          ],
+            CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode([
+                'amount' => $amount,
+                'customer_email' => $customer_email,
+                'currency' => $currency,
+                'txref' => $txref,
+                'PBFPubKey' => $PBFPubKey,
+                'redirect_url' => $redirect_url,
+                'payment_plan' => $payment_plan
+            ]),
+            CURLOPT_HTTPHEADER => [
+                "content-type: application/json",
+                "cache-control: no-cache"
+            ],
         ));
         
-        $response = curl_exec($curl);
-        
-        $err = curl_error($curl);
-        curl_close($curl);
-        if($err){
-          // there was an error contacting the rave API
-          die('Curl returned error: ' . $err);
+        $response = curl_exec($curl);   
+        if ($response === FALSE) {  // there was an error contacting the rave API
+            // dd('Curl returned error: ' . curl_error($curl));
+            // return;
+            return redirect()->route('front.cart')->with('unsuccess',"Sorry. We can't connect you to Flutter Wave now.");
         }
+        curl_close($curl);
         
         $transaction = json_decode($response);
         
@@ -396,230 +402,295 @@ class FlutterWaveController extends Controller
     }
    
    
-   public function notify(Request $request){
+    public function notify(Request $request) {
 
+        $input = json_decode($request['resp']);
+        if ( isset($input->tx->txRef) ) {
+            $ref = $input->tx->txRef;
 
-    $input = json_decode($request['resp']);
-    if (isset($input->tx->txRef)) {
-        $ref = $input->tx->txRef;
+            $settings = Generalsetting::findOrFail(1);
 
-        $settings = Generalsetting::findOrFail(1);
+            $query = array(
+                "SECKEY" => $settings->flutter_secret,
+                "txref" => $ref
+            );
 
-        $query = array(
-            "SECKEY" => $settings->flutter_secret,
-            "txref" => $ref
-        );
-
-        $data_string = json_encode($query);
-                
-        $ch = curl_init('https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify');                                                                      
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                              
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
-        $response = curl_exec($ch);
-
-        curl_close($ch);
-
-        $resp = json_decode($response, true);
-
-        if ($resp['status'] = "success" && !empty($resp['data']['status'])) {
-
-            $paymentStatus = $resp['data']['status'];
-            
-            // $chargeResponsecode = $resp['data']['chargecode'];
-
-            //  (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($paymentStatus == "successful")) {
-                
-            if ($paymentStatus == "successful") {
-    
-                $order = Order::where('order_number',$resp['data']['txref'])->first();
-                // $data['txnid'] = $resp['data']['txid'];
-                // $data['payment_status'] = 'Completed';
-                // if($order->dp == 1)
-                // {
-                //     $data['status'] = 'completed';
-                // }
-                // $order->update($data);
-                $order->update([
-                    'txnid' => $resp['data']['txid'],
-                    'payment_status' => 'Completed',
-                    // 'dp' => 1,
-                    'status' => 'completed'
-                ]);
-                // dd($order);
-                // return;
-                if($order->dp == 1) {
-                    $track = new OrderTrack;
-                    $track->title = 'Completed';
-                    $track->text = 'Your order has completed successfully.';
-                    $track->order_id = $order->id;
-                    $track->save();
-                }
-                else {
-                    $track = new OrderTrack;
-                    $track->title = 'Pending';
-                    $track->text = 'You have successfully placed your order.';
-                    $track->order_id = $order->id;
-                    $track->save();
-                }
-                if($order->wallet_price != 0)
-                {
-                    $user = User::find($order->user_id);
-                    $user->balance -= $order->wallet_price;
-                    $user->update();
-                }
-    
-                $cart = unserialize(bzdecompress(utf8_decode($order->cart)));
-
-                foreach($cart->items as $keyProduct =>$valueProduct ){
-                    // echo "<pre>";print_r($valueProduct['item']['user_id']);die;
-                    if($valueProduct['item']['user_id'] != 0 ){
-                        $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price');
-                    }            
-                }
+            $data_string = json_encode($query);
                     
-                if(isset($cartitemprice)) {
-                    foreach($cartitemprice as $k=> $v){
-                        $fprice[]= $v;
-                    }
-                    $sumtotalcartprice = array_sum($fprice);
-                }
+            $ch = curl_init('https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify');                                                                      
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                              
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            $resp = json_decode($response, true);
+
+            if ($resp['status'] == "success" && !empty($resp['data']['status'])) {
+
+                $paymentStatus = $resp['data']['status'];
                 
-                $notf = null;
-    
-                foreach($cart->items as $prod)
-                {
-                    $repeat = VendorOrder::where('order_id',$order->id)->first();
-                    if($prod['item']['user_id'] != 0 && !$repeat)
+                // $chargeResponsecode = $resp['data']['chargecode'];
+
+                //  (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($paymentStatus == "successful")) {
+                    
+                if ($paymentStatus == "successful") {
+        
+                    $order = Order::where('order_number',$resp['data']['txref'])->first();
+                    $order->update([
+                        'txnid' => $resp['data']['txid'],
+                        'payment_status' => 'Completed',
+                        // 'dp' => 1,
+                        'status' => 'completed'
+                    ]);
+                    // dd($order);
+                    // return;
+                    if($order->dp == 1) {
+                        $track = new OrderTrack;
+                        $track->title = 'Completed';
+                        $track->text = 'Your order has completed successfully.';
+                        $track->order_id = $order->id;
+                        $track->save();
+                    }
+                    else {
+                        $track = new OrderTrack;
+                        $track->title = 'Pending';
+                        $track->text = 'You have successfully placed your order.';
+                        $track->order_id = $order->id;
+                        $track->save();
+                    }
+                    if($order->wallet_price != 0)
                     {
-                        $vorder =  new VendorOrder;
-                        $vorder->order_id = $order->id;
-                        $vorder->user_id = $prod['item']['user_id'];
-                        $notf[] = $prod['item']['user_id'];
-                        $vorder->qty = $prod['qty'];
-                        $vorder->price = $prod['price'];
-                        $vorder->order_number = $order->order_number;
-                        $vorder->status = $order->payment_status;
-                        $vorder->total_price = $sumtotalcartprice;
-                        $vorder->save();
-                        if($order->dp == 1){
-                            $vorder->user->update(['current_balance' => $vorder->user->current_balance += $sumtotalcartprice]);
+                        $user = User::find($order->user_id);
+                        $user->balance -= $order->wallet_price;
+                        $user->update();
+                    }
+        
+                    $cart = unserialize(bzdecompress(utf8_decode($order->cart)));
+
+                    foreach($cart->items as $keyProduct =>$valueProduct ){
+                        // echo "<pre>";print_r($valueProduct['item']['user_id']);die;
+                        if($valueProduct['item']['user_id'] != 0 ){
+                            $cartitemprice =  DB::table('products')->where('id','=',$keyProduct)->pluck('price');
+                        }            
+                    }
+                        
+                    if(isset($cartitemprice)) {
+                        foreach($cartitemprice as $k=> $v){
+                            $fprice[]= $v;
+                        }
+                        $sumtotalcartprice = array_sum($fprice);
+                    }
+                    
+                    $notf = null;
+        
+                    foreach($cart->items as $prod)
+                    {
+                        $repeat = VendorOrder::where('order_id',$order->id)->first();
+                        if($prod['item']['user_id'] != 0 && !$repeat)
+                        {
+                            $vorder =  new VendorOrder;
+                            $vorder->order_id = $order->id;
+                            $vorder->user_id = $prod['item']['user_id'];
+                            $notf[] = $prod['item']['user_id'];
+                            $vorder->qty = $prod['qty'];
+                            $vorder->price = $prod['price'];
+                            $vorder->order_number = $order->order_number;
+                            $vorder->status = $order->payment_status;
+                            $vorder->total_price = $sumtotalcartprice;
+                            $vorder->save();
+                            if($order->dp == 1){
+                                $vorder->user->update(['current_balance' => $vorder->user->current_balance += $sumtotalcartprice]);
+                            }
+                        }        
+                    }
+        
+                    if(!empty($notf))
+                    {
+                        $users = array_unique($notf);
+                        foreach ($users as $user) {
+                            $notification = new UserNotification;
+                            $notification->user_id = $user;
+                            $notification->order_number = $order->order_number;
+                            $notification->save();    
+                        }
+                    }            
+        
+                    if ($order->user_id != 0 && $order->wallet_price != 0) {
+                        $transaction = new \App\Models\Transaction;
+                        $transaction->txn_number = str_random(3).substr(time(), 6,8).str_random(3);
+                        $transaction->user_id = $order->user_id;
+                        $transaction->amount = $order->wallet_price;
+                        $transaction->currency_sign = $order->currency_sign;
+                        $transaction->currency_code = \App\Models\Currency::where('sign',$order->currency_sign)->first()->name;
+                        $transaction->currency_value= $order->currency_value;
+                        $transaction->details = 'Payment Via Wallet';
+                        $transaction->type = 'minus';
+                        $transaction->save();
+                    }
+        
+                    $notification = new Notification;
+                    $notification->order_id = $order->id;
+                    $notification->save();
+                    Session::put('temporder',$order);
+                    Session::forget('cart');  
+                    
+                    $cart = unserialize(bzdecompress(utf8_decode($order->cart)));
+                    
+                    $str = ''; $str2 = '';                
+                    $vid = null; $mstr = '';
+                    
+                    $prd_type = isset($product['license']) && !empty($product['license']) ? 'license' : 'digital';
+
+                    foreach($cart->items as $product) {
+                        
+                        if($product['item']['user_id'] != 0)
+                        {
+                            $vid = $product['item']['user_id'];
+                            $mstr .= $product['item']['name'].'<br>';
+                        }
+
+                        $dataFormat = DB::table('products')->where('id','=',$product['item']['id'])->get();
+                        $subcat_id = $dataFormat[0]->subcategory_id;
+                        $dataFormat = $dataFormat[0]->file_format;
+
+
+                        if ($prd_type == 'license') {
+                            $subcat = DB::table('subcategories')->where('id','=',$subcat_id)->get();
+                            $subcat = $subcat[0]->name;
+                            $str .= "Find below your \"" . $subcat . "\".<br><br>";
+                        } else {                
+                            $str .= "Click link below to download your product.<br><br>";
+                        }
+
+                        $str .= "Product Title: ".$product['item']['name']."<br>";
+                        $str .= "Product Code: 000".$product['item']['id']."<br>";
+                        $str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
+
+                        $str2 .= $str;
+                        $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
+                        // $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
+                        if ($prd_type == 'license') {
+                            $str .= "PIN: ".$product['license']."<br><br>";
+                        } else {
+                            $str .= "Format: ".$dataFormat."<br>";
+                            $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
                         }
                     }
-    
-                }
-    
-                if(!empty($notf))
-                {
-                    $users = array_unique($notf);
-                    foreach ($users as $user) {
-                        $notification = new UserNotification;
-                        $notification->user_id = $user;
-                        $notification->order_number = $order->order_number;
-                        $notification->save();    
-                    }
-                }            
-    
-                if ($order->user_id != 0 && $order->wallet_price != 0) {
-                    $transaction = new \App\Models\Transaction;
-                    $transaction->txn_number = str_random(3).substr(time(), 6,8).str_random(3);
-                    $transaction->user_id = $order->user_id;
-                    $transaction->amount = $order->wallet_price;
-                    $transaction->currency_sign = $order->currency_sign;
-                    $transaction->currency_code = \App\Models\Currency::where('sign',$order->currency_sign)->first()->name;
-                    $transaction->currency_value= $order->currency_value;
-                    $transaction->details = 'Payment Via Wallet';
-                    $transaction->type = 'minus';
-                    $transaction->save();
-                }
-    
-                $notification = new Notification;
-                $notification->order_id = $order->id;
-                $notification->save();
-                Session::put('temporder',$order);
-                Session::forget('cart');  
-                
-                $cart = unserialize(bzdecompress(utf8_decode($order->cart)));
-                
-                $str = ''; $str2 = '';
-               
-                foreach($cart->items as $product) {
-        			$dataFormat = DB::table('products')->where('id','=',$product['item']['id'])->get();
-        			$dataFormat = $dataFormat[0]->file_format;
-                	$str .= "Product Title: ".$product['item']['name']."<br>";
-                	$str .= "Product Code: 000".$product['item']['id']."<br>";
-                	$str .= "Price:" .Product::convertPrice($product['item_price'])."<br>";
-        			if($dataFormat) {
-                	    $str .= "Format: ".$dataFormat."<br>";
-                    }
-                    $str2 .= $str;
-                    $str2 .= 'Download Link: '.asset('assets/files/'.$product['item']['file']).'<br><br>';
-                    $str .= 'Download Link: <a href="'.asset('assets/files/'.$product['item']['file']).'" target="_blank">Click here</a><br><br>';
-                }
-                
-                $to = $order->customer_email;
+                    
+                    $to = $order->customer_email;
 
-                $subject = 'Product Delivered';
+                    $subject = 'Product Delivered';
+            
+                    $msg  = "Hello ".$order->customer_name.",<br><br>";
+                    $msg .= "Click link below to download your product.<br><br>";
+                    $msg .= $str."<br>";
+                    $msg .= "Thank you for trusting us. We look forward to your next visit.<br><br>";
+                    $msg .= "All at ProjectShelve <br>";
+                    $msg .= "Call/WhatsApp: (+234) 08147801594<br>";
+                    $msg .= "E-mail: projectshelve@gmail.com<br>";
+                    $msg .= "Website: www.projectshelve.com<br>";
+                    
+                    $headers  = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    $headers .= 'From: ProjectShelve <projectshelve@gmail.com>' . "\r\n" .
+                        'Reply-To: projectshelve@gmail.com ' . "\r\n" .
+                        'X-Mailer: PHP/' . phpversion();
+
+                    if ($settings->is_smtp == 1) {
+
+                        $mailer = new GeniusMailer();
+                        $mailer->sendCustomMail([
+                            'to' => $to,
+                            'subject' => $subject,
+                            'body' => $msg
+                        ]);
+
+                    } else {
+                        Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
+                            $message->to($to)
+                            ->subject($subject)
+                            ->setBody($msg,'text/html');
+                        });  
+                        // mail($to, $subject, $msg, $headers);
+                    }
+
+                    if ($vid) {                    
+                        $vuser = User::findOrFail($vid);
+                        $to = $vuser->email;
+
+                        $subject = 'Product Purchase';
+    
+                        $msg2 = "Hello ".$vuser->name." <br><br>";
+                        $msg2 .="A purchase has been made on your product.<br>";
+                        $msg2 .= $mstr;
+                        $msg2 .="Kindly login and view details on your dashboard.<br><br>";
+                        $msg2 .="Thank you as we look forward for further mutual advantage..<br><br>";  
+                        $msg2 .="All at ProjectShelve<br> ";
+                        $msg2 .="Call/WhatsApp: (+234) 08147801594<br> ";
+                        $msg2 .="E-mail: projectshelve@gmail.com<br>";
+                        $msg2 .="Website: www.projectshelve.com<br>";
+                        
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                        $headers .= "From: ProjectShelve <projectshelve@gmail.com>";
+    
+                        if ($settings->is_smtp == 1) {
+    
+                            $mailer = new GeniusMailer();
+                            $mailer->sendCustomMail([
+                                'to' => $to,
+                                'subject' => $subject,
+                                'body' => $msg2
+                            ]);
+    
+                        } else {
+    
+                            $sent =   Mail::send(array(), array(), function ($message) use ($msg2, $to, $subject, $headers) {
+                                $message->to($to)
+                                ->subject($subject)
+                                ->setBody($msg2,'text/html')
+                                ->getHeaders()
+                                ->addTextHeader($headers, 'true');
+                            }); 
+                            // mail($to, $subject, $msg2, $headers);
+                        }
+                    }
+                    
+                    $msg3  = "Hello ".$order->customer_name.",<br><br>";
+                    $msg3 .= "Click link below to download your product.<br><br>";
+                    $msg3 .= $str2."<br>";
+                    $msg3 .= "Thank you for trusting us. We look forward to your next visit.<br><br>";
+                    $msg3 .= "All at ProjectShelve <br>";
+                    $msg3 .= "Call/WhatsApp: (+234) 08147801594<br>";
+                    $msg3 .= "E-mail: projectshelve@gmail.com<br>";
+                    $msg3 .= "Website: www.projectshelve.com<br>";
+                    
+                    $phone_number = $order->customer_phone;
+                    
+                    $userReg = User::where('phone', $phone_number)->count();
+                    
+                    if ($userReg) {
+                        $mailer = new GeniusMailer();
+                        $mailer->sendWhatsAppMsg($msg3, $phone_number);	
+                    }
+                    
+                    return redirect(action('Front\PaymentController@payreturn'));
         
-                $msg  = "Hello ".$order->customer_name.",<br><br>";
-                $msg .= "Click link below to download your product.<br><br>";
-                $msg .= $str."<br>";
-                $msg .= "Thank you for trusting us. We look forward to your next visit.<br><br>";
-                $msg .= "All at ProjectShelve <br>";
-                $msg .= "Call/WhatsApp: (+234) 08147801594<br>";
-                $msg .= "E-mail: projectshelve@gmail.com<br>";
-                $msg .= "Website: www.projectshelve.com<br>";
-                
-                $headers  = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= 'From: ProjectShelve <projectshelve@gmail.com>' . "\r\n" .
-                    'Reply-To: projectshelve@gmail.com ' . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-
-                if ($settings->is_smtp == 1) {
-
-                    $mailer = new GeniusMailer();
-                    $mailer->sendCustomMail([
-                        'to' => $to,
-                        'subject' => $subject,
-                        'body' => $msg
-                    ]);
-
-                } else {
-                    $sent =   Mail::send(array(), array(), function ($message) use ($msg,$to,$subject,$headers) {
-                        $message->to($to)
-                       ->subject($subject)
-                        ->setBody($msg,'text/html');
-                      });  
-                    // mail($to, $subject, $msg, $headers);
                 }
-                
-                $msg3  = "Hello ".$order->customer_name.",<br><br>";
-                $msg3 .= "Click link below to download your product.<br><br>";
-                $msg3 .= $str2."<br>";
-                $msg3 .= "Thank you for trusting us. We look forward to your next visit.<br><br>";
-                $msg3 .= "All at ProjectShelve <br>";
-                $msg3 .= "Call/WhatsApp: (+234) 08147801594<br>";
-                $msg3 .= "E-mail: projectshelve@gmail.com<br>";
-                $msg3 .= "Website: www.projectshelve.com<br>";
-				  
-                $phone_number = $order->customer_phone;
-                
-                $userReg = User::where('phone', $phone_number)->count();
-                
-                if ($userReg) {
-                    $mailer = new GeniusMailer();
-                    $mailer->sendWhatsAppMsg($msg3, $phone_number);	
-                }
-                
-                return redirect(action('Front\PaymentController@payreturn'));
-    
-            }
 
-            else {
+                else {
+                    $payment = Order::where('order_number', $input->tx->txRef)->first();
+                    VendorOrder::where('order_id','=',$payment->id)->delete();
+                    $payment->delete();
+                    Session::forget('cart');
+                    return redirect(action('Front\PaymentController@paycancle'));
+                }
+
+            } else { // $resp['status'] != "success" || empty($resp['data']['status'])
                 $payment = Order::where('order_number', $input->tx->txRef)->first();
                 VendorOrder::where('order_id','=',$payment->id)->delete();
                 $payment->delete();
@@ -627,15 +698,7 @@ class FlutterWaveController extends Controller
                 return redirect(action('Front\PaymentController@paycancle'));
             }
         }
-        else {
-            $payment = Order::where('order_number', $input->tx->txRef)->first();
-            VendorOrder::where('order_id','=',$payment->id)->delete();
-            $payment->delete();
-            Session::forget('cart');
-            return redirect(action('Front\PaymentController@paycancle'));
-        }
-    }
 
-   }
+    }
 
 }

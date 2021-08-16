@@ -35,7 +35,8 @@ class ForgotController extends Controller
             $admin->update($input);
             $subject = "Reset Password Request";
 
-            $msg = "Your password has been reseted! New password is " . $autopass . " .<br><br>";
+            $msg = "Hello " . $request->name . ",<br><br>";
+            $msg .= "Your password has been reset successfully! New password is " . $autopass . " .<br><br>";
             $msg .= "Thanks for your contact and we love to support you anytime.<br><br>";
             $msg .= "All at ProjectShelve<br> ";
             $msg .= "Call/WhatsApp: (+234) 08147801594<br>";

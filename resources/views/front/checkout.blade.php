@@ -47,8 +47,8 @@
 							<ul class="nav"  role="tablist">
 								<li class="nav-item">
 									<a class="nav-link active" id="pills-step1-tab" data-toggle="pill" href="#pills-step1" role="tab" aria-controls="pills-step1" aria-selected="true">
-									<span>1</span> {{ $langg->lang743 }}
-									<i class="far fa-address-card"></i>
+										<span>1</span> {{ $langg->lang743 }}
+										<i class="far fa-address-card"></i>
 									</a>
 								</li>
 								<li class="nav-item">
@@ -59,8 +59,8 @@
 								</li>
 								<li class="nav-item">
 									<a class="nav-link disabled" id="pills-step3-tab" data-toggle="pill" href="#pills-step3" role="tab" aria-controls="pills-step3" aria-selected="false">
-											<span>3</span> {{ $langg->lang745 }}
-											<i class="far fa-credit-card"></i>
+										<span>3</span> {{ $langg->lang745 }}
+										<i class="far fa-credit-card"></i>
 									</a>
 								</li>
 							</ul>
@@ -177,7 +177,8 @@
 												</div-->
 											</div>
 										</div>
-										<div class="row {{ $digital == 1 ? 'd-none' : '' }}">
+										<!-- <div class="row {{ $digital == 1 ? 'd-none' : '' }}"> -->
+										<div class="row d-none">
 											<div class="col-lg-12 mt-3">
 													<input class="styled-checkbox" id="ship-diff-address" type="checkbox" value="value1" >
 													<label for="ship-diff-address">{{ $langg->lang160 }}</label>
@@ -241,8 +242,7 @@
 											<div class="col-lg-12  mt-3">
 												<div class="bottom-area paystack-area-btn">
 													<button type="submit"  class="mybtn1">{{ $langg->lang753 }}</button>
-												</div>
-												
+												</div>												
 											</div>
 										</div>
 									</div>
@@ -252,13 +252,13 @@
 								<div class="content-box">
 									<div class="content">
 										<div class="order-area">
+											@if ($products)
 											@foreach($products as $product)
 											<div class="order-item">
 												<div class="product-img">
 													<div class="d-flex">
 														<img src=" {{ asset('assets/images/products/'.$product['item']['photo']) }}"
 															height="80" width="80" class="p-1">
-
 													</div>
 												</div>
 												<div class="product-content">
@@ -301,6 +301,7 @@
 												</div>
 											</div>
 											@endforeach
+											@endif
 
 										</div>
 
@@ -320,7 +321,7 @@
 									<div class="content">
 											<div class="billing-info-area {{ $digital == 1 ? 'd-none' : '' }}">
 												<h4 class="title">
-														{{ $langg->lang758 }}
+													{{ $langg->lang758 }}
 												</h4>
 												<ul class="info-list">
 													<li>
@@ -347,7 +348,7 @@
 														@if($gs->paypal_check == 1)
 															<a class="nav-link payment" data-val="" data-show="no" data-form="{{route('paypal.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'paypal','slug2' => 0]) }}" id="v-pills-tab1-tab" data-toggle="pill" href="#v-pills-tab1" role="tab" aria-controls="v-pills-tab1" aria-selected="true">
 																<div class="icon">
-																		<span class="radio"></span>
+																	<span class="radio"></span>
 																</div>
 																<p>
 																{{ $langg->lang760 }}
@@ -365,7 +366,7 @@
 														@if($gs->stripe_check == 1)
 															<a class="nav-link payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#v-pills-tab2" role="tab" aria-controls="v-pills-tab2" aria-selected="false">
 																<div class="icon">
-																		<span class="radio"></span>
+																	<span class="radio"></span>
 																</div>
 																<p>
 																{{ $langg->lang761 }}
@@ -384,7 +385,7 @@
 														 @if($digital == 0)
 															<a class="nav-link payment" data-val="" data-show="no" data-form="{{route('cash.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'cod','slug2' => 0]) }}" id="v-pills-tab3-tab" data-toggle="pill" href="#v-pills-tab3" role="tab" aria-controls="v-pills-tab3" aria-selected="false">
 																<div class="icon">
-																		<span class="radio"></span>
+																	<span class="radio"></span>
 																</div>
 																<p>
 																{{ $langg->lang762 }}
@@ -392,7 +393,7 @@
 																@if($gs->cod_text != null)
 
 																<small>
-																		{{ $gs->cod_text }}
+																	{{ $gs->cod_text }}
 																</small>
 
 																@endif
@@ -403,7 +404,7 @@
 														@if($gs->is_instamojo == 1)
 															<a class="nav-link payment" data-val="" data-show="no" data-form="{{route('instamojo.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'instamojo','slug2' => 0]) }}"  id="v-pills-tab4-tab" data-toggle="pill" href="#v-pills-tab4" role="tab" aria-controls="v-pills-tab4" aria-selected="false">
     															<div class="icon">
-    																	<span class="radio"></span>
+    																<span class="radio"></span>
     															</div>
     															<p>
     																{{ $langg->lang763 }}
@@ -422,7 +423,7 @@
 															@if($gs->is_paytm == 1)
 																<a class="nav-link payment" data-val="" data-show="no" data-form="{{route('paytm.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'paytm','slug2' => 0]) }}"  id="v-pills-tab5-tab" data-toggle="pill" href="#v-pills-tab5" role="tab" aria-controls="v-pills-tab5" aria-selected="false">
 																	<div class="icon">
-																			<span class="radio"></span>
+																		<span class="radio"></span>
 																	</div>
 																	<p>
 																	{{ $langg->paytm }}
@@ -430,7 +431,7 @@
 																	@if($gs->paytm_text != null)
 
 																	<small>
-																			{{ $gs->paytm_text }}
+																		{{ $gs->paytm_text }}
 																	</small>
 
 																	@endif
@@ -441,7 +442,7 @@
 																@if($gs->is_razorpay == 1)
 																	<a class="nav-link payment" data-val="" data-show="no" data-form="{{route('razorpay.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'razorpay','slug2' => 0]) }}"  id="v-pills-tab6-tab" data-toggle="pill" href="#v-pills-tab6" role="tab" aria-controls="v-pills-tab6" aria-selected="false">
 																		<div class="icon">
-																				<span class="radio"></span>
+																			<span class="radio"></span>
 																		</div>
 																		<p>
 																				
@@ -533,7 +534,7 @@
 
 																	<small>
 																		{{ $gs->mercado_text }}
-																	</small
+																	</small>
 
 																</p>
 															</a>
@@ -1240,20 +1241,21 @@ var mpack = $('.packing').length > 0 ? $('.packing').first().val() : 0;
 mship = parseFloat(mship);
 mpack = parseFloat(mpack);
 
-$('#shipping-cost').val(mship);
-$('#packing-cost').val(mpack);
-var ftotal = parseFloat($('#grandtotal').val()) + mship + mpack;
-ftotal = parseFloat(ftotal);
-      if(ftotal % 1 != 0)
-      {
-        ftotal = ftotal.toFixed(2);
-      }
-		if(pos == 0){
-			$('#final-cost').html('{{ $curr->sign }}'+ftotal)
-		}
-		else{
-			$('#final-cost').html(ftotal+'{{ $curr->sign }}')
-		}
+	$('#shipping-cost').val(mship);
+	$('#packing-cost').val(mpack);
+	var ftotal = parseFloat($('#grandtotal').val()) + mship + mpack;
+	ftotal = parseFloat(ftotal);
+
+	if(ftotal % 1 != 0)
+	{
+		ftotal = ftotal.toFixed(2);
+	}
+	if(pos == 0){
+		$('#final-cost').html('{{ $curr->sign }}'+ftotal)
+	}
+	else{
+		$('#final-cost').html(ftotal+'{{ $curr->sign }}')
+	}
 
 $('#grandtotal').val(ftotal);
 
@@ -1265,8 +1267,7 @@ $('#shipop').on('change',function(){
 		$("#ship-diff-address").parent().addClass('d-none');
         $('.ship-diff-addres-area').addClass('d-none');  
         $('.ship-diff-addres-area input, .ship-diff-addres-area select').prop('required',false);  
-	}
-	else{
+	} else {
 		$('#shipshow').addClass('d-none');
 		$("#ship-diff-address").parent().removeClass('d-none');
         $('.ship-diff-addres-area').removeClass('d-none');  
@@ -1276,43 +1277,44 @@ $('#shipop').on('change',function(){
 });
 
 
-$('.shipping').on('click',function(){
+$('.shipping').on('click',function() {
 	mship = $(this).val();
 
-$('#shipping-cost').val(mship);
-var ttotal = parseFloat($('#tgrandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
-ttotal = parseFloat(ttotal);
-      if(ttotal % 1 != 0)
-      {
-        ttotal = ttotal.toFixed(2);
-      }
-		if(pos == 0){
-			$('#final-cost').html('{{ $curr->sign }}'+ttotal);
-		}
-		else{
-			$('#final-cost').html(ttotal+'{{ $curr->sign }}');
-		}
+	$('#shipping-cost').val(mship);
+	var ttotal = parseFloat($('#tgrandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
+	ttotal = parseFloat(ttotal);
+
+	if(ttotal % 1 != 0)
+	{
+		ttotal = ttotal.toFixed(2);
+	}
+
+	if(pos == 0) {
+		$('#final-cost').html('{{ $curr->sign }}'+ttotal);
+	} else {
+		$('#final-cost').html(ttotal+'{{ $curr->sign }}');
+	}
 	
-$('#grandtotal').val(ttotal);
+	$('#grandtotal').val(ttotal);
 
 })
 
-$('.packing').on('click',function(){
+$('.packing').on('click',function() {
 	mpack = $(this).val();
-$('#packing-cost').val(mpack);
-var ttotal = parseFloat($('#tgrandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
-ttotal = parseFloat(ttotal);
-      if(ttotal % 1 != 0)
-      {
-        ttotal = ttotal.toFixed(2);
-      }
+	$('#packing-cost').val(mpack);
 
-		if(pos == 0){
-			$('#final-cost').html('{{ $curr->sign }}'+ttotal);
-		}
-		else{
-			$('#final-cost').html(ttotal+'{{ $curr->sign }}');
-		}	
+	var ttotal = parseFloat($('#tgrandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
+	ttotal = parseFloat(ttotal);
+	if(ttotal % 1 != 0)
+	{
+		ttotal = ttotal.toFixed(2);
+	}
+
+	if(pos == 0){
+		$('#final-cost').html('{{ $curr->sign }}'+ttotal);
+	} else {
+		$('#final-cost').html(ttotal+'{{ $curr->sign }}');
+	}	
 
 
 $('#grandtotal').val(ttotal);
@@ -1323,83 +1325,75 @@ $('#grandtotal').val(ttotal);
         var val = $("#code").val();
         var total = $("#ttotal").val();
         var ship = 0;
-            $.ajax({
-                type: "GET",
-                url:mainurl+"/carts/coupon/check",
-                data:{code:val, total:total, shipping_cost:ship},
-                success:function(data){
-                    if(data == 0)
-                    {
-                    	toastr.error(langg.no_coupon);
-                        $("#code").val("");
-                    }
-                    else if(data == 2)
-                    {
-                    	toastr.error(langg.already_coupon);
-                        $("#code").val("");
-                    }
-                    else
-                    {
-                        $("#check-coupon-form").toggle();
-                        $(".discount-bar").removeClass('d-none');
+		$.ajax({
+			type: "GET",
+			url:mainurl+"/carts/coupon/check",
+			data:{code:val, total:total, shipping_cost:ship},
+			success:function(data) {
+				if(data == 0) {
+					toastr.error(langg.no_coupon);
+					$("#code").val("");
+				} else if(data == 2) {
+					toastr.error(langg.already_coupon);
+					$("#code").val("");
+				} else {
+					$("#check-coupon-form").toggle();
+					$(".discount-bar").removeClass('d-none');
 
-						if(pos == 0){
-							$('#total-cost').html('{{ $curr->sign }}'+data[0]);
-							$('#discount').html('{{ $curr->sign }}'+data[2]);
-						}
-						else{
-							$('#total-cost').html(data[0]+'{{ $curr->sign }}');
-							$('#discount').html(data[2]+'{{ $curr->sign }}');
-						}
-							$('#grandtotal').val(data[0]);
-							$('#tgrandtotal').val(data[0]);
-							$('#coupon_code').val(data[1]);
-							$('#coupon_discount').val(data[2]);
-							if(data[4] != 0){
-							$('.dpercent').html('('+data[4]+')');
-							}
-							else{
-							$('.dpercent').html('');									
-							}
+					if(pos == 0){
+						$('#total-cost').html('{{ $curr->sign }}'+data[0]);
+						$('#discount').html('{{ $curr->sign }}'+data[2]);
+					} else {
+						$('#total-cost').html(data[0]+'{{ $curr->sign }}');
+						$('#discount').html(data[2]+'{{ $curr->sign }}');
+					}
+
+					$('#grandtotal').val(data[0]);
+					$('#tgrandtotal').val(data[0]);
+					$('#coupon_code').val(data[1]);
+					$('#coupon_discount').val(data[2]);
+					
+					if(data[4] != 0) {
+						$('.dpercent').html('('+data[4]+')');
+					} else {
+						$('.dpercent').html('');									
+					}
 
 
-        var ttotal = parseFloat($('#grandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
-        ttotal = parseFloat(ttotal);
-      if(ttotal % 1 != 0)
-      {
-        ttotal = ttotal.toFixed(2);
-      }
+					var ttotal = parseFloat($('#grandtotal').val()) + parseFloat(mship) + parseFloat(mpack);
+					ttotal = parseFloat(ttotal);
+					if(ttotal % 1 != 0)
+					{
+						ttotal = ttotal.toFixed(2);
+					}
 
-		if(pos == 0){
-			$('#final-cost').html('{{ $curr->sign }}'+ttotal)
-		}
-		else{
-			$('#final-cost').html(ttotal+'{{ $curr->sign }}')
-		}	
+					if(pos == 0) {
+						$('#final-cost').html('{{ $curr->sign }}'+ttotal)
+					} else {
+						$('#final-cost').html(ttotal+'{{ $curr->sign }}')
+					}	
 
-                        	toastr.success(langg.coupon_found);
-                            $("#code").val("");
-                        }
-                      }
-              }); 
-              return false;
+					toastr.success(langg.coupon_found);
+					$("#code").val("");
+				}
+			}
+		}); 
+		return false;
     });
 
 // Password Checking
 
         $("#open-pass").on( "change", function() {
             if(this.checked){
-             $('.set-account-pass').removeClass('d-none');  
-             $('.set-account-pass input').prop('required',true); 
-             $('#personal-email').prop('required',true);
-             $('#personal-name').prop('required',true);
-            }
-            else{
-             $('.set-account-pass').addClass('d-none');   
-             $('.set-account-pass input').prop('required',false); 
-             $('#personal-email').prop('required',false);
-             $('#personal-name').prop('required',false);
-
+				$('.set-account-pass').removeClass('d-none');  
+				$('.set-account-pass input').prop('required',true); 
+				$('#personal-email').prop('required',true);
+				$('#personal-name').prop('required',true);
+            } else {
+				$('.set-account-pass').addClass('d-none');   
+				$('.set-account-pass input').prop('required',false); 
+				$('#personal-email').prop('required',false);
+				$('#personal-name').prop('required',false);
             }
         });
 
@@ -1407,18 +1401,15 @@ $('#grandtotal').val(ttotal);
 
 
 // Shipping Address Checking
-
-		$("#ship-diff-address").on( "change", function() {
-            if(this.checked){
-             $('.ship-diff-addres-area').removeClass('d-none');  
-             $('.ship-diff-addres-area input, .ship-diff-addres-area select').prop('required',true); 
-            }
-            else{
-             $('.ship-diff-addres-area').addClass('d-none');  
-             $('.ship-diff-addres-area input, .ship-diff-addres-area select').prop('required',false);  
-            }
-            
-        });
+$("#ship-diff-address").on( "change", function() {
+	if(this.checked) {
+		$('.ship-diff-addres-area').removeClass('d-none');  
+		$('.ship-diff-addres-area input, .ship-diff-addres-area select').prop('required',true); 
+	} else {
+		$('.ship-diff-addres-area').addClass('d-none');  
+		$('.ship-diff-addres-area input, .ship-diff-addres-area select').prop('required',false);  
+	}            
+});
 
 
 // Shipping Address Checking Ends
@@ -1426,11 +1417,10 @@ $('#grandtotal').val(ttotal);
 
 
 // Wallet Area Starts
-
 $('#wallet').on('change',function(){
 	if(this.checked){
 		$('.wallet-box').removeClass('d-none')
-	}else{
+	} else {
 		$('.wallet-box').addClass('d-none')
 	}
 });
@@ -1442,49 +1432,46 @@ $("#wallet-form").on('submit', function (e) {
         var val = parseFloat($("#wallet-amount").val());
         var total = $("#grandtotal").val();
 
-            $.ajax({
-                    type: "GET",
-                    url:mainurl+"/wallet/check",
-                    data:{code:val, total:total, prev_price:prev_wallet_price},
-                    success:function(data){
-                        if(data == 0){
-                        	toastr.error('Insufficient Amount!');
-                        }
-						else if(data == 1){
-							toastr.error('Balance Exceeds From Wallet!');
-						}
-                        else{
-							$("#wallet-amount").val('');
-							$('#wallet').click();
-							$("#grandtotal").val(data[0].toFixed(2));
-							$("#tgrandtotal").val(data[0].toFixed(2));
-							var wallet_price = parseFloat($("#wallet-price").val());
-							if(wallet_price != 0){
-								var wprice = data[1] + wallet_price;
-								$("#wallet-price").val(wprice);
-							}else{
-								$("#wallet-price").val(data[1]);
-							}
-							$('.wallet-price').removeClass('d-none');
-							if(pos == 0){
-								$('#wallet-cost').html('{{ $curr->sign }}'+(data[1]+wallet_price));
-								$('#final-cost').html('{{ $curr->sign }}'+data[0].toFixed(2));
-							}
-							else{
-								$('#wallet-cost').html((data[1]+wallet_price)+'{{ $curr->sign }}');
-								$('#final-cost').html(data[0].toFixed(2)+'{{ $curr->sign }}');
-							}
-							$('.shipping').prop('disabled',true);
-							$('.packing').prop('disabled',true);
-							$('#check-coupon-form button').prop('disabled',true);
-							if(data[0] == 0){
-								$('.checkoutform').prop('action','{{ route('wallet.submit') }}');
-								$('.payment-information').addClass('d-none');
-							}
-                        	toastr.success('Successfully Paid From Your Wallet.');
-                        }
-                      }
-              }); 
+		$.ajax({
+			type: "GET",
+			url:mainurl+"/wallet/check",
+			data:{code:val, total:total, prev_price:prev_wallet_price},
+			success:function(data){
+				if(data == 0) {
+					toastr.error('Insufficient Amount!');
+				} else if(data == 1){
+					toastr.error('Balance Exceeds From Wallet!');
+				} else {
+					$("#wallet-amount").val('');
+					$('#wallet').click();
+					$("#grandtotal").val(data[0].toFixed(2));
+					$("#tgrandtotal").val(data[0].toFixed(2));
+					var wallet_price = parseFloat($("#wallet-price").val());
+					if(wallet_price != 0) {
+						var wprice = data[1] + wallet_price;
+						$("#wallet-price").val(wprice);
+					} else {
+						$("#wallet-price").val(data[1]);
+					}
+					$('.wallet-price').removeClass('d-none');
+					if(pos == 0) {
+						$('#wallet-cost').html('{{ $curr->sign }}'+(data[1]+wallet_price));
+						$('#final-cost').html('{{ $curr->sign }}'+data[0].toFixed(2));
+					} else {
+						$('#wallet-cost').html((data[1]+wallet_price)+'{{ $curr->sign }}');
+						$('#final-cost').html(data[0].toFixed(2)+'{{ $curr->sign }}');
+					}
+					$('.shipping').prop('disabled',true);
+					$('.packing').prop('disabled',true);
+					$('#check-coupon-form button').prop('disabled',true);
+					if(data[0] == 0) {
+						$('.checkoutform').prop('action','{{ route('wallet.submit') }}');
+						$('.payment-information').addClass('d-none');
+					}
+					toastr.success('Successfully Paid From Your Wallet.');
+				}
+			}
+		}); 
 
     });
 
@@ -1497,18 +1484,18 @@ $("#wallet-form").on('submit', function (e) {
 var ck = 0;
 
 var phone_number = window.intlTelInput(document.querySelector("#phone_number"), {
-  separateDialCode: true,
-  preferredCountries:["ng"],
-  hiddenInput: "full",
-  utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+	separateDialCode: true,
+	preferredCountries:["ng"],
+	hiddenInput: "full",
+	utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
 });
 
 var userName = document.querySelector('#phone_number');
 
 userName.addEventListener('input', restrictNumber);
 function restrictNumber (e) {  
-  var newValue = this.value.replace(new RegExp(/[^\d]/,'ig'), "");
-  this.value = newValue;
+	var newValue = this.value.replace(new RegExp(/[^\d]/,'ig'), "");
+	this.value = newValue;
 }
 
 $('.checkoutform').on('submit',function(e) {
@@ -1517,11 +1504,11 @@ $('.checkoutform').on('submit',function(e) {
     $("input[name='phone']").val(full_number);
   
 	if(ck == 0) {
-			e.preventDefault();			
+		e.preventDefault();			
 		$('#pills-step2-tab').removeClass('disabled');
 		$('#pills-step2-tab').click();
 
-	}else {
+	} else {
 		$('#preloader').show();
 	}
 	    $('#pills-step1-tab').addClass('active');
@@ -1552,49 +1539,117 @@ $('#step2-btn').on('click',function(){
 
 $('#step3-btn').on('click',function(){
     
-    var uemail = $("#emailtest").val();
-    var totalcost =$("#totalp").val();
-    var nametest=$("#nametest").val();
-    var phone_number=$("#phone_number").val();
-    
+	// var total = $('#totalp').val();
+	// var email = $('#emailtest').val();
+	// var name = $('#nametest').val();
+	// var phone = $('#phone_number').val();
+
+	/////////// 07/28/2021 ////////////
+	var totalp =  $('#totalp').val();
+	var total = $('#grandtotal').val();
+	var email = $('#emailtest').val();
+	var name = $('#nametest').val();
+	var phone = $('#phone_number').val();
+	var address = $('input[name="address"]').val();
+	var pickup_location = $('select[name="pickup_location"]').val();
+	var customer_country = $('select[name="customer_country"]').val();
+	var state = $('input[name="state"]').val();
+	var city = '';
+	var zip = '';
+
+	var shipping = $('input[name="shipping"]').val();
+	var shipping_title = $('#shipping-title').val();
+	var shipping_name  = !$('input[name="shipping_name"]').val() ? $('input[name="name"]').val() : $('input[name="shipping_name"]').val();
+	var shipping_address  = !$('input[name="shipping_address"]').val() ? $('input[name="address"]').val() : $('input[name="shipping_address"]').val();
+	var shipping_phone = !$('input[name="shipping_phone"]').val() ? $('input[name="phone"]').val() : $('input[name="shipping_phone"]').val();
+	var shipping_email= !$('input[name="shipping_email"]').val() ? $('input[name="email"]').val() : $('input[name="shipping_email"]').val();
+	var shipping_country = $('select[name="shipping_country"]').val();
+	var shipping_state = $('#shipping_state').val();	
+	var shipping_city = $('#shipping_city').val();
+	var shipping_zip = $('#shippingPostal_code').val();
+	var shipping_cost = parseFloat($('#shipping-cost').val());
+	
+	var packing_cost = parseFloat($('#packing-cost').val());
+	var packing_title = $('#packing-title').val();
+
+	var order_notes = $('#Order_Note').val();
+	var coupon_code = $('#coupon_code').val();
+	var coupon_discount = $('#coupon_discount').val();
+	var dp = $('input[name="dp"]').val();
+	var tax = $('input[name="tax"]').val();
+	var totalQty = $('input[name="totalQty"]').val();
+	var vendor_shipping_id = $('input[name="vendor_shipping_id"]').val();
+	var vendor_packing_id = $('input[name="vendor_packing_id"]').val();
+	var wallet_price = parseFloat($("#wallet-price").val());
+	    
     $.ajax({
-                type: "GET",
-                url:mainurl+"/order/confirm/email",
-                data:{'uemail':uemail,'totalcost':totalcost,'nametest':nametest,'phone_number':phone_number},
-                success:function(data){
-                    
-                }
-                
+		type: "GET",
+		url: mainurl + "/order/confirm/email",
+		data: {
+			'email': email,
+			'total': total,
+			'totalp': totalp,
+			'name': name,
+			'phone': phone,
+			////////////////////////
+			'address': address,
+			'pickup_location': pickup_location,
+			'customer_country': customer_country,
+			'state': state,
+			'city': city,
+			'zip': zip,
+			'shipping': shipping,
+			'shipping_title': shipping_title,
+			'shipping_name': shipping_name,
+			'shipping_address': shipping_address,
+			'shipping_phone': shipping_phone,
+			'shipping_email': shipping_email,
+			'shipping_country': shipping_country,
+			'shipping_state': shipping_state,
+			'shipping_city': shipping_city,
+			'shipping_zip': shipping_zip,
+			'shipping_cost': shipping_cost,
+			'packing_cost': packing_cost,
+			'packing_title': packing_title,
+			'order_notes': order_notes,
+			'coupon_code': coupon_code,
+			'coupon_discount': coupon_discount,
+			'dp': dp,
+			'tax': tax,
+			'totalQty': totalQty,
+			'vendor_shipping_id': vendor_shipping_id,
+			'vendor_packing_id': vendor_packing_id,
+			'wallet_price': wallet_price
+		},
+		success: data => {
+			console.log(data);
+			// if (data == 'login') {
+        	// 	$('#preloader').show();
+			// 	window.location.href = mainurl + '/user/login';
+			// } 
+		}                
     });
  	
  	if($('a.payment:first').data('val') == 'paystack'){
 		$('.checkoutform').prop('id','step1-form');
-	}
-	else if($('a.payment:first').data('val') == 'voguepay'){
+	} else if ($('a.payment:first').data('val') == 'voguepay'){
 		$('.checkoutform').prop('id','voguepay');
-	}
-	else {
+	} else {
 		$('.checkoutform').prop('id','twocheckout');
 	}
 	$('#pills-step3-tab').removeClass('disabled');
 	$('#pills-step3-tab').click();
 
-	var shipping_user  = !$('input[name="shipping_name"]').val() ? $('input[name="name"]').val() : $('input[name="shipping_name"]').val();
-	var shipping_location  = !$('input[name="shipping_address"]').val() ? $('input[name="address"]').val() : $('input[name="shipping_address"]').val();
-	var shipping_phone = !$('input[name="shipping_phone"]').val() ? $('input[name="phone"]').val() : $('input[name="shipping_phone"]').val();
-	var shipping_email= !$('input[name="shipping_email"]').val() ? $('input[name="email"]').val() : $('input[name="shipping_email"]').val();
-
-	$('#shipping_user').html('<i class="fas fa-user"></i>'+shipping_user);
-	$('#shipping_location').html('<i class="fas fas fa-map-marker-alt"></i>'+shipping_location);
-	$('#shipping_phone').html('<i class="fas fa-phone"></i>'+shipping_phone);
-	$('#shipping_email').html('<i class="fas fa-envelope"></i>'+shipping_email);
+	$('#shipping_user').html('<i class="fas fa-user"></i>' + shipping_name);
+	$('#shipping_location').html('<i class="fas fas fa-map-marker-alt"></i>' + shipping_address);
+	$('#shipping_phone').html('<i class="fas fa-phone"></i>' + shipping_phone);
+	$('#shipping_email').html('<i class="fas fa-envelope"></i>' + shipping_email);
 
 	$('#pills-step1-tab').addClass('active');
 	$('#pills-step2-tab').addClass('active');
 });
 
-$('#final-btn').on('click',function(){
-    	
+$('#final-btn').on('click',function() {    	
 	ck = 1;
 })
 
@@ -1602,11 +1657,9 @@ $('#final-btn').on('click',function(){
 $('.payment').on('click',function(){
 	if($(this).data('val') == 'paystack'){
 		$('.checkoutform').prop('id','step1-form');
-	}
-	else if($(this).data('val') == 'voguepay'){
+	} else if ($(this).data('val') == 'voguepay'){
 		$('.checkoutform').prop('id','voguepay');
-	}
-	else {
+	} else {
 		$('.checkoutform').prop('id','twocheckout');
 	}
 	$('.checkoutform').prop('action',$(this).data('form'));
@@ -1614,8 +1667,7 @@ $('.payment').on('click',function(){
 	var show = $(this).data('show');
 	if(show != 'no') {
 		$('.pay-area').removeClass('d-none');
-	}
-	else {
+	} else {
 		$('.pay-area').addClass('d-none');
 	}
 	$($(this).attr('href')).load($(this).data('href'));
@@ -1627,43 +1679,41 @@ $(document).on('submit','#step1-form',function(){
     var val = $('#sub').val();
     var total = $('#grandtotal').val();
 	total = Math.round(total);
-        if(val == 0)
-        {
-        var handler = PaystackPop.setup({
-          key: '{{$gs->paystack_key}}',
-          email: $('input[name=email]').val(),
-          amount: total * 100,
-          currency: "{{$curr->name}}",
-          ref: ''+Math.floor((Math.random() * 1000000000) + 1),
-          callback: function(response){
-            $('#ref_id').val(response.reference);
-            $('#sub').val('1');
-            $('#final-btn').click();
-          },
-          onClose: function(){
-          	window.location.reload();
-          }
-        });
-        handler.openIframe();
-            return false;                    
-        }
-        else {
+        if(val == 0) {
+			var handler = PaystackPop.setup({
+				key: '{{$gs->paystack_key}}',
+				email: $('input[name=email]').val(),
+				amount: total * 100,
+				currency: "{{$curr->name}}",
+				ref: ''+Math.floor((Math.random() * 1000000000) + 1),
+				callback: function(response){
+					$('#ref_id').val(response.reference);
+					$('#sub').val('1');
+					$('#final-btn').click();
+				},
+				onClose: function(){
+					window.location.reload();
+				}
+			});
+			handler.openIframe();
+				return false;                    
+        } else {
         	$('#preloader').show();
             return true;   
-        }
+    	}
 });
 		
 
 closedFunction=function() {
-alert('window closed');
+	alert('window closed');
 }
 
- successFunction=function(transaction_id) {
-alert('Transaction was successful, Ref: '+transaction_id)
+successFunction=function(transaction_id) {
+	alert('Transaction was successful, Ref: '+transaction_id)
 }
 
- failedFunction=function(transaction_id) {
- alert('Transaction was not successful, Ref: '+transaction_id)
+failedFunction=function(transaction_id) {
+	alert('Transaction was not successful, Ref: '+transaction_id)
 }
 
 		
@@ -1676,33 +1726,31 @@ $(document).on('submit','#voguepay',function(e){
    if(val == 0){
 		e.preventDefault();
 		Voguepay.init({
-		v_merchant_id: '{{ $gs->vougepay_merchant_id }}',
-		total: total,
-		cur: '{{ $curr->name }}',
-		merchant_ref: 'ref'+Math.floor((Math.random() * 1000000000) + 1),
-		memo:'{{ $gs->title }} Order',
-		developer_code: '{{ $gs->vougepay_developer_code }}',
-		store_id:'{{ Auth::user() ? Auth::user()->id : 0 }}',
-		closed:function(){
-			var newval = $('#sub').val();
-			if(newval == 0){
-			  window.location.reload();
+			v_merchant_id: '{{ $gs->vougepay_merchant_id }}',
+			total: total,
+			cur: '{{ $curr->name }}',
+			merchant_ref: 'ref'+Math.floor((Math.random() * 1000000000) + 1),
+			memo:'{{ $gs->title }} Order',
+			developer_code: '{{ $gs->vougepay_developer_code }}',
+			store_id:'{{ Auth::user() ? Auth::user()->id : 0 }}',
+			closed:function(){
+				var newval = $('#sub').val();
+				if(newval == 0){
+				window.location.reload();
+				} else {
+					$('#final-btn').click();
+				}
+			},
+			success:function(transaction_id){
+				$('#ref_id').val(transaction_id);
+				$('#sub').val('1');
+			},
+			failed:function(){
+				alert('failed');
+				window.location.reload();
 			}
-			else {
-				$('#final-btn').click();
-			}
-      	},
-		success:function(transaction_id){
-		$('#ref_id').val(transaction_id);
-		$('#sub').val('1');
-      	},
-		failed:function(){
-			alert('failed');
-      		window.location.reload();
-      	}
    		});
-   }
-    else {
+    } else {
     	$('#preloader').show();
         return true;   
     }

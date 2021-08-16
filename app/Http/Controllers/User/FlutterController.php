@@ -105,7 +105,7 @@ class FlutterController extends Controller
               "content-type: application/json",
               "cache-control: no-cache"
             ],
-          ));
+        ));
           
           $response = curl_exec($curl);
           $err = curl_error($curl);

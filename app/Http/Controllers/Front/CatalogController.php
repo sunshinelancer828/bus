@@ -121,7 +121,8 @@ class CatalogController extends Controller
             $search = str_replace(array('(', ')', '"', '\'', '<', '>', '+', '-', '~', '*'), 
             '', $search);
             $prods = $prods->when($search, function ($query, $search) {
-                return $query->whereRaw("MATCH(name) AGAINST('" . $search . "' IN BOOLEAN MODE )");
+                return $query->whereRaw("MATCH(name) AGAINST('" . $search . "' IN BOOLEAN MODE )")
+                ->where('status','=',1);
             });
         } 
         

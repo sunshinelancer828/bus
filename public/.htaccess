@@ -29,6 +29,7 @@
 	ExpiresByType image/gif "access plus 1 month"
 	ExpiresByType image/png "access plus 1 month"
 	ExpiresByType image/webp "access plus 1 month"
+	ExpiresDefault "access 1 month"
 </IfModule>
 
 # JAVASCRIPT CHACHING
@@ -37,11 +38,13 @@
  
     ExpiresByType text/javascript "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
-   </IfModule>
+    ExpiresDefault "access 1 month"
+</IfModule>
 
 ## CSS CACHING ##
 <IfModule mod_expires.c>
     ExpiresActive on
  
     ExpiresByType text/css "access plus 1 month"
+    ExpiresDefault "access 1 month"
  </IfModule>

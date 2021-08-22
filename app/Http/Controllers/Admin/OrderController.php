@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-require app_path('../twilio/sdk/Twilio/autoload.php');
+// require app_path('../twilio/sdk/Twilio/autoload.php');
 
 use App\Classes\GeniusMailer;
 use App\Http\Controllers\Controller;
@@ -18,7 +18,7 @@ use Session,Mail;
 use DB;
 use Datatables;
 
-use Twilio\Rest\Client;
+// use Twilio\Rest\Client;
 
 class OrderController extends Controller
 {
@@ -197,9 +197,9 @@ class OrderController extends Controller
                         ->addTextHeader($headers, 'true');
                     });    
 
-                    $sid = 'AC7ef5ef96e9609301ef3cda5d0c051cd4';
-                    $token = 'aa4777dd5110081cd6f6dd130efd0bd4';
-                    $client = new Client($sid, $token);
+                    // $sid = 'AC7ef5ef96e9609301ef3cda5d0c051cd4';
+                    // $token = 'aa4777dd5110081cd6f6dd130efd0bd4';
+                    // $client = new Client($sid, $token);
 
                     // $message = $client->messages->create(
                     //     "+2348071585713", // to

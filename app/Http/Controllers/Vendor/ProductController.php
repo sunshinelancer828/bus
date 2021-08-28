@@ -419,7 +419,7 @@ class ProductController extends Controller
         if($allow_free == 'yes') {
         //--- Validation Section
         $rules = [
-            //    'photo'      => 'required|mimes:jpeg,jpg,png,svg',
+            //    'photo'      => 'required|mimes:jpeg,jpg,png,webp,svg',
                //'file'       => 'mimes:zip'
                 ];
 
@@ -791,7 +791,7 @@ class ProductController extends Controller
 
         //--- Validation Section
         $rules = [
-            //    'photo'      => 'mimes:jpeg,jpg,png,svg',
+            //    'photo'      => 'mimes:jpeg,jpg,png,webp,svg',
               // 'file'       => 'mimes:zip'
                 ];
 
@@ -1153,7 +1153,7 @@ class ProductController extends Controller
 
         //--- Validation Section
         $rules = [
-            // 'photo'      => 'mimes:jpeg,jpg,png,svg',
+            // 'photo'      => 'mimes:jpeg,jpg,png,webp,svg',
             'file'       => 'mimes:zip'
              ];
 

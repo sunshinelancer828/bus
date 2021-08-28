@@ -16,16 +16,16 @@ class GeneralSettingController extends Controller
 
     protected $rules =
     [
-        'logo'              => 'mimes:jpeg,jpg,png,svg',
-        'favicon'           => 'mimes:jpeg,jpg,png,svg',
+        'logo'              => 'mimes:jpeg,jpg,png,webp,svg',
+        'favicon'           => 'mimes:jpeg,jpg,png,webp,svg',
         'loader'            => 'mimes:gif',
         'admin_loader'      => 'mimes:gif',
-        'affilate_banner'   => 'mimes:jpeg,jpg,png,svg',
-        'error_banner'      => 'mimes:jpeg,jpg,png,svg',
-        'popup_background'  => 'mimes:jpeg,jpg,png,svg',
-        'invoice_logo'      => 'mimes:jpeg,jpg,png,svg',
-        'user_image'        => 'mimes:jpeg,jpg,png,svg',
-        'footer_logo'        => 'mimes:jpeg,jpg,png,svg',
+        'affilate_banner'   => 'mimes:jpeg,jpg,png,webp,svg',
+        'error_banner'      => 'mimes:jpeg,jpg,png,webp,svg',
+        'popup_background'  => 'mimes:jpeg,jpg,png,webp,svg',
+        'invoice_logo'      => 'mimes:jpeg,jpg,png,webp,svg',
+        'user_image'        => 'mimes:jpeg,jpg,png,webp,svg',
+        'footer_logo'        => 'mimes:jpeg,jpg,png,webp,svg',
     ];
 
     public function __construct()

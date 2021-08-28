@@ -47,7 +47,7 @@ class UserController extends Controller
 
         $rules =
         [
-            'photo' => 'mimes:jpeg,jpg,png,svg',
+            'photo' => 'mimes:jpeg,jpg,png,webp,svg',
             'email' => 'unique:users,email,'.Auth::user()->id
         ];
 

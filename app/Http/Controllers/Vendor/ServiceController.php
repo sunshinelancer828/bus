@@ -74,7 +74,7 @@ class ServiceController extends Controller
     {
         //--- Validation Section
         $rules = [
-               'photo'      => 'required|mimes:jpeg,jpg,png,svg',
+               'photo'      => 'required|mimes:jpeg,jpg,png,webp,svg',
                 ];
 
         $validator = Validator::make(Input::all(), $rules);
@@ -115,7 +115,7 @@ class ServiceController extends Controller
     {
         //--- Validation Section
         $rules = [
-               'photo'      => 'mimes:jpeg,jpg,png,svg',
+               'photo'      => 'mimes:jpeg,jpg,png,webp,svg',
                 ];
 
         $validator = Validator::make(Input::all(), $rules);

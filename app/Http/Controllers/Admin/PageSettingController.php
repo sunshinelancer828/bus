@@ -19,19 +19,19 @@ class PageSettingController extends Controller
 
     protected $rules =
     [
-        'best_seller_banner' => 'mimes:jpeg,jpg,png,svg',
-        'big_save_banner'    => 'mimes:jpeg,jpg,png,svg',
-        'best_seller_banner1' => 'mimes:jpeg,jpg,png,svg',
-        'big_save_banner1'    => 'mimes:jpeg,jpg,png,svg'
+        'best_seller_banner' => 'mimes:jpeg,jpg,png,webp,svg',
+        'big_save_banner'    => 'mimes:jpeg,jpg,png,webp,svg',
+        'best_seller_banner1' => 'mimes:jpeg,jpg,png,webp,svg',
+        'big_save_banner1'    => 'mimes:jpeg,jpg,png,webp,svg'
     ];
 
 
     protected $customs =
     [
-        'best_seller_banner.mimes'  => 'Photo type must be in jpeg, jpg, png, svg.',
-        'big_save_banner.mimes'     => 'Photo type must be in jpeg, jpg, png, svg.',
-        'best_seller_banner1.mimes' => 'Photo type must be in jpeg, jpg, png, svg.',
-        'big_save_banner1.mimes'    => 'Photo type must be in jpeg, jpg, png, svg.'
+        'best_seller_banner.mimes'  => 'Photo type must be in jpeg, jpg, png, webp, svg.',
+        'big_save_banner.mimes'     => 'Photo type must be in jpeg, jpg, png, webp, svg.',
+        'best_seller_banner1.mimes' => 'Photo type must be in jpeg, jpg, png, webp, svg.',
+        'big_save_banner1.mimes'    => 'Photo type must be in jpeg, jpg, png, webp, svg.'
       
     ];
 

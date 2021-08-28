@@ -73,7 +73,7 @@ class DashboardController extends Controller
 
         $rules =
         [
-            'photo' => 'mimes:jpeg,jpg,png,svg',
+            'photo' => 'mimes:jpeg,jpg,png,webp,svg',
             'email' => 'unique:admins,email,'.Auth::guard('admin')->user()->id
         ];
 

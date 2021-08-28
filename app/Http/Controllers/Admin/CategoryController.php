@@ -61,7 +61,7 @@ class CategoryController extends Controller
     {
         //--- Validation Section
         $rules = [
-            'photo' => 'mimes:jpeg,jpg,png,svg',
+            'photo' => 'mimes:jpeg,jpg,png,webp,svg',
             'slug' => 'unique:categories|regex:/^[a-zA-Z0-9\s-]+$/'
                  ];
         $customs = [
@@ -92,7 +92,7 @@ class CategoryController extends Controller
                 $input['is_featured'] = 1;
                 //--- Validation Section
                 $rules = [
-                    'image' => 'required|mimes:jpeg,jpg,png,svg'
+                    'image' => 'required|mimes:jpeg,jpg,png,webp,svg'
                         ];
                 $customs = [
                     'image.required' => 'Feature Image is required.',
@@ -132,7 +132,7 @@ class CategoryController extends Controller
     {
         //--- Validation Section
         $rules = [
-        	'photo' => 'mimes:jpeg,jpg,png,svg',
+        	'photo' => 'mimes:jpeg,jpg,png,webp,svg',
         	'slug' => 'unique:categories,slug,'.$id.'|regex:/^[a-zA-Z0-9\s-]+$/'
         		 ];
         $customs = [
@@ -170,7 +170,7 @@ class CategoryController extends Controller
                     $input['is_featured'] = 1;
                     //--- Validation Section
                     $rules = [
-                        'image' => 'mimes:jpeg,jpg,png,svg'
+                        'image' => 'mimes:jpeg,jpg,png,webp,svg'
                             ];
                     $customs = [
                         'image.required' => 'Feature Image is required.'

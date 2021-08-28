@@ -147,7 +147,7 @@ class ImportController extends Controller
             {
                 //--- Validation Section
                 $rules = [
-                    'photo'      => 'mimes:jpeg,jpg,png,svg',
+                    'photo'      => 'mimes:jpeg,jpg,png,webp,svg',
                         ];  
 
             $validator = Validator::make(Input::all(), $rules);
@@ -407,7 +407,7 @@ class ImportController extends Controller
         {
 
             $rules = [
-                'photo'      => 'mimes:jpeg,jpg,png,svg',
+                'photo'      => 'mimes:jpeg,jpg,png,webp,svg',
                     ];  
 
         $validator = Validator::make(Input::all(), $rules);

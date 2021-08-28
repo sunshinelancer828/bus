@@ -36,7 +36,7 @@ class GalleryController extends Controller
         if ($files = $request->file('gallery')){
             foreach ($files as  $key => $file){
                 $val = $file->getClientOriginalExtension();
-                if($val == 'jpeg'|| $val == 'jpg'|| $val == 'png'|| $val == 'svg')
+                if($val == 'jpeg'|| $val == 'jpg'|| $val == 'png'|| $val == 'webp'|| $val == 'svg')
                   {
                     $gallery = new Gallery;
 

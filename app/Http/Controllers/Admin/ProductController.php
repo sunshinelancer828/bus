@@ -265,7 +265,7 @@ class ProductController extends Controller
                 
                 $subject = 'Product Activated';
                 $msg = "Hello ".$dataUsers->shop_name.",<br><br>";
-                $msg.="Your product '".$data->name."' has been activated and now visible on our website.<br><br>";
+                $msg.="Your product " ".$data->name." " has been activated and now visible on our website.<br><br>";
                 $msg.="Wish you impressive sales ahead.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";
                 $msg.="Call/WhatsApp: (+234) 08147801594<br> ";

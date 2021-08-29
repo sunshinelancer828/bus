@@ -241,8 +241,8 @@ class ProductController extends Controller
             if ($status == 0) {
                 
                 $subject = 'Product Deactivated';
-                $msg = "Hello ".$dataUsers->shop_name."<br><br>";
-                $msg.="Your product ".$data->name." has been deactivated and will not be visible on our website.<br><br>";
+                $msg = "Hello ".$dataUsers->shop_name.",<br><br>";
+                $msg.="Your product "".$data->name."" has been deactivated and will not be visible on our website.<br><br>";
                 $msg.="Thank you as we look forward for a mutual advantage.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";
                 $msg.="Call/WhatsApp: (+234) 08147801594<br> ";
@@ -252,8 +252,8 @@ class ProductController extends Controller
             } elseif ($status == 2) {
             
                 $subject = 'Product Rejected';
-                $msg = "Hello ".$dataUsers->shop_name."<br><br>";
-                $msg.="Your product ".$data->name." has been rejected, hence not yet visible on our website<br>";
+                $msg = "Hello ".$dataUsers->shop_name.",<br><br>";
+                $msg.="Your product "".$data->name."" has been rejected, hence not yet visible on our website<br>";
                 $msg.="Thank you as we look forward for a mutual advantage.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";
                 $msg.="Call/WhatsApp: (+234) 08147801594<br> ";
@@ -264,8 +264,8 @@ class ProductController extends Controller
             } else {
                 
                 $subject = 'Product Activated';
-                $msg = "Hello ".$dataUsers->shop_name."<br><br>";
-                $msg.="Your product ".$data->name." has been activated and now visible on our website.<br><br>";
+                $msg = "Hello ".$dataUsers->shop_name.",<br><br>";
+                $msg.="Your product "".$data->name."" has been activated and now visible on our website.<br><br>";
                 $msg.="Wish you impressive sales ahead.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";
                 $msg.="Call/WhatsApp: (+234) 08147801594<br> ";
@@ -1200,7 +1200,7 @@ class ProductController extends Controller
            
                 $subject = 'Product Rejected';
                 $msg = "Hello ".$user_data->shop_name.",<br><br>";
-                $msg.="Your product ".$request->name." has been rejected. hence not yet visible on our website<br><br>";
+                $msg.="Your product "".$request->name."" has been rejected. hence not yet visible on our website<br><br>";
                 $msg.="Reason: ".$admin_message."<br><br>";
                 $msg.="Thank you as we look forward for a mutual advantage.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";

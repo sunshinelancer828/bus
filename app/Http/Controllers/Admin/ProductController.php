@@ -241,7 +241,7 @@ class ProductController extends Controller
             if ($status == 0) {
                 
                 $subject = 'Product Deactivated';
-                $msg = "Hello ".$dataUsers->shop_name.",<br><br>";
+                $msg = "Hello ".$dataUsers->shop_name.",""<br><br>";
                 $msg.="Your product '".$data->name."' has been deactivated and will not be visible on our website.<br><br>";
                 $msg.="Thank you as we look forward for a mutual advantage.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";
@@ -264,7 +264,7 @@ class ProductController extends Controller
             } else {
                 
                 $subject = 'Product Activated';
-                $msg = "Hello ".$dataUsers->shop_name.",<br><br>";
+                $msg = "Hello ".$dataUsers->shop_name."","<br><br>";
                 $msg.="Your product " ".$data->name." " has been activated and now visible on our website.<br><br>";
                 $msg.="Wish you impressive sales ahead.<br><br>";  
                 $msg.="All at ProjectShelve<br> ";

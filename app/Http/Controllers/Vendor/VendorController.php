@@ -187,7 +187,7 @@ class VendorController extends Controller
           'attachments.*'  => 'mimes:jpeg,jpg,png,webp,svg|max:10000'
            ];
         $customs = [
-            'attachments.*.mimes' => 'Only jpeg, jpg, png webp and svg images are allowed',
+            'attachments.*.mimes' => 'Only jpeg, jpg, png, webp and svg images are allowed',
             'attachments.*.max' => 'Sorry! Maximum allowed size for an image is 10MB',
                    ];
 

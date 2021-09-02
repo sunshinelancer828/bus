@@ -41,13 +41,13 @@
 	<!-- favicon -->
 	<link rel="icon"  type="image/x-icon" href="{{asset('assets/images/'.$gs->favicon)}}"/>
 	<!-- bootstrap -->
-	<link rel="stylesheet" href="{{asset('assets/front/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/front/css/bootstrap.min.css')}}" async></script>
 	<!-- Plugin css -->
-	<link rel="stylesheet" href="{{asset('assets/front/css/plugin.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/front/css/plugin.css')}}" async></script>
 	<link rel="stylesheet" href="{{asset('assets/front/css/animate.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/front/css/toastr.css')}}">
 	<!-- jQuery Ui Css-->
-	<link rel="stylesheet" href="{{asset('assets/front/jquery-ui/jquery-ui.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/front/jquery-ui/jquery-ui.min.css')}}" async></script>
 	<link rel="stylesheet" href="{{asset('assets/front/jquery-ui/jquery-ui.structure.min.css')}}">
     @if($langg->rtl == "1")
 	<!-- stylesheet -->
@@ -62,12 +62,12 @@
     @else
 	<!-- stylesheet -->
 	<link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/front/css/intlTelInput.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/front/css/intlTelInput.min.css')}}" async></script>
 	<link rel="stylesheet" href="{{asset('assets/front/css/custom.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/front/css/common.css')}}">
 	<!-- responsive -->
 	<link rel="stylesheet" href="{{asset('assets/front/css/responsive.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/front/css/common-responsive.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/front/css/common-responsive.css')}}" async></script>
 	    <!--Updated CSS-->
  	<!--<link rel="stylesheet" href="{{ asset('assets/front/css/styles.php?color='.str_replace('#','',$gs->colors).'&'.'header_color='.str_replace('#','',$gs->header_color).'&'.'footer_color='.str_replace('#','',$gs->footer_color).'&'.'copyright_color='.str_replace('#','',$gs->copyright_color).'&'.'menu_color='.str_replace('#','',$gs->menu_color).'&'.'menu_hover_color='.str_replace('#','',$gs->menu_hover_color)) }}">-->
 <link rel="stylesheet" href="{{ asset('assets/front/css/styles-new.css') }}">

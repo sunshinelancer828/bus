@@ -61,7 +61,7 @@
     <link rel="stylesheet" href="{{ asset('assets/front/css/rtl/styles.php?color='.str_replace('#','',$gs->colors).'&amp;'.'header_color='.str_replace('#','',$gs->header_color).'&amp;'.'footer_color='.str_replace('#','',$gs->footer_color).'&amp;'.'copyright_color='.str_replace('#','',$gs->copyright_color).'&amp;'.'menu_color='.str_replace('#','',$gs->menu_color).'&amp;'.'menu_hover_color='.str_replace('#','',$gs->menu_hover_color)) }}">
     @else
 	<!-- stylesheet -->
-	<link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}" async></script>
 	<link rel="stylesheet" href="{{asset('assets/front/css/intlTelInput.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/front/css/custom.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/front/css/common.css')}}">

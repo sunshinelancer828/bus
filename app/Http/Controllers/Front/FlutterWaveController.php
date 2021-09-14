@@ -313,37 +313,37 @@ class FlutterWaveController extends Controller
         }
 
         //Sending Email To Admin
-        if($gs->is_smtp == 1)
-        {
-            $data = [
-                'to' => $gs->header_email,
-                'subject' => "New Order Recieved!!",
-                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com",
-            ];
+        // if($gs->is_smtp == 1)
+        // {
+        //     $data = [
+        //         'to' => $gs->header_email,
+        //         'subject' => "New Order Recieved!!",
+        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is ".$order->order_number.".Please login to your panel to check. <br>Thank you.<br><br>All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Phone: (+234) 08096221646<br>Email: projectshelve@gmail.com",
+        //     ];
 
-            $mailer = new GeniusMailer();
-            $mailer->sendCustomMail($data);            
-        }
-        else
-        {
-            $to = $gs->from_email;
-            $subject = "New Order Recieved!!";
+        //     $mailer = new GeniusMailer();
+        //     $mailer->sendCustomMail($data);            
+        // }
+        // else
+        // {
+        //     $to = $gs->from_email;
+        //     $subject = "New Order Recieved!!";
             
-            $msg = "Hello Admin!<br><br>Your store has recieved a new order.<br>Order Number is " . $order->order_number;
-            $msg .= ".Please login to your panel to check.<br>Thank you.<br><br>";
-            $msg .= "All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Email: projectshelve@gmail.com";
+        //     $msg = "Hello Admin!<br><br>Your store has recieved a new order.<br>Order Number is " . $order->order_number;
+        //     $msg .= ".Please login to your panel to check.<br>Thank you.<br><br>";
+        //     $msg .= "All at ProjectShelve <br> Mobile: (+234) 08147801594 <br>Email: projectshelve@gmail.com";
 
-            $headers = "MIME-Version: 1.0" . "\r\n";
-            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
+        //     $headers = "MIME-Version: 1.0" . "\r\n";
+        //     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        //     $headers .= "From: ".$gs->from_name."<".$gs->from_email.">";
            
-            // mail($to,$subject,$msg,$headers);
-            Mail::send(array(), array(), function ($message) use ($msg, $to, $subject, $headers) {
-                $message->to($to)
-                ->subject($subject)
-                ->setBody($msg,'text/html');
-            });  
-        }
+        //     // mail($to,$subject,$msg,$headers);
+        //     Mail::send(array(), array(), function ($message) use ($msg, $to, $subject, $headers) {
+        //         $message->to($to)
+        //         ->subject($subject)
+        //         ->setBody($msg,'text/html');
+        //     });  
+        // }
 
         Session::put('tempcart',$cart);
         Session::forget('cart');

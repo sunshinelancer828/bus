@@ -1534,7 +1534,7 @@ class CheckoutController extends Controller
             //     $message->to($to)
             //     ->subject($subject)
             //     ->setBody($msg,'text/html');
-            });      
+            // });      
         // }/
 
         return redirect($success_url);

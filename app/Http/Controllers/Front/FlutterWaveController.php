@@ -391,7 +391,7 @@ class FlutterWaveController extends Controller
         curl_close($curl);
         
         $transaction = json_decode($response);
-        
+        dd($transaction);
         if(!$transaction->data && !$transaction->data->link){
           // there was an error from the API
           print_r('API returned error: ' . $transaction->message);

@@ -381,8 +381,8 @@ class FlutterWaveController extends Controller
                 "cache-control: no-cache"
             ],
         ));
-        
-        $response = curl_exec($curl);   
+    
+        $response = curl_exec($curl);
         if ($response === FALSE) {  // there was an error contacting the rave API
             // dd('Curl returned error: ' . curl_error($curl));
             // return;
@@ -391,7 +391,6 @@ class FlutterWaveController extends Controller
         curl_close($curl);
         
         $transaction = json_decode($response);
-        dd($transaction);
         if(!$transaction->data && !$transaction->data->link){
           // there was an error from the API
           print_r('API returned error: ' . $transaction->message);

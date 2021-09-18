@@ -18,7 +18,7 @@
       const pickerOpts = {
         types: [{
             description: 'Images',
-            accept: { 'image/*': ['.png', '.gif', '.jpeg', '.jpg'] }
+            accept: { 'image/*': ['.png', '.gif', '.jpeg', '.webp', '.jpg'] }
           },],
         excludeAcceptAllOption: true,
         multiple: false

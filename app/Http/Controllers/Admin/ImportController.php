@@ -312,7 +312,7 @@ class ImportController extends Controller
                 }
 
                 $img = Image::make($fimageData)->resize(285, 285);
-                $thumbnail = time().str_random(8).'.jpg';
+                $thumbnail = time().str_random(8).'.webp';
                 $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
                 $prod->thumbnail  = $thumbnail;
                 $prod->update();
@@ -570,7 +570,7 @@ class ImportController extends Controller
         }
 
         $img = Image::make($fimageData)->resize(285, 285);
-        $thumbnail = time().str_random(8).'.jpg';
+        $thumbnail = time().str_random(8).'.webp';
         $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
         $prod->thumbnail  = $thumbnail;
         $prod->update();

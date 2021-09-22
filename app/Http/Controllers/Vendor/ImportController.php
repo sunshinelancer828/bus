@@ -341,7 +341,7 @@ class ImportController extends Controller
 
                 // Set Photo
                 $newimg = Image::make(public_path().'/assets/images/products/'.$prod->photo)->resize(800, 800);
-                $photo = time().str_random(8).'.jpg';
+                $photo = time().str_random(8).'.webp';
                 $newimg->save(public_path().'/assets/images/products/'.$photo);
 
 
@@ -350,7 +350,7 @@ class ImportController extends Controller
                 }
 
                 $img = Image::make($fimageData)->resize(285, 285);
-                $thumbnail = time().str_random(8).'.jpg';
+                $thumbnail = time().str_random(8).'.webp';
                 $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
                 $prod->thumbnail  = $thumbnail;
                 $prod->photo  = $photo;
@@ -631,7 +631,7 @@ class ImportController extends Controller
                 $prod = Product::find($data->id);
                 // Set Photo
                 $newimg = Image::make(public_path().'/assets/images/products/'.$prod->photo)->resize(800, 800);
-                $photo = time().str_random(8).'.jpg';
+                $photo = time().str_random(8).'.webp';
                 $newimg->save(public_path().'/assets/images/products/'.$photo);
 
                 
@@ -642,7 +642,7 @@ class ImportController extends Controller
         }
 
         $img = Image::make($fimageData)->resize(285, 285);
-        $thumbnail = time().str_random(8).'.jpg';
+        $thumbnail = time().str_random(8).'.webp';
         $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
         $prod->thumbnail  = $thumbnail;
         $prod->photo  = $photo;

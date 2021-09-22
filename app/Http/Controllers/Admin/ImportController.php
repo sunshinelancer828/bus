@@ -312,7 +312,7 @@ class ImportController extends Controller
                 }
 
                 $img = Image::make($fimageData)->resize(285, 285);
-                $thumbnail = time().str_random(8).'.jpg';
+                $thumbnail = time().str_random(8).'.webp';
                 $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
                 $prod->thumbnail  = $thumbnail;
                 $prod->update();
@@ -326,7 +326,7 @@ class ImportController extends Controller
                     $gallery = new Gallery;
                     $name = time().str_replace(' ', '', $file->getClientOriginalName());
                     $img = Image::make($file->getRealPath())->resize(800, 800);
-                    $thumbnail = time().str_random(8).'.jpg';
+                    $thumbnail = time().str_random(8).'.webp';
                     $img->save(public_path().'/assets/images/galleries/'.$name);
                     $gallery['photo'] = $name;
                     $gallery['product_id'] = $lastid;
@@ -570,7 +570,7 @@ class ImportController extends Controller
         }
 
         $img = Image::make($fimageData)->resize(285, 285);
-        $thumbnail = time().str_random(8).'.jpg';
+        $thumbnail = time().str_random(8).'.webp';
         $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
         $prod->thumbnail  = $thumbnail;
         $prod->update();

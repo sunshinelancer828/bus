@@ -204,7 +204,7 @@ class ProductController extends Controller
                 }
 
         $img = Image::make(public_path().'/assets/images/products/'.$data->photo)->resize(285, 285);
-        $thumbnail = time().str_random(8).'.jpg';
+        $thumbnail = time().str_random(8).'.webp';
         $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
         $data->thumbnail  = $thumbnail;
         $data->update();
@@ -346,14 +346,14 @@ class ProductController extends Controller
                         $thumb_url = $line[5];
                     }else{
                         $fimg = Image::make(public_path().'/assets/images/noimage.png')->resize(800, 800); 
-                        $fphoto = time().str_random(8).'.jpg';
+                        $fphoto = time().str_random(8).'.webp';
                         $fimg->save(public_path().'/assets/images/products/'.$fphoto);
                         $input['photo']  = $fphoto;
                         $thumb_url = public_path().'/assets/images/noimage.png';
                     }
 
                 $timg = Image::make($thumb_url)->resize(285, 285);
-                $thumbnail = time().str_random(8).'.jpg';
+                $thumbnail = time().str_random(8).'.webp';
                 $timg->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
                 $input['thumbnail']  = $thumbnail;
 
@@ -706,13 +706,13 @@ class ProductController extends Controller
               
                 // Set Photo
                 $newimg = Image::make(public_path().'/assets/images/products/'.$prod->photo)->resize(250,250);
-                $photo = time().str_random(8).'.jpg';
+                $photo = time().str_random(8).'.webp';
                 $newimg->save(public_path().'/assets/images/products/'.$photo);
                 
 
                 // Set Thumbnail
                 $img = Image::make(public_path().'/assets/images/products/'.$prod->photo)->resize(250,250);
-                $thumbnail = time().str_random(8).'.jpg';
+                $thumbnail = time().str_random(8).'.webp';
                 $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
                 $prod->thumbnail  = $thumbnail;
                 $prod->photo  = $photo;
@@ -727,7 +727,7 @@ class ProductController extends Controller
                     $gallery = new Gallery;
                     $name = time().str_replace(' ', '', $file->getClientOriginalName());
                     $img = Image::make($file->getRealPath())->resize(800, 800);
-                    $thumbnail = time().str_random(8).'.jpg';
+                    $thumbnail = time().str_random(8).'.webp';
                     $img->save(public_path().'/assets/images/galleries/'.$name);
                     $gallery['photo'] = $name;
                     $gallery['product_id'] = $lastid;
@@ -1114,13 +1114,13 @@ class ProductController extends Controller
                 $prod = Product::find($data->id);
                 // Set Photo
                 $newimg = Image::make(public_path().'/assets/images/products/'.$prod->photo)->resize(800, 800);
-                $photo = time().str_random(8).'.jpg';
+                $photo = time().str_random(8).'.webp';
                 $newimg->save(public_path().'/assets/images/products/'.$photo);
                 
 
                 // Set Thumbnail
                 $img = Image::make(public_path().'/assets/images/products/'.$prod->photo)->resize(285, 285);
-                $thumbnail = time().str_random(8).'.jpg';
+                $thumbnail = time().str_random(8).'.webp';
                 $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
                 $prod->thumbnail  = $thumbnail;
                 $prod->photo  = $photo;
@@ -1441,13 +1441,13 @@ class ProductController extends Controller
 
                 // Set Photo
                 $newimg = Image::make(public_path().'/assets/images/products/'.$prod->photo)->resize(800, 800);
-                $photo = time().str_random(8).'.jpg';
+                $photo = time().str_random(8).'.webp';
                 $newimg->save(public_path().'/assets/images/products/'.$photo);
                 
 
                 // Set Thumbnail
                 $img = Image::make(public_path().'/assets/images/products/'.$prod->photo)->resize(285, 285);
-                $thumbnail = time().str_random(8).'.jpg';
+                $thumbnail = time().str_random(8).'.webp';
                  $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
                 $prod->thumbnail  = $thumbnail;
                 $prod->photo  = $photo;
@@ -1462,7 +1462,7 @@ class ProductController extends Controller
                     $gallery = new Gallery;
                     $name = time().str_replace(' ', '', $file->getClientOriginalName());
                     $img = Image::make($file->getRealPath())->resize(800, 800);
-                    $thumbnail = time().str_random(8).'.jpg';
+                    $thumbnail = time().str_random(8).'.webp';
                     $img->save(public_path().'/assets/images/galleries/'.$name);
                     $gallery['photo'] = $name;
                     $gallery['product_id'] = $lastid;

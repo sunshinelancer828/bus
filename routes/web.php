@@ -1569,7 +1569,14 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   Route::get('/vendor/subscription/check','Front\FrontendController@subcheck');
   // CRONJOB ENDS
 
+  Route::group(['middleware'=>'HtmlMinifier'], function(){ 
+  
+  Route::get('/', 'SiteController@home');
+  Route::get('/{slug}', 'SiteController@postDetails');
+  ...
+  ...
 
+  });
 
   // PAGE SECTION
   Route::get('/{slug}','Front\FrontendController@page')->name('front.page');

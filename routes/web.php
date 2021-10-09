@@ -1,5 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
+Route::get('/test', function(){
+  var_dump("test");
+});
 
 // ************************************ ADMIN SECTION **********************************************
 Route::prefix('admin')->group(function() {
